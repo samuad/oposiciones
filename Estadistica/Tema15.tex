@@ -1,0 +1,232 @@
+\chapter[Cadenas de Markov.]{Cadenas de Markov.\\
+\normalsize Distribuci\'on de la cadena. Cadenas homog\'eneas. Clasificaci\'on de los estados. Tipos de cadenas. Distribuciones estacionarias.}
+
+\section{Introducci\'on.}
+Las cadenas de Markov son un tipo especial de proceso estoc\'astico. Un proceso estoc\'astico es una sucesi\'on de variables aleatorias que evolucionan en funci\'on de otra variable. En general, la variable en funci\'on de la que evolucionan suele ser el tiempo. Cada variable de un proceso estoc\'astico tiene su propia funci\'on de distribuci\'on de probabilidad, y pueden estar correlacionadas entre s\'i o no estarlo.
+
+En cuanto a los procesos estoc\'asticos dependientes del tiempo, se pueden ver de dos maneras equivalentes: como un conjunto de realizaciones temporales dependientes de un \'indice, o como un conjunto de variables aleatorias dependientes del tiempo.
+
+Formalmente definimos un proceso estoc\'astico como un conjunto de variables aleatorias
+\begin{definicion}
+Sea $\left(\Omega,\mathbb{A}, \mathbb{P}\right) $ un espacio de probabilidad. Un proceso estoc\'astico es una colecci\'on o familia de variables aleatorias $\left\{X(t)/t\in T\right\}$, dependientes de un par\'ametro $t$ que en general se suele identificar con el tiempo. Al conjunto de valores del par\'ametro se le denomina espacio parametral y se denota por $T$, y al conjunto de valores posibles de las variables aleatorias se le llama espacio de estados y se denota por $S$. 
+\end{definicion}
+A cada uno de los elementos del espacio de estados se le llama estado del proceso estoc\'astico. Cada realizaci\'on concreta del proceso se llamar\'a trayectoria o funci\'on muestral.
+
+Podemos considerar como casos particulares de esta estructura distintos conceptos asociados al c\'alculo de probabilidades. As\'i:
+\begin{itemize}
+\item Si $T=\{t_0\}$, se obtiene una variable aleatoria unidimensional, $X(t_0)$.
+\item Si $T=\{t_0, t_1, \ldots, t_k\}$ tenemos una variable aleatoria $k-$dimensional, $(X(t_0), X(t_1), \ldots, X(t_k))$.
+\item Si $T=\mathbb{N}$, tenemos una sucesi\'on de variables aleatorias, $\{X(t_n)\}_{n\in\mathbb{N}}$.
+\end{itemize}
+
+Por otro lado, el par\'ametro asociado al proceso puede ser discreto, es decir, $T=\mathbb{N}\cup \{0\}$ o cont\'inuo, es decir, $T=[0,+\infty)$, o $T=\mathbb{R}$ si consideramos estados retrospectivos.
+
+Los procesos estoc\'asticos se pueden clasificar atendiendo a dos criterios:
+\begin{itemize}
+\item La cardinalidad del conjunto de estados: Si el espacio de estados es finito o infinito numerable (discreto) diremos que el proceso es una cadena. Si el espacio de estados es infinito no numerable (cont\'inuo) diremos que estamos ante un proceso.
+\item La cardinalidad del conjunto parametral, o conjunto de \'indices: Si el conjunto de \'indices es finito o infinito numerable (discreto) diremos que el proceso es en tiempo discreto. Si el conjunto de \'indices es infinito no numerable (cont\'inuo) diremos que estamos ante un proceso en tiempo cont\'inuo.
+\end{itemize}
+
+Por tanto, atendiendo a estas dos dimensiones, podemos clasificar los procesos estoc\'asticos en:
+\begin{enumerate}
+\item[Cadenas:] Conjunto de estados discreto, tiempo discreto.
+\item[Cadenas en tiempo continuo:] Conjunto de estados discreto, tiempo continuo.
+\item[Procesos en tiempo discreto:] Conjunto de estados continuo, tiempo discreto.
+\item[Procesos en tiempo continuo:] Conjunto de estados continuo, tiempo continuo.
+\end{enumerate}
+
+En el caso de las cadenas, si $S$ es un conjunto finito se habla de cadenas finitas.
+
+Si fijamos la parte aleatoria de un proceso estoc\'astico, obtendremos una funci\'on real de variable real, que s\'olo depender\'a de $T$. Por ello, a las diferentes funciones que se generan en este caso se les llama trayectorias. SI $T$ es un conjunto discreto, las trayectorias ser\'an sucesiones reales, y si es cont\'inuo ser\'an fucniones reales.
+
+Si fijamos la componente temporal o relativa al punto $t_0\in T$ obtenemos una variable aleatoria unidimensional que refleja el comportamiento del proceso en el instante $t_0$. La variable ser\'a discreta o continua seg\'un sea el espacio de estados.
+
+Funci\'on de distribuci\'on del proceso estoc\'astico: de primer y segundo orden.
+
+
+Para un proceso estoc\'astico se pueden definir las siguientes magnitudes:
+\begin{itemize}
+\item Funci\'on Media: $\mu(t) = E(X_t) , t\in T$.
+\item Funci\'on Varianza: $\sigma^2(t)=E[(X_t-\mu(t))^2], t\in T$.
+\item N\'ucleo de Covarianza o Autocovarianza: $\gamma(r,s)=Cov(X_r,X_s)=E(X_r.X_s)- \mu(r)\mu(s), r,s\in T$.
+\item Funci\'on de Autocorrelaci\'on: $\rho(r,s)=\dfrac{\gamma(r,s)}{\sigma(r)\sigma(s)}$.
+\end{itemize}
+
+\begin{definicion}
+Se dice que un proceso estoc\'astico con un conjunto lineal de \'indices y con funci\'on de distribuci\'on $F(x_1,x_2,\ldots,x_n;t_1,t_2,\ldots,t_n)$ es estrictamente estacionario si y solo si se cumple:
+\begin{equation*}
+F(x_1,x_2,\ldots,x_n;t_1,t_2,\ldots,t_n)=F(x_1,x_2,\ldots,x_n;t_1+h,t_2+h,\ldots,t_n+h)\;\;\forall t_1,t_2,\ldots,t_n\in T, \forall h\in T, \forall n\in\mathbb{N}
+\end{equation*}
+
+\end{definicion}
+
+Las condiciones para que un proceso sea estacionario son muy estrictas y dif\'iciles de cumplir. Por ello se define la estacionariedad de orden $r$:
+\begin{definicion}
+Se dice que un proceso estoc\'astico con un conjunto lineal de \'indices y con funci\'on de distribuci\'on $F(x_1,x_2,\ldots,x_n;t_1,t_2,\ldots,t_n)$ es estacionario de orden $r$ si y solo si se cumple:
+\begin{equation*}
+F(x_1,x_2,\ldots,x_n;t_1,t_2,\ldots,t_n)=F(x_1,x_2,\ldots,x_n;t_1+h,t_2+h,\ldots,t_n+h)\;\;\forall t_1,t_2,\ldots,t_n\in T, \forall h\in T, \forall n\in\mathbb{N}:n\leq r
+\end{equation*}
+
+\end{definicion}
+
+Un proceso estrictamente estacionario ser\'a estacionario de cualquier orden, y un proceso estacionario de orden $r$ ser\'a estacionario en los \'ordenes anteriores.
+
+\begin{teorema}
+Sea $\{X(t), t\in T\}$ un proceso estacionario de orden dos, entonces se cumple:
+\begin{itemize}
+\item Las variables aleatorias que lo integran est\'an id\'enticamente distribu\'idas.
+\item Las funciones media y varianza del proceso son constantes.
+\end{itemize}
+\end{teorema}
+
+\begin{teorema}
+Sea $\{X(t), t\in T\}$ un proceso estacionario de orden dos, entonces las distribuciones conjuntas bidimensionales no dependen de los \'indices concretos, sino de la separaci\'on entre ellos.
+\end{teorema}
+
+Como consecuencia, las funciones de autocovarianza y autocorrelaci\'on solo depender\'an de la distancia entre los \'indices.
+
+\begin{definicion}
+Se dice que un proceso estoc\'astico con un conjunto lineal de \'indices y con funci\'on de distribuci\'on $F(x_1,x_2,\ldots,x_n;t_1,t_2,\ldots,t_n)$ es d\'ebilmente estacionario si y solo si se cumple:
+\begin{itemize}
+\item $\mu(t)=\mu\;\forall t\in T$.
+\item $\gamma(t,t+h)=C(h)\;\forall t,h\in T$
+\end{itemize}
+\end{definicion}
+
+Esta definici\'on implica que la funci\'on de varianza es constante y la funci\'on de autocorrelaci\'on solo depende de la distancia entre los \'indices.
+
+\section{Cadenas de Markov.}
+
+\begin{definicion}
+Un proceso estoc\'astico en tiempo discreto se dice que cumple la \textbf{propiedad de Markov} si para cualquier $n\ge 0$ y para cualesquiera estados $x_0,x_1,x_2,\ldots,x_n,x_{n+1}$ se cumple que:
+\begin{equation*}
+p(x_{n+1}|x_0,x_1,x_2,\ldots,x_n)=p(x_{n+1}|x_n)
+\end{equation*}
+Es decir, la probabilidad de que el proceso est\'e en un estado en un momento $t_i$ solo depende del estado en el que estuviera el proceso en el momento anterior.
+\end{definicion}
+
+Los procesos que cumplen la propiedad de Markov re\'unen las caracter\'isticas de ser aplicables a gran cantidad de fen\'omenos y de ser suficientemente sencillos como para ser analizados matem\'aticamente.
+
+\begin{definicion}
+Una \textbf{cadena de Markov} es un proceso estoc\'astico en tiempo discreto con un espacio de estados discreto  que cumple la \textbf{propiedad de Markov}.
+\end{definicion}
+
+Una cadena de Markov cuyo conjunto de estados es finito se llama cadena finita.
+
+\subsection{Distribuci\'on de la cadena.}
+
+La distribuci\'on de probabilidad de una cadena de Markov nos dar\'a la probabilidad de que la cadena ocupe cada uno de los estados del espacio de estados en cada instante de tiempo.
+
+As\'i, la distribuci\'on de probabilidad de primer orden se la conoce como vector de estados en el instante $t$, es decir, la probabilidad de cada estado en el instante $t$. Se denota por $V_t$:
+
+$V_t=(p_i(t), i\in S), \forall t\in T$ con $p_i(t)=P(X_t=i)$.
+
+Para la distribuci\'on de orden dos, es decir, la probabilidad de cada estado en el instante $t$ condicionada por el estado de la cadena en el instante anterior, tendremos una matriz de estados:
+
+$P(X_m=i, X_n=j)=P(X_n=j|X_m=i)P(X_m=i)=P(X_n=j|X_m=i)P_i(m)$, $\forall i,j\in S), \forall m.n\in T$.
+
+Y para la distribuci\'on de orden superior:
+
+$P(X_{t_1}=i_1,X_{t_2}=i_2,\ldots,X_{t_n}=i_n)=P(X_{t_n}=i_n|X_{t_{n-1}}=i_{n-1},\ldots,X_{t_1}=i_1)\cdots P(X_{t_2}=i_2|X_{t_1}=i_{1})P(X_{t_1}=i_1)= P(X_{t_n}=i_n|X_{t_{n-1}}=i_{n-1})\cdots P(X_{t_2}=i_2|X_{t_1}=i_{1})P(X_{t_1}=i_1)$, $\forall i_1,\ldots i_n\in S), \forall t_1, \ldots ,t_n\in T$.
+
+A la probabilidad $P(X_n=j|X_m=i)$ se la denota por $p_{i,j}(m,n)$. Representa la probabilidad de la cadena de pasar del estado $i$ al $j$ entre los instantes $m$ y $n$ y se la conoce como probabilidad de transici\'on.
+
+A la matriz en la que se disponen las probabilidades de transici\'on entre todos los estados del espacio de estados se le llama matriz de transici\'on. A la matriz de transici\'on entre dos momentos consecutivos se le llama matriz de transici\'on ene un paso o en una etapa. La matriz de transici\'on entre los momentos $m$ y $n$ se denota por $P(m,n)$
+\begin{itemize}
+\item La matriz de transici\'on es una matriz estoc\'astica.
+\item El avance de la cadena entre dos estados se puede modelizar a partir del vector de estados y la matriz de transici\'on: $V_t=V_sP(s,t)$, $\forall s,t\in T$, $s<t$.
+\item \textbf{Ecuaci\'on de Chapman-Kolmogorov:} $P(r,t)=P(r,s)P(s,t)$, $\forall r,s,t\in T$, $r<s<t$.
+\item $P(m,n)=P(m,m+1)P(m+1,m+2)\cdots P(n-1,n)$.
+\item $V_t=V_0P(0,t)$.
+\item $p_i(n)=\sum_jp_{ij}(n,n-1)p_j(s)$.
+\end{itemize}
+
+
+\subsection{Cademas de Markov homog\'eneas.}
+
+\begin{definicion}
+Una \textbf{cadena de Markov} se dice que es \textbf{homog\'enea} si se cumple que $p_{i,j}(t,t+1)=p_{i,j}$, o tambi\'en $P(t,t+1)=P$. Es decir, las probabilidades de transici\'on en un paso entre dos estados no dependen del tiempo, son constantes.
+\end{definicion}
+
+Como consecuencia:
+\begin{itemize}
+\item $P(r+s)=P(r)P(s) \forall r,s\in T$, por la ecuaci\'on de Chapman-Kolmogorov.
+\item $P(h,t+h)=P(0,t)=P^t=P(t) \forall t,h\in T$.
+\item $V_t=V_0P(t)=V_0P^t \forall t\in T$.
+\end{itemize}
+
+A la hora de calcular $P^t$ podemos hacer uso de la descomposici\'on de Jordan, que facilitar\'a el c\'alculo: $P=HJH^{-1}$, $P^t=HJ^tH^{-1}$.
+
+Una cadena homog\'enea queda especificada conociendo el vector de estados inicial y la matriz de transici\'on.
+
+\subsection{Clasificaci\'on de los estados.}
+
+El hecho de que las cadenas de Markov homog\'eneas queden definidas por su matriz de transici\'on entre estados aconseja un an\'alisis de dicha matriz. Esto nos permitir\'a clasificar las relaciones entre los distintos estados de la cadena, as\'i como definir una tipolog\'ia dentro de los mismos.
+
+Por tanto, definimos como tiempo de paso entre dos estados, $i, j$ y representamos como $N_{ij}$ a la variable aleatoria que representa el n\'umero de pasos que da la cadena para pasar del estado $i$ al estado $j$. Representamos la probabilidad asociada al este suceso como $f_{ij}(n)=P(N_{ij}=n)$, que representa la probabilidad de que se necesiten $n$ transiciones para pasar del estado $i$ al estado $j$.
+
+A la situaci\'on que representa $N_{ii}$ se le llama tiempo de recurrencia y representa el n\'umero de transiciones para que la cadena regrese al estado $i$.
+
+Si expresamos $f_{ij}$ en funci\'on de las probabilidades de transici\'on, tendremos que:
+\begin{itemize}
+\item $f_{ij}(1)=p_{ij}(1)$.
+\item $p_{ij}(2)=f_{ij}(1)p_{jj}(1)+f_{ij}(2)$ y $f_{ij}(2)=p_{ij}(2)-f_{ij}(1)p_{jj}(1)$.
+\item $p_{ij}(3)=f_{ij}(1)p_{jj}(2)+f_{ij}(2)p_{jj}(1)+f_{ij}(3)$ y $f_{ij}(3)=p_{ij}(3)-f_{ij}(1)p_{jj}(2)-f_{ij}(2)p_{jj}(1)$.
+\item $p_{ij}(n)=f_{ij}(1)p_{jj}(n-1)+\cdots+f_{ij}(n-1)p_{jj}(1)+f_{ij}(n)$ y $f_{ij}(n)=p_{ij}(n)-f_{ij}(1)p_{jj}(n-1)-\cdots-f_{ij}(n-1)p_{jj}(1)$.
+\end{itemize}
+
+Definimos $f_{ij}=\sum_nf_{ij}(n)$, que ser\'a la probabilidad de que la cadena pase en alg\'un momento por el estado $j$ habiendo partido del estado $i$. Por ser una probabilidad, $f_{ij}\leq 1$ y en particular, $f_{ii}\leq 1$. Por tanto, si  $f_{ii}< 1$ existe una probabilidad no nula que una cadena que parta del estado $i$ no regrese al mismo. A estos estados se les conoce como \textbf{estacionarios}.
+
+Por el contrario, si $f_{ii}=1$, es decir, si la cadena siempre regresa al estado $i$, diremos que es un estado \textbf{recurrente}. Una situaci\'on particular del estado recurrente es el caso en que $f_{ii}(1)=1$, es decir, si la cadena accede al estado $i$ ya no lo abandona. Estos estados se conocen como \textbf{absorbentes}.
+
+Si calculamos $E[N_{ii}]=\sum_nnf_{ij}(n)$, que es el tiempo medio que tarda la cadena en regresar al estado $i$, tendremos dos posibilidades: $E[N_{ii}]<\infty$, estado \textbf{recurrente positivo} y $E[N_{ii}]=\infty$, estado \textbf{recurrente nulo}.
+
+Otra forma de caracterizar los estados es calculando el n\'umero medio de veces que la cadena pasa por un estado partiendo de otro.:
+
+Sea la variable aleatoria $Z_i(n)$:
+\begin{equation*}
+Z_i(n)=\begin{cases}
+1 & x_{n}=i\\
+0 & x_{n}\neq i
+\end{cases}
+\end{equation*}
+
+Tendremos que $P\left([Z_j(n)=1/x_0=i\right]=p_{ij}(n)$, y por tanto, $E\left[Z_j(n)/x_0=i\right]=p_{ij}(n)$. Si definimos la variable aleatoria $Z_i$ como el n\'umero de veces que la cadena pasa por el estado $i$, entonces $Z_i=\sum_nZ_i(n)$, y por tanto, $E\left[Z_j/x_0=i\right]=E\left[\sum_nZ_j(n)/x_0=i\right]=\sum_np_{ij}(n)$, que es el n\'umero esperado de veces que la cadena pasa por el estado $j$ partiendo del estado $i$.
+
+Como adem\'as:
+\begin{equation*}
+\sum_np_{ij}(n)=\sum_n(f_{ij}(1)p_{jj}(n-1)+\cdots+f_{ij}(n-1)p_{jj}(1)+f_{ij}(n))=\left(\sum_np_{jj}(n)\right)\left(\sum_nf_{ij}(n)\right)+\sum_nf_{ij}(n)
+\end{equation*}
+
+Y por tanto,
+\begin{equation*}
+f_{ij}=\sum_nf_{ij}(n)=\dfrac{\sum_np_{ij}(n)}{1+\sum_np_{jj}(n)}
+\end{equation*}
+
+Para la transici\'on de un estado a s\'i mismo:
+
+\begin{equation*}
+f_{ii}=\sum_nf_{ii}(n)=\dfrac{\sum_np_{ii}(n)}{1+\sum_np_{ii}(n)}=\dfrac{1}{1+\dfrac{1}{\sum_np_{ii}(n)}}
+\end{equation*}
+
+
+As\'i, un estado es recurrente, esto es, $f_{ii}=1$, si y solo si $\sum_np_{ii}(n)=\infty$, es decir, la cadena vuelve a pasar de media por el estado un n\'umero infinito de veces.
+
+As\'i, un estado es transitorio, esto es, $f_{ii}<1$, si y solo si $\sum_np_{ii}(n)<\infty$, es decir, la cadena vuelve a pasar de media por el estado un n\'umero finito de veces.
+
+
+Tambi\'en podemos clasificar los estados seg\'un su relaci\'on entre ellos:
+\begin{itemize}
+\item Sean dos estados, $i$, $j$. Si se cumple que $f_{ij}>0$, existe una probabilidad no nula de que partiendo del estado $i$ la cadena acceda al estado $j$. Se dice entonces que el estado $j$ es accesible desde el $i$, y se expresa $i\leadsto j$.
+\item Si se cumple que $i\leadsto j$ y adem\'as $j\leadsto i$, entonces se deice que los estados son comunicantes, y se representa as\'i: $i\leftrightsquigarrow j$.
+\end{itemize}
+
+Si el estado $j$ es recurrente y accesible desde el estado $i$, el n\'umero esperado de veces que la cadena pasa por el estado $j$ es infinito:
+\begin{equation*}
+f_{ij}\left(1+\sum_np_{jj}(n)\right)=\sum_np_{ij}(n)
+\end{equation*}
+Y como por ser $j$ recurrente $\sum_np_{jj}(n)=\infty$, $\sum_np_{ij}(n)=\infty$.
+
+Si el estado $i$ es recurrente y $j$ es accesible desde el estado $i$, entonces es seguro que partiendo del estado $j$ la cadena regresa al estado $i$.
+
+Si $j$ es accesible desde $i$, $f_{ij}>0$, y la probabilidad de que saliendo del estado $j$ no se acceda al $i$ ser\'a $1-f_{ji}$. Entonces, $f_{ij}(1-f_{ji})$ ser\'á la probabilidad de que partiendo del estado $i$ se llegue al $j$, y partiendo del $j$ no se vuelva al $i$, que ser\'ian mayor que cero, contradiciendo la recurrencia del estado $i$, por tanto, tendr\'a que cumplirse $1-f_{ji}=0$ y $f_{ji}=1$, es decir, partiendo del estado $j$ se llega seguro al estado $i$. Por

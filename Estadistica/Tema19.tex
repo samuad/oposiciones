@@ -1,0 +1,255 @@
+\chapter[Estimaci\'on puntual I.]{Estimaci\'on puntual I. \\
+\normalsize Propiedades de los estimadores puntuales. Error cuadr\'atico medio. Estimadores insesgados, consistentes y suficientes.}
+
+\section{Introducci\'on.}
+
+Una parte de la inferencia estad\'istica consiste en obtener estimaciones acerca de los par\'ametros que definen la distribuci\'on de probabilidad de una poblaci\'on. As\'i, si tenemos una poblaci\'on normal, sin conocer los valores de $\mu$ y $\sigma^2$ no podremos calcular las probabilidades de los distintos sucesos, ni podremos realizar deducciones sobre la poblaci\'on.
+
+La estimaci\'on de un par\'ametro consistir\'a en utilizar los datos muestrales en combinaci\'on con alg\'un estad\'istico. Hay dos formas de llevar a cabo esta tarea: mediante la \textbf{estimaci\'on puntual}, en la que buscamos un estimador que en conjunci\'on con los datos muestrales nos de una estimaci\'on univaluada del par\'ametro, y la \textbf{estimaci\'on por intervalos}, en la que definimos un intervalo dentro del cual, de forma probable, se encontrar\'a el par\'ametro.
+
+Formalmente, sea una variable aleatoria, $\varphi$, cuya funci\'on de distirbuci\'on, $F(x;\theta)$ depende del par\'ametro $\theta$ definido en el espacio param\'etrico $\Theta$, la estimaci\'on puntual busca encontrar un estad\'istico que nos permita estimar a partir de una muestra aleatoria el valor de $\theta$.
+
+A este estad\'istico que va os a utilizar para estimar $\theta$ lo llamamos \textbf{estimador}, y lo representamos por $\hat{\theta}$. Este estimador ser\'a una funci\'on de las variables aleatorias que forman la muestra, y debe quedar completamente definido una vez se produce la realizaci\'on de la muestra.
+
+Dado que para estimar un mismo par\'ametro podemos definir infinidad de estimadores, ser\'a necesario por un lado, establecer que propiedades es deseable que tenga un estimador para ser \'util a nuestro prop\'osito, y por otro descubrir que procedimientos nos permiten obtener estimadores que cumplan esas propiedades deseables.
+
+As\'i, un estimador ser\'a una variable aleatoria, funci\'on de las variables aleatorias muestrales. Una estimaci\'on ser\'a una realizaci\'on de esa variable aleatoria para una muestra determinada.
+
+
+\section{Propiedades de los estimadores.}
+
+Hemos visto que un estimador es un estad\'istico funci\'on de las variables aleatorias muestrales, y por tanto \'el mismo ser\'a una variable aleatoria con su funci\'on de distribuci\'on, su media y su varianza. De entre todos los etad\'isticos posibles, nos interesar\'a utilizar como estimador aquel que nos produzca las mejores estimaciones del par\'ametro desconocido. Para ello definimos el \textbf{error cuadr\'atico medio}, que utilizaremos como medida de la bondad del estimador.
+
+\begin{definicion}
+Llamamos \textbf{error cuadr\'atico medio} del estimador $\hat{\theta}$, y lo denotamos por $ECM(\hat{\theta})$ como el valor esperado del cuadrado de la diferencia entre el estimador  $\hat{\theta}$ y el valor real de par\'ametro  $\theta$, es decir:
+\begin{equation*}
+ECM\left(\hat{\theta}\right)=E\left[\left(\hat{\theta}-\theta\right)^2\right]
+\end{equation*}
+\end{definicion}
+
+Si desarrollamos esta expresi\'on:
+
+\begin{align*}
+ECM\left(\hat{\theta}\right)=E\left[\left(\hat{\theta}-\theta\right)^2\right]=E\left[\hat{\theta}^2-2\hat{\theta}\theta+\theta^2\right]&= E\left[\hat{\theta}^2\right]-2E\left[\hat{\theta}\right]\theta+\theta^2=E\left[\hat{\theta}^2\right]-\left(E\left[\hat{\theta}\right]\right)^2+\left(E\left[\hat{\theta}\right]\right)^2-2E\left[\hat{\theta}\right]\theta+\theta^2\\
+ECM\left(\hat{\theta}\right)&=V(\hat{\theta})+\left(\theta-E\left[\hat{\theta}\right]\right)^2 
+\end{align*}
+
+Y vemos que el error cuadr\'atico medio se tiene dos componentes:
+\begin{itemize}
+\item La varianza del estimador.
+\item El cuadrado de la diferencia entre el valor real del par\'ametro y la esperanza del estimador.
+\end{itemize}
+
+A la diferencia entre la esperanza del estimador y el valor real del par\'ametro la llamaremos \textbf{sesgo del estimador}.
+
+Parecer\'ia que lo que debemos buscar, por tanto, es un estimador que minimice el error cuadr\'atico medio. Sin embargo, esto no es tan sencillo. Dejando aparte la dificultad de calcular el $ECM$ de todos los estimadores posibles, normalmente este depende del valor del par\'ametro a estimar, y suele ocurrir que no exista ning\'un estimador que lo minimice para todos los posibles valores del par\'ametro. Por tanto, deberemos buscar otros criterios.
+
+A partir del error cuadr\'atico medio podemos deducir que propiedades es deseable que tenga un estimador. As\'i, vemos que para que el error cuadr\'atico medio sea peque\~no la varianza del estimador ha de ser peque\~na, y su esperanza debe estar lo m\'as cercana posible al valor real del par\'ametro, a ser posible debe coincidir con este. A la propiedad de que el estimador tenga varianza m\'inima se le conoce como \textbf{eficiencia} del estimador. Si la esperanza de un estimador coincide con el valor del par\'ametro que estima, se dice que es \textbf{insesgado}, en otro caso se dir\'a que el estimador es sesgado. As\'i, buscaremos estimadores insesgados cuya varianza sea lo m\'as peque\~na posible.
+
+Por otro lado, dado que la estimaci\'on se obtiene a partir de una muestra, esta debe ser lo m\'as representativa posible de la poblaci\'on en estudio. Esto tambi\'en se puede alcanzar incrementando el tama\~no de la muestra hasta el l\'imite en que dicho tama\~no coincide con el tama\~no de la poblaci\'on, en cuyo caso el $ECM$ ser\'a cero, ya que solo hay una estimaci\'on que coincide con el valor del par\'ametro. Por tanto, parece l\'ogico exigir que cuanto mayor sea el tama\~no de la muestra mayor probabilidad haya de que el estimador est\'e pr\'oximo al valor del par\'ametro. Esta propiedad se conoce como \textbf{consistencia}.
+
+Adem\'as de estas propiedades, nos encontramos con otras tres, no inmediatas, pero importantes: \textbf{suficiencia}, \textbf{invarianza} y \textbf{robustez}.
+
+La propiedad de suficiencia refleja el hecho de que al estimar nuestro par\'ametro estamos resumiendo la informaci\'on contenida en la muestra en un \'unico valor, con la esperanza de que este valor conserve toda la informaci\'on contenida en la muestra. Esta situaci\'on no se da siempre, pero cuando se da, se dice que nuestro estimador es \textbf{suficiente}.
+
+La propiedad de invarianza refleja la conveniencia de que obtenido una estimador de un par\'ametro, el estimador de una funci\'on del par\'ametro sea la funci\'on del estimador original.
+
+En cuanto a la robustez, normalmente al estimar un par\'ametro debemos realizar una serie de hip\'otesis sobre la poblaci\'on en estudio. Un estimador es robusto si desviaciones de las hip\'otesis iniciales no afectan a la bondad del estimador, o lo hacen de forma d\'ebil.
+
+\section{Estimadores insesgados, consistentes y suficientes.}
+
+\subsection{Estimadores insesgados.}
+
+La funci\'on de densidad en el muestreo de un estimador depender\'a del par\'ametro o par\'ametros poblacionales, por lo que la esperanza matem\'atica del estimador ser\'a:
+
+\begin{equation*}
+E(\hat{\theta})=\int_{-\infty}^{\infty}\hat{\theta}g(\hat{\theta};\theta)d\hat{\theta}
+\end{equation*}
+
+Como el estimador es funci\'on de los elementos muestrales, y la densidad conjunta de una muestra aleatria simple de tama\~no $n$ ser\'a $f(x_1;\theta)f(x_2;\theta)\cdots f(x_n;\theta)$, la esperanza del estimador se puede calcular tambi\'en como
+\begin{equation*}
+E(\hat{\theta})=\int_{-\infty}^{\infty}\cdots\int_{-\infty}^{\infty}\hat{\theta}(x_1,\ldots,x_n)f(x_1;\theta)\cdots f(x_n;\theta)dx_1\cdots dx_n=\int_{\boldsymbol{X}}\hat{\theta}(\boldsymbol{X})L(\boldsymbol{X};\theta)d\boldsymbol{X}
+\end{equation*}
+
+As\'i, en general podemos expresar la esperanza matem\'atica del estimador como:
+\begin{equation*}
+E(\hat{\theta})=\theta + b(\theta)
+\end{equation*}
+
+Ya hemos visto que $ b(\theta)$ recibe el nombre de \textbf{sesgo} del estimador. Si es cero para todos los posibles valores de $\theta$, diremos que el estimador es insesgado. Si es mayor que cero, diremos que el estimador tiene un sesgo positivo y por tanto sobreestima el par\'ametro. Si es menor que cero, diremos que el estimador tiene un sesgo negativo y por tanto subestima el par\'ametro.
+
+Si un estimador es insesgado, no existir\'a error sistem\'atico si lo utilizamos para estimar un par\'ametro. Un estimador es \textbf{asint\'oticamente insesgado} cuando $b(\hat{\theta}\to\theta$ cunado $n\to\infty$. La insesgadez es una propiedad del estimador, no de una estimaci\'on concreta. Para verificar si un estimador es insesgado solo hay que calcular su esperanza matem\'atica.
+\subsubsection{Propiedades de los estimadores insesgados.}
+
+\begin{enumerate}
+\item Si dos estimadores $\hat{\theta}_1$, $\hat{\theta}_2$ de un mismo par\'ametro son insesgados, entonces para cualquier n\'umero $c$ tal que $c\in(0,1)$ el estimador definido por $\hat{\theta}=c\hat{\theta}_1+(1-c)\hat{\theta}_2$ es insesgado.
+\begin{equation*}
+E(\hat{\theta})=E\left[c\hat{\theta}_1+(1-c)\hat{\theta}_2\right]=cE(\hat{\theta}_1)+(1-c)E(\hat{\theta}_2)=\theta
+\end{equation*}
+
+\item El momento muestral de orden $r$ respecto al origen es un estimador insesgado del momento poblacional respecto al origen del mismo orden.
+\begin{equation*}
+E(a_r)=E\left[\frac{1}{n}\sum_{i=1}^nx_i^r\right]=\frac{1}{n}\sum_{i=1}^nE(x_i^r)=\frac{1}{n}\sum_{i=1}^n\alpha_r=\alpha_r
+\end{equation*}
+
+\item El estimador $\hat{\mu}=\sum_{i=1}^nc_ix_i$ es un estimador insesgado de la media poblacional siempre que $\sum_{i=1}^nc_i=1$.
+\begin{equation*}
+E\left[\sum_{i=1}^nc_ix_i\right]=\sum_{i=1}^nc_iE(x_i)=\mu\sum_{i=1}^nc_i=\mu \Leftrightarrow \sum_{i=1}^nc_i=1
+\end{equation*}
+
+\end{enumerate}
+
+\subsection{Estimadores consistentes.}
+
+A medida que el tama\~no de la muestra aumenta, tenemos cada vez m\'as informaci\'on acerca de la poblaci\'on. Por tanto, ser\'a deseable utilizar estimadores cuya bondad aumente a medida que aumenta el tama\~no de la muestra. Bajo este concepto es bajo el que se sit\'ua la propiedad de la consistencia de un estimador. Para ello nos basaremos en los criterios de convergencia de variables aleatorias.
+
+\begin{definicion}
+Diremos que una sucesi\'on de estimadores de un par\'ametro $\theta$, $\{\hat{\theta}_n\}$ es consistente si converge en probabilidad hacia el valor del par\'ametro $\theta$, es decir, si:
+\begin{equation*}
+\lim_{n\to\infty}P\left(\left|\hat{\theta}_n-\theta\right|\leq\varepsilon\right)=1
+\end{equation*}
+O, de forma equivalente
+\begin{equation*}
+\lim_{n\to\infty}P\left(\left|\hat{\theta}_n-\theta\right|>\varepsilon\right)=0
+\end{equation*}
+Para todos los valores posibles de $\theta$ y para todo $\varepsilon>0$.
+\end{definicion}
+
+Si definimos la sucesi\'on de estimadores como el mismo estimador para tama\~nos cada vez mayores de muestra, la definici\'on implica que para un estimador consistente al aumentar la muestra aumenta la probabilidad de que el valor de la estimaci\'on est\'e muy cercano al valor del par\'ametro a estimar. Es decir, la varianza del estimador disminuir\'a y su sesgo, si lo tiene, tambi\'en ser\'a cada vez menor. M\'as formalmente, si consideramos la desigualdad de Tchebichev:
+
+\begin{equation*}
+P\left(\left|\hat{\theta}_n-\theta\right|>\varepsilon\right)\leq\frac{E(\hat{\theta}_n-\theta)^2}{\varepsilon^2}
+\end{equation*}
+Y como
+\begin{equation*}
+E(\hat{\theta}_n-\theta)^2=V(E(\hat{\theta}_n)+b^2(E(\hat{\theta}_n)
+\end{equation*}
+
+Sustituyendo y tomando l\'imites:
+\begin{align*}
+\lim_{n\to\infty}P\left(\left|\hat{\theta}_n-\theta\right|>\varepsilon\right)&\leq\lim_{n\to\infty}\frac{E(\hat{\theta}_n-\theta)^2}{\varepsilon^2}\\
+\lim_{n\to\infty}E(\hat{\theta}_n-\theta)^2&=\lim_{n\to\infty}V(\hat{\theta}_n)+\lim_{n\to\infty}b^2(\hat{\theta}_n)
+\end{align*}
+
+Y por tanto, para que se cumpla que $\lim_{n\to\infty}P\left(\left|\hat{\theta}_n-\theta\right|>\varepsilon\right)=0$ es suficiente que $\lim_{n\to\infty}V(\hat{\theta}_n)=0$ y $\lim_{n\to\infty}b(\hat{\theta}_n)=\theta$. Esta condici\'on no es necesaria.
+
+\subsubsection{Propiedades de los estimadores consistentes.}
+
+\begin{enumerate}
+\item Si $\hat{\theta}$ es un estimador consistente de $\theta$, y sea $g$ una funci\'on cont\'inua, entonces $g(\hat{\theta})$ es un estimador consistente de $G(\theta)$.
+\item Los momentos muestrales con respecto al origen son estimadores consistentes de sus correspondientes momentos poblacionales.
+\item Los momentos muestrales centrales son estimadores consistentes de sus correspondientes momentos poblacionales.
+\end{enumerate}
+
+\textbf{Estimador \'optimo asint\'oticamente normal}
+
+
+
+\subsection{Estimadores suficientes.}
+
+Hemos visto que los estimadores no son m\'as que estad\'isticos que utilizamos para resumir la informaci\'on que est\'a presente en nuestra muestra aleatoria simple. Cabe preguntarse por tanto, si al efectuar ese resumen no estaremos perdiendo alguna parte de la informaci\'on que contiene la muestra sobre el par\'ametro a estimar. Esto nos lleva a definir el concepto de suficiencia: intuitivamente, un estimador es suficiente si contiene toda la informaci\'on acerca del par\'ametro a estimar que est\'a presente en la muestra original. Claramente ser\'a deseable trabajar con estimadores suficientes.
+
+Un estimador resume toda la informaci\'on presente en la muestra acerca de un par\'ametro si una vez fijado el valor del estimador, la posible variabilidad de la muestra no est\'a ligada al par\'ametro en cuestiº'on, m\'as formalmente, si la distribuci\'on de probabilidad de la muestra condicionada al valor del estimador no depende del par\'ametro a estimar. Formalmente:
+\begin{definicion}
+Sea $(X_1,\ldots,X_n)$ una muestra aleatoria simple que proviene de una poblaci\'on cuya distribuci\'on de probabilidad depende de un par\'ametro $\theta$ desconocido. Diremos que el estad\'istico o estimador $T=T(X_1,\ldots,X_n)$ es suficiente para el par\'ametro $\theta$ si la distribuci\'on condicionada de $(X_1,\ldots,X_n)$ dado el valor del estad\'istico $T=t$ no depende del valor del par\'ametro $\theta$.
+\end{definicion}
+
+Esta definici\'on nos proporciona una forma de comprobar si un estimador es suficiente, pero no nos permite encontrar uno. El teorema de factorizaci\'on de Fischer-Neyman nos permite comprobar si un estad\'istico es suficiente de forma m\'as sencilla, adem\'as de permitirnos encontrar un estimador suficiente.
+
+\begin{teorema}
+\textbf{Teorema de factorizaci\'on de Fischer-Neymann:}\\
+Sea $(X_1,\ldots,X_n)$ una muestra aleatoria simple que proviene de una poblaci\'on con funci\'on de distribuci\'on $F(x;\theta)$ y sea la fucni\'on de cuant\'ia de la muestra $P(x_1,\ldots,x_n;\theta)=P_{\theta}(X_1=x_1,\ldots,X_n=x_n)$, o la funci\'on de densidad de la muestra $f(x_1,\ldots,x_n;\theta)$, entonces el estad\'istico $T=T(X_1,\ldots,X_n)$ es suficiente para el par\'ametro $\theta$ si y solo si se puede escribir:
+\begin{equation*}
+P(x_1,\ldots,x_n;\theta)=g(T(X_1,\ldots,X_n);\theta)\cdot h(x_1,\ldots,x_n)
+\end{equation*}
+o
+\begin{equation*}
+f(x_1,\ldots,x_n;\theta)=g(T(X_1,\ldots,X_n);\theta)\cdot h(x_1,\ldots,x_n)
+\end{equation*}
+donde $g$ depende de $\theta$ y de la muestra a trav\'es del estad\'istico $T$ y $h$ solo depende de la muestra.
+\end{teorema}
+
+
+\begin{teorema}
+Si el estad\'istico $T_1$ es suficiente y es funci\'on con inversa \'unica del estad\'istico $T_2$, $T_1=f(T_2)$, entonces el estad\'istico $T_2$ tabi\'en es suficiente.
+\end{teorema}
+
+\begin{teorema}
+Si los estad\'isticos $T_1$ y $T_2$ son suficientes, est\'an relacionados funcionalmente.
+\end{teorema}
+
+Cuando la poblaci\'on de estudio depende de dos par\'ametros, es interesante determinar dos estad\'isticos que sean conjuntamente suficientes para los dos par\'ametros, es decir, que entre ambos resuman la totalidad de informaci\'on de la muestra para ambos par\'ametros. En este caso, el teorema se puede escribir as\'i:
+
+\begin{teorema}
+\textbf{Teorema de factorizaci\'on de Fischer-Neymann:}\\
+Sea $(X_1,\ldots,X_n)$ una muestra aleatoria simple que proviene de una poblaci\'on con funci\'on de distribuci\'on $F(x;\theta_1,\theta_2)$ y sea la funci\'on de cuant\'ia de la muestra $P(x_1,\ldots,x_n;\theta_1,\theta_2)=P_{\theta_1,\theta_2}(X_1=x_1,\ldots,X_n=x_n)$, o la funci\'on de densidad de la muestra $f(x_1,\ldots,x_n;\theta_1,\theta_2)$, entonces los estad\'isticos $T_1=T_1(X_1,\ldots,X_n)$ y $T_2=T_2(X_1,\ldots,X_n)$ son conjuntamente suficientes para los par\'ametros $\theta_1$ y $\theta_2$ si y solo si se puede escribir:
+\begin{equation*}
+P(x_1,\ldots,x_n;\theta_1,\theta_2)=g(T_1(X_1,\ldots,X_n),T_2(X_1,\ldots,X_n);\theta_1,\theta_2)\cdot h(x_1,\ldots,x_n)
+\end{equation*}
+o
+\begin{equation*}
+f(x_1,\ldots,x_n;\theta_1,\theta_2)=g(T_1(X_1,\ldots,X_n),T_2(X_1,\ldots,X_n);\theta_1,\theta_2)\cdot h(x_1,\ldots,x_n)
+\end{equation*}
+\end{teorema}
+
+\subsubsection{Estad\'istico minimal suficiente.}
+El concepto de suficiencia nos permite buscar un estad\'istico que contenga toda la informaci\'on presente en la muestra acerca del par\'ametro a estimar. Ahora buscamos el \textbf{estad\'istico minimal suficiente}, entendiendo por \'este un estad\'istico que resuma la informaci\'on contenida en la muestra lo m\'as posible, pero que siga siendo suficiente.
+
+\begin{definicion}
+Diremos que un estad\'istico es \textbf{minimal suficiente} para un par\'ametro, $\theta$, si es suficiente y cualquier reducci\'on de la informaci\'on definida por \'el ya no es suficiente.
+\end{definicion}
+
+\paragraph{M\'etodo de Lehmann y Scheff\'e para obtener un estad\'istico minimal suficiente:}
+Si partimos de dos muestras aleatorias simples de igual tama\~no, $(X_1,\ldots,X_n)$ e $(Y_1,\ldots,Y_n)$, cuyas respectivas funciones de verosimilitud son:
+\begin{align*}
+L(x_1,\ldots,x_n;\theta)&=f(x_1,\ldots,x_n;\theta)=\prod_{i=1}^nf(x_i;\theta) \\
+L(y_1,\ldots,y_n;\theta)&=f(y_1,\ldots,y_n;\theta)=\prod_{i=1}^nf(y_i;\theta)
+\end{align*}
+
+Si podemos encontrar una funci\'on $g(x_1,\ldots,x_n)$ tal que el cociente de las verosimilitudes no dependa de $\theta$ si y solo si $g(x_1,\ldots,x_n)=g(y_1,\ldots,y_n)$, entonces $g(x_1,\ldots,x_n)$ es el estimador minimal suficiente de $\theta$.
+
+En el caso de tener $k$ par\'ametros deber\'iamos encontrar $k$ funciones para las que el cociente de verosimilitudes no dependa de los par\'ametros si y solo si $g_i(x_1,\ldots,x_n)=g_i(y_1,\ldots,y_n)$ para todo $i$.
+
+\subsubsection{Relaci\'on entre eficiencia y suficiencia.}
+
+Sabemos que si un estimador $\hat{\theta}$ es insesgado y su varianza alcanza la cota de Cramer-Rao, se verifica que 
+\begin{equation*}
+\frac{\partial\ln{dF_n(x_1,\ldots,x_n;\theta)}}{\partial\theta}=A(\theta)(\hat{\theta}-\theta)
+\end{equation*}
+
+Si definimos:
+\begin{equation*}
+\frac{\partial\ln{g(\hat{\theta},\theta)}}{\partial\theta}=A(\theta)(\hat{\theta}-\theta)
+\end{equation*}
+
+Tendremos:
+\begin{equation*}
+\frac{\partial\ln{dF_n(x_1,\ldots,x_n;\theta)}}{\partial\theta}=\frac{\partial\ln{g(\hat{\theta},\theta)}}{\partial\theta}
+\end{equation*}
+
+si integramos y expresamos la constante de integraci\'on como $\ln{h(x_1,\ldots,x_n)}$, tenemos:
+\begin{equation*}
+\ln{dF_n(x_1,\ldots,x_n;\theta)}=\ln{g(\hat{\theta},\theta)}+\ln{h(x_1,\ldots,x_n)}
+\end{equation*}
+y por tanto:
+\begin{equation*}
+dF_n(x_1,\ldots,x_n;\theta)=g(\hat{\theta},\theta)h(x_1,\ldots,x_n)
+\end{equation*}
+que, aplicando el criterio de factorizaci\'on de Fischer-Neymann, nos dice que el estimador es suficiente. Es decir, un estimador eficiente e insesgado es siempre suficiente.
+
+\subsubsection{Estimadores suficientes y estimadores UMVUE.}
+
+La suficiencia desempe\~na un papel importante en la obtenci\'on de estimadores insesgados uniformemente de m\'inima varianza.
+
+\begin{teorema}
+\textbf{Teorema de Rao-Blackwell:}\\
+Sea una poblaci\'on con funci\'on de densidad representada por $f(x;\theta)$, sea $\hat{\theta}$ un estimador insesgado del par\'ametro $\theta$ y sea $T$ un estad\'istico suficiente del mismo par\'ametro. Entonces, si definimos $g(T)=E[\hat{\theta}/T]$ se verifica:
+\begin{itemize}
+\item $g(T)$ es un estad\'istico, y es funci\'on del estad\'istico suficiente.
+\item $E[g(T)]=\theta$.
+\item $V(g(T))\leq V(\hat{\theta})$.
+\end{itemize}
+Es decir, el estad\'istico $g(T)$ es funci\'on del estad\'istico suficiente, es un estimador insesgado de $\theta$ y su varianza es menos que la del estimador original.
+\end{teorema}
+
+As\'i, si tenemos un estimador insesgado y un estad\'istico suficiente, podemos usarlos para obtener un estimador insesgado de menor varianza.

@@ -1,0 +1,60 @@
+\chapter[M\'etodo de estimaci\'on de m\'axima verosimilitud.]{M\'etodo de estimaci\'on de m\'axima verosimilitud. \\
+\normalsize Propiedades. Distribuci\'on asint\'otica de los estimadores de m\'axima verosimilitud.}
+\section{Introducci\'on.}
+
+Dentro del proceso de inferencia estad\'istica sobre una poblaci\'on, en el que queremos obtener estimadores para os par\'ametros que caracterizan esa poblaci\'on, sabemos que hay una serie de propiedades deseables en esos estimadores (insesgadez, consistencia, eficiencia). Otro problema es c\'omo obtener estimadores que presenten estas propiedades. Para ello veremos c\'omo obtener estimadores a partir del m\'etodo de m\'axima verosimilitud y revisaremos que propiedades cumplen los estimadores obtenidos mediante dicho m\'etodo.
+
+\section{M\'etodo de estimaci\'on de m\'axima verosimilitud.}
+
+El m\'etodo de m\'axima verosimilitud se basa en el siguiente supuesto te\'orico: la obtenci\'on de una muestra a partir de una poblaci\'on no es m\'as que realizar un experimento aleatorio y registrar el suceso que resulta del mismo. Pues bien, este m\'etodo supone que el suceso que hemos obtenido ser\'a el m\'as probable para la distribuci\'on de probabilidad asociada a la poblaci\'on, y a partir de esa suposici\'on deducir\'a los par\'ametros a estimar. Pasemos a verlo de forma formal.
+
+\subsection{Funci\'on de verosimilitud de la muestra.}
+
+\begin{definicion}
+Definimos como \textbf{funci\'on de verosimilitud} de un conjunto de $n$ variables aleatorias como la funci\'on de probabilidad o funci\'on de ensidad conjunta de las $n$ variables, y la denotamos por:
+\begin{equation*}
+L(\boldsymbol{x};\theta)=L(x_1,\ldots,x_n;\theta)=f(x_1,\ldots,x_n;\theta)
+\end{equation*}
+Para el caso de una muestra aleatoria simple, al ser variables aleatorias independientes id\'enticamente distribuidas, su funci\'on de verosimilitud ser\'a:
+\begin{equation*}
+L(\boldsymbol{x};\theta)=L(x_1,\ldots,x_n;\theta)=f(x_1,\ldots,x_n;\theta)=\prod_{i=1}^nf(x_i;\theta)
+\end{equation*}
+\end{definicion}
+
+Por tanto, la funci\'on de verosimilitud es funci\'on de la muestra observada y depende del par\'ametro a estimar, $\theta$.
+
+El valor que toma la funci\'on de verosimilitud para una muestra concreta recibe el nombre de \textbf{elemento de verosimilitud} o \textbf{verosimilitud}, y solo depende del par\'ametro $\theta$.
+
+Si nuestra distribuci\'on de probabilidad es discreta, sustituiremos la funci\'on de densidad por la funci\'on de probabilidad.
+
+\subsection{Estimador de m\'axima verosimilitud.}
+
+\begin{definicion}
+El m\'etodo de estimaci\'on de m\'axima verosimilitud consiste en elegir como estimador del par\'ametro desconocido a partir de una muestra aleatoria simple aquel valor que hace m\'axima la verosimilitud de la muestra, es decir, consiste en encontrar aquel valor $\hat{\theta}(X_1,\ldots,X_n)$ para el que:
+\begin{equation*}
+L(x_1,\ldots,x_n;\hat{\theta})=\max_{\theta\in\Omega}{L(x_1,\ldots,x_n;\theta)}
+\end{equation*}
+A este estimador $\hat{\theta}(X_1,\ldots,X_n)$ se le llama \textbf{estimador m\'aximo-veros\'imil} o \textbf{estimador de m\'axima verosimilitud} del par\'ametro $\theta$.
+\end{definicion}
+
+As\'i, el m\'etodo elige el valor de $\theta$ para el que el valor de la verosimilitud de la muestra es m\'axima, y por tanto, elige el valor del par\'ametro de forma que la muestra que hemos obtenido sea la m\'as probable. Otra forma de entenderlo es que elige el valor del par\'ametro m\'as veros\'imil para la muestra considerada.
+
+El hecho de que la funci\'on de verosimilitud sea el resultado de un producto de funciones complica en muchos casos la b\'usqueda del m\'aximo. Es por eso que, dado que la funci\'on de densidad es siempre positiva, y por tanto maximizar $L(x_1,\ldots,x_n;\theta)$ equivale a maximizar $\ln{L(x_1,\ldots,x_n;\theta)}$, se calcula el estimador m\'aximo veros\'imil a partir de la siguiente expresi\'on:
+
+\begin{equation*}
+\ln{L(x_1,\ldots,x_n;\hat{\theta})}=\max_{\theta\in\Omega}{\ln{L(x_1,\ldots,x_n;\theta)}}=\max_{\theta\in\Omega}{\sum_{i=1}^n\ln{f(x_i;\theta)}}
+\end{equation*}
+
+Y obtendremos el estimador solucionando la siguiente ecuaci\'on:
+\begin{equation*}
+\sum_{i=1}^n\dfrac{\partial\ln{f(x_i;\theta)}}{\partial\theta}=0
+\end{equation*}
+
+El estimador as\'i obtenido ser\'a funci\'on de las observaciones muestrales, y prescindiremos de quellas soluciones que den lugar a que el estimador sea una constante.
+
+Si la funci\'on de densidad o cuant\'ia de la poblsci\'on depende de m\'as de un par\'ametro, los estimadores vendrº'an dados por la soluci\'on del sistema de ecuaciones de verosimilitud.
+
+Cualquier soluci\'on de las ecuaciones ser\'a un estimador de m\'axima verosimilitud. Si la soluci\'on es \'unica, diremos que tenemos un estimador de m\'axima verosimilitud en sentido estricto. Si hay m\'as de una soluci\'on, cada una de ellas ser\'a un estimador de m\'axima verosimilitud en sentido amplio.
+
+\section{Propiedades.}
+

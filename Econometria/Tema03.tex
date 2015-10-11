@@ -1,0 +1,244 @@
+
+\chapter{Modelo lineal con perturbaciones no esf\'ericas. Propiedades del estimador
+m\'inimo cuadr\'atico ordinario. El estimador de m\'inimos cuadrados generalizado.
+El estimador de m\'axima verosimilitud.}
+
+
+\section{Modelo lineal con perturbaciones no esf\'ericas.}
+
+Al analizar las propiedades de los estimadores $MCO$, siempre hemos
+supuesto que el t\'ermino de error tiene una matriz de covarianzas escalar:
+todos sus elementos son cero, excepto los de la diagonal principal,
+y estos son todos iguales a $\sigma_{u}^{2}$. Sin embargo, existen
+situaciones en las que la matriz de covarianzas tiene una estructura
+m\'as compleja; en estas situaciones las propiedades analizadas bajo
+este supuesto podr\'ian dejar de ser v\'alidas.
+
+Una de estas situaciones se produce cuando la matriz es diagonal,
+pero sus elementos diagonales son distintos unos de otros, es decir,
+$Var(u_{i})=\sigma_{i}^{2}$, con $\sigma_{i}^{2}\neq\sigma_{j}^{2}$
+si $i\neq j$. A esta situaci\'on se la denomina \textbf{heteroscedasticidad}.
+Al caso en que la varianza de $u_{i}$ es constante se le llama \textbf{homoscedasticidad}.
+
+Una segunda situaci\'on ocurre cuando los t\'erminos de error de distintas
+observaciones no son independientes entre s\'i, es decir, la matriz
+de covarianzas no es diagonal. A esta situaci\'on se la denomina \textbf{autocorrelaci\'on},
+para reflejar el hecho de que el t\'ermino de error est\'a correlado consigo
+mismo.
+
+A la hora de estimar un modelo econom\'etrico no se puede suponer la
+ausencia de heteroscedasticidad y autocorrelaci\'on sino que es necesario
+analizar en qu\'e medida afectan a la estimaci\'on.
+
+Veremos c\'omo afecta la presencia de estos fen\'omenos al estimador de
+m\'inimos cuadrados ordinarios, y que t\'ecnicas se pueden aplicar para
+minimizar sus efectos.
+
+
+\section{Propiedades del estimador m\'inimo cuadr\'atico ordinario.}
+
+Dado el modelo $\boldsymbol{y}=\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{u}$,
+donde $\boldsymbol{X}$ es la matriz de valores de las variables explicativas,
+$\boldsymbol{y}$ el vector de valores de la variable dependiente
+y $\boldsymbol{u}$ el vector de t\'erminos de error, que cumple $E\left(\boldsymbol{u}\right)=\boldsymbol{0}$
+y $Var\left(\boldsymbol{u}\right)=\sigma_{u}^{2}\boldsymbol{\Sigma}$,
+el estimador de m\'inimos cuadrados ordinarios del vector de par\'ametros
+$\boldsymbol{\beta}$ es una soluci\'on al sistema de ecuaciones normales
+$\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)\hat{\boldsymbol{\beta}}=\boldsymbol{X}^{\prime}\boldsymbol{y}$
+
+Cuando la matriz $\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)$
+es invertible, el sistema tiene una soluci\'on \'unica,$\hat{\boldsymbol{\beta}}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{y}$
+, si no tiene infinitas soluciones. Se puede demostrar que $\hat{\boldsymbol{\beta}}=\boldsymbol{\beta}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}'\boldsymbol{u}$.
+
+
+\subsection{El estimador MCO es insesgado.}
+
+Para que el estimador sea insesgado, se tiene que cumplir $E\left[\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}'\boldsymbol{u}\right]=\boldsymbol{0}_{k}$.
+Si las variables explicativas son deterministas, y siempre que se
+cumpla la condici\'on de que $E\left(\boldsymbol{u}\right)=\boldsymbol{0}$,
+vemos que $E\left[\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}'\boldsymbol{u}\right]=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}E\left(\boldsymbol{u}\right)=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{0}_{N}=\boldsymbol{0}_{k}$.
+Por tanto, el estimador MCO es insesgado independientemente de la
+matriz de covarianzas del t\'ermino de error.
+
+
+\subsection{Matriz de covarianzas del estimador MCO.}
+
+Calculemos la varianza, teniendo en cuenta que la matriz $\boldsymbol{X}$
+es determinista y que $Var\left(\boldsymbol{u}\right)=E\left(\boldsymbol{u}\boldsymbol{u}^{\prime}\right)=\sigma_{u}^{2}\boldsymbol{\Sigma}$:
+
+\[
+\begin{array}{c}
+Var\left(\hat{\boldsymbol{\beta}}_{MCO}\right)=E\left[\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)^{\prime}\right]=E\left[\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u}\boldsymbol{u}^{\prime}\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\right]=\\
+=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}E\left(\boldsymbol{u}\boldsymbol{u}^{\prime}\right)\boldsymbol{X}\left(\boldsymbol{X}'\boldsymbol{X}\right)^{-1}=\sigma_{u}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{\Sigma}\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}
+\end{array}
+\]
+
+
+Es f\'acil ver que si $\boldsymbol{\Sigma}=\boldsymbol{I}_{N}$ (matriz
+de covarianzas escalar), la varianza del estimador se reduce a $\sigma_{u}^{2}\left(\boldsymbol{X}'\boldsymbol{X}\right)^{-1}$,
+que es la matriz de covarianzas que se deduce aplicando el supuesto
+de covarianzas escalares del t\'ermino de error. Es decir, la expresi\'on
+que hemos deducido es la matriz de covarianzas del estimador MCO en
+cualquier caso. EL hecho de que la matriz de covarianzas presente
+esta forma hace que los estad\'isticos utilizados para realizar inferencias
+sobre el modelo no se distribuyan seg\'un las distribuciones $F$ y
+$t$, a menos que la matriz de covarianzas sea escalar.
+
+El estimador es una funci\'on lineal del t\'ermino de error. Si el t\'ermino
+de error presenta una distribuci\'on normal, el estimador MCO tambi\'en
+se distribuye normalmente, con $\hat{\boldsymbol{\beta}}_{MCO}\sim N_{k}\left(\boldsymbol{\beta};\sigma_{u}^{2}\left(\boldsymbol{X}'\boldsymbol{X}\right)^{-1}\boldsymbol{X}'\boldsymbol{\Sigma}\boldsymbol{X}\left(\boldsymbol{X}'\boldsymbol{X}\right)^{-1}\right)$.
+
+
+\section{El estimador de m\'inimos cuadrados generalizados.}
+
+Sabemos que el estimador MCO bajo el supuesto de $Var\left(\boldsymbol{u}\right)=\sigma_{u}^{2}\boldsymbol{I}_{N}$
+es el estimador lineal insesgado de m\'inima varianza. Esta propiedad
+no se mantiene necesariamente si el supuesto sobre la matriz de covarianzas
+no se cumple, y puede haber un estimador lineal insesgado con menor
+varianza.
+
+En estas circunstancias, intentamos transformar el modelo en otro
+con los mismos coeficientes, pero cuyo t\'ermino de error tenga una
+matriz de covarianzas escalar. En este caso podr\'iamos utilizar el
+estimador MCO, y sabr\'iamos que es eficiente. Para ello premultiplicamos
+el modelo por una matriz $\boldsymbol{P}$ de dimensiones $N\times N$:
+$\boldsymbol{P}\boldsymbol{y}=\boldsymbol{P}\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{P}\boldsymbol{u}$,
+y denotamos $\boldsymbol{y}^{*}=\boldsymbol{P}\boldsymbol{y}$, $\boldsymbol{X}^{*}=\boldsymbol{P}\boldsymbol{X}$
+y $\boldsymbol{u}^{*}=\boldsymbol{P}\boldsymbol{u}$. Realmente hemos
+hecho un cambio de variable en el modelo, las nuevas $\boldsymbol{y}^{*}$
+son combinaciones lineales de las $\boldsymbol{y}$ antiguas y los
+coeficientes de esas combinaciones lineales son las filas de la matriz
+$\boldsymbol{P}$. Algo similar ocurre con las $\boldsymbol{X}^{*}$
+y las $\boldsymbol{u}^{*}$. Los coeficientes del modelo transformado
+son los mismos que los del modelo original. La matriz de covarianzas
+del t\'ermino de error del nuevo modelo es: $Var\left(\boldsymbol{u}^{*}\right)=Var\left(\boldsymbol{P}\boldsymbol{u}\right)=\sigma_{u}^{2}\boldsymbol{P}\boldsymbol{\Sigma}\boldsymbol{P}^{\prime}$.
+
+Como la matriz $\boldsymbol{\Sigma}$ es sim\'etrica y definida positiva,
+sabemos que siempre existe una matriz cuadrada no singular $\boldsymbol{V}$
+de modo que $\boldsymbol{\Sigma}=\boldsymbol{V}\boldsymbol{V}^{\prime}$,
+o equivalentemente, $\boldsymbol{V}^{-1}\boldsymbol{\Sigma}\left(\boldsymbol{V}^{-1}\right)^{\prime}=\boldsymbol{I}_{N}$,
+$\boldsymbol{\Sigma}^{-1}=\left(\boldsymbol{V}^{-1}\right)^{\prime}\boldsymbol{V}^{-1}$.
+As\'i, si hacemos $\boldsymbol{P}=\boldsymbol{V}^{-1}$ el t\'ermino de
+error del modelo transformado tiene matriz de covarianzas escalar.
+El estimador MCO de los par\'ametros del modelo transformado es: 
+\[
+\hat{\boldsymbol{\beta}}_{MCG}=\left(\boldsymbol{X}^{*\prime}\boldsymbol{X}^{*}\right)^{-1}\boldsymbol{X}^{*\prime}\boldsymbol{y}^{*}
+\]
+ y se le llama estimador de m\'inimos cuadrados generalizados de los
+coeficientes del modelo original. En funci\'on de las variables originales
+tenemos que:
+\[
+\hat{\boldsymbol{\beta}}_{MCG}=\left(\boldsymbol{X}\left(\boldsymbol{V}^{-1}\right)^{\prime}\boldsymbol{V}^{-1}\boldsymbol{X}\right)^{-1}\boldsymbol{X}\left(\boldsymbol{V}^{-1}\right)^{\prime}\boldsymbol{V}^{-1}\boldsymbol{y}=\left(\boldsymbol{X}^{\prime}\boldsymbol{\Sigma}^{-1}\boldsymbol{X}\right)^{-1}\boldsymbol{X}\boldsymbol{\Sigma}^{-1}\boldsymbol{y}
+\]
+ claramente vemos que es distinto del estimador MCO aplicado al modelo
+original.
+
+
+\subsection{Propiedades del estimador MCG.}
+
+Como obtenemos el estimador a partir de aplicar MCO a un modelo transformado,
+podemos asegurar algunas propiedades:
+\begin{itemize}
+\item El estimador MCG es insesgado: $\hat{\boldsymbol{\beta}}_{MCG}=\boldsymbol{\beta}+\left(\boldsymbol{X}^{*\prime}\boldsymbol{X}^{*}\right)^{-1}\boldsymbol{X}^{*\prime}\boldsymbol{u}^{*}$
+y como $E\left(\boldsymbol{u}^{*}\right)=\boldsymbol{0}_{N}$, entonces
+$E\left(\hat{\boldsymbol{\beta}}_{MCG}\right)=\boldsymbol{\beta}$.
+\item Matriz de covarianzas: $Var\left(\hat{\boldsymbol{\beta}}_{MCG}\right)=\sigma_{u}^{2}\left(\boldsymbol{X}^{*\prime}\boldsymbol{X}^{*}\right)^{-1}=\sigma_{u}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{\Sigma}^{-1}\boldsymbol{X}\right)^{-1}$.
+\item Ecuaciones normales: el estimador MCG satisface un sistema de ecuaciones
+normales. Si $\left(\boldsymbol{X}^{*\prime}\boldsymbol{X}^{*}\right)\hat{\boldsymbol{\beta}}=\boldsymbol{X}^{*\prime}\boldsymbol{y}^{*}$
+es el sistema de ecuaciones normales que satisface el estimador MCO
+del modelo transformado, para el estimador MCG tendremos:
+\[
+\left(\boldsymbol{X}^{\prime}\boldsymbol{\Sigma}^{-1}\boldsymbol{X}\right)\hat{\boldsymbol{\beta}}_{MCG}=\boldsymbol{X}^{\prime}\boldsymbol{\Sigma}^{-1}\boldsymbol{y}
+\]
+ que es el sistema de ecuaciones normales que satisface el estimador
+MCG.
+\item Hay dos formas equivalentes de obtener el estimador MCG: descomponiendo
+la matriz $\boldsymbol{\Sigma}$ y transformando las matrices de datos
+del modelo original para aplicar MCO al modelo transformado, o usando
+la expresi\'on matricial del estimador,
+\item Eficiencia: el estimador MCG es el estimador lineal insesgado de m\'inima
+varianza del vector de par\'ametros $\boldsymbol{\beta}$, ya que el
+modelo transformado satisface todas las condiciones necesarias para
+que se le pueda aplicar el teorema de Gauss-Markov, as\'i que su estimador
+MCO es el estimador lineal insesgado de m\'inima varianza para sus coeficientes.
+Como ese estimador coincide con el estimador MCG del modelo original
+y los coeficientes son los mismos, el estimador MCG ser\'a el de varianza
+m\'inima. Puede ocurrir que ambos estimadores coincidan aunque la matriz
+de varianzas del t\'ermino de error no sea escalar.
+\end{itemize}
+
+\subsection{Estimaci\'on del par\'ametro $\sigma_{u}^{2}$.}
+
+Como el modelo transformado tiene matriz de covarianzas escalar, tenemos
+que 
+\[
+\hat{\sigma}_{MCG}^{2}=\dfrac{\hat{\boldsymbol{u}}^{*\prime}\hat{\boldsymbol{u}}^{*}}{N-k}=\dfrac{\hat{\boldsymbol{u}}_{MCG}^{\prime}\boldsymbol{\Sigma}^{-1}\hat{\boldsymbol{u}}_{MCG}}{N-k}
+\]
+ donde $\hat{\boldsymbol{u}}_{MCG}=\boldsymbol{y}-\boldsymbol{X}\hat{\boldsymbol{\beta}}_{MCG}$.
+Este estimador es insesgado.
+
+
+\subsection{El coeficiente de determinaci\'on.}
+
+En este contexto no podemos utilizar el estad\'istico $R^{2}$ como
+medida del ajuste del modelo. El modelo transformado puede no tener
+t\'ermino constante, con lo que el$R^{2}$ calculado no estar\'ia acotado
+entre cero y uno, adem\'as de que mide el ajuste de las variables transformadas,
+que no es lo que nos interesa. Calcul\'andolo con las variables de inter\'es
+tampoco se puede asegurar que est\'e acotado.
+
+
+\section{El estimador de m\'axima verosimilitud.}
+
+Vamos a obtener un estimador MV de un modelo cuyo t\'ermino de error
+tiene una distribuci\'on normal, pero con matriz de covarianzas no escalar.
+
+Tenemos el modelo $\boldsymbol{y}=\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{u}$,
+y sus t\'erminos de error, $\boldsymbol{u}\sim N\left(\boldsymbol{0}_{N};\sigma_{u}^{2}\boldsymbol{\Sigma}\right)$.
+La funci\'on de verosimilitud ser\'a:
+\[
+L\left(\boldsymbol{u}/\sigma_{u}^{2},\boldsymbol{\Sigma}\right)=\tfrac{1}{\left(2\pi\right)^{\frac{N}{2}}}\tfrac{1}{\left(\sigma_{u}^{2}\right)^{\frac{N}{2}}}\tfrac{1}{\left|\boldsymbol{\Sigma}\right|^{\frac{1}{2}}}e^{-\tfrac{1}{2\sigma_{u}^{2}}\boldsymbol{u}^{\prime}\boldsymbol{\Sigma}^{-1}\boldsymbol{u}}
+\]
+
+
+Aplicamos la transformaci\'on $\boldsymbol{u}=\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}$,
+cuyo jacobiano ser\'a:
+\[
+\left|J\right|=\left|\dfrac{\partial u_{i}}{\partial y_{i}}\right|=\left|\begin{array}{ccc}
+\dfrac{\partial u_{1}}{\partial y_{1}} & \text{\ensuremath{\cdots}} & \dfrac{\partial u_{N}}{\partial y_{1}}\\
+\vdots & \ddots & \vdots\\
+\dfrac{\partial u_{1}}{\partial y_{N}} & \cdots & \dfrac{\partial u_{N}}{\partial y_{N}}
+\end{array}\right|=\left|\boldsymbol{I}_{N}\right|=1
+\]
+
+
+Y por tanto, tenemos la funci\'on de verosimilitud:
+
+\[
+\begin{array}{c}
+L\left(\boldsymbol{y},\boldsymbol{X}/\boldsymbol{\beta},\sigma_{u}^{2},\boldsymbol{\Sigma}\right)=\tfrac{1}{\left(2\pi\right)^{\frac{N}{2}}}\tfrac{1}{\left(\sigma_{u}^{2}\right)^{\frac{N}{2}}}\tfrac{1}{\left|\boldsymbol{\Sigma}\right|^{\frac{1}{2}}}e^{-\tfrac{1}{2\sigma_{u}^{2}}\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right)^{\prime}\boldsymbol{\Sigma}^{-1}\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right)}\\
+\ln{L\left(\boldsymbol{y},\boldsymbol{X}/\boldsymbol{\beta},\sigma_{u}^{2},\boldsymbol{\Sigma}\right)}=-\frac{N}{2}\ln{2\pi}-\frac{N}{2}\ln{\sigma_{u}^{2}}-\frac{1}{2}\ln{\left|\boldsymbol{\Sigma}\right|}-\tfrac{1}{2\sigma_{u}^{2}}\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right)^{\prime}\boldsymbol{\Sigma}^{-1}\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right)\\
+\dfrac{\partial L}{\partial\boldsymbol{\beta}}=-\tfrac{1}{\sigma_{u}^{2}}\boldsymbol{X}'\boldsymbol{\Sigma}^{-1}\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right)=\boldsymbol{0}\\
+\boldsymbol{X}^{\prime}\boldsymbol{\Sigma}^{-1}\boldsymbol{y}=\boldsymbol{X}^{\prime}\boldsymbol{\Sigma}^{-1}\boldsymbol{X}\hat{\boldsymbol{\beta}}_{MV}
+\end{array}
+\]
+
+
+que como vemos, coincide con el sistema de ecuaciones normales del
+estimador MCG. Por tanto, el estimador de m\'axima verosimilitud del
+vector $\boldsymbol{\beta}$ coincide con su estimador de m\'inimos
+cuadrados generalizados.
+
+Calculamos ahora el estimador de la varianza:
+
+\[
+\begin{array}{c}
+\dfrac{\partial L}{\partial\sigma_{u}^{2}}=-\frac{N}{2\sigma_{u}^{2}}+\tfrac{1}{2\sigma_{u}^{4}}\boldsymbol{u}^{\prime}\boldsymbol{\Sigma}^{-1}\boldsymbol{u}=\boldsymbol{0}\\
+\hat{\sigma}_{MV}^{2}=\dfrac{\hat{\boldsymbol{u}}_{MCG}^{\prime}\boldsymbol{\Sigma}^{-1}\hat{\boldsymbol{u}}_{MCG}}{N}
+\end{array}
+\]
+ y el estimador MCG y el MV difieren s\'olo en el denominador por el
+que se divide la suma residual. El estimador MV es sesgado, puesto
+que $E\left(\hat{\sigma}_{MV}^{2}\right)=E\left(\dfrac{N}{N-k}\hat{\sigma}_{MCG}^{2}\right)=\dfrac{N}{N-k}\sigma_{u}^{2}$,
+pero podemos ver que el sesgo se hace m\'as peque�o cuanto mayor es
+el tama�o muestral.

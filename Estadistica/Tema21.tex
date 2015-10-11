@@ -1,0 +1,135 @@
+\chapter[M\'etodos de estimaci\'on.]{M\'etodos de estimaci\'on.  \\
+\normalsize M\'etodo de los momentos. M\'etodo de la m\'inima X2. M\'etodo de la m\'inima varianza. M\'etodo de los m\'inimos cuadrados. M\'etodos Bayesianos.}
+
+\section{Introducci\'on.}
+
+Dentro del proceso de inferencia estad\'istica sobre una poblaci\'on, en el que queremos obtener estimadores para os par\'ametros que caracterizan esa poblaci\'on, sabemos que hay una serie de propiedades deseables en esos estimadores (insesgadez, consistencia, eficiencia). Otro problema es c\'omo obtener estimadores que presenten estas propiedades. Para ello veremos varios m\'etodos de obteci\'on de estimadores, y revisaremos que propiedades cumplen los estimadores obtenidos mediante esos m\'etodos.
+
+\section{M\'etodo de los momentos.}
+
+Este m\'etodo fue introducido por K. Pearson, y es el m\'etodo general m\'as antiguo. COnsiste en igualar tantos momentos poblacionales como par\'ametros haya que estimar a sus correspondientes momentos muestrales, y resolver el sistema de ecuaciones as\'i resultante para obtener los par\'ametros a estimar.
+
+De manera formal, sea una poblaci\'on con una funci\'on de probabilidad $P(x;\theta_1,\theta_2.\ldots\theta_k)$ o bien una funci\'on de densidad $f(x;\theta_1,\theta_2.\ldots\theta_k)$, sea \'esta discreta o cont\'inua, en las cuales aparecen $k$ para\'ametros desconocidos que pretendemos estimar a partir de una muestra aleatoria simple de tama\~no $n$, $(X_1,X_",\ldots,X_n)$. Designamos por $\alpha_1,\ldots,\alpha_k$ los $k$ primeros momentos con respecto al origen de la poblaci\'on, y por $a_1,\ldots,a_k$ los $k$ primeros momentos muestrales respecto al origen. Igualando los momentos poblacionales a sus correspondientes momentos muestrales tenemos el sistema de ecuaciones:
+\begin{align*}
+\alpha_1=\int_{-\infty}^{\infty}x^1f(x;\theta_1,\theta_2.\ldots\theta_k)dx&=\sum_{i=1}^{n}\dfrac{x_i^1}{n}=a_1 \\
+\alpha_2=\int_{-\infty}^{\infty}x^2f(x;\theta_1,\theta_2.\ldots\theta_k)dx&=\sum_{i=1}^{n}\dfrac{x_i^2}{n}=a_2 \\
+%%\hdotsfor \\
+\dotfill & \dotfill \\
+\alpha_k=\int_{-\infty}^{\infty}x^kf(x;\theta_1,\theta_2.\ldots\theta_k)dx&=\sum_{i=1}^{n}\dfrac{x_i^k}{n}=a_k 
+\end{align*}
+
+Y resolviendo este sistema de ecuaciones para los par\'ametros a estimar, obtenemos los estimadores.
+
+\subsection{Propiedades de los estimadores.}
+\begin{itemize}
+\item \textbf{Insesgadez:} Si los par\'ametros que vamos a estimar son momentos poblacionales, el estimador obtenido por el m\'etodo de los momentos es insesgado.
+En este caso, $\hat{\alpha}_j=a_j=\dfrac{1}{n}\sum_{i=1}^nX_i^j$, y se puede demostrar f\'acilmente que $E(\hat{\alpha}_j)=\alpha_j$.
+\item \textbf{Consistencia:} Bajo condiciones bastante generales estos estimadores son consistentes. La demostraci\'on se basa en la consistencia de los momentos poblacionales como estimadores de los momentos muestrales.
+\item \textbf{Normalidad asint\'otica:} Si los par\'ametros desconocidos que pretendemos estimar son los momentos poblacionesl, estos estimadores son asint\'oticamente normales.
+Se demuestra teniendo en cuenta que los momentos muestrales son variables aleatorias resultantes de la suma de $n$ variables aleatorias IID y con la misma esperanza y varianza, por el Teorema Central del L\'imite, su distribuci\'on tender\'a a una $N(\alpha_j,\sqrt{\dfrac{\alpha_{2j}-\alpha_j^2}{n}})$.
+
+\end{itemize}
+
+En resumen, estos estimadores son consistentes, pero en general insesgados y por tanto no eficientes. Es por esto que este m\'etodo no se utiliza demasiado. Adem\'as, este m\'etodo no utiliza la distribuci\'on de probabilidad de la poblaci\'on, solo utiliza los momentos, por lo que se pierde informaci\'on.
+
+\section{M\'etodo de la m\'inima X2.}
+
+Es un m\'etodo general para la obtenci\'on de estimadores puntuales que se aplica solo cuando hay una gran cantidad de datos, tanto en distribuciones discretas como en distribuciones cont\'inuas con datos agrupados.
+
+Supongamos una poblaci\'on representada por la variable aleatoria $X$ cuya funci\'on de probabilidad depende de $k$ par\'ametros, $p(x;\theta_1,\ldots,\theta_k)$. SUponemos que el campo de variaci\'on de la variable aleatoria lo dividimos en $r$ subconjuntos excluyentes, $S_1,\ldots,S_r$, a los que podremos asociar una probabilidad $p_i(\theta_1,\ldots,\theta_k)=P(X\in S_i)>0$, con $\sum_{i=1}^rp_i=1$.
+
+Tomamos una muestra aleatoria de tama\~no $n$, y presentamos la muestra como una distribuci\'on de frecuencias seg\'un el n\'umero de observaciones que pertenecen a los $r$ grupos que hemos definido, $n_1,\ldots,n_r$ con $\sum_{i=1}^rn_i=n$.
+
+Por tanto, tenemos por un lado la probabilidad te\'orica que le corresponde a cada conjunto, y por otro las frecuencias relativas obtenidas a partir de la muestra aleatoria simple. Parece l\'ogico tomar como estimadores de ls par\'ametros para la muestra obtenida aquellos que minimicen la diferencia entre ambas distribuciones, y para ello minimizaremos los cuadrados de las diferencias, usando como medida de la discrepancia la expresi\'on:
+\begin{equation*}
+\sum_{i=1}^rc_i\left(\dfrac{n_i}{n}-p_i(\theta_1,\ldots,\theta_k)\right)^2
+\end{equation*}
+
+Pearson demostr\'o que si tomamos $c_i=\dfrac{n}{p_i(\theta_1,\ldots,\theta_k)}$ obtenemos una medida de la desviaci\'on con propiedades relativamente f\'aciles, y y de cierto inter\'es para estudiar la desviaci\'on entre las distribuciones.. Por tanto, tenemos que:
+\begin{equation*}
+\chi^2=\sum_{i=1}^r\dfrac{n}{p_i(\theta_1,\ldots,\theta_k)}\left(\dfrac{n_i}{n}-p_i(\theta_1,\ldots,\theta_k)\right)^2=\sum_{i=1}^r\dfrac{\left(n_i-np_i(\theta_1,\ldots,\theta_k)\right)^2}{np_i(\theta_1,\ldots,\theta_k)}
+\end{equation*}
+que sigue una distribuci\'on $\chi_{r-k-1}^2$.
+
+El m\'etodo de la m\'inima $\chi^2$ escoge los estimadores de manera que el valor de $\chi^2$ sea m\'inimo. As\'i pues, se deriva respecto a los $\theta$ y se iguala a cero. Resolviendo el sistema resultante para los par\'ametros obtenemos sus estimadores.
+
+Los estimadores de m\'inima $\chi^2$ son asint\'oticamente equivalentes al estimador de m\'axima verosimilitud. SIn embargo, para $n$ peque\~nos no se puede asegurar nada, pues el estimador de m\'inima $\chi^2$ no tiene por que ser fucni\'on del estimador suficiente si existe.
+
+En general son estimadores sesgados y no eficientes.
+\section{M\'etodo de la m\'inima varianza.}
+
+Es un m\'etodo anal\'itico, y consiste en hacer m\'inima la varianza del estimador. La t\'ecnica que se utiliza es encontrar ese m\'inimo condicionado por las restricciones que queramos imponer al estimador mediante multiplicadores de Lagrange. Se buscan estimadores lineales insesgados, es decir, estimadores insesgados que sean funci\'on lineal de las observaciones muestrales. Veamos dos aplicaciones:
+
+\subsection{Estimador de varianza m\'inima de la media poblacional.}
+
+Sea el estimador lineal $\hat{\mu}=a_1X_1+\cdots+a_nX_n$, como ha de ser insesgado, 
+\begin{equation*}
+E\left[\hat{\mu}\right]=E\left[a_1X_1+\cdots+a_nX_n\right]=a_1E\left[X_1\right]+\cdots+a_nE\left[X_n\right]=\mu\sum_{i=1}^na_i=\mu
+\end{equation*}
+
+y por tanto, se tiene que cumplir que $\sum_{i=1}^na_i=1$ para que el estimador sea insesgado.
+La varianza del estimador ser\'a:
+\begin{equation*}
+V\left(\hat{\mu}\right)=V\left(a_1X_1+\cdots+a_nX_n\right)=a_1^2E\left(X_1\right)+\cdots+a_n^2V\left(X_n\right)=\sigma^2\sum_{i=1}^na_i^2
+\end{equation*}
+
+Y como la varianza ha de ser m\'inima, aplicamos el m\'etodo de los multiplicadores de Lagrange:
+\begin{align*}
+\phi&=\sigma^2\sum_{i=1}^na_i^2+\lambda\left(\sum_{i=1}^na_i-1\right) \\
+\dfrac{\partial\phi}{\partial a_i}&=2a_i\sigma^2+\lambda=0 \\
+\dfrac{\partial\phi}{\partial\lambda}&=\sum_{i=1}^na_i-1=0
+\end{align*}
+
+Y resolviendo tenemos que $a_i=\dfrac{1}{n}$, $\lambda=-\dfrac{2\sigma^2}{n}$. As\'i, por tanto, $\hat{\mu}=\dfrac{1}{n}\sum_{i=1}^nX_i=\bar{X}$ es el estimador lineal insesgado de varianza m\'inima para la media.
+
+
+
+\section{M\'etodo de los m\'inimos cuadrados.}
+En muchas ocasiones tenemos una variable aleatoria cuyo comportamiento se puede expresar mediante una funci\'on de un conjunto de variables aleatorias y no aleatorias que depende de una serie de par\'ametros. As\'i, nuestra muestra se compone de un conjunto de puntos en un espacio $r-$dimensional, y buscamos una funci\'on que pase lo m\'a cerca posible de esos puntos. Para ello necesitamos estimar los par\'ametros.
+
+Esta estimaci\'on se realiza minimizando la distancia entre el valor real de la variable aleatoria  a estimar y el valor te\'orico que obtendr\'iamos a partir de la funci\'on con nuestras estimaciones de los par\'ametros.
+
+As\'i, si tenemos una variable aleatoria, $y$, tal que $y=g(\boldsymbol{X};\theta_1,\ldots,\theta_k)$. Para cada valor de la variable $\boldsymbol{X}$, $x_i$, tendremos un valor te\'orico de la variable $y$, $Y_i$, proporcionado por la funci\'on una vez ajustada. El error cometido al utilizar ese valor te\'orico en lugar del real ser\'a $e_i=y_i-Y_i=y_i-g(x_i;\theta)$.
+
+La evaluaci\'on del error global cometido se realiza sumando los cuadrados de los errores:
+\begin{equation*}
+\Phi=\sum_{i=1}^ne_i^2=\sum_{i=1}^n\left[y_i-g(x_i;\theta)\right]^2
+\end{equation*}
+
+Y los estimadores de los par\'ametros ser\'an aquellos que hacen m\'inima la suma de los cuadrados de los errores, es decir, la soluci\'on del sistema de ecuaciones representado por:
+\begin{equation*}
+\dfrac{\partial\Phi}{\partial\theta_i}=-2\sum_{j=1}^n\left[y_j-g(x_j;\theta)\right]\dfrac{\partial g(x_j;\theta)}{\partial\theta_i}=0
+\end{equation*}
+
+
+\section{M\'etodos Bayesianos.}
+Hasta ahora hemos estudiado la estimaci\'on puntual desde el punto de vista de la teor\'ia del muestreo, que se basa en interpretar la probabilidad como una frecuencia relativa. Pasaremos ahora a estudiar el enfoque bayesiano de la inferencia estad\'istica, en lo que se refiere a la estimaci\'on de par\'ametros.
+
+En el enfoque bayesiano, un par\'ametro es visto como una variable aleatoria a la que se asigna una distribuci\'on de probabilidad a priori con base en el grado de creencia sobre la distribuci\'on del mismo, que se modifica con la informaci\'on obtenida de la muestra, para obtener la distribuci\'on a posteriori. Con esta distribuci\'on a posteriori formularemos inferencias respecto al par\'ametro. Este enfoque resulta muy \'util en aquellas situaciones en las que el par\'ametro a estimar no puede considerarse una cantidad fija, sino que puede variar dependiendo de las caracter\'isticas del entorno.
+
+Dado que consideramos el par\'ametro a estimar como una variable aleatoria, lo designamos por $\Theta$, y por $\theta$ a la realizaci\'on de dicha variable aleatoria. Suponemos que $\Theta$ es una variable aleatoria cont\'inua con una funci\'on de densidad incondicional a priori $f_{\Theta}(\theta)$, la cual refleja las creencias previas acerca de $\Theta$. Si tomamos una muestra aleatoria simple de tama\~no $n$ ($n$ variables aleatorias id\'enticamente distribu\'idas), $X_1,\ldots,X_n$ su funci\'on de densidad condicionada com\'un ser\'a $f(x|\theta)$, y la funci\'on de densidad conjunta:
+\begin{equation*}
+L(x_1,x_2,\ldots,x_n|\theta)=f(x_1|\theta)f(x_2|\theta)\cdots f(x_n|\theta)
+\end{equation*}
+
+Como decimos que $\Theta$ es una variable aleatoria, el objetivo es estimar el valor particular $\theta$ para el cual la evidencia muestral que representa la densidad conjunta se encuentra condicionada. Por tanto, la funci\'on de densidad a posteriori de $\Theta$ ser\'a, aplicando el teorema de Bayes:
+\begin{equation*}
+f(\theta|x_1,x_2,\ldots,x_n)=\dfrac{L(x_1,x_2,\ldots,x_n|\theta)f_{\Theta}(\theta)}{\int_{\Theta}L(x_1,x_2,\ldots,x_n|\theta)f_{\Theta}(\theta)d\theta}
+\end{equation*}
+
+El denominador de esta expresi\'on se denomina distribuci\'on predictiva, y representa la ponderaci\'on de todas las distribuciones posibles del par\'ametro, ponderados seg\'un la importancia que de a cada una la distribuci\'on a priori.
+
+En la pr\'actica, elc\'alculo se simplifica si observamos que el denominador no depende de $\theta$, y act\'ua solo como constante normalizadora de la distribuci\'on a posteriori, para que su integral sea la unidad. Por tanto, vemos que la distribuci\'on a posteriori es porporcional a la distribuci\'on a priori multiplicada por la verosimilitud de la muestra. Por tanto, la distribuci\'on a posteriori combina la informaci\'on previa de la que se dispone, representada por la distribuci\'on a priori, con la informaci\'on aportada por la muestra. Si la distribuci\'on a priori es m\'as o menos constante sobre el espacio param\'etrico, la distribuci\'on a priori coincide con la verosimilitud, y se dice qe la distribuci\'on apriori es no informativa.
+
+Para tama\~nos muestrales grandes, se puede demostrar que en condiciones muy generales la distribuci\'on a posteriori est\'a dominada por la verosimilitud, y adquiere una distribuci\'on aproximadamente normal con media y varianza coincidentes con la del estimador de m\'axima verosimilitud. En consecuencia, en estos casos el estimador bayesiano y el de m\'axima verosimilitud conducen a los mismos resultados.
+
+Para obtener una estimaci\'on de $\theta$ necesitamos elegir una caracter\'istica num\'erica de la distribuci\'on a posteriori que nos parezca representativa de la misma. Hay dos opciones:
+\begin{itemize}
+\item Elegir como estimaci\'on la moda de la distribuci\'on a posteriori, que es el valor m\'as probable una vez observada la muestra. Esta situaci\'on tiene la misma justificaci\'on que la estimaci\'on de m\'axima verosimilitud en el contexto cl\'asico.
+\item Elegir una funci\'on de p\'erdida que represente la consecuencia de haber escogido un valor de $\theta$ err\'oneo. Esta funci\'on debe ser una funci\'on no negativa de $theta$ y su estimaci\'on, de manera que sea cero si coinciden.
+\end{itemize}
+
+Al depender tambi\'en de $\theta$, la funci\'on de p\'erdida tambi\'en es una variable aleatoria. El estimador bayesiano del par\'ametro ser\'a aqu\'el que minimice la esperanza de la funci\'on de p\'erdida.
+
+Es obvio que para poder estimar el par\'ametro se debe especificar una funci\'on de p\'erdida. Esto es una tarea dif\'icil, ya que las consecuencias no son siemrpre medibles. En muchos casos una funci\'on de p\'erdida razonable puede ser la forma cuadr\'atica: $l(\theta, l)=(t-\theta)^2$. Para esta forma, se puede demostrar que el estimador de Bayes equivale a la distancia a posteriori de $\Theta$.
+

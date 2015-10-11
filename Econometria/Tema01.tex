@@ -1,0 +1,493 @@
+\chapter[El modelo lineal general.]{El modelo lineal general. \\
+\normalsize Especificaci\'on para datos de secci\'on cruzada y para datos en forma de serie temporal. Estimadores m\'inimo cuadr\'atico ordinarios (MCO). Propiedades para muestras finitas y para grandes muestras. Estimador del m\'etodo generalizado de los momentos y del m\'etodo de m\'aximo verosimilitud.}
+
+
+\colsection{Introducci\'on.}
+
+El objeto de la econometr\'ia consiste en:
+\begin{enumerate}
+\item Especificar un modelo de relaci\'on entre variables econ\'omicas.
+\item Utilizar informaci\'on muestral acerca de los valores de las variables
+al objeto de cuantificar la magnitud de la dependencia entre ellas.
+\item Evaluar la validez de las hip\'otesis formuladas por la teor\'ia econ\'omica
+acerca de la relaci\'on entre las variables objeto de estudio y, en
+algunos casos,
+\item Efectuar un ejercicio de seguimiento coyuntural y de predicci\'on de
+las variables estudiadas.
+\end{enumerate}
+El objeto del estudio ser\'a un modelo de relaci\'on entre variables econ\'omicas,
+que denotaremos por: $y=f\left(x_{1},x_{2},\ldots,x_{k},u/\boldsymbol{\beta}\right)$,
+que trata de explicar el comportamiento de la variable $y$ utilizando
+la informaci\'on suministrada por el conjunto de $k$ variables $x_{i}$,
+variables explicativas con significado econ\'omico, as\'i como de una
+variable aleatoria no observable y sin significado econ\'omico, que
+denotamos por $u$ y llamamos t\'ermino de error. La relaci\'on de dependencia
+se define a trav\'es de un vector de par\'ametros, $\boldsymbol{\beta}$,
+que es el que queremos averiguar.
+
+La informaci\'on muestral consiste en una lista ordenada de valores
+de las variables $y,x_{1},x_{2},\ldots,x_{k}$. La muestra es de secci\'on
+cruzada si los conjuntos de valores corresponden a informaci\'on proporcionada
+por diversos agentes econ\'omicos en el mismo instante de tiempo, y
+de series temporales si los datos corresponden a una misma unidad
+econ\'omica en diversos instantes de tiempo. Por tanto, disponemos de
+una lista de relaciones $y_{i}=f\left(x_{1i},x_{2i},\ldots,x_{ki},u_{i}/\boldsymbol{\beta}\right)$,
+$i=1,2,\ldots,N$.
+
+En general, las relaciones que trataremos ser\'an siempre lineales de
+la forma: 
+
+\begin{equation*}
+\begin{array}{cc}
+y_{i}=\beta_{1}x_{1i}+\beta_{2}x_{2i}+\cdots+\beta_{k}xy_{ki}+u_{i}, & i=1,2,\ldots,N\end{array}
+\end{equation*}
+
+
+Que denominamos modelo de regresi\'on lineal simple, o \textbf{modelo
+lineal general}.
+
+La variable $y$ se denomina variable end\'ogena o explicada, las variables
+$x$ se denominan variables ex\'ogenas o explicativas, al t\'ermino $u$
+se le denomina t\'ermino de error. A los $\beta_{k}$ se les denomina
+coeficientes del modelo y reflejan la influencia de cada variable
+explicativa en la variable end\'ogena. Si hacemos $x_{1i}=1$ para todas
+las $i$ tenemos un modelo con un t\'ermino independiente.
+
+
+\colsection{Especificaci\'on para datos de secci\'on cruzada y para datos en forma de serie temporal.}
+
+El modelo lineal general se puede expresar de forma matricial como
+sigue:
+
+\begin{equation*}
+\boldsymbol{\beta}=\left(\begin{array}{c}
+\beta_{1}\\
+\beta_{2}\\
+\vdots\\
+\beta_{k}
+\end{array}\right)\;\boldsymbol{y}=\left(\begin{array}{c}
+y_{1}\\
+y_{2}\\
+\vdots\\
+y_{N}
+\end{array}\right)\;\boldsymbol{X}=\left(\begin{array}{cccc}
+x_{11} & x_{12} & \cdots & x_{k1}\\
+x_{12} & x_{22} & \cdots & x_{k2}\\
+\vdots & \vdots & \ddots & \vdots\\
+x_{1N} & x_{2N} & \cdots & x_{kN}
+\end{array}\right)\;\boldsymbol{u}=\left(\begin{array}{c}
+u_{1}\\
+u_{2}\\
+\vdots\\
+u_{N}
+\end{array}\right)
+\end{equation*}
+
+
+\begin{equation*}
+\boldsymbol{y}=\boldsymbol{X\beta}+\boldsymbol{u}
+\end{equation*}
+
+Para que el an\'alisis econom\'etrico que vamos a realizar sea consistente, el modelo debe cumplir una serie de hip\'otesis. Hay un conjunto que son comunes, y otro conjunto que son espec\'ificas para modelos de series temporales/datos transversales.
+
+
+\colsubsection{El modelo es lineal, estoc\'astico y constante.}
+Es decir, el proceso generador de los datos es del tipo: 
+\begin{equation*}
+Y_i=\beta_0+\beta_1x_{1i}+\beta_2x_{2i}+\cdots+\beta_kx_{ki}+\varepsilon_i
+\end{equation*}
+
+Esto implica que el proceso estoc\'astico del que provienen los datos es de naturaleza lineal, no se trata de una aproximaci\'on o proyecci\'on.
+
+Adem\'as la relaci\'on entre las variables explicativas y la variable
+end\'ogena no es determinista, existe un t\'ermino de error distinto de
+cero. Esto se justifica por las siguientes razones:
+\begin{itemize}
+\item El modelo es s\'olo una aproximaci\'on a la verdadera relaci\'on entre las
+variables.
+\item Las variables econ\'omicas del modelo est\'an sujetas a errores de medida.
+\item Se reconoce la posible existencia de otros factores determinantes
+del comportamiento de $y$ que no se han incluido en el modelo.
+\end{itemize}
+
+Tambi\'en suponemos que los coeficientes son los mismos para toda la muestra
+de que disponemos y para los valores que queremos estimar. Si no fuese
+as\'i, el problema de estimaci\'on ser\'ia m\'as complejo.
+
+\colsubsection{El modelo no tiene multicolinealidad.}
+Esto quiere decir que no hay una relaci\'on lineal entre las variables $X$, es decir, que la matriz $E(x_ix_i^{\prime})>0$. Este supuesto tiene dos razones: una eminentemente pr\'actica, ya que como veremos en caso de multicolinealidad perfecta no se pueden obtener los estimadores de los par\'ametros, y otra de \'indole te\'orica, ya que en este caso no podr\'iamos estimar el efecto de un cambio en un regresor manteniendo el resto constantes. Es importante fijarse en que la hip\'otesis descarta la multicolinelaidad perfecta, pero s\'i que permite la correlaci\'on entre las variables explicativas.
+
+\colsubsection{Exogeneidad del modelo.}
+Para datos de secci\'on cruzada esta hip\'otesis exige que $E(\varepsilon_i|\boldsymbol{x}_i)=0$. Para datos de series temporales, que $E(\varepsilon_t|\boldsymbol{x}_t)=0$. Es decir, el valor esperado de la perturbaci\'on condicionado a los valores de las variables explicativas es nulo. Por tanto, en media el error no depende de los valores que tomen las variables explicativas.
+
+Este supuesto implica que $\boldsymbol{x}_i$ y $\varepsilon_i$ est\'an incorrelacionadas, pero no se produce la implicaci\'on al rev\'es, ya que la correlaci\'on solo mide la relaci\'on lineal. Sin embargo, si ambas variables son independientes s\'i que se cumple el supuesto.
+
+Si se cumple este supuesto diremos que tenemos variables explicativas ex\'ogenas. Si alguna de las variables explicativas est\'a correlacionada con la perturbaci\'on, entonces diremos que esa variable es end\'ogena.
+
+En caso de que se cumpla que $E(\varepsilon_i|\boldsymbol{X})=0$, es decir, que la esperanza condicionada de la perturbaci\'on es cero para todas las observaciones, diremos que tenemos \textbf{exogeneidad estricta}.
+
+Esta hip\'otesis implica que $E(\varepsilon_i)=0$, ya que por la ley de las esperanzas totales, $E(\varepsilon_i)=E[E(\varepsilon_i|\boldsymbol{x}_i)]$ y por tanto, $E[E(\varepsilon_i|\boldsymbol{x}_i)]=E[0]=0$. Esto podr\'ia parecer muy restrictivo, sin embargo, si el modelo tiene t\'ermino independiente y $E(\varepsilon_i)=\mu\neq 0$, podemos expresar el t\'ermino independiente como $\beta_1+\mu$, y el error como $\varepsilon-\mu$, con lo que se cumplir\'ia esta hip\'otesis.
+
+\colsubsection{Muestra aleatoria.}
+Las variables aleatorias multidimensionales $(X_{1i},X_{2i},\ldots,X_{ki},Y_{i})$ son independientes e id\'enticamente distribu\'idas. Es decir, los conjuntos de datos provienen de individuos seleccionados de forma aleatoria de una poblaci\'on.
+
+Esta hip\'otesis normalmente no se cumple en el caso de series temporales. En efecto, para muchas variables econ\'omicas el valor de la variable en el futuro est\'a influido por el valor de la misma en el presente, es decir, hay correlaci\'on entre onçbservaciones pr\'oximas. Es por eso que para datos de series temporales se adopta la siguiene hip\'otesis.
+
+Esta hip\'otesis implica que no haya correlaci\'on entre las perturbaciones (autocorrelaci\'on).
+
+\colsubsection{Correlaci\'on decreciente.}
+Las variables aleatorias multidimensionales $(X_{1t},X_{2t},\ldots,X_{kt},Y_{t})$ tienen la misma distribuci\'on a lo largo del tiempo, y la dependencia entre $(X_{1t},X_{2t},\ldots,X_{kt},Y_{t})$ y $(X_{1t-j},X_{2t-j},\ldots,X_{kt-j},Y_{t-j})$ disminuye r\'apidamente al aumentar $j$.
+
+Si exigimos simult\'aneamente las hip\'otesis de exogeneidad y muestra aleatoria, autom\'aticamente se cumple el supuesto de exogeneidad estricta. Sin embargo, en el caso de la hip\'otesis de correlaci\'on decreciente esto no es cierto.
+
+
+\colsubsection{Existe una relaci\'on causal entre las variables explicativas y la
+variable end\'ogena:}
+
+Es decir, existe una justificaci\'on te\'orica del modelo.
+
+
+\colsubsection{Las variables explicativas son deterministas:}
+
+Es decir, si volvi\'esemos a obtener la misma muestra, los valores de
+las $x$ se mantendr\'ian constantes.
+
+
+\colsection{Estimadores m\'inimo cuadr\'atico ordinarios.}
+
+El primer objetivo del an\'alisis econom\'etrico es obtener estimadores
+de los par\'ametros del modelo. Es decir, si expresamos el modelo en
+forma matricial, $\boldsymbol{y}=\boldsymbol{X\beta}+\boldsymbol{u}$,
+queremos obtener un estimador del vector $\boldsymbol{\beta}$. Lo
+denotaremos por $\hat{\boldsymbol{\beta}}$.
+
+Una vez obtenido $\hat{\boldsymbol{\beta}}$, se puede calcular para
+cada elemento de la muestra: $\hat{y}_{i}=\hat{\beta}_{1}x_{1i}+\hat{\beta}_{2}x_{2i}+\cdots+\hat{\beta}_{k}x_{ki}$,
+estimadores de las variables $y_{i}$. Definimos el \textbf{residuo}
+como la diferencia entre el valor real de la variable end\'ogena y su
+estimaci\'on, $\hat{u}_{i}=y_{i}-\hat{y}_{i}$. La serie de residuos
+representados en forma matricial ser\'a: $\hat{\boldsymbol{u}}=\boldsymbol{y}-\hat{\boldsymbol{y}}=\boldsymbol{y}-\boldsymbol{X}\hat{\boldsymbol{\beta}}$.
+
+Llamamos \textbf{estimador de m\'inimos cuadrados} a aquel estimador
+de $\boldsymbol{\beta}$, $\hat{\boldsymbol{\beta}}_{MCO}$, que minimiza
+la suma de los cuadrados de los residuos. As\'i:
+\begin{equation*}
+\begin{array}{c}
+\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}=\left(\boldsymbol{y}-\boldsymbol{X}\hat{\boldsymbol{\beta}}\right)^{\prime}\left(\boldsymbol{y}-\boldsymbol{X}\hat{\boldsymbol{\beta}}\right)=\boldsymbol{y}^{\prime}\boldsymbol{y}-2\hat{\boldsymbol{\beta}}^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{y}+\hat{\boldsymbol{\beta}}^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{X}\hat{\boldsymbol{\beta}}\\
+\dfrac{\partial\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}}{\partial\hat{\boldsymbol{\beta}}}=-2\boldsymbol{X}^{\prime}\boldsymbol{y}+2\boldsymbol{X}^{\prime}\boldsymbol{X}\hat{\boldsymbol{\beta}}=0\\
+\boldsymbol{X}^{\prime}\boldsymbol{X}\hat{\boldsymbol{\beta}}=\boldsymbol{X}^{\prime}\boldsymbol{y}\\
+\dfrac{\partial^{2}\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}}{\partial\hat{\boldsymbol{\beta}}\partial\hat{\boldsymbol{\beta}}^{\prime}}=\boldsymbol{X}^{\prime}\boldsymbol{X}
+\end{array}
+\end{equation*}
+
+
+Como $\boldsymbol{X}^{\prime}\boldsymbol{X}$ es siempre semidefinida positiva,
+tenemos un m\'inimo. La ecuaci\'on $\boldsymbol{X}^{\prime}\boldsymbol{X}\hat{\boldsymbol{\beta}}=\boldsymbol{X}^{\prime}\boldsymbol{y}$
+es un sistema de $k$ ecuaciones lineales (sistema de ecuaciones normales)
+con una inc\'ognita por cada uno de los $k$ par\'ametros del vector $\hat{\boldsymbol{\beta}}$.
+\'Este sistema tiene generalmente una \'unica soluci\'on, que ser\'a nuestro
+estimador de m\'inimos cuadrados ordinarios:
+\begin{equation*}
+\hat{\boldsymbol{\beta}}_{MCO}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{y}
+\end{equation*}
+
+
+Si la matriz $\boldsymbol{X}^{\prime}\boldsymbol{X}$ es singular, no se podr\'a
+invertir, y el sistema de ecuaciones tiene infinitas soluciones. Esto
+se produce cuando se vulnera el supuesto de que las variables explicativas
+no sean linealmente dependientes. A este fen\'omeno se le llama multicolinealidad.
+
+El sistema tendr\'a soluci\'on \'unica siempre que:
+\begin{itemize}
+\item Las variables explicativas no sean linealmente dependientes.
+\item El n\'umero de observaciones sea igual o mayor que el n\'umero de par\'ametros
+a estimar.
+\end{itemize}
+Para lograr precisi\'on en la estimaci\'on MCO es necesario que el n\'umero
+de observaciones sea mucho mayor que el n\'umero de par\'ametros a estimar.
+Al valor $N-k$ se le conoce como n\'umero de grados de libertad de
+la estimaci\'on.
+
+
+\colsection{Propiedades para muestras finitas y para grandes muestras.}
+
+El estimador MCO es un vector aleatorio, ya que depende de las $y_{i}$ que son variables aleatorias (ya que dependen del t\'ermino de error, $u$). A partir de las hip\'otesis b\'asicas del modelo podemos definir una serie de propiedades del estimador, que caracterizan su distribuci\'on de probabilidad.
+
+
+\colsubsection{Insesgadez.}
+
+El estimador es insesgado siempre que se cumpla el supuesto de esperanza condicionada nula. Por la ley de las esperanzas totales esto implica que $E\left(\boldsymbol{u}\right)=\boldsymbol{0}_{N}$.
+Entonces: 
+\begin{equation*}
+\begin{array}{c}
+\hat{\boldsymbol{\beta}}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{y}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\left(\boldsymbol{X\beta}+\boldsymbol{u}\right)=\boldsymbol{\beta}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u}\\
+E\left(\hat{\boldsymbol{\beta}}|\boldsymbol{X}\right)=E\left[\boldsymbol{\beta}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u}|\boldsymbol{X}\right]=\boldsymbol{\beta}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}E\left(\boldsymbol{u}|\boldsymbol{X}\right)=\boldsymbol{\beta}
+\end{array}
+\end{equation*}
+Ya que $\boldsymbol{\beta}$ es un vector constante, aunque desconocido.
+
+Como por la ley de las esperanzas totales, $E[E\left(\hat{\boldsymbol{\beta}}|\boldsymbol{X}\right)]=E\left(\hat{\boldsymbol{\beta}}\right)$, $E(\hat{\boldsymbol{\beta}})=\boldsymbol{\beta}$ y el estimador es insesgado.
+
+Como consecuencia, podemos expresar el error de estimaci\'on como:
+\begin{equation*}
+\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u}
+\end{equation*}
+
+Para que se de la propiedad de insesgadez, basta que se cumpla el supuesto de exogeneidad. Sin embargo, si se cumple que $E(\boldsymbol{\varepsilon})=0$ tambi\'en se da la insesgadez.
+
+\colsubsection{Varianza del estimador MCO.}
+
+Si adem\'as de las suposiciones de la especificaci\'on del modelo a\~nadimos la hip\'otesis de que el t\'ermino de error es homoced\'astico, es decir, $Var(\boldsymbol{\varepsilon}=\sigma^2\boldsymbol{I}_n$. Esto quiere decir que la varianza del t\'ermino de error es constante, y que las covarianzas cruzadas son nulas. Si este supuesto falla, diremos que el modelo presenta heteroscedasticidad.
+
+\begin{equation*}
+\begin{array}{c}
+Var\left(\hat{\boldsymbol{\beta}}\right)=E\left[\left(\hat{\boldsymbol{\beta}}-E\left(\hat{\boldsymbol{\beta}}\right)\right)\left(\hat{\boldsymbol{\beta}}-E\left(\hat{\boldsymbol{\beta}}\right)\right)^{\prime}\right]=E\left[\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)^{\prime}\right]=\\
+=E\left[\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u}\boldsymbol{u}^{\prime}\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\right]=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}E\left(\boldsymbol{u}\boldsymbol{u}^{\prime}\right)\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}=\\
+=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\sigma_{u}^{2}\boldsymbol{I}_{N}\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}=\sigma_{u}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}
+\end{array}
+\end{equation*}
+
+La diagonal principal de esta matriz nos da la varianza de cada uno de los estimadores de los par\'ametros del modelo. Veamos qu\'e factores influyen en estas varianzas:
+
+\begin{itemize}
+\item Cuanto mayor sea la varianza de la perturbaci\'on, mayor ser\'a la varianza de los estimadores. Esto es lo esperado, cuanto m\'as se aparte nuestro sistema del modelo que heos especificado, menos precisos ser\'an los estimadores.
+\item Cuanto mayor sea la dispersi\'on de las variables explicativas, o mayor sea el tama\~no de la muestra, menor ser\'a la varianza, ya que la matriz est\'a dividiendo. Esto es l\'ogico pues por n lado, cuanto m\'as repartida est\'e la muestra por el rango de variaci\'on posible m\'as informaci\'on capturaremos, y a mayor tama\~no de la muestra m\'as eficiente ser\'a nuestro estimador.
+\item Cuanta menos multicolineanlidad presenten las variales explicativas, menor ser\'a la varianza. Si las variables explicativas presentan un comportamiento muy cercano a la multicolinealidad, la matriz ser\'a muy pr\'oxima a ser singular, con un determinante pr\'oximo a cero. Por tanto, su inversa ser\'a muy grande y por tanto las varianzas tambi\'en, dando origen a estimadores muy poco eficientes.
+\end{itemize}
+
+\colsubsection{Teorema de Gauss-Markov:}
+
+
+\begin{teorema}
+\textbf{Teorema de Gauss-Markov:} Bajo las hip\'otesis del modelo lineal, y en presencia de heteroscedasticidas, el estimador MCO es le m\'as eficiente dentro de la clase de estimadores lineales insesgados.
+\end{teorema}
+
+
+Sea $\tilde{\boldsymbol{\beta}}=\tilde{\boldsymbol{A}}\boldsymbol{y}$
+estimador lineal insesgado de $\boldsymbol{\beta}$. Sea $\boldsymbol{A}=\tilde{\boldsymbol{A}}-\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}$.
+Por tanto,
+\begin{equation*}
+\begin{array}{c}
+\tilde{\boldsymbol{\beta}}=\left[\boldsymbol{A}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\right]\boldsymbol{y}=\left[\boldsymbol{A}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\right]\left(\boldsymbol{X\beta}+\boldsymbol{u}\right)=\boldsymbol{A}\boldsymbol{X\beta}+\boldsymbol{\beta}+\left[\boldsymbol{A}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\right]\boldsymbol{u}\\
+E\left(\tilde{\boldsymbol{\beta}}\right)=\boldsymbol{A}\boldsymbol{X\beta}+\boldsymbol{\beta}
+\end{array}
+\end{equation*}
+
+
+Y por tanto, $\boldsymbol{A}\boldsymbol{X}=\boldsymbol{0}_{k\times k}$
+ya que el estimador es insesgado. Por tanto, $\tilde{\boldsymbol{\beta}}=\boldsymbol{\beta}+\left[\boldsymbol{A}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\right]\boldsymbol{u}$
+\begin{equation*}
+Cov\left(\tilde{\boldsymbol{\beta}}\right)=E\left[\left(\tilde{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)\left(\tilde{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)^{\prime}\right]=E\left[\left(\left[\boldsymbol{A}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\right]\boldsymbol{u}\right)\left(\left[\boldsymbol{A}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\right]\boldsymbol{u}\right)^{\prime}\right]=\sigma_{u}^{2}\boldsymbol{A}\boldsymbol{A}^{\prime}+\sigma_{u}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}
+\end{equation*}
+
+
+Y como $\boldsymbol{A}\boldsymbol{A}^{\prime}$ es una matriz semidefinida
+positiva, la matriz de varianzas y covarianzas de $\tilde{\boldsymbol{\beta}}$
+ser\'a mayor que la de $\hat{\boldsymbol{\beta}}$.
+
+\colsubsection{Cada una de las variables explicativas es ortogonal al vector de
+residuos:}
+
+O lo que es lo mismo, $\boldsymbol{X}^{\prime}\hat{\boldsymbol{u}}=\boldsymbol{0}_{N}$
+
+\begin{equation*}
+\boldsymbol{X}^{\prime}\hat{\boldsymbol{u}}=\boldsymbol{X}^{\prime}\left(\boldsymbol{y}-\boldsymbol{X}\hat{\boldsymbol{\beta}}\right)=\boldsymbol{X}^{\prime}\boldsymbol{y}-\boldsymbol{X}^{\prime}\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{y}=\boldsymbol{0}_{N}
+\end{equation*}
+
+
+Como consecuencia, si el modelo tiene t\'ermino independiente, $\sum_{i=1}^{N}\hat{u}_{i}=0$,
+la suma de los residuos es cero.
+
+
+\colsubsection{Expresiones de la suma residual.}
+
+$SR=\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}=\left(\boldsymbol{y}-\boldsymbol{X}\hat{\boldsymbol{\beta}}\right)^{\prime}\left(\boldsymbol{y}-\boldsymbol{X}\hat{\boldsymbol{\beta}}\right)=\boldsymbol{y}^{\prime}\boldsymbol{y}-2\hat{\boldsymbol{\beta}}^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{y}+\hat{\boldsymbol{\beta}}^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{X}\hat{\boldsymbol{\beta}}=\boldsymbol{y}^{\prime}\boldsymbol{y}-2\hat{\boldsymbol{\beta}}^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{y}+\hat{\boldsymbol{\beta}}^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{y}=\boldsymbol{y}^{\prime}\boldsymbol{y}-\hat{\boldsymbol{\beta}}^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{y}$
+
+$SR=\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}=\boldsymbol{y}^{\prime}\boldsymbol{y}-\hat{\boldsymbol{y}}^{\prime}\hat{\boldsymbol{y}}$,
+ya que $\hat{\boldsymbol{y}}^{\prime}\hat{\boldsymbol{y}}=\hat{\boldsymbol{\beta}}^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{X}\hat{\boldsymbol{\beta}}=\hat{\boldsymbol{\beta}}^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{y}=\hat{\boldsymbol{\beta}}^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{y}$
+
+
+\colsubsection{El vector de residuos es una transformaci\'on lineal del t\'ermino de
+error.}
+
+$\hat{\boldsymbol{u}}=\boldsymbol{y}-\boldsymbol{X}\hat{\boldsymbol{\beta}}=\boldsymbol{y}-\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{y}=\left[\boldsymbol{I}_{N}-\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\right]\boldsymbol{y}=\boldsymbol{M}\boldsymbol{y}=\boldsymbol{M}\boldsymbol{u}$,
+con $\boldsymbol{M}=\boldsymbol{I}_{N}-\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}$
+y dado que $\boldsymbol{MX}=\boldsymbol{0}_{N\times k}$.
+
+Por tanto, $\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}=\boldsymbol{u}^{\prime}\boldsymbol{M}^{\prime}\boldsymbol{M}\boldsymbol{u}=\boldsymbol{u}^{\prime}\boldsymbol{M}\boldsymbol{u}$
+ya que $\boldsymbol{M}$ es singular, sim\'etrica e idempotente.
+
+Adem\'as, se deduce que $E\left(\hat{\boldsymbol{u}}\right)=\boldsymbol{0}_{N}$,
+$Var\left(\hat{\boldsymbol{u}}\right)=\sigma_{u}^{2}\boldsymbol{M}$.
+
+
+\colsubsection{Sumas de cuadrados.}
+
+Definimos las siguientes expresiones:
+\begin{description}
+\item [{Suma}] Total: $ST=\sum_{i=1}^{N}\left(y_{i}-\bar{y}\right)^{2}$.
+Es la varianza muestral de la variable end\'ogena multiplicada por el
+n\'umero de observaciones en la muestra. Es una medida de las fluctuaciones
+de la variable.
+\item [{Suma}] Explicada: $SE=\sum_{i=1}^{N}\left(\hat{y}_{i}-\bar{y}\right)^{2}$.
+Es la fluctuaci\'on de los estimadores de la variable end\'ogena generados
+por el modelo alrededor de la media muestral, es decir, es el grado
+de fluctuaci\'on que explica el modelo.
+\item [{Suma}] Residual: $SR=\sum_{i=1}^{N}\left(y_{i}-\hat{y}_{i}\right)^{2}$.
+Es la fluctuaci\'on no explicada por el modelo, es decir, indica el
+nivel de error del modelo al explicar la relaci\'on entre las variables
+explicativas y la variable end\'ogena.
+\end{description}
+Si entre las variable explicativas hay un t\'ermino constante, entonces
+$ST=SE+SR$.
+
+\begin{equation*}
+ST=\sum_{i=1}^{N}\left(y_{i}-\bar{y}\right)^{2}=ST=\sum_{i=1}^{N}y_{i}^{2}-2\bar{y}\sum_{i=1}^{N}y_{i}+\sum_{i=1}^{N}\bar{y}^{2}=\sum_{i=1}^{N}y_{i}^{2}-N\bar{y}=\boldsymbol{y}^{\prime}\boldsymbol{y}-N\bar{y}
+\end{equation*}
+
+
+Hemos visto que $SR=\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}=\boldsymbol{y}^{\prime}\boldsymbol{y}-\hat{\boldsymbol{y}}^{\prime}\hat{\boldsymbol{y}}$,
+por tanto, $\boldsymbol{y}^{\prime}\boldsymbol{y}-N\bar{y}=\hat{\boldsymbol{y}}^{\prime}\hat{\boldsymbol{y}}-N\bar{y}+\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}$.
+
+\begin{equation*}
+SE=\sum_{i=1}^{N}\left(\hat{y}_{i}-\bar{y}\right)^{2}=\hat{\boldsymbol{y}}^{\prime}\hat{\boldsymbol{y}}-2\bar{y}\sum_{i=1}^{N}\hat{y}_{i}+\sum_{i=1}^{N}\bar{y}^{2}=\hat{\boldsymbol{y}}^{\prime}\hat{\boldsymbol{y}}-2\bar{y}\sum_{i=1}^{N}y_{i}-2\bar{y}\sum_{i=1}^{N}\hat{u}_{i}+\sum_{i=1}^{N}\bar{y}^{2}=\hat{\boldsymbol{y}}^{\prime}\hat{\boldsymbol{y}}-N\bar{y}-2\bar{y}\sum_{i=1}^{N}\hat{u}_{i}
+\end{equation*}
+
+
+Y como si el modelo tiene t\'ermino independiente, $\sum_{i=1}^{N}\hat{u}_{i}=0$,
+$ST=SE+SR$.
+
+
+\colsubsection{Estimaci\'on de $\sigma_{u}^{2}$.}
+
+Para estimar la matriz de covarianzas de $\hat{\boldsymbol{\beta}}$,
+debemos estimar $\sigma_{u}^{2}$.
+
+Sabemos que $\hat{\boldsymbol{u}}=\left[\boldsymbol{I}_{N}-\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\right]\boldsymbol{u}=\boldsymbol{M}\boldsymbol{u}$.
+Por tanto, $E\left(\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}\right)=E\left(\boldsymbol{u}^{\prime}\boldsymbol{M}\boldsymbol{u}\right)=E\left[tr\left(\boldsymbol{u}^{\prime}\boldsymbol{M}\boldsymbol{u}\right)\right]$,
+donde $tr$ es el operador traza y utilizamos que $\boldsymbol{u}^{\prime}\boldsymbol{M}\boldsymbol{u}$
+es un escalar y un escalar es igual a su traza. Por las propiedades
+del operador traza, $E\left[tr\left(\boldsymbol{u}^{\prime}\boldsymbol{M}\boldsymbol{u}\right)\right]=E\left[tr\left(\boldsymbol{M}\boldsymbol{u}^{\prime}\boldsymbol{u}\right)\right]=tr\left[E\left(\boldsymbol{M}\boldsymbol{u}^{\prime}\boldsymbol{u}\right)\right]=tr\left[\boldsymbol{M}\sigma_{u}^{2}\boldsymbol{I}_{N}\right]=\sigma_{u}^{2}tr\left(\boldsymbol{M}\right)=\sigma_{u}^{2}(N-k)$.
+Y, por tanto, un estimador insesgado de $\sigma_{u}^{2}$ ser\'a: $\hat{\sigma}_{u}^{2}=\dfrac{\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}}{N-k}$.
+
+
+\colsubsection{Bondad del ajuste.}
+
+Definimos el coeficiente de determinaci\'on como: $R^{2}=1-\dfrac{SR}{ST}$.
+Mide la proporci\'on de variaci\'on de la variable end\'ogena explicada
+por el modelo, A su ra\'iz cuadrada positiva, cuando existe, se le denomina
+coeficiente de correlaci\'on lineal, $R$.
+
+Como consecuencia de las propiedades de la suma de residuos, si el
+modelo tiene t\'ermino independiente, $R^{2}=\dfrac{SE}{ST}$.
+
+El valor del coeficiente de determinaci\'on depende del tama�o de la
+muestra y del n\'umero de regresores. Esto hace que no sea \'util para
+comparar distintos modelos. Para ello se define el coeficiente de
+determinaci\'on corregido, que elimina estos efectos: $\bar{R}^{2}=1-\dfrac{\nicefrac{SR}{\left(N-k\right)}}{\nicefrac{ST}{N-1}}=1-\dfrac{N-1}{N-k}\left(1-R^{2}\right)$.
+
+Otras medidas de la bondad del ajuste son el criterio de Schwarz,
+$SC=\ln{\dfrac{\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}}{N}}+\dfrac{k}{N}\ln{N}$
+y el criterio de informaci\'on de Akaike, $CIAK=\ln{\dfrac{\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}}{N}}+\dfrac{2k}{N}$.
+
+\colsubsection{Distribuci\'on de los estimadores.}
+
+
+
+Si adem\'as de las hip\'otesis de especificaci\'on del modelo y la hip\'otesis de homocedasticidad, a\~nadimos la hip\'otesis de normalidad del t\'ermino de error, es decir, $\boldsymbol{\varepsilon}\sim N(\boldsymbol{0},\boldsymbol{I}_n\sigma^2)$ completamos el modelo cl\'asico de regresi\'on lineal. Bajo estos supuestos, podemos afirmar:
+\begin{teorema}
+Bajo los supuestos del modelo cl\'asico de regresi\'on lineal se cumple que:
+\begin{align*}
+\hat{\boldsymbol{\beta}}&\sim N(\boldsymbol{\beta}, \sigma^2\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}) \\
+\boldsymbol{X}\hat{\boldsymbol{\beta}}&\sim N(\boldsymbol{X}\boldsymbol{\beta}, \sigma^2\boldsymbol{P}) \\
+\hat{\boldsymbol{u}}&\sim N(\boldsymbol{0}, \sigma^2\boldsymbol{M}) 
+\end{align*}
+\end{teorema}
+
+Sin embargo, la hip\'otesis de normalidad del t\'ermino de error es bastante fuerte, ya que para unas $X$ fijas implica la normalidad de la variable dependiente, algo que no siempre podemos afirmar.
+
+No conocer la distribuci\'on mestral de los estimadores MCO hace que estos pierdan gran parte de su utilidad, ya que nos impide hacer inferencia sobre los mismos, y por tanto no podremos contrastar hip\'otesis sobre el modelo. Es por esto que vamos a ver el siguiente teorema:
+
+\begin{teorema}
+Bajo las hip\'otesis elementales del modelo, de linealidad, no multicolinealidad, exogeneidad y aleatoriedad, o su equivalente para ST, y suponiendo que grandes at\'ipicos sean poco probables, la distribuci\'on del estimador MCO es asint\'oticamente normal a medida que crece el tama\~no de la muestra, con media $\boldsymbol{\beta}$ y varianza $\sigma_{u}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}$.
+\end{teorema}
+
+Este teorema se basa en el Teorema Central del L\'imite, y por ello la distribuci\'on es aproximada, no exacta, y cuanto mayor sea el tama\~no de la muestra mejor ser\'a la aproximaci\'on. Podemos considerar que si $n>100$ la aproximaci\'on ser\'a lo suficientemente confiable, salvo que haya indicios que nos indiquen lo contrario.
+
+Ya hemos visto que la varianza disminuye al aumentar $n$, con lo que adem\'as vemos que el estimador es consistente.
+
+\colsection{Estimador del m\'etodo generalizado de los momentos y del m\'etodo de m\'axima verosimilitud.}
+
+\colsubsection{Estimador del m\'etodo generalizado de los momentos.}
+
+El m\'etodo generalizado de los momentos produce estimadores con propiedades muy deseables, sin embargo estas propiedades solo se cumplen para los casos de muestras muy grandes. T\'ipicamente, son estimadores asint\'oticamente eficientes en muestras muy grandes, pero pierden esa eficiencia para muestras de menor tama\~no.
+
+El m\'etodo se basa en el m\'etodo de los momentos, que consiste en igualar los momentos respecto al origen poblacionales a los momentos muestrales, y resolver el sistema de ecuaciones resultante. Los estimadores obtenidos a partir de este m\'etodo son consistentes.
+
+Para aplicar este m\'etodo a nuestro problema, consideremos nuestro modelo: $\boldsymbol{y}=\boldsymbol{X\beta}+\boldsymbol{u}$. Hemos visto que, si est\'a bien especificado, debe cumplirse que $E\left[\boldsymbol{X}^{\prime}\boldsymbol{u}\right]=0$. Teniendo en cuenta que $\boldsymbol{u}=\boldsymbol{y}-\boldsymbol{X\beta}$, podemos escribir que $E\left[\boldsymbol{X}^{\prime}(\boldsymbol{y}-\boldsymbol{X\beta})\right]=0$.
+
+Aplicamos el principio del m\'etodo generalizado de los momentos, y sustituimos el momento poblacional por el momento muestral. Como sabemos que $\boldsymbol{\beta}$ hace que el momento poblacional sea cero, asumiremos que una buena estimaci\'on har\'a que el momento muestral valga cero, y por tanto:
+\begin{equation*}
+\dfrac{1}{n}\boldsymbol{X}^{\prime}(\boldsymbol{y}-\boldsymbol{X}\hat{\boldsymbol{\beta}})=0
+\end{equation*}
+
+Resolviendo esta ecuaci\'on obtenemos la estimaci\'on por el m\'etodo generalizado de los momentos, que ser\'a:
+\begin{equation*}
+\hat{\boldsymbol{\beta}}_{MCO}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{y}
+\end{equation*}
+
+Y como vemos, coincide con el estimador MCO.
+
+
+\colsubsection{Estimador de m\'axima verosimilitud.}
+
+En lugar de aplicar el criterio de m\'inimos cuadrados, utilizamos el
+m\'etodo de m\'axima verosimilitud para estimar los valores de $\boldsymbol{\beta}$
+y $\sigma_{u}^{2}$.
+
+Si suponemos que el vector de t\'erminos de error sigue una distribuci\'on
+normal, $\boldsymbol{u}\sim N\left(\boldsymbol{0}_{N},\sigma_{u}^{2}\boldsymbol{I}_{N}\right)$,
+la funci\'on de densidad es: 
+
+\begin{equation*}
+f\left(\boldsymbol{u}\right)=\dfrac{1}{\left(2\pi\right)^{N/2}}\dfrac{1}{\left(\sigma_{u}^{2}\right)^{N/2}}e^{-\dfrac{1}{2\sigma_{u}^{2}}\boldsymbol{u}^{\prime}\boldsymbol{u}}
+\end{equation*}
+
+
+Como $\boldsymbol{u}=\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}$,
+hacemos el cambio de variable. El jacobiano de la transformaci\'on es
+la matriz identidad, por tanto,
+
+\begin{equation*}
+L\left(\boldsymbol{y},\boldsymbol{X};\boldsymbol{\beta},\sigma_{u}^{2}\right)=\dfrac{1}{\left(2\pi\right)^{N/2}}\dfrac{1}{\left(\sigma_{u}^{2}\right)^{N/2}}e^{-\dfrac{1}{2\sigma_{u}^{2}}\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right)^{\prime}\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right)}
+\end{equation*}
+
+
+\begin{equation*}
+\ln{L\left(\boldsymbol{y},\boldsymbol{X};\boldsymbol{\beta},\sigma_{u}^{2}\right)}=-\dfrac{N}{2}\ln{2\pi}-\dfrac{N}{2}\ln{\sigma_{u}^{2}}-\dfrac{1}{2\sigma_{u}^{2}}\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right)^{\prime}\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right)
+\end{equation*}
+\begin{equation*}
+\dfrac{\partial{\ln{L\left(\boldsymbol{y},\boldsymbol{X};\boldsymbol{\beta},\sigma_{u}^{2}\right)}}}{\partial{\boldsymbol{\beta}}}=-\dfrac{1}{2\sigma_{u}^{2}}\left[2\boldsymbol{X}^{\prime}\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right)\right]=\boldsymbol{0}_{k}
+\end{equation*}
+\begin{equation*}
+\dfrac{\partial{\ln{L\left(\boldsymbol{y},\boldsymbol{X};\boldsymbol{\beta},\sigma_{u}^{2}\right)}}}{\partial{\sigma_{u}^{2}}}=-\dfrac{N}{2\sigma_{u}^{2}}+\dfrac{1}{2\sigma_{u}^{4}}\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right)^{\prime}\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right)=0
+\end{equation*}
+
+
+Y por tanto,
+\begin{equation*}
+\begin{array}{c}
+\boldsymbol{X}^{\prime}\boldsymbol{X}\hat{\boldsymbol{\beta}}=\boldsymbol{X}^{\prime}\boldsymbol{y}\\
+\sigma_{u}^{2}=\dfrac{\left(\boldsymbol{y}-\boldsymbol{X}\hat{\boldsymbol{\beta}}\right)^{\prime}\left(\boldsymbol{y}-\boldsymbol{X}\hat{\boldsymbol{\beta}}\right)}{N}=\dfrac{\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}}{N}
+\end{array}
+\end{equation*}
+
+
+Es decir, el estimador m\'aximo veros\'imil de $\boldsymbol{\beta}$ coincide
+con el estimador de m\'inimos cuadrados. Por lo tanto, $E\left(\hat{\boldsymbol{\beta}}_{MV}\right)=\boldsymbol{\beta}$,
+$Var\left(\hat{\boldsymbol{\beta}}_{MV}\right)=\sigma_{u}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}$.
+Sin embargo, el estimador de $\sigma_{u}^{2}$ es distinto, y adem\'as
+es sesgado: $E\left(\hat{\sigma}_{MV}^{2}\right)=\dfrac{N-k}{N}\sigma_{u}^{2}$,
+aunque al aumentar el tama\~no muestral el sesgo se hace cada vez m\'as
+peque\~no.
+

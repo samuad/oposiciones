@@ -1,0 +1,464 @@
+
+\chapter{Heteroscedasticidad. Posibles causas de heteroscedasticidad. Estimaci\'on
+m\'inimo cuadr\'atica en presencia de heteroscedasticidad. Contrastes
+de heteroscedasticidad. Transformaci\'on Box-Cox. Heteroscedasticidad
+condicional Autorregresiva.}
+
+
+\section{Introducci\'on.}
+
+Dentro de los casos en los que la matriz de covarianzas del t\'ermino
+de error no es escalar, un caso particularmente interesante es cuando
+la matriz de covarianzas es diagonal, pero los elementos de la diagonal
+principal no son iguales entre s\'i. En este caso se dice que el modelo
+presenta \textbf{heteroscedasticidad}, siendo la varianza del t\'ermino
+de error distinta para las distintas observaciones de la muestra.
+El estimados de m\'inimos cuadrados generalizados en estos casos pasa
+a llamarse de m\'inimos cuadrados ponderados, porque asigna diferentes
+ponderaciones a las distintas observaciones dependiendo de la varianza
+de sus t\'erminos de error.
+
+
+\section{Posibles causas de heteroscedasticidad.}
+\begin{itemize}
+\item Puede ocurrir que la varianza del t\'ermino de error dependa de los
+valores de una o varias de las variables explicativas. As\'i, por ejemplo,
+el gasto en consumo de las familias depende de su nivel de ingresos,
+pero una vez satisfechas las necesidades primordiales las familias
+con m\'as ingresos tienen m\'as renta disponible para repartir entre consumo
+y ahorro, por lo que es de suponer que la variabilidad de esta decisi\'on
+sea mayor.
+\item Si los datos de que se dispone son agregados o promedios de valores
+individuales agrupados por grupos, cabe esperar que los grupos con
+menos miembros tengan una variabilidad mayor.
+\item Si se omite una variable explicativa relevante se puede producir,
+aparte de sesgo en los estimadores, una situaci\'on de heteroscedasticidad.
+As\'i, si en lugar de estimar el modelo $y_{i}=\beta_{1}+\beta_{2}x_{2i}+\beta_{3}x_{3i}+u_{i}$
+estimamos el modelo $y_{i}=\beta_{1}+\beta_{2}x_{2i}+v_{i}$, entonces
+$v_{i}=\beta_{3}x_{3i}+u_{i}$, y por tanto, $Var\left(v_{i}\right)=\beta_{3}^{2}x_{3i}^{2}+\sigma_{u}^{2}$,
+que es creciente con el valor de $x_{3}$. Es por esto que si se detecta
+que la varianza del t\'ermino de error depende de una variable no incluida
+en el modelo es conveniente considerar su inclusi\'on en el mismo.
+\end{itemize}
+
+\section{Estimaci\'on m\'inimo cuadr\'atica en presencia de heteroscedasticidad.}
+
+Supongamos el modelo lineal $\boldsymbol{y}=\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{u}$,
+y supongamos que la matriz de varianzas del t\'ermino de error es:
+\[
+Var\left(\boldsymbol{u}\right)=\left(\begin{array}{cccc}
+\sigma_{1}^{2} & 0 & \cdots & 0\\
+0 & \sigma_{2}^{2} & \cdots & 0\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & \sigma_{N}^{2}
+\end{array}\right)
+\]
+ esta matriz de covarianzas se puede descomponer en:
+\[
+Var\left(\boldsymbol{u}\right)=\left(\begin{array}{cccc}
+\sigma_{1} & 0 & \cdots & 0\\
+0 & \sigma_{2} & \cdots & 0\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & \sigma_{N}
+\end{array}\right)\left(\begin{array}{cccc}
+\sigma_{1} & 0 & \cdots & 0\\
+0 & \sigma_{2} & \cdots & 0\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & \sigma_{N}
+\end{array}\right)=\boldsymbol{V}\boldsymbol{V}^{\prime}
+\]
+
+
+y por tanto, 
+\[
+\begin{array}{c}
+\boldsymbol{V}^{-1}=\boldsymbol{P}=\left(\begin{array}{cccc}
+1/\sigma_{1} & 0 & \cdots & 0\\
+0 & 1/\sigma_{2} & \cdots & 0\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & 1/\sigma_{N}
+\end{array}\right)\\
+\boldsymbol{y}^{*}=\boldsymbol{V}^{-1}\boldsymbol{y}=\left(\begin{array}{c}
+y_{1}/\sigma_{1}\\
+y_{2}/\sigma_{2}\\
+\vdots\\
+y_{N}/\sigma_{N}
+\end{array}\right)\\
+\boldsymbol{X}^{*}=\boldsymbol{V}^{-1}\boldsymbol{X}=\left(\begin{array}{cccc}
+x_{11}/\sigma_{1} & x_{21}/\sigma_{1} & \cdots & x_{k1}/\sigma_{1}\\
+x_{12}/\sigma_{2} & x_{22}/\sigma_{2} & \cdots & x_{k2}/\sigma_{2}\\
+\vdots & \vdots & \ddots & \vdots\\
+x_{1N}/\sigma_{N} & x_{2N}/\sigma_{N} & \cdots & x_{kN}/\sigma_{N}
+\end{array}\right)
+\end{array}
+\]
+
+
+Y por tanto, 
+\[
+\hat{\boldsymbol{\beta}}_{MCG}=\left(\begin{array}{cccc}
+\sum_{i=1}^{N}\left(x_{1i}^{2}/\sigma_{i}^{2}\right) & \sum_{i=1}^{N}\left(x_{1i}x_{2i}/\sigma_{i}^{2}\right) & \cdots & \sum_{i=1}^{N}\left(x_{1i}x_{ki}/\sigma_{i}^{2}\right)\\
+\sum_{i=1}^{N}\left(x_{2i}x_{1i}/\sigma_{i}^{2}\right) & \sum_{i=1}^{N}\left(x_{2i}^{2}/\sigma_{i}^{2}\right) & \cdots & \sum_{i=1}^{N}\left(x_{2i}x_{ki}/\sigma_{i}^{2}\right)\\
+\vdots & \vdots & \ddots & \vdots\\
+\sum_{i=1}^{N}\left(x_{ki}x_{1i}/\sigma_{i}^{2}\right) & \sum_{i=1}^{N}\left(x_{ki}x_{2i}/\sigma_{i}^{2}\right) & \cdots & \sum_{i=1}^{N}\left(x_{ki}^{2}/\sigma_{i}^{2}\right)
+\end{array}\right)^{-1}\left(\begin{array}{c}
+\sum_{i=1}^{N}\left(x_{1i}y_{i}/\sigma_{i}^{2}\right)\\
+\sum_{i=1}^{N}\left(x_{2i}y_{i}/\sigma_{i}^{2}\right)\\
+\vdots\\
+\sum_{i=1}^{N}\left(x_{ki}y_{i}/\sigma_{i}^{2}\right)
+\end{array}\right)
+\]
+
+
+Ahora vemos por qu\'e se llama al estimador de m\'inimos cuadrados ponderado:
+cada observaci\'on se pondera por el inverso de la desviaci\'on t\'ipica
+de su t\'ermino de error, y luego se aplican m\'inimos cuadrados ordinarios.
+
+El problema que surge con la heteroscedasticidad es que si la varianza
+del t\'ermino de error es distinta para cada observaci\'on de la muestra,
+el n\'umero de par\'ametros a estimar crecer\'a con el n\'umero de observaciones,
+y siempre tendremos m\'as par\'ametros que ecuaciones. Por tanto es preciso
+establecer alg\'un supuesto acerca de c\'omo var\'ia la varianza dentro
+de los elementos de la muestra.
+
+Esa restricci\'on es importante porque tanto las detecci\'on de la heteroscedasticidad
+como la estimaci\'on del modelo se ven condicionados a que la forma
+que presente la heteroscedasticidad se ajuste al supuesto espec\'ifico
+que se haya establecido. As\'i, los contrastes de heteroscedasticidad
+s\'olo la detectan si muestra una determinada estructura. Adem\'as, los
+estimadores MCG s\'olo ser\'an eficientes solamente si le heteroscedasticidad
+presenta la estructura que se ha supuesto al dise�ar el estimador.
+
+Por tanto puede ser buena idea utilizar el estimador MCO si se desconoce
+la forma de la heteroscedasticidad, ya que en este caso la ganancia
+en eficiencia del estimador MCG queda en entredicho. En cualquier
+caso, habr\'a que aproximar la matriz de varianzas, ya que \'esta forma
+parte de la matriz de covarianzas del estimador MCO.
+
+Adem\'as, para estimar el par\'ametro $\sigma_{u^{2}}$ que acompa�a a
+la matriz $\boldsymbol{\Sigma}$ no se puede utilizar la suma residual
+de la estimaci\'on MCO, ya que dicha suma residual sufre un problema
+de escala con respecto a la derivada de los residuos MCG, que es la
+que se deber\'ia utilizar.
+
+White (1980) ha propuesto una aproximaci\'on a la matriz de covarianzas
+del estimador MCO que no precisa de una representaci\'on de la forma
+funcional de la heteroscedasticidad, por lo que no genera los sesgos
+que podr\'ian derivar de una representaci\'on incorrecta. La sugerencia
+de White es: 
+\[
+Var\left(\hat{\boldsymbol{\beta}}_{MCO}\right)=N\sigma_{u}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\dfrac{1}{N}\left(\boldsymbol{X}^{\prime}\boldsymbol{\Sigma}\boldsymbol{X}\right)\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}
+\]
+
+
+Y estimamos $\dfrac{1}{N}\left(\boldsymbol{X}^{\prime}\boldsymbol{\Sigma}\boldsymbol{X}\right)$
+por $\widehat{\dfrac{1}{N}\left(\boldsymbol{X}^{\prime}\boldsymbol{\Sigma}\boldsymbol{X}\right)}=\dfrac{1}{N}\sum_{i=1}^{N}\hat{u}_{t}^{2}\left(\boldsymbol{x}_{t}\boldsymbol{x}_{t}^{\prime}\right)$.
+Se ha comprobado que este estimador tiene buenas propiedades y es
+recomendable su uso. Su comparaci\'on con la expresi\'on $\sigma_{u}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}$
+puede dar una idea de la heteroscedasticidad presente en el modelo.
+
+Como el estimador MCG es el estimador lineal insesgado de m\'inima varianza,
+la diferencia entre su matriz de covarianzas y la del estimador MCO
+siempre ser\'a una matriz semidefinida negativa, y por tanto los elementos
+de la diagonal principal de la matriz de covarianzas del estimador
+MCG ser\'an menores que los de la correspondiente al estimador MCO.
+Por otro lado, si el t\'ermino de error sigue una distribuci\'on normal,
+el estimador MCG coincide con el estimador de m\'axima verosimilitud,
+y por tanto pasa a ser el estimador insesgado \'optimo.
+
+El procedimiento de estimaci\'on por MCG en presencia de heteroscedasticidad
+es como sigue:
+\begin{enumerate}
+\item Se estima el modelo por MCO, ignorando la heteroscedasticidad.
+\item Se establece un supuesto acerca de la estructura de las $\sigma_{i}^{2}$.
+\item Se utilizan los residuos MCO para estimar la forma funcional supuesta
+para las $\sigma_{i}^{2}$ en el apartado anterior.
+\item Se divide cada observaci\'on por la estimaci\'on $\hat{\sigma}_{i}$.
+\item Se vuelve a estimar el modelo con las variables transformadas.
+\end{enumerate}
+Esta forma de estimar el modelo da mayor ponderaci\'on a las observaciones
+cuyo t\'ermino de error tiene menor varianza. Esto es l\'ogico, ya que
+\'estas contendr\'an m\'as informaci\'on acerca del modelo y un menor componente
+aleatorio.
+
+
+\section{Contrastes de heteroscedasticidad.}
+
+Estos contrastes se utilizan para detectar la presencia de heteroscedasticidad.
+Contrastan la hip\'otesis nula de ausencia de heteroscedasticidad. Algunos
+sugieren la forma funcional de la heteroscedasticidad si se rechaza
+la hip\'otesis nula, otros no proporcionan tal informaci\'on.
+
+
+\subsection{Contraste de Goldfeld y Quandt.}
+
+Parte del supuesto de que la magnitud de las $\sigma_{i}^{2}$ depende
+de una variable $z_{i}$. Esta es generalmente una de las variables
+explicativas, aunque no es necesario para llevar a cabo el contraste
+de la hip\'otesis. En cualquier caso, es necesario disponer de informaci\'on
+muestral de esa variable.
+
+Supongamos que la dependencia es positiva ($\sigma_{i}^{2}$ crece
+con $z_{i}$). El contraste consiste en:
+\begin{itemize}
+\item Ordenamos las observaciones de menor a mayor valor de las $z_{i}$.
+\item Omitimos $p$ observaciones en mitad de la muestra.
+\item Estimamos por MCO el modelo original con las $\dfrac{N-p}{2}$ primeras
+observaciones y luego con las $\dfrac{N-p}{2}$ \'ultimas observaciones
+de la muestra. El n\'umero de observaciones omitidas debe ser lo suficientemente
+peque�o para que se puedan estimar los dos modelos.
+\item Sean $SR_{1}$ y $SR_{2}$ las sumas residuales de las dos estimaciones.
+Entonces, bajo el supuesto de homoscedasticidad y normalidad del t\'ermino
+de error, se cumple que:
+\[
+\lambda=\dfrac{SR_{2}}{SR_{1}}=\dfrac{\sigma_{2}^{2}}{\sigma_{1}^{2}}\sim F_{m,m}
+\]
+ donde $m=\left(\dfrac{N-p}{2}\right)-k$.
+\end{itemize}
+Si existe heteroscedasticidad con la estructura propuesta el valor
+del estad\'istico ser\'a muy grande, ya que hemos ordenado las observaciones
+seg\'un el valor de las $z_{i}$, y por tanto seg\'un el valor de las
+$\sigma_{i}^{2}$, es decir, si el valor del estad\'istico excede al
+de $F_{m,m}$ para la significaci\'on elegida, rechazaremos la hip\'otesis
+nula de ausencia de heteroscedasticidad.
+
+Si sospechamos que la varianza depende inversamente de los valores
+$z_{i}$, el contraste es igual, pero ordenando las observaciones
+de mayor a menor valor de las $z_{i}$.
+
+En cuanto al n\'umero de observaciones a excluir, si excluimos demasiadas
+se pierden muchos grados de libertad para las dos regresiones, con
+lo que \'estas pierden precisi\'on y el contraste pierde potencia. Por
+otro lado, cuantas m\'as excluyamos, m\'as divergir\'an los valores de las
+sumas residuales y aumentar\'a la potencia. Se recomienda no eliminar
+m\'as de un tercio de las observaciones disponibles.
+
+Si de resultas de este contraste admitimos la hip\'otesis nula, puede
+deberse a que no hemos especificado bien la dependencia de las $\sigma_{i}^{2}$,
+que podr\'ia depender de una variable distinta a la que hemos supuesto.
+Por ello el contraste deber\'ia llevarse a cabo sucesivamente con variables
+de las que podamos sospechar a priori que puede depender la varianza
+del t\'ermino de error.
+
+
+\subsection{Contraste de Breusch y Pagan.}
+
+En este caso suponemos que la varianza del t\'ermino de error depende
+de un vector de variables $\boldsymbol{z}_{i}$ de dimensi\'on $p$:
+$\sigma_{i}^{2}=h\left(\boldsymbol{z}_{i}^{\prime}\boldsymbol{\alpha}\right)=h\left(\alpha_{0}+\alpha_{1}z_{1i}+\alpha_{2}z_{2i}+\cdots+\alpha_{p}z_{pi}\right)$.
+Si todas las $\alpha_{i}$ menos $\alpha_{0}$ son cero, estaremos
+en ausencia de heteroscedasticidad. Por tanto, si podemos estimar
+los coeficientes $\alpha_{1},\alpha_{2},\ldots,\alpha_{p}$, un contraste
+de la hip\'otesis nula de homoscedasticidad vendr\'ia dado por un contraste
+conjunto de las $p$ restricciones lineales $H_{0}:\alpha_{1}=\alpha_{2}=\ldots=\alpha_{p}=0$.
+
+El contraste se realiza como sigue:
+\begin{enumerate}
+\item Se estima por MCO el modelo original y se obtienen los residuos.
+\item Se obtiene la serie o secci\'on cruzada de residuos normalizados al
+cuadrado: $\hat{e}_{i}=\dfrac{\hat{u}_{i}^{2}}{\hat{\sigma}_{u}^{2}}$,
+donde $\hat{\sigma}_{u}^{2}$ es la estimaci\'on MV de la varianza del
+t\'ermino de error bajo la hip\'otesis nula (homoscedasticidad), es decir
+$\hat{\sigma}_{u}^{2}=\dfrac{\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}}{N}$.
+\item Se estima una regresi\'on de los $\hat{e}_{i}^{2}$ sobre una constante
+y las variables $\boldsymbol{z}_{i}$ y se obtiene la suma explicada
+de dicha regresi\'on. Como el modelo tiene un t\'ermino independiente
+la expresi\'on $ST=SE+SR$ es v\'alida.
+\item Bajo la hip\'otesis nula de homoscedasticidad y supuesta una distribuci\'on
+normal para el t\'ermino de error, el cociente $\dfrac{SE}{2}$ para
+la regresi\'on de los $\hat{e}_{i}^{2}$ se distribuye seg\'un crece el
+tama�o muestral como una $\chi^{2}(p)$.
+\end{enumerate}
+La l\'ogica detr\'as del contraste es que si se cumple la hip\'otesis nula
+de homoscedasticidad las variables $\boldsymbol{z}_{i}$ no tendr\'an
+poder explicativo sobre los residuos, y por tanto la suma explicada
+de su regresi\'on deber\'a ser peque�a. Si $\dfrac{SE}{2}$ es mayor que
+el valor de la chi-cuadrado para el nivel de significaci\'on escogido,
+se rechaza la hip\'otesis nula de homoscedasticidad.
+
+En ese caso se podr\'ia dividir cada observaci\'on por $\sqrt{\boldsymbol{z}_{i}^{\prime}\boldsymbol{\alpha}}$
+como una aproximaci\'on a la desviaci\'on t\'ipica para cada elemento de
+la muestra. La estimaci\'on MCO de este modelo transformado ser\'ia la
+estimaci\'on MCG del modelo original. En general no es muy recomendable,
+porque no est\'a asegurado que la aproximaci\'on lineal de la funci\'on
+sea lo suficientemente buena para realizar con ella la estimaci\'on
+MCG.
+
+Se utilizan los cuadrados de los residuos porque lo importante es
+la magnitud de los residuos, no su signo.
+
+Para que este contraste funcione no es necesario conocer la forma
+funcional de la dependencia, se entiende la aproximaci\'on lineal como
+una aproximaci\'on en serie de Taylor lo suficientemente buena para
+los prop\'ositos del contraste.
+
+La lista de variables $\boldsymbol{z}_{i}$ deber\'ia ser corta y no
+incluir muchas variables que no est\'en presentes en el modelo, ya que
+esto nos inducir\'ia a pensar que el modelo est\'a mal especificado y
+convendr\'ia incluir las variables de las que depende la varianza.
+
+En presencia de estacionalidad las $\boldsymbol{z}_{i}$ deben incluir
+variables ficticias estacionales. Los cuadrados de las variable explicativas
+tambi\'en son candidatos a formar parte del vector $\boldsymbol{z}_{i}$.
+
+
+\subsection{Contraste de Glesjer.}
+
+Intenta determinar la estructura de la heteroscedasticidad, no limit\'andose
+a estructuras lineales. Sin embargo, s\'olo resulta \'util cuando se cree
+que le heteroscedasticidad puede explicarse con una sola variable,
+quiz\'as junto con un t\'ermino constante. El contraste se realiza as\'i:
+\begin{itemize}
+\item Estimar el modelo MCO y obtener los correspondientes residuos.
+\item Estimar una regresi\'on del valor absoluto de los residuos o su cuadrado
+sobre una potencia de la variable $z_{i}$, es decir $\left|\hat{u}_{i}\right|=\delta_{0}+\delta_{1}z_{i}^{h}+v_{t}$,
+para distintos valores del exponente $h$: $h=\left\{ -1,1,\dfrac{1}{2},-\dfrac{1}{2}\right\} $.
+Escoger el valor de $h$ que proporciona una mejor regresi\'on. Para
+esto debe tenerse en cuenta la significaci\'on del coeficiente $\delta_{1}$
+y el valor de la suma residual.
+\item Una vez seleccionado el par\'ametro $h$, se estima el modelo por MCO,
+pero con las variables divididas por $\delta_{0}+\delta_{1}z_{i}^{h}$
+si se estim\'o una regresi\'on para $\left|\hat{u}_{t}\right|$, o por
+$\sqrt{\delta_{0}+\delta_{1}z_{i}^{h}}$ si se estim\'o la regresi\'on
+de $\hat{u}_{i}^{2}$. Con esto se obtiene el estimador MCG del modelo
+original.
+\end{itemize}
+Si ning\'un $h$ produce una regresi\'on aceptable, puede ser que el supuesto
+inicial de que la variable $z_{i}$ explique la estructura de la heteroscedasticidad
+sea incorrecto. Se deber\'ia repetir el proceso con otra variable. De
+hecho, aunque la regresi\'on sea aceptable, nada nos indica que no pueda
+existir otra variable con una regresi\'on al menos tan buena como la
+utilizada. Por tanto, deber\'ian utilizarse todas las alternativas que
+tengan sentido.
+
+
+\subsection{Contraste de Harvey.}
+
+Contrasta la heteroscedasticidad del tipo $\sigma_{i}^{2}=e^{\boldsymbol{z}_{i}^{\prime}\boldsymbol{\alpha}}$,
+que incluye como caso particular la expresi\'on $\sigma_{i}^{2}=\sigma_{u}^{2}x_{i}^{s}$
+($\boldsymbol{z}_{i}=\left(\ln\sigma_{u},\ln x_{i}\right)$ y $\boldsymbol{\alpha}=\left(2,s\right)$.
+El contraste consta de las siguientes etapas:
+\begin{itemize}
+\item Estimar el modelo por MCO ignorando la posible heteroscedasticidad
+y obtener los residuos $\hat{u}_{i}$.
+\item Estimar por MCO la regresi\'on $\ln\hat{u}_{i}^{2}=\boldsymbol{z}_{i}^{\prime}\boldsymbol{\alpha}+\varepsilon_{i}=\alpha_{1}+\alpha_{2}z_{2i}+\cdots+\alpha_{p}z_{pi}+\varepsilon_{i}$.
+\item El estad\'istico $F$ para el contraste de significaci\'on global para
+esta regresi\'on sigue una distribuci\'on chi-cuadrado con $p-1$ grados
+de libertad, y puede interpretarse como un contraste de la hip\'otesis
+nula de homoscedasticidad, de forma similar al contraste de Breusch-Pagan.
+\end{itemize}
+Harvey adem\'as demostr\'o que las estimaciones de los $\alpha_{i}$ son
+consistentes (disminuye su sesgo al aumentar el tama�o de la muestra)
+excepto para el t\'ermino independiente, que es sesgado con independencia
+del tama�o muestral.
+
+Este sesgo no tiene influencia en el contraste, ya que no se contrasta
+su significaci\'on, ni tampoco a la hora de estimar los par\'ametros del
+modelo por MCG, ya que al ser la varianza del t\'ermino de error $\sigma_{i}^{2}=e^{\alpha_{1}}e^{\alpha_{2}z_{2i}+\cdots+\alpha_{p}z_{pi}}$
+el t\'ermino $e^{\alpha_{1}}$ forma parte del multiplicador constante
+de la matriz de varianzas, que no interviene en la estimaci\'on de $\hat{\boldsymbol{\beta}}$
+en los MCG. Si se rechaza la hip\'otesis de homoscedasticidad, habr\'ia
+que dividir las observaciones del cada per\'iodo por $\sqrt{e^{\alpha_{2}z_{2i}+\cdots+\alpha_{p}z_{pi}}}$.
+La matriz de covarianzas del estimador se obtiene multiplicando la
+matriz $\left(\boldsymbol{X}^{*\prime}\boldsymbol{X}^{*}\right)^{-1}$
+por la estimaci\'on de $\sigma_{u}^{2}$, es decir, $\hat{\sigma}_{u}^{2}=\dfrac{\hat{\boldsymbol{u}}^{\prime}\boldsymbol{\Sigma}^{-1}\hat{\boldsymbol{u}}}{N-k}$.
+
+
+\subsection{Contraste de White.}
+
+Este contraste, propuesto por White en 1980, no precisa especificar
+la estructura de la heteroscedasticidad. Sus pasos son:
+\begin{itemize}
+\item Estimar el modelo original por MCO, ignorando la posible heteroscedasticidad.
+\item Estimar una regresi\'on del cuadrado de los residuos del modelo MCO
+sobre una constante, los regresores del modelo original, sus cuadrados,
+y los productos cruzados de segundo orden.
+\item Al aumentar el tama�o muestral, el producto $NR$, donde $N$ es el
+tama�o muestral y $R^{2}$ el coeficiente de determinaci\'on de la regresi\'on
+de los residuos sigue una distribuci\'on chi-cuadrado con $p-1$ grados
+de libertad, donde $p$ es el n\'umero de regresores de la estimaci\'on
+de los residuos.
+\end{itemize}
+El tama�o muestral crece con el n\'umero de observaciones, pero el coeficiente
+de determinaci\'on tender\'a a cero bajo la hip\'otesis nula de homoscedasticidad.
+S\'olo cuando la varianza del t\'ermino de error depende de las variables
+explicativas del modelo, el coeficiente $R^{2}$ no tiende a cero,
+y el producto $NR$ permanecer\'a en un cierto nivel lejos de cero y
+deber\'ia superar al valor de chi-cuadrado para un determinado nivel
+de significaci\'on.
+
+
+\section{Transformaci\'on de Box-Cox.}
+
+Consideremos el modelo no lineal:
+\[
+y_{i}=e^{\boldsymbol{x}_{i}^{\prime}\boldsymbol{\beta}}e^{u_{i}}
+\]
+ donde $u_{i}$ es un ruido blanco con distribuci\'on normal $N\left(0,\sigma_{u}^{2}\right)$.
+Este modelo tiene una distribuci\'on log-Normal (la distribuci\'on de
+su logaritmo es la Normal), ya que $\ln y_{i}=\boldsymbol{x}_{i}^{\prime}\boldsymbol{\beta}+u_{i}$,
+y adem\'as, $Var\left(y_{i}\right)=Var\left(e^{u_{i}}\right)\left(e^{\boldsymbol{x}_{i}^{\prime}\boldsymbol{\beta}}\right)^{2}=\left(e^{\boldsymbol{x}_{i}^{\prime}\boldsymbol{\beta}}\right)^{2}e^{\sigma_{u}^{2}}\left(e^{\sigma_{u}^{2}}-1\right)$y
+por tanto $y_{i}$ tiene heteroscedasticidad, pero su logaritmo es
+homosced\'astico. Por tanto, el estimador MCO aplicado al modelo logar\'itmico
+es eficiente.
+
+La transformaci\'on logar\'itmica es un caso particular de una familia
+de transformaciones propuestas por Box y Cox en 1964 consistentes
+en suponer que existe un valor $\lambda$ tal que 
+\[
+g\left(y_{i},\lambda\right)=\dfrac{y_{i}^{\lambda}-1}{\lambda}=\boldsymbol{x}_{i}^{\prime}\boldsymbol{\beta}+u_{i}
+\]
+donde $u_{i}$es ruido blanco con distribuci\'on Normal. Si $\lambda=0$,
+tenemos que $g\left(y_{i},\lambda\right)=\ln y_{i}$, si $\lambda=1$
+tenemos el caso lineal.
+
+
+\section{Heteroscedasticidad Condicional Autorregresiva (ARCH).}
+
+Algunas variables econom\'etricas presentan per\'iodos de relativa estabilidad
+seguidos de per\'iodos de gran volatilidad (rentabilidad de activos
+financieros). En tales casos, parece adecuado especificar un modelo
+del tipo $y_{i}=\boldsymbol{x}_{i}^{\prime}\boldsymbol{\beta}+u_{i}$,
+donde $u_{i}\sim N\left(0,\sigma_{i}^{2}\right)$, con $\sigma_{i}^{2}=\delta_{0}+\delta_{1}u_{i-1}^{2}$,
+que refleja que la varianza del t\'ermino de error evoluciona con cierta
+suavidad, alternando valores peque�os con valores elevados. El modelo
+es estacionario si $\left|\delta_{1}\right|<1$, y adem\'as para asegurar
+que la varianza no sea negativa haremos $\delta_{0}>0$, $0<\delta_{1}<1$.
+Bajo normalidad de $u_{i}$, el logaritmo de la verosimilitud ser\'a:
+\[
+\ln L=-\dfrac{1}{2}\sum_{i=1}^{N}\ln\left(\delta_{0}+\delta_{1}u_{i-1}^{2}\right)-\dfrac{1}{2}\sum_{i=1}^{N}\ln\dfrac{u_{i}^{2}}{\delta_{0}+\delta_{1}u_{i-1}^{2}}
+\]
+
+
+Puede probarse que la estimaci\'on MV se puede obtener por el siguiente
+procedimiento:
+\begin{enumerate}
+\item Estimar $\boldsymbol{\beta}$ por MCO y obtener los residuos.
+\item A partir de una estimaci\'on inicial, $\left(\hat{\delta}_{0},\hat{\delta}_{1}\right)$
+obtener las variables: 
+\[
+\begin{array}{cc}
+h_{i}^{2}=\hat{\delta}_{0}+\hat{\delta}_{1}\hat{u}_{i-1}^{2} & i=2,\ldots,N\\
+\boldsymbol{z}_{i}^{\prime}=\left(\dfrac{1}{h_{i}^{2}},\dfrac{\hat{u}_{i-1}^{2}}{h_{i}^{2}}\right) & i=2,\ldots,N\\
+w_{i}=\dfrac{\hat{u}_{i-1}^{2}}{h_{i}^{2}}-1 & i=2,\ldots,N
+\end{array}
+\]
+ y estimar una regresi\'on del $w_{i}$ sobre el vector $\boldsymbol{z}_{i}^{\prime}$.
+Los coeficientes estimados son las correcciones a a�adir a la estimaci\'on$\left(\hat{\delta}_{0},\hat{\delta}_{1}\right)$:
+\[
+\dbinom{\hat{\delta}_{0}}{\hat{\delta}_{1}}_{j}=\dbinom{\hat{\delta}_{0}}{\hat{\delta}_{1}}_{j-1}+\left(\boldsymbol{Z}^{\prime}\boldsymbol{Z}\right)^{-1}\boldsymbol{Z}^{\prime}\boldsymbol{W}
+\]
+y se repite la iteraci\'on hasta que las $\delta$ converjan.
+\item Una vez se dispone de $\left(\hat{\delta}_{0},\hat{\delta}_{1}\right)$
+se calcula 
+\[
+\begin{array}{c}
+r_{i}^{2}=\dfrac{1}{h_{i}^{2}}+2\dfrac{\left(\hat{\delta}_{1}\hat{u}_{i}\right)^{2}}{\left(h_{i+1}^{2}\right)^{2}}\\
+c_{i}=\dfrac{1}{h_{i}^{2}}-\dfrac{\hat{\delta}_{1}}{h_{i+1}^{2}}\left(\dfrac{\hat{u}_{i+1}^{2}}{h_{i+1}^{2}}-1\right)
+\end{array}
+\]
+ y se estima la regresi\'on de $\tilde{u}_{i}=\dfrac{\hat{u}_{i}c_{i}}{r_{i}}$
+sobre el vector $\tilde{\boldsymbol{x}}_{i}=\boldsymbol{x}_{i}r_{i}$
+para obtener la correcci\'on a incluir en el vector $\hat{\boldsymbol{\beta}}$:
+$\hat{\boldsymbol{\beta}}_{j}=\hat{\boldsymbol{\beta}}_{j+1}+\left(\tilde{\boldsymbol{X}}^{\prime}\tilde{\boldsymbol{X}}\right)^{-1}\tilde{\boldsymbol{X}}^{\prime}\tilde{\boldsymbol{u}}$\end{enumerate}
+

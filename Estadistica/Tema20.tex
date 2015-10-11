@@ -1,0 +1,159 @@
+\chapter[Estimaci\'on puntual II.]{Estimaci\'on puntual II. \\
+\normalsize Estimadores de m\'inima varianza. Estimadores eficientes. Estimadores robustos. Estimadores Bayesianos.}
+
+\section{Introducci\'on.}
+
+Una parte de la inferencia estad\'istica consiste en obtener estimaciones acerca de los par\'ametros que definen la distribuci\'on de probabilidad de una poblaci\'on. As\'i, si tenemos una poblaci\'on normal, sin conocer los valores de $\mu$ y $\sigma^2$ no podremos calcular las probabilidades de los distintos sucesos, ni podremos realizar deducciones sobre la poblaci\'on.
+
+La estimaci\'on de un par\'ametro consistir\'a en utilizar los datos muestrales en combinaci\'on con alg\'un estad\'istico. Hay dos formas de llevar a cabo esta tarea: mediante la \textbf{estimaci\'on puntual}, en la que buscamos un estimador que en conjunci\'on con los datos muestrales nos de una estimaci\'on univaluada del par\'ametro, y la \textbf{estimaci\'on por intervalos}, en la que definimos un intervalo dentro del cual, de forma probable, se encontrar\'a el par\'ametro.
+
+Formalmente, sea una variable aleatoria, $\varphi$, cuya funci\'on de distirbuci\'on, $F(x;\theta)$ depende del par\'ametro $\theta$ definido en el espacio param\'etrico $\Theta$, la estimaci\'on puntual busca encontrar un estad\'istico que nos permita estimar a partir de una muestra aleatoria el valor de $\theta$.
+
+A este estad\'istico que va os a utilizar para estimar $\theta$ lo llamamos \textbf{estimador}, y lo representamos por $\hat{\theta}$. Este estimador ser\'a una funci\'on de las variables aleatorias que forman la muestra, y debe quedar completamente definido una vez se produce la realizaci\'on de la muestra.
+
+Dado que para estimar un mismo par\'ametro podemos definir infinidad de estimadores, ser\'a necesario por un lado, establecer que propiedades es deseable que tenga un estimador para ser \'util a nuestro prop\'osito, y por otro descubrir que procedimientos nos permiten obtener estimadores que cumplan esas propiedades deseables.
+
+As\'i, un estimador ser\'a una variable aleatoria, funci\'on de las variables aleatorias muestrales. Una estimaci\'on ser\'a una realizaci\'on de esa variable aleatoria para una muestra determinada.
+
+\section{Estimadores de m\'inima varianza.}
+
+Sabemos que a la hora de utilizar un estimador puntual para estimar un par\'ametro asociado a una poblaci\'on que queremos estudiar, una buena medida de la bondad de ese estimador es su error cuadr\'atico medio, es decir, $ECM(\hat{\theta})=E[(\hat{\theta}-\theta)^2]$, siendo mejor estimador aquel cuyo $ECM$ sea menor. Como sabemos que el error cuadr\'atico medio se puede descomponer como la suma de la varianza del estimador y el cuadrado de su sesgo, nos interesar\'a buscar estimadores que, adem\'as de ser insesgados, tengan una varianza lo menor posible.
+
+Sabemos que en general no es posible encontrar un estimador que minimice el error cuadr\'atico medio para todos los valores posibles del par\'ametro. Sin embargo, si que se puede buscar aquel estimador que, siendo insesgado, minimice el error cuadr\'atico medio. Esto equivale a encontrar el estimador insesgado que minimice la varianza. A este estimador se le llama \textbf{estimador insesgado de varianza m\'inima}.
+
+Si adem\'as se verifica que la varianza es m\'inima para todos los posibles valores del par\'ametro a estudiar, entonces el estimador recibe el nombre de \textbf{estimador insesgado uniformemente de m\'inima varianza} (UMVUE por sus siglas en ingl\'es.)
+
+\begin{definicion}
+Diremos que un estimador insesgado para un par\'ametro $\theta$, $\hat{\theta}_0$ es \textbf{insesgado y uniformemente de m\'inima varianza} si dado cualquier otro estimador insesgado de $\theta$, $\hat{\theta}$ se verifica que $V(\hat{\theta}_0)\leq V(\hat{\theta})$ para todos los valores posibles de $\theta$.
+\end{definicion}
+
+Para obtener el estimador insesgado y uniformemente de m\'inima varianza tendr\'iamos que calcular las varianzas de todos los estimadores posibles de nuestro par\'ametro, lo cual es claramente inasumible. Para ayudarnos en esta tarea disponemos de la cota de Fretchet-Cramer-Rao, que nos da una cota inferior a la varianza del estimador.
+
+\begin{teorema}
+Sea $(X_1,\ldots,X_n)$ una muestra aleatoria simple proveniente de una poblaci\'on con una densidad de probabilidad $f(x;\theta)$. Designamos la funci\'on de densidad conjunta de la muestra por:
+
+\begin{equation*}
+L(x_1,\ldots,x_n;\theta)=dF_n(x_1,\ldots,x_n;\theta)=f_n(x_1,\ldots,x_n;\theta)
+\end{equation*}
+y sea $\hat{\theta}$ un estimador insesgado de $\theta$, entonces si se verifican las condiciones de regularidad de Wolfowitz la varianza del estimador est\'a acotada inferiormente seg\'un la siguiente desigualdad:
+\begin{equation*}
+V(\hat{\theta})\geq \dfrac{1}{E\left[\left(\dfrac{\partial\ln{dF_n}}{\partial\theta}\right)^2\right]}
+\end{equation*}
+
+o bien, si la funci\'on de densidad de la poblaci\'on es $f(x;\theta)$
+\begin{equation*}
+V(\hat{\theta})\geq \dfrac{1}{nE\left[\left(\dfrac{\partial\ln{f(x;\theta)}}{\partial\theta}\right)^2\right]}
+\end{equation*}
+\begin{equation*}
+V(\hat{\theta})\geq \dfrac{1}{-nE\left[\dfrac{\partial^2\ln{f(x;\theta)}}{\partial\theta^2}\right]}
+\end{equation*}
+\end{teorema}
+
+Las \textbf{condiciones de regularidad de Wolfowitz} son:
+\begin{itemize}
+\item El intervalo de vatiaci\'on de $\theta$ ,$D$, es un intervalo abierto del eje real que nunca se reduce a un punto.
+\item El campo de variaci\'on de la variable aleatoria $X$ que define la poblaci\'on no depende del para\'ametro  $\theta$.
+\item Para casi todo $X$ y todo  $\theta$ existe $\dfrac{\partial\ln{dF_n}}{\partial\theta}$.
+\item Se pueden diferencia bajo el signo integral las expresiones $E[1]$ y $E[\hat{\theta}]$.
+\item Se verifica que:
+\begin{equation*}
+E\left[\left(\dfrac{\partial\ln{dF_n}}{\partial\theta}\right)^2\right]>0,\;\forall\theta\in D
+\end{equation*}
+\end{itemize}
+
+Fischer llam\'o a la expresi\'on $E\left[\left(\dfrac{\partial\ln{dF_n}}{\partial\theta}\right)^2\right]$ \textbf{cantidad de informaci\'on de la muestra}, es decir, la cantidad de informaci\'on que una muestra de tama\~no $n$ proporciona sobre el par\'ametro, medida en el sentido de la varianza de la variabilidad de la funci\'on de densidad respecto al par\'ametro.
+
+Si el estimador hubiera sido insesgado, la cota ser\'ia la siguiente:
+\begin{equation*}
+V(\hat{\theta})\geq \dfrac{1+\dfrac{\partial b(\hat{\theta})}{\partial\theta}}{E\left[\left(\dfrac{\partial\ln{dF_n}}{\partial\theta}\right)^2\right]}
+\end{equation*}
+
+La cota FCR nos da un l\'imite inferior para la varianza del estimador, pero esto no implica que que la varianza de un estimador UMVUE sea igual a la de la cota. Es decir, puede haber un estimador UMVUE cuya varianza sea mayor que la cota de FCR.
+
+\section{Estimadores eficientes.}
+
+La insesgadez es una propiedad deseable en un estimador, pero por si sola no es suficiente para determinar si un estimador es \'util, ya que solo requiere que el valor esperado del estimador sea igual al par\'ametro a estimar, y no requiere que haya valores del estimador est\'en pr\'oximos al mismo. Así, es deseable que los valores que tome el estimador para distintas muestras valores pr\'oximos unos de otros, de tal manera que su varianza sea peque\~na. Así, ante dos estimadores insesgados, resultar\'a m\'as fiable aquel que presente una menor varianza. Definimos la eficiencia de un estimador comparando su varianza con la varianza de los dem\'as estimadores insesgados. As\'i, el \textbf{estimador m\'as eficiente} de un conjunto de estimadores insesgados ser\'a aquel que tenga una varianza menor.
+
+\begin{definicion}
+\textbf{Estimador eficiente:}\\
+Diremos que un estimador $\hat{\theta}$ del par\'ametro poblacional $\theta$ es \textbf{eficiente} si es insesgado y adem\'as su varianza alcanza la cota de Fretcher-Cramer-Rao.
+\end{definicion}
+
+Por tanto, un estimador eficiente ser\'a un estimador insesgado y uniformemente de m\'inima varianza cuya varianza coincide con la cota inferior de FCR. Estos estimadores son muy \'utiles en toda la inferencia, por lo que se intentar\'an obtener siempre que existan.
+
+\begin{definicion}
+Se define la \textbf{eficiencia de un estimador insesgado} $\hat{\theta}$ del par\'ametro poblacional $\theta$ como:
+\begin{equation*}
+\textrm{eff.}(\hat{\theta})=\dfrac{\textrm{Cota F.C.R.}}{V(\hat{\theta})}
+\end{equation*}
+verific\'andose que $\textrm{eff.}(\hat{\theta})\leq 1$
+\end{definicion}
+As\'i, dados dos estimadores del mismo par\'ametro, el m\'as eficiente ser\'a el que tenga una eficiencia mayor. Tambi\'en podemos introducir el concepto de \textbf{eficiencia relativa}:
+\begin{equation*}
+\textrm{eff. relativa}(\hat{\theta}_1,\hat{\theta}_2)=\dfrac{V(\hat{\theta}_2)}{V(\hat{\theta}_1)}=\dfrac{\textrm{eff.}(\hat{\theta}_1)}{\textrm{eff.}(\hat{\theta}_2)}
+\end{equation*}
+
+Si $\textrm{eff. relativa}(\hat{\theta}_1,\hat{\theta}_2)>1$ $\hat{\theta}_1$ es m\'as eficiente que $\hat{\theta}_2$. Si $\textrm{eff. relativa}(\hat{\theta}_1,\hat{\theta}_2)<1$ $\hat{\theta}_2$ es m\'as eficiente que $\hat{\theta}_1$. Si $\textrm{eff. relativa}(\hat{\theta}_1,\hat{\theta}_2)=1$ ambos estimadores son igual de eficientes.
+
+\begin{teorema}
+Si un estimador $\hat{\theta}$ es insesgado, su varianza alcanza la cota de Fretcher-Cramer-Rao si se verifica:
+\begin{equation*}
+\dfrac{\partial\ln{dF_n}}{\partial\theta}=A(\theta)(\hat{\theta}-\theta)
+\end{equation*}
+siendo $A(\theta)$ una expresi\'on que no depende de $\hat{\theta}$.
+\end{teorema}
+
+
+\begin{teorema}
+Si un estimador $\hat{\theta}$ es eficiente, entonces se verifica que:
+\begin{equation*}
+V(\hat{\theta})=\dfrac{1}{A(\theta)}
+\end{equation*}
+\end{teorema}
+
+\begin{definicion}
+Diremos que un estimador $\hat{\theta}$ es asint\'oticamente eficiente si se cumple que:
+\begin{equation*}
+\lim_{n\to\infty}{V(\hat{\theta})}=\textrm{Cota de Frechet-Cramer-Rao}
+\end{equation*}
+\end{definicion}
+
+\section{Estimadores robustos.}
+
+Un procedimiento estad\'istico es robusto si su comportamiento es relativamente insensible a desviaciones sobre las hip\'otesis iniciales en la que se haya basado su desarrollo. Dado que para encontrar estimadores normalmente necesitamos hacer hip\'otesis sobre la poblaci\'on en estudio, es conveniente contar con estimadores que sean lo m\'as robustos posibles. Por ejemplo, es frecuente suponer la distribuci\'on de probabilidad de la variable aleatoria en estudio conocida, pero en general esto no es as\'i, sino que se formula una hip\'otesis acerca de la misma. Si la distribuci\'on de probabilidad es distinta de la supuesta, y esta diferencia no es muy significativa y el procedimiento estad\'istico es insensible a estos cambios, se dice que el estimador es robusto.
+
+\begin{definicion}
+Diremos que un estimador es \textbf{robusto} cuando peque\~nos cambios en las hip\'otesis de partida del procedimiento de estimaci\'on no producen variaciones significativas en los resultados obtenidos.
+\end{definicion}
+
+\section{Estimadores Bayesianos.}
+
+Hasta ahora hemos estudiado la estimaci\'on puntual desde el punto de vista de la teor\'ia del muestreo, que se basa en interpretar la probabilidad como una frecuencia relativa. Pasaremos ahora a estudiar el enfoque bayesiano de la inferencia estad\'istica, en lo que se refiere a la estimaci\'on de par\'ametros.
+
+En el enfoque bayesiano, un par\'ametro es visto como una variable aleatoria a la que se asigna una distribuci\'on de probabilidad a priori con base en el grado de creencia sobre la distribuci\'on del mismo, que se modifica con la informaci\'on obtenida de la muestra, para obtener la distribuci\'on a posteriori. Con esta distribuci\'on a posteriori formularemos inferencias respecto al par\'ametro. Este enfoque resulta muy \'util en aquellas situaciones en las que el par\'ametro a estimar no puede considerarse una cantidad fija, sino que puede variar dependiendo de las caracter\'isticas del entorno.
+
+Dado que consideramos el par\'ametro a estimar como una variable aleatoria, lo designamos por $\Theta$, y por $\theta$ a la realizaci\'on de dicha variable aleatoria. Suponemos que $\Theta$ es una variable aleatoria cont\'inua con una funci\'on de densidad incondicional a priori $f_{\Theta}(\theta)$, la cual refleja las creencias previas acerca de $\Theta$. Si tomamos una muestra aleatoria simple de tama\~no $n$ ($n$ variables aleatorias id\'enticamente distribu\'idas), $X_1,\ldots,X_n$ su funci\'on de densidad condicionada com\'un ser\'a $f(x|\theta)$, y la funci\'on de densidad conjunta:
+\begin{equation*}
+L(x_1,x_2,\ldots,x_n|\theta)=f(x_1|\theta)f(x_2|\theta)\cdots f(x_n|\theta)
+\end{equation*}
+
+Como decimos que $\Theta$ es una variable aleatoria, el objetivo es estimar el valor particular $\theta$ para el cual la evidencia muestral que representa la densidad conjunta se encuentra condicionada. Por tanto, la funci\'on de densidad a posteriori de $\Theta$ ser\'a, aplicando el teorema de Bayes:
+\begin{equation*}
+f(\theta|x_1,x_2,\ldots,x_n)=\dfrac{L(x_1,x_2,\ldots,x_n|\theta)f_{\Theta}(\theta)}{\int_{\Theta}L(x_1,x_2,\ldots,x_n|\theta)f_{\Theta}(\theta)d\theta}
+\end{equation*}
+
+El denominador de esta expresi\'on se denomina distribuci\'on predictiva, y representa la ponderaci\'on de todas las distribuciones posibles del par\'ametro, ponderados seg\'un la importancia que de a cada una la distribuci\'on a priori.
+
+En la pr\'actica, elc\'alculo se simplifica si observamos que el denominador no depende de $\theta$, y act\'ua solo como constante normalizadora de la distribuci\'on a posteriori, para que su integral sea la unidad. Por tanto, vemos que la distribuci\'on a posteriori es porporcional a la distribuci\'on a priori multiplicada por la verosimilitud de la muestra. Por tanto, la distribuci\'on a posteriori combina la informaci\'on previa de la que se dispone, representada por la distribuci\'on a priori, con la informaci\'on aportada por la muestra. Si la distribuci\'on a priori es m\'as o menos constante sobre el espacio param\'etrico, la distribuci\'on a priori coincide con la verosimilitud, y se dice qe la distribuci\'on apriori es no informativa.
+
+Para tama\~nos muestrales grandes, se puede demostrar que en condiciones muy generales la distribuci\'on a posteriori est\'a dominada por la verosimilitud, y adquiere una distribuci\'on aproximadamente normal con media y varianza coincidentes con la del estimador de m\'axima verosimilitud. En consecuencia, en estos casos el estimador bayesiano y el de m\'axima verosimilitud conducen a los mismos resultados.
+
+Para obtener una estimaci\'on de $\theta$ necesitamos elegir una caracter\'istica num\'erica de la distribuci\'on a posteriori que nos parezca representativa de la misma. Hay dos opciones:
+\begin{itemize}
+\item Elegir como estimaci\'on la moda de la distribuci\'on a posteriori, que es el valor m\'as probable una vez observada la muestra. Esta situaci\'on tiene la misma justificaci\'on que la estimaci\'on de m\'axima verosimilitud en el contexto cl\'asico.
+\item Elegir una funci\'on de p\'erdida que represente la consecuencia de haber escogido un valor de $\theta$ err\'oneo. Esta funci\'on debe ser una funci\'on no negativa de $theta$ y su estimaci\'on, de manera que sea cero si coinciden.
+\end{itemize}
+
+Al depender tambi\'en de $\theta$, la funci\'on de p\'erdida tambi\'en es una variable aleatoria. El estimador bayesiano del par\'ametro ser\'a aqu\'el que minimice la esperanza de la funci\'on de p\'erdida.
+
+Es obvio que para poder estimar el par\'ametro se debe especificar una funci\'on de p\'erdida. Esto es una tarea dif\'icil, ya que las consecuencias no son siemrpre medibles. En muchos casos una funci\'on de p\'erdida razonable puede ser la forma cuadr\'atica: $l(\theta, l)=(t-\theta)^2$. Para esta forma, se puede demostrar que el estimador de Bayes equivale a la distancia a posteriori de $\Theta$.
