@@ -1,11 +1,11 @@
 \chapter[M\'etodos de estimaci\'on.]{M\'etodos de estimaci\'on.  \\
 \normalsize M\'etodo de los momentos. M\'etodo de la m\'inima X2. M\'etodo de la m\'inima varianza. M\'etodo de los m\'inimos cuadrados. M\'etodos Bayesianos.}
 
-\section{Introducci\'on.}
+\sectioncol{Introducci\'on.}
 
 Dentro del proceso de inferencia estad\'istica sobre una poblaci\'on, en el que queremos obtener estimadores para os par\'ametros que caracterizan esa poblaci\'on, sabemos que hay una serie de propiedades deseables en esos estimadores (insesgadez, consistencia, eficiencia). Otro problema es c\'omo obtener estimadores que presenten estas propiedades. Para ello veremos varios m\'etodos de obteci\'on de estimadores, y revisaremos que propiedades cumplen los estimadores obtenidos mediante esos m\'etodos.
 
-\section{M\'etodo de los momentos.}
+\sectioncol{M\'etodo de los momentos.}
 
 Este m\'etodo fue introducido por K. Pearson, y es el m\'etodo general m\'as antiguo. COnsiste en igualar tantos momentos poblacionales como par\'ametros haya que estimar a sus correspondientes momentos muestrales, y resolver el sistema de ecuaciones as\'i resultante para obtener los par\'ametros a estimar.
 
@@ -20,7 +20,7 @@ De manera formal, sea una poblaci\'on con una funci\'on de probabilidad $P(x;\th
 
 Y resolviendo este sistema de ecuaciones para los par\'ametros a estimar, obtenemos los estimadores.
 
-\subsection{Propiedades de los estimadores.}
+\subsectioncol{Propiedades de los estimadores.}
 \begin{itemize}
 \item \textbf{Insesgadez:} Si los par\'ametros que vamos a estimar son momentos poblacionales, el estimador obtenido por el m\'etodo de los momentos es insesgado.
 En este caso, $\hat{\alpha}_j=a_j=\dfrac{1}{n}\sum_{i=1}^nX_i^j$, y se puede demostrar f\'acilmente que $E(\hat{\alpha}_j)=\alpha_j$.
@@ -32,7 +32,7 @@ Se demuestra teniendo en cuenta que los momentos muestrales son variables aleato
 
 En resumen, estos estimadores son consistentes, pero en general insesgados y por tanto no eficientes. Es por esto que este m\'etodo no se utiliza demasiado. Adem\'as, este m\'etodo no utiliza la distribuci\'on de probabilidad de la poblaci\'on, solo utiliza los momentos, por lo que se pierde informaci\'on.
 
-\section{M\'etodo de la m\'inima X2.}
+\sectioncol{M\'etodo de la m\'inima X2.}
 
 Es un m\'etodo general para la obtenci\'on de estimadores puntuales que se aplica solo cuando hay una gran cantidad de datos, tanto en distribuciones discretas como en distribuciones cont\'inuas con datos agrupados.
 
@@ -56,11 +56,11 @@ El m\'etodo de la m\'inima $\chi^2$ escoge los estimadores de manera que el valo
 Los estimadores de m\'inima $\chi^2$ son asint\'oticamente equivalentes al estimador de m\'axima verosimilitud. SIn embargo, para $n$ peque\~nos no se puede asegurar nada, pues el estimador de m\'inima $\chi^2$ no tiene por que ser fucni\'on del estimador suficiente si existe.
 
 En general son estimadores sesgados y no eficientes.
-\section{M\'etodo de la m\'inima varianza.}
+\sectioncol{M\'etodo de la m\'inima varianza.}
 
 Es un m\'etodo anal\'itico, y consiste en hacer m\'inima la varianza del estimador. La t\'ecnica que se utiliza es encontrar ese m\'inimo condicionado por las restricciones que queramos imponer al estimador mediante multiplicadores de Lagrange. Se buscan estimadores lineales insesgados, es decir, estimadores insesgados que sean funci\'on lineal de las observaciones muestrales. Veamos dos aplicaciones:
 
-\subsection{Estimador de varianza m\'inima de la media poblacional.}
+\subsectioncol{Estimador de varianza m\'inima de la media poblacional.}
 
 Sea el estimador lineal $\hat{\mu}=a_1X_1+\cdots+a_nX_n$, como ha de ser insesgado, 
 \begin{equation*}
@@ -84,7 +84,7 @@ Y resolviendo tenemos que $a_i=\dfrac{1}{n}$, $\lambda=-\dfrac{2\sigma^2}{n}$. A
 
 
 
-\section{M\'etodo de los m\'inimos cuadrados.}
+\sectioncol{M\'etodo de los m\'inimos cuadrados.}
 En muchas ocasiones tenemos una variable aleatoria cuyo comportamiento se puede expresar mediante una funci\'on de un conjunto de variables aleatorias y no aleatorias que depende de una serie de par\'ametros. As\'i, nuestra muestra se compone de un conjunto de puntos en un espacio $r-$dimensional, y buscamos una funci\'on que pase lo m\'a cerca posible de esos puntos. Para ello necesitamos estimar los par\'ametros.
 
 Esta estimaci\'on se realiza minimizando la distancia entre el valor real de la variable aleatoria  a estimar y el valor te\'orico que obtendr\'iamos a partir de la funci\'on con nuestras estimaciones de los par\'ametros.
@@ -102,7 +102,7 @@ Y los estimadores de los par\'ametros ser\'an aquellos que hacen m\'inima la sum
 \end{equation*}
 
 
-\section{M\'etodos Bayesianos.}
+\sectioncol{M\'etodos Bayesianos.}
 Hasta ahora hemos estudiado la estimaci\'on puntual desde el punto de vista de la teor\'ia del muestreo, que se basa en interpretar la probabilidad como una frecuencia relativa. Pasaremos ahora a estudiar el enfoque bayesiano de la inferencia estad\'istica, en lo que se refiere a la estimaci\'on de par\'ametros.
 
 En el enfoque bayesiano, un par\'ametro es visto como una variable aleatoria a la que se asigna una distribuci\'on de probabilidad a priori con base en el grado de creencia sobre la distribuci\'on del mismo, que se modifica con la informaci\'on obtenida de la muestra, para obtener la distribuci\'on a posteriori. Con esta distribuci\'on a posteriori formularemos inferencias respecto al par\'ametro. Este enfoque resulta muy \'util en aquellas situaciones en las que el par\'ametro a estimar no puede considerarse una cantidad fija, sino que puede variar dependiendo de las caracter\'isticas del entorno.

@@ -1,0 +1,211 @@
+\chapter[Estimaci\'on por intervalos.]{Estimaci\'on por intervalos. \\
+\normalsize M\'etodos de construcci\'on de intervalos de confianza: m\'etodo pivotal y m\'etodo general de Neyman. Intervalos de confianza en poblaciones normales: media, varianza, diferencia de medias y cociente de varianzas. Regiones de confianza.}
+
+\sectioncol{Introducci\'on.}
+
+Los m\'etodos de estimaci\'on puntual nos dan, a partir de una muestra aleatoria simple, una estimaci\'on del par\'ametro de estudio, que no tiene por que coincidir con el valor real del par\'ametro. Tampoco sabemos cuan cervana est\'a la estimaci\'on del valor real del par\'ametro, ni con que probabilidad. Para solventar estos problemas, y con el objeto de obtener m\'as informaci\'on acerca de estas estimaciones, surge el concepto de estimaci\'on por intervalos de confianza.
+
+En lugar de dar una estimaci\'on sin m\'as del valor de nuestro par\'ametro, la estimaci\'on por intervalos proporciona un intervalo, donde confiamos que est\'a inclu\'ido el valor del par\'ametro a estimar, junto con una probabilidad, que reflejar\'a el nivel de confianza que tenemos en que el valor real del par\'ametro est\'a incluido dentro del intervalo.
+
+As\'i, en una estimaci\'on por intervalos de confianza, proporcionamos un intervalo, $[\underline{\theta}, \bar{\theta}]$ y un nivel de confianza, $1-\alpha$. Matem\'aticamente lo que queremos expresar es que:
+\begin{equation*}
+P(\underline{\theta}\leq\theta\leq\bar{\theta})=1-\alpha
+\end{equation*}
+
+El intervalo, antes de que particularicemos su valor para una muestra concreta, es un intervalo aleatorio, mientras que el valor del par\'ametro es un valor fijo, aunque desconocido. Por lo tanto, la expresi\'on anterior no se debe interpretar como la probabilidad de que el valor de $\theta$ est\'e en el intervalo $[\underline{\theta}, \bar{\theta}]$ (ya que tras realizar la muestra estaremos hablando de tres valores fijos) sino la probabilidad de que al construir el intervalo, \'este contenga el valor de $\theta$.
+
+Una vez seleccionada la muestra, la probabilidad de que $\theta$ est\'e contenido en el intervalo ser\'a 1 o 0, ya que entonces estaremos hablando de tres n\'umeros fijos. Es por esto que no se habla de probabilidad de que $\theta$ est\'e en el intervalo, sino de \textbf{confianza}.
+
+Al valor $1-\alpha$ se le llama coeficiente de confianza, y al valor $100(1-\alpha)\%$, nivel de confianza.
+
+\sectioncol{M\'etodos de construcci\'on de intervalos de confianza: m\'etodo pivotal y m\'etodo general de Neyman.}
+
+Veremos dos m\'etodos: el m\'etodo pivolal, que se basa en la obtenci\'on de una cantidad pivotal funci\'on del par\'ametroa estimar cuya distribuci\'on muestral no dependa de ning\'un par\'ametro desconocido, y el m\'etodo de Neyman, basado en la distribuci\'on de un estimador puntual del par\'ametro.
+
+\subsectioncol{M\'etodo pivotal.}
+
+Sea $T(X_1,X_2,\ldots,X_n;\theta)$ una funci\'on de la muestra y del par\'ametro, cuya distribuci\'on en el muestreo no depende de $\theta$. En tal caso, fijado un coeficiente de confianza cualquiera, $1-\alpha$, podremos encontrar dos constantes, $a$ y $b$, que no ser\'an \'unicas, tales que $P(a\leq T(X_1,X_2,\ldots,X_n;\theta)\leq b)\geq 1-\alpha$. Si es posible despejar $\theta$ en las desigualdades $a\leq T(X_1,X_2,\ldots,X_n;\theta)$ y $T(X_1,X_2,\ldots,X_n;\theta)\leq b$, tendremos dos valores $T_1(X_1,X_2,\ldots,X_n)$ y $T_2(X_1,X_2,\ldots,X_n)$ tales que $P(T_1(X_1,X_2,\ldots,X_n)\leq\theta\leq T_2(X_1,X_2,\ldots,X_n))\geq 1-\alpha$. Y por tanto, $(T_1(X_1,X_2,\ldots,X_n)\leq\theta\leq T_2(X_1,X_2,\ldots,X_n))$ ser\'a un intervalo al nivel de confianza $1-\alpha$ para $\theta$. Este procedimiento es f\'acil de realizar en muchas circunstancias.
+
+\subsectioncol{M\'etodo general de Neyman.}
+
+Este m\'etodo es m\'as general que el anterior. Sea una poblaci\'on con una funci\'on de densidad $f(x;\theta)$. Obtenemos un estimador, $\hat{\theta}(X_1,X_2,\ldots,X_n)$, cuya funci\'on de densidad representamos por $g(\hat{\theta};\theta)$ y pretendemos obtener un intervalo al nivel de confianza $1-\alpha$.
+
+Para ese nivel de confianza, determinamos los extremos del intervalo $h_1(\theta)$ y $h_2(\theta)$ tales que:
+\begin{equation*}
+P[h_1(\theta)\leq\hat{\theta}\leq h_2(\theta)]=\int_{h_1(\theta)}^{h_2(\theta)}g(\hat{\theta};\theta)d\hat{\theta}=1-\alpha
+\end{equation*}
+
+Donde suponemos que $h_1(\theta)$ y $h_2(\theta)$ son cont\'inuas y mon\'otonas de $\theta$. Tambi\'en podemos determinar $h_1(\theta)$ y $h_2(\theta)$  de manera que:
+\begin{align*}
+\int_{-\infty}^{h_1(\theta)}g(\hat{\theta};\theta)d\hat{\theta}&=\alpha_1 \\
+\int_{h_2(\theta)}^{+\infty}g(\hat{\theta};\theta)d\hat{\theta}&=\alpha_2
+\end{align*}
+Con $\alpha_1+\alpha_2=\alpha$.
+
+Los valores de $h_1(\theta)$ y $h_2(\theta)$ se obtienen de estas expresiones, haciendo  $h_1(\theta)=\hat{\theta}$ y $h_2(\theta)=\hat{\theta}$. Para una muestra concreta que nos dar\'a un valor del estimador $\hat{\theta}_0$, y dado que $h_1(\theta)$ y $h_2(\theta)$ son cont\'inuas y mon\'otonas en $\theta$, tendremos que $\underline{\theta}(x_1,\ldots,x_n)=h_1^{-1}(\hat{\theta}_0)$ y $\bar{\theta}(x_1,\ldots,x_n)=h_2^{-1}(\hat{\theta}_0)$.
+
+\sectioncol{Intervalos de confianza en poblaciones normales.}
+
+media, varianza, diferencia de medias y cociente de varianzas
+Dado que ne poblaciones normales es relativamente sencillo encontrar una cantidad pivotal, y adem\'as son poblaciones bastante frecuentes, las estudiaremos de forma espec\'ifica.
+
+\subsectioncol{Intervalo de confianza para la media.}
+
+\subsubsectioncol{Desviaci\'on t\'ipica conocida.}
+
+En este caso, podemos definir la cantidad pivotal:
+\begin{equation*}
+T(\boldsymbol{X};\mu)=\dfrac{\bar{x}-\mu}{\dfrac{\sigma}{\sqrt{n}}}\sim N(0;1)
+\end{equation*}
+
+Ya que sabemos que $\bar{x}\sim N(\mu;\dfrac{\sigma}{\sqrt{n}})$.
+
+Por tanto, el intervalo de confianza para la media al niveld de confianza vendr\'a dado por la expresi\'on:
+\begin{equation*}
+P[K_1\leq T(\boldsymbol{X};\mu)\leq K_2]=1-\alpha
+\end{equation*}
+
+Y, operando:
+\begin{equation*}
+P[\bar{x}-K_1\dfrac{\sigma}{\sqrt{n}}\geq\mu\geq\bar{x}-K_2\dfrac{\sigma}{\sqrt{n}}]=1-\alpha
+\end{equation*}
+
+Es decir:
+\begin{equation*}
+P[\bar{x}-K_2\dfrac{\sigma}{\sqrt{n}}\leq\mu\leq\bar{x}-K_1\dfrac{\sigma}{\sqrt{n}}]=1-\alpha
+\end{equation*}
+
+Para que el intervalo sea lo m\'as estrecho posible, calculamos la longitud y la minimizamos, aplicando la restricci\'on de que $P[K_1\leq N(0;1)\leq K_2]=1-\alpha$:
+\begin{equation*}
+\varPhi=\dfrac{\sigma}{\sqrt{n}}\left[K_2-K_1\right]+\gamma\left[\int_{K_1}^{K_2}\dfrac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}u^2}du-(1-\alpha)\right]
+\end{equation*}
+
+Y minimizando obtenemos que $K_1^2=K_2^2$, que por l\'ogica deber\'a ser $K_1=-K_2$, ya que si no el intervalo tendr\'a longitud nula.
+
+Por tanto, sea $Z\sim N(0;1)$, si definimos $z_{\alpha}$ como el valor que cumpla que $P(Z>z_{\alpha})=\alpha$, podemos decir que $K_1=-z_{\alpha/2}$ y $K_2=z_{\alpha/2}$, y por tanto el intervalo ser\'a:
+\begin{equation*}
+P[\bar{x}-z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}}\leq\mu\leq\bar{x}+z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}}]=1-\alpha
+\end{equation*}
+
+\subsubsectioncol{Desviaci\'on t\'ipica desconocida.}
+
+Veamos ahora el caso m\'as habitual, en el que no se conoce la desviaci\'on t\'ipica.
+
+Sabemos que $\dfrac{\bar{x}-\mu}{\dfrac{\sigma}{\sqrt{n}}}\sim N(0;1)$.
+Veamos cual es la distribuci\'on de la varianza muestral:
+
+\begin{equation*}
+S^2=\dfrac{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}{n}=\dfrac{\sum_{i=1}^n\left(x_i-\mu\right)^2}{n}-\left(\bar{x}-\mu\right)^2
+\end{equation*}
+
+\begin{equation*}
+\dfrac{nS^2}{\sigma^2}=\sum_{i=1}^n\left(\dfrac{x_i-\mu}{\sigma}\right)^2-\left(\dfrac{\bar{x}-\mu}{\dfrac{\sigma}{\sqrt{n}}}\right)^2
+\end{equation*}
+
+Como estamos hablando de sumas de cuadrados de variables aleatorias con distribuci\'on $N(0;1)$, $\dfrac{nS^2}{\sigma^2}\sim\chi^2_{n-1}$.
+
+Por el lema de Fischer-Cochram sabemos que $\bar{x}$ y $S^2$ se distribuyen independientemente, por tanto:
+\begin{equation*}
+\dfrac{\dfrac{\bar{x}-\mu}{\dfrac{\sigma}{\sqrt{n}}}}{\sqrt{\dfrac{1}{n-1}\dfrac{nS^2}{\sigma^2}}}=\dfrac{(\bar{x}-\mu)\sqrt{n}}{s}\sim t_{n-1}
+\end{equation*}
+
+Por tanto, nuestro intervalo ser\'a:
+\begin{equation*}
+P\left(-t_{n-1,\alpha/2}\leq\dfrac{(\bar{x}-\mu)\sqrt{n}}{s}\leq t_{n-1,\alpha/2}\right)=1-\alpha
+\end{equation*}
+
+\subsectioncol{Intervalo de confianza para la varianza.}
+
+\subsubsectioncol{Media poblacional conocida.}
+
+Este caso es muy poco frecuente, hemos visto que $\sum_{i=1}^n\left(\dfrac{x_i-\mu}{\sigma}\right)^2\sim\chi^2_{n}$. Por tanto, 
+\begin{equation*}
+P(\chi^2_{n;1-\alpha/2}\leq\sum_{i=1}^n\left(\dfrac{x_i-\mu}{\sigma}\right)^2\leq\chi^2_{n;\alpha/2})=1-\alpha
+\end{equation*}
+
+Y nuestro intervalo ser\'a:
+\begin{equation*}
+\left(\dfrac{\sum_{i=1}^n\left(x_i-\mu\right)^2}{\chi^2_{n;\alpha/2}};\dfrac{\sum_{i=1}^n\left(x_i-\mu\right)^2}{\chi^2_{n;1-\alpha/2}}\right)
+\end{equation*}
+
+La asimetr\'ia de la distribuci\'on hace que la longitud de las colas sea distinta, y por tanto la longitud del intervalo no sea m\'inima, sin embargo la diferencia es tan peque\~na que no merece la pena hacer el c\'alculo.
+
+\subsubsectioncol{Media poblacional desconocida.}
+
+Hemos visto que $\dfrac{nS^2}{\sigma^2}\sim\chi^2_{n-1}$. Por tanto, 
+\begin{equation*}
+P(\chi^2_{n-1;1-\alpha/2}\leq\dfrac{nS^2}{\sigma^2}\leq\chi^2_{n-1;\alpha/2})=1-\alpha
+\end{equation*}
+
+Y nuestro intervalo ser\'a:
+\begin{equation*}
+\left(\dfrac{nS^2}{\chi^2_{n-1;\alpha/2}};\dfrac{nS^2}{\chi^2_{n-1;1-\alpha/2}}\right)
+\end{equation*}
+
+La asimetr\'ia de la distribuci\'on hace que la longitud de las colas sea distinta, y por tanto la longitud del intervalo no sea m\'inima, sin embargo la diferencia es tan peque\~na que no merece la pena hacer el c\'alculo.
+
+\subsectioncol{Intervalo de confianza para la diferencia de medias.}
+Pasamos a ver ahora el caso en que tenemos dos poblaciones, y queremos construir un intervalo de confianza para la diferencia entre sus medias o para el cociente entre sus varianzas.
+
+\subsubsectioncol{Con varianzas conocidas.}
+
+Sabemos que $\bar{x}\sim N(\mu_1;\dfrac{\sigma_1}{\sqrt{n}})$ y $\bar{y}\sim N(\mu_2;\dfrac{\sigma_2}{\sqrt{m}})$. por tanto,
+\begin{equation*}
+\dfrac{\bar{x}-\bar{y}-(\mu_1-\mu_2)}{\sqrt{\dfrac{\sigma_1^2}{n}+\dfrac{\sigma_2^2}{m}}}\sim N(0;1)
+\end{equation*}
+
+Por tanto, 
+
+\begin{equation*}
+\left(\bar{x}-\bar{y}-z_{\alpha/2}\sqrt{\dfrac{\sigma_1^2}{n}+\dfrac{\sigma_2^2}{m}};\bar{x}-\bar{y}+z_{\alpha/2}\sqrt{\dfrac{\sigma_1^2}{n}+\dfrac{\sigma_2^2}{m}}\right)
+\end{equation*}
+ Es un intervalo de confianza al nivel $1-\alpha$. Si el tama\~no muestral es suficientemente grande, se puedes sustituir las varianzas poblacionales por las cuasivarianzas muestrales, ya que son estimadores insesgados. Por el Teorema Central del L\'imite, si las muestras son suficientemente grandes, el intervalo ser\'a v\'alido aunque la distribuci\'on de la poblaci\'on no sea normal.
+
+\subsubsectioncol{Con varianzas desconocidas pero iguales.}
+
+Si las varianzas de ambas poblaciones son iguales,
+\begin{equation*}
+\dfrac{\bar{x}-\bar{y}-(\mu_1-\mu_2)}{\sqrt{\dfrac{(n-1)S_1^2+(m-1)S_2^2}{n+m-2}}\sqrt{\dfrac{1}{n}+\dfrac{1}{m}}}\sim t_{n+m-2}
+\end{equation*}
+
+Y por tanto el intervalo de confianza al nivel $1-\alpha$ ser\'ia;
+\begin{equation*}
+\left(\bar{x}-\bar{y}-t_{n+m-2;\alpha/2}\sqrt{\dfrac{(n-1)S_1^2+(m-1)S_2^2}{n+m-2}}\sqrt{\dfrac{1}{n}+\dfrac{1}{m}};\bar{x}-\bar{y}+t_{n+m-2;\alpha/2}\sqrt{\dfrac{(n-1)S_1^2+(m-1)S_2^2}{n+m-2}}\sqrt{\dfrac{1}{n}+\dfrac{1}{m}}\right)
+\end{equation*}
+
+\subsectioncol{Intervalo de confianza para el cociente de varianzas.}
+
+Dado que $\dfrac{(n-1)S_1^2}{\sigma_1^2}\sim\chi^2_{n-1}$ y $\dfrac{(m-1)S_2^2}{\sigma_2^2}\sim\chi^2_{m-1}$ siendo las $S$ cuasivarianzas muestrales, podemos deducir que
+\begin{equation*}
+\dfrac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2}\sim F_{n-1,m-1}
+\end{equation*}
+
+As\'i:
+\begin{equation*}
+P\left(F_{n-1,m-1;1-\alpha/2}\leq\dfrac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2}\leq F_{n-1,m-1;\alpha/2}\right)=1-\alpha
+\end{equation*}
+
+Por tanto, el intervalo de confianza al nivel $1-\alpha$ para el cociente $\sigma_1^2/\sigma_2^2$ ser\'a:
+\begin{equation*}
+\left(\dfrac{S_1^2}{S_2^2}\dfrac{1}{F_{n-1,m-1;\alpha/2}};\dfrac{S_1^2}{S_2^2}\dfrac{1}{F_{n-1,m-1;1-\alpha/2}}\right)
+\end{equation*}
+
+\sectioncol{Regiones de confianza.}
+
+La regi\'on de confianza es una generalizaci\'on del concepto de intervalo de confianza. Si tenemos una poblaci\'on que depende de $k$ par\'ametros, se denomina regi\'on de confianza al nivel de confianza $1-\alpha$ a un subconjunto del espacio param\'etrico, $S(x_1,\ldots,x_n)$ que depende de la muestra, y verifica que:
+\begin{equation*}
+P\left[(\theta_1,\ldots,\theta_k)\in S(x_1,\ldots,x_n)\right]\geq 1-\alpha
+\end{equation*}
+
+En el mismo sentido que en la definici\'on de intervalos de confianza.
+
+Normalmente son dif\'iciles de construir, con lo que se utilizan menos que los intervalos de confianza.
+\subsectioncol{Regi\'on de confianza para la media y la varianza poblacional.}
+
+Por el teorema de Fischer sabemos que $\dfrac{\bar{x}-\mu}{\sigma/\sqrt{n}}\sim N(0;1)$ y $\dfrac{(n-1)S^2}{\sigma^2}\sim\chi^2_{n-1}$ son independientes. Por tanto, la regi\'on definida por:
+
+\begin{equation*}
+\left(-z_{\alpha/2}\leq\dfrac{\bar{x}-\mu}{\sigma/\sqrt{n}}\leq z_{\alpha/2};\chi^2_{n-1;1-\beta/2}\leq\dfrac{(n-1)S^2}{\sigma^2}\leq\chi^2_{n-1;\beta/2}\right)
+\end{equation*}
+
+Define una regi\'on de confianza al nivel de confianza $(1-\alpha)(1-\beta)$. Por tanto, podemos elegir $\alpha$ y $\beta$ para obtener el nivel de confianza deseado. Seg\'un como los eleijamos, la regi\'on de confianza tendr\'a una forma distinta.

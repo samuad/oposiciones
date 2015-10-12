@@ -1,7 +1,7 @@
 \chapter[Estimaci\'on puntual II.]{Estimaci\'on puntual II. \\
 \normalsize Estimadores de m\'inima varianza. Estimadores eficientes. Estimadores robustos. Estimadores Bayesianos.}
 
-\section{Introducci\'on.}
+\sectioncol{Introducci\'on.}
 
 Una parte de la inferencia estad\'istica consiste en obtener estimaciones acerca de los par\'ametros que definen la distribuci\'on de probabilidad de una poblaci\'on. As\'i, si tenemos una poblaci\'on normal, sin conocer los valores de $\mu$ y $\sigma^2$ no podremos calcular las probabilidades de los distintos sucesos, ni podremos realizar deducciones sobre la poblaci\'on.
 
@@ -15,7 +15,7 @@ Dado que para estimar un mismo par\'ametro podemos definir infinidad de estimado
 
 As\'i, un estimador ser\'a una variable aleatoria, funci\'on de las variables aleatorias muestrales. Una estimaci\'on ser\'a una realizaci\'on de esa variable aleatoria para una muestra determinada.
 
-\section{Estimadores de m\'inima varianza.}
+\sectioncol{Estimadores de m\'inima varianza.}
 
 Sabemos que a la hora de utilizar un estimador puntual para estimar un par\'ametro asociado a una poblaci\'on que queremos estudiar, una buena medida de la bondad de ese estimador es su error cuadr\'atico medio, es decir, $ECM(\hat{\theta})=E[(\hat{\theta}-\theta)^2]$, siendo mejor estimador aquel cuyo $ECM$ sea menor. Como sabemos que el error cuadr\'atico medio se puede descomponer como la suma de la varianza del estimador y el cuadrado de su sesgo, nos interesar\'a buscar estimadores que, adem\'as de ser insesgados, tengan una varianza lo menor posible.
 
@@ -70,7 +70,7 @@ V(\hat{\theta})\geq \dfrac{1+\dfrac{\partial b(\hat{\theta})}{\partial\theta}}{E
 
 La cota FCR nos da un l\'imite inferior para la varianza del estimador, pero esto no implica que que la varianza de un estimador UMVUE sea igual a la de la cota. Es decir, puede haber un estimador UMVUE cuya varianza sea mayor que la cota de FCR.
 
-\section{Estimadores eficientes.}
+\sectioncol{Estimadores eficientes.}
 
 La insesgadez es una propiedad deseable en un estimador, pero por si sola no es suficiente para determinar si un estimador es \'util, ya que solo requiere que el valor esperado del estimador sea igual al par\'ametro a estimar, y no requiere que haya valores del estimador est\'en pr\'oximos al mismo. Así, es deseable que los valores que tome el estimador para distintas muestras valores pr\'oximos unos de otros, de tal manera que su varianza sea peque\~na. Así, ante dos estimadores insesgados, resultar\'a m\'as fiable aquel que presente una menor varianza. Definimos la eficiencia de un estimador comparando su varianza con la varianza de los dem\'as estimadores insesgados. As\'i, el \textbf{estimador m\'as eficiente} de un conjunto de estimadores insesgados ser\'a aquel que tenga una varianza menor.
 
@@ -118,7 +118,7 @@ Diremos que un estimador $\hat{\theta}$ es asint\'oticamente eficiente si se cum
 \end{equation*}
 \end{definicion}
 
-\section{Estimadores robustos.}
+\sectioncol{Estimadores robustos.}
 
 Un procedimiento estad\'istico es robusto si su comportamiento es relativamente insensible a desviaciones sobre las hip\'otesis iniciales en la que se haya basado su desarrollo. Dado que para encontrar estimadores normalmente necesitamos hacer hip\'otesis sobre la poblaci\'on en estudio, es conveniente contar con estimadores que sean lo m\'as robustos posibles. Por ejemplo, es frecuente suponer la distribuci\'on de probabilidad de la variable aleatoria en estudio conocida, pero en general esto no es as\'i, sino que se formula una hip\'otesis acerca de la misma. Si la distribuci\'on de probabilidad es distinta de la supuesta, y esta diferencia no es muy significativa y el procedimiento estad\'istico es insensible a estos cambios, se dice que el estimador es robusto.
 
@@ -126,7 +126,7 @@ Un procedimiento estad\'istico es robusto si su comportamiento es relativamente 
 Diremos que un estimador es \textbf{robusto} cuando peque\~nos cambios en las hip\'otesis de partida del procedimiento de estimaci\'on no producen variaciones significativas en los resultados obtenidos.
 \end{definicion}
 
-\section{Estimadores Bayesianos.}
+\sectioncol{Estimadores Bayesianos.}
 
 Hasta ahora hemos estudiado la estimaci\'on puntual desde el punto de vista de la teor\'ia del muestreo, que se basa en interpretar la probabilidad como una frecuencia relativa. Pasaremos ahora a estudiar el enfoque bayesiano de la inferencia estad\'istica, en lo que se refiere a la estimaci\'on de par\'ametros.
 

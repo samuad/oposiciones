@@ -1,11 +1,11 @@
 \chapter[Fundamentos de la Inferencia Estad\'istica]{Fundamentos de la Inferencia Estad\'istica.\\
 \normalsize Concepto de muestra aleatoria. Distribuci\'on de la muestra. Estad\'isticos y su distribuci\'on en el muestreo. Funci\'on de distribuci\'on emp\'irica y sus caracter\'isticas. Teorema de Glivenco-Cantelli.}
 
-\section{Introducci\'on.}
+\sectioncol{Introducci\'on.}
 
 Uno de los objetivos de la estad\'istica es obtener conclusiones acerca de una determinada poblaci\'on a partir de la observaci\'on de un subconjunto de miembros de la misma. A este proceso se le conoce con el nombre de \textbf{inferencia estad\'istica}, y se basa en todas las conclusiones y teoremas que nos ofrece el c\'alculo de probabilidad. La inferencia se puede realizar de dos formas: prediciendo el valor de un par\'ametro que defina a la poblaci\'on en cuesti\'on, en cuyo caso hablaremos de \textbf{estimaci\'on} del par\'ametro, o proponiendo una serie de hip\'otesis sobre la poblaci\'on y comprobando si se cumplen, caso en el que estaremos hablando de \textbf{contraste de hip\'otesis}.
 
-\section{Concepto de muestra aleatoria.}
+\sectioncol{Concepto de muestra aleatoria.}
 
 Para realizar cualquier inferencia acerca de una poblaci\'on necesitaremos obtener informaci\'on sobre la misma. En ausencia de otros condicionantes, la situaci\'on \'optima ser\'ia aquella en la que podemos estudiar a todos los miembros de la poblaci\'on, y as\'i nos aseguraremos que las conclusiones que obtengamos ser\'an completamente v\'alidas. Si embargo, en muchas ocasiones esto no es posible, ya sea por no poder acceder a todos los individuos, por el coste en el que incurrir\'iamos e incluso porque la observaci\'on de un individuo implique su destrucci\'on. En estos casos hemos de conformarnos con observar un subconjunto de miembros de la poblaci\'on, y a partir de esa observaci\'on inferir las caracter\'isticas poblacionales que nos interesen. A este subconjunto de la poblaci\'on que vamos a observar lo llamamos \textbf{muestra}. Por observar entendemos la medici\'on de uno o varios par\'ametros asociados a los individuos seleccionados, a los que llamaremos \textbf{par\'ametros muestrales}.
 
@@ -23,7 +23,7 @@ En la inferencia estudiaremos un tipo especial de muestras, las llamadas \textbf
 Una \textbf{muestra aleatoria simple} de tama\~no $n$ est\'a formada por $n$ variables muestrales $X_1, X_2,\ldots, X_n$ independientes e id\'enticamente distribuidas, con la misma distribuci\'on de probabilidad que la caracter\'istica poblacional, $\xi$, a investigar.
 \end{definicion}
 
-\section{Distribuci\'on de la muestra.}
+\sectioncol{Distribuci\'on de la muestra.}
 
 La distribuci\'on de probabilidad de la muestra nos dar\'a la probabilidad de obtenci\'on de cada muestra posible en una determinada poblaci\'on. En el caso de poblaciones cuya distribuci\'on de probabilidad sea discreta, la distribuci\'on de la muestra vendr\'a dada por todas las muestras posibles y sus respectivas probabilidades. En el caso continuo, consistir\'a en la funci\'on de densidad conjunta de las variables muestrales.
 
@@ -44,7 +44,7 @@ De forma an\'aloga, para el caso cont\'inuo y en el supuesto de muestra aleatori
 f(x_1,x_2,\ldots,x_n)=f(x_1)f(x_2)\cdots f(x_n)
 \end{equation*}
 
-\section{Estad\'isticos y su distribuci\'on en el muestreo.}
+\sectioncol{Estad\'isticos y su distribuci\'on en el muestreo.}
 
 Definimos como estad\'istico cualquier funci\'on de los par\'ametros muestrales siempre que no contenga ning\'un par\'ametro desconocido. Lo denotaremos en general por $T(\mathbf{X})=T(x_1,\ldots,x_n)$.
 
@@ -56,7 +56,7 @@ Es muy importante tener en cuenta que los par\'ametros poblacionales son constan
 
 A aquellos estad\'isticos cuyo valor nos sirve para estimar alg\'un par\'ametro de la poblaci\'on se les llama \textbf{estimadores}. Es por eso que la distribuci\'on del estad\'istico en el muestreo es tan importante, ya que nos puede dar informaci\'on acerca de cuan pr\'oximo es el estimador resultante al par\'ametro estimado.
 
-\section{Funci\'on de distribuci\'on emp\'irica y sus caracter\'isticas.}
+\sectioncol{Funci\'on de distribuci\'on emp\'irica y sus caracter\'isticas.}
 
 La funci\'on de distribuci\'on de probabilidad de una variable aleatoria se define como $F(x)=P(X\leq x)$. De manera an\'aloga, definimos la funci\'on de distribuci\'on emp\'irica de una muestra:
 \begin{definicion}
@@ -85,16 +85,16 @@ Que como podemos comprobar son estad\'isticos, y por tanto variables aleatorias.
 
 Entre estos momentos, los m\'as interesantes son la media muestral y la varianza muestral, $a_1$ y $m_2$. Vamos a estudiar su esperanza y su varianza.
 
-\subsection{Esperanza y varianza de la media muestral.}
+\subsectioncol{Esperanza y varianza de la media muestral.}
 
-\subsubsection{Esperanza de la media muestral.}
+\subsubsectioncol{Esperanza de la media muestral.}
 \begin{equation*}
 E\left(\bar{x}\right)=E\left(\dfrac{\sum_{i=1}^nx_i}{n}\right)=\dfrac{1}{n}\sum_{i=1}^nE\left(x_i\right)=\dfrac{1}{n}nE\left(\xi\right)=E\left(\xi\right)
 \end{equation*}
 
 Ya que al ser una muestra aleatoria simple, los elementos de la muestra se distribuyen igual que la poblaci\'on y tendr\'an su misma esperanza. Por tanto, este resultado es v\'alido para cualquier muestra aleatoria simple independientemente de la poblaci\'on de la que proceda.
 
-\subsubsection{Varianza de la media muestral.}
+\subsubsectioncol{Varianza de la media muestral.}
 
 \begin{equation*}
 V\left(\bar{x}\right)=V\left(\dfrac{\sum_{i=1}^nx_i}{n}\right)=\dfrac{1}{n^2}V\left(\sum_{i=1}^nx_i\right)=\dfrac{1}{n}nE\left(\xi\right)=E\left(\xi\right)=\mu
@@ -110,9 +110,9 @@ Como podemos ver, siempre que la varianza de la poblaci\'on sea finita, la media
 Otro hecho de relevancia es que, como consecuencia del Teorema Central del L\'imite, independientemente del modelo de distribuci\'on
 de la variable poblacional, para tama\~nos muestrales elevados la media muestral aleatoria tiende a distribuirse como una normal con la esperanza y varianza anteriormente expuestas.
 
-\subsection{Esperanza y varianza de la varianza muestral.}
+\subsectioncol{Esperanza y varianza de la varianza muestral.}
 
-\subsubsection{Esperanza de la varianza muestral.}
+\subsubsectioncol{Esperanza de la varianza muestral.}
 
 \begin{equation*}
 m_2=S_x^2=\dfrac{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}{n}=\dfrac{\sum_{i=1}^n\left(x_i-\mu+\mu-\bar{x}\right)^2}{n}=
@@ -126,14 +126,14 @@ m_2=S_x^2=\dfrac{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}{n}=\dfrac{\sum_{i=1}^n\
 E\left(S_x^2\right)=E\left(\dfrac{\sum_{i=1}^n\left(x_i-\mu\right)^2}{n}\right)-E\left(\left(\bar{x}-\mu\right)^2\right)=V(\xi)-\dfrac{v(\xi}{n}=\dfrac{n-1}{n}\sigma^2
 \end{equation*}
 
-\subsubsection{Varianza de la varianza muestral.}
+\subsubsectioncol{Varianza de la varianza muestral.}
 
 Esta demostraci\'on es bastante engorrosa. El sesultado fina es:
 \begin{equation*}
 V\left(S_x^2\right)=\dfrac{\mu_4-\sigma^4}{n}-2\dfrac{\mu_4-2\sigma^4}{n^2}+\dfrac{\mu_4-3\sigma^4}{n^3}
 \end{equation*}
 
-\section{Teorema de Glivenco-Cantelli.}
+\sectioncol{Teorema de Glivenco-Cantelli.}
 
 \begin{teorema}
 Sea $(X_1,\ldots,X_n)$ una muestra aleatoria simple obtenida de una poblaci\'on con funci\'on de distribuci\'on $F(x)$. Sea $F_n^*(x)=\dfrac{1}{n}\sum_{i=1}^nI_{(-\infty,x](X_i)}$ su funci\'on de distribuci\'on emp\'irica. entonces se cumple que 

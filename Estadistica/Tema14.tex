@@ -3,14 +3,14 @@
 \normalsize Convergencia casi segura, convergencia en probabilidad, convergencia en media cuadr\'atica, convergencia en ley. Relaciones entre ellas. Convergencia de sumas de variables aleatorias. Leyes d\'ebiles y fuertes de los grandes n\'umeros. Aplicaciones a la inferencia estad\'istica y al muestreo. Teorema Central del L\'imite.}
 
 
-\section{Introducci\'on.}
+\sectioncol{Introducci\'on.}
 
 Hemos visto que una variable aleatoria es una funci\'on medible definida de un espacio de probabilidad en $\mathbb{R}$.
 
 Definimos como una sucesi\'on de variables aleatorias a un conjunto $\left\{X_n\right\}_{n\in\mathbb{N}}$, de variables aleatorias definidas sobre el mismo espacio probabil\'istico. Es de inter\'es desde el punto de vista de la probabilidad el comportamiento de dicha sucesi\'on cuando el valor de $n$ tiende a infinito. De esta forma, definiremos los diversos tipos de convergencia de variables aleatorias.
 
-\section{Convergencia de variables aleatorias.}
-\subsection{Convergencia en probabilidad.}
+\sectioncol{Convergencia de variables aleatorias.}
+\subsectioncol{Convergencia en probabilidad.}
 
 \begin{definicion}
 
@@ -34,7 +34,7 @@ Como caso particular, diremos que $ \left\{X_n\right\}_{n\in\mathbb{N}} $ conver
 \lim_{n\rightarrow\infty}P\left\{ \omega\in\Omega:\left|X_{n}(\omega)-a\right|>\varepsilon\right\} =0, \;\forall\varepsilon>0
 \end{equation}
 
-\subsubsection{Propiedades.}
+\subsubsectioncol{Propiedades.}
 
 \begin{enumerate}
 \item $X_{n} \overset{p}{\to} X \Leftrightarrow X_{n}-X \overset{p}{\to} 0 $.
@@ -58,7 +58,7 @@ Si $X_{n} \overset{p}{\to} X $, y $g$ es una funci\'on cont\'inua definida sobre
 Si $X_{n} \overset{p}{\to} c $, donde $c$ es constante, y $g$ es una funci\'on cont\'inua definida sobre $\mathbb{R}$, entonces $g(X_{n}) \overset{p}{\to} g(c) $
 \end{corolario}
 
-\subsection{Convergencia casi segura.}
+\subsectioncol{Convergencia casi segura.}
 \begin{definicion}
 Sea $ \left\{X_n\right\}_{n\in\mathbb{N}} $ una sucesi\'on de variables aleatorias definidas sobre el espacio probabil\'istico $\left(\Omega,\mathbb{A}, \mathbb{P}\right) $, se dice que converge casi seguramente a otra variable aleatoria $X$ definida sobre el mismo espacio y se denota por $X_{n} \overset{c.s.}{\to} X $ si se cumple que:
 
@@ -70,13 +70,13 @@ P\left\{ \omega\in\Omega:\lim_{n\to\infty}X_{n}(\omega)=X(\omega)\right\}=1
 
 Es decir, la probabilidad del conjunto del espacio probabil\'istico donde la sucesi\'on num\'erica de variables converge puntualmente a la variable es igual a uno.
 
-\subsubsection{Propiedades.}
+\subsubsectioncol{Propiedades.}
 \begin{enumerate}
 \item Si $X_{n} \overset{c.s.}{\to} X $, entonces $X_{n} \overset{p}{\to} X $. En efecto, por la convergencia casi segura, podemos elegir un $n_0$ tal que ... La rec\'iproca no es cierta.
 \item Si  $ \left\{X_n\right\}_{n\in\mathbb{N}} $ es una sucesi\'on estrictamente decreciente de variables aleatorias positivas, entonces $X_{n} \overset{p}{\to} 0$ implica que $X_{n} \overset{c.s.}{\to} 0 $.
 \end{enumerate}
 
-\subsection{Convergencia en ley.}
+\subsectioncol{Convergencia en ley.}
 \begin{definicion}
 Sea $ \left\{X_n\right\}_{n\in\mathbb{N}}$ una sucesi\'on de variables aleatorias definidas sobre el espacio probabil\'istico $\left(\Omega,\mathbb{A}, \mathbb{P}\right) $, se dice que converge en ley o en distribuci\'on a otra variable aleatoria $X$ definida sobre el mismo espacio y se denota por $X_{n} \overset{\ell}{\to} X $ si y solo si la correspondiente sucesi\'on de funciones de distribuci\'on de las variables aleatorias $ \left\{X_n\right\}_{n\in\mathbb{N}}$, denotada por $ \left\{F_n\right\}_{n\in\mathbb{N}} $, converge a la funci\'on de distribuci\'on de la variable aleatoria $X$ en todo punto de continuidad de esta funci\'on, es  decir, si:
 
@@ -86,7 +86,7 @@ Sea $ \left\{X_n\right\}_{n\in\mathbb{N}}$ una sucesi\'on de variables aleatoria
 
 \end{definicion}
 
-\subsubsection{Propiedades.}
+\subsubsectioncol{Propiedades.}
 
 \begin{enumerate}
 \item 
@@ -111,7 +111,7 @@ p_{n}(k)\to p(k)\;\forall k \Leftrightarrow X_{n} \overset{\ell}{\to} X
 \item  Si $k$ es una constante y $X_{n} \overset{\ell}{\to} k $, entonces $X_{n} \overset{p}{\to} k $.
 \end{enumerate}
 
-\subsection{Convergencia en media cuadr\'atica.}
+\subsectioncol{Convergencia en media cuadr\'atica.}
 \begin{definicion}
 Sea $ \left\{X_n\right\}_{n\in\mathbb{N}}$ una sucesi\'on de variables aleatorias definidas sobre el espacio probabil\'istico $\left(\Omega,\mathbb{A}, \mathbb{P}\right) $, y supongamos que se cumple $E[|X_n|^2]<\infty$, $\forall n\in\mathbb{N}$. Se dice que $ \left\{X_n\right\}_{n\in\mathbb{N}}$ converge en media cuadr\'atica hacia la variable aleatoria $X$ definida sobre el mismo espacio y se denota por $X_{n} \overset{m.c.}{\to} X $ si y solo si:
 
@@ -121,7 +121,7 @@ Sea $ \left\{X_n\right\}_{n\in\mathbb{N}}$ una sucesi\'on de variables aleatoria
 
 \end{definicion}
 
-\subsubsection{Propiedades.}
+\subsubsectioncol{Propiedades.}
 \begin{enumerate}
 \item Si $X_{n} \overset{m.c.}{\to} X $, entonces $X_{n} \overset{p}{\to} X $.
 \item Si $X_{n} \overset{m.c.}{\to} X $, entonces $E[X_n]\underset{n\to\infty}{\to}E[X]$ y $E[X_n^2]\underset{n\to\infty}{\to}E[X^2]$.
@@ -130,7 +130,7 @@ Sea $ \left\{X_n\right\}_{n\in\mathbb{N}}$ una sucesi\'on de variables aleatoria
 \item Sean $ \left\{X_n\right\}_{n\in\mathbb{N}}$, $ \left\{Y_m\right\}_{m\in\mathbb{N}}$ dos sucesiones de variables aleatorias tales que $X_{n} \overset{m.c.}{\to} X $ y $Y_{m} \overset{m.c.}{\to} Y $, entonces $Cov[X_n,Y_n]\underset{m,n\to\infty}{\to}Cov[X,Y]$
 
 \end{enumerate}
-\subsection{Convergencia de las funciones caracter\'isticas.}
+\subsectioncol{Convergencia de las funciones caracter\'isticas.}
 
 La funci\'on caracter\'istica es una forma de caracterizar la distribuci\'on de probabilidad de una variable aleatoria. Parece l\'ogico, por tanto, que tenga alguna relaci\'on con la convergencia en ley de las mismas.
 
@@ -154,13 +154,13 @@ y ese l\'imite se alcanza uniformemente en todo intervalo finito de $t$.
 \end{teorema}
 El segundo apartado es debido a Cramer. 
 
-\section{Leyes de los grandes n\'umeros.}
+\sectioncol{Leyes de los grandes n\'umeros.}
 
 La interpretaci\'on frecuentista de la probabilidad establece que, dado un experimento aleatorio, si consideramos un suceso $A$, la frecuencia relativa de aparici\'on de dicho suceso tiende a estabilizarse hacia un valor definido a medida que aumentamos las repeticiones del experimento. A este valor se le llamar\'ia probabilidad del suceso $A$.
 
 Esta interpretaci\'on frecuentista de la probabilidad tiene una caracterrizaci\'on matem\'atica dentro de la concepci\'on axiom\'atica de la probabilidad a trav\'es de las conocidas como \textbf{leyes de los grandes n\'umeros}.
 
-\subsection{Ley d\'ebil de los grandes n\'umeros.}
+\subsectioncol{Ley d\'ebil de los grandes n\'umeros.}
 
 \begin{definicion}
 Sea $ \left\{X_n\right\}_{n\in\mathbb{N}}$ una sucesi\'on de variables aleatorias definidas sobre el espacio probabil\'istico $\left(\Omega,\mathcal{A}, P\right) $ tales que existe $E[X_i]=\alpha_i<\infty,\forall i \in\mathbb{N}$; sea
@@ -187,7 +187,7 @@ con $S_n=n\bar{X}_n=\sum_{i=1}^{n}X_i$. Llegamos a la definici\'on inicial si $B
 
 Veremos ahora una serie de teoremas que establecen condiciones bajo las cuales una sucesi\'on verifica la ley d\'ebil de los grandes n\'umeros.
 
-\subsubsection{Teoremas.}
+\subsubsectioncol{Teoremas.}
 \begin{teorema}
 Sea $ \left\{X_n\right\}_{n\in\mathbb{N}}$ una sucesi\'on de variables aleatorias independientes definidas sobre el espacio probabil\'istico $\left(\Omega,\mathcal{A}, P\right) $ y tales que 
 \begin{itemize}
@@ -235,7 +235,7 @@ Dado que las variables aleatorias son independientes e id\'enticamente distribui
 
 Adem\'as, $a_n=\dfrac{1}{n}\sum_{i=1}^{n}E[X]_i=1\cdot p + 0\cdot(1-p)=p$, y como $ \left\{X_n\right\}_{n\in\mathbb{N}}\in\mathscr{D}$, $ \bar{X}_n-a_n\overset{p}{\to} 0$, o sea, la frecuencia relativa de los \'exitos en el experimento de Bernouilli converge en probabilidad a la probabilidad de \'exito, que es equivalente a la interpretaci\'on frecuentista de la probabilidad.
 
-\subsection{Ley fuerte de los grandes n\'umeros.}
+\subsectioncol{Ley fuerte de los grandes n\'umeros.}
 
 \begin{definicion}
 Sea $ \left\{X_n\right\}_{n\in\mathbb{N}}$ una sucesi\'on de variables aleatorias definidas sobre el espacio probabil\'istico $\left(\Omega,\mathcal{A}, P\right) $ tales que existe $E[X_i]=\alpha_i<\infty,\forall i \in\mathbb{N}$; sea
@@ -262,7 +262,7 @@ con $S_n=n\bar{X}_n=\sum_{i=1}^{n}X_i$. Llegamos a la definici\'on inicial si $B
 
 Veremos ahora una serie de teoremas que establecen condiciones bajo las cuales una sucesi\'on verifica la ley fuerte de los grandes n\'umeros.
 
-\subsubsection{Teoremas.}
+\subsubsectioncol{Teoremas.}
 
 \textbf{Desigualdad de Kolmogorov:} Es una generalizaci\'on de la desigualdad de Tchebychev.
 
@@ -289,12 +289,12 @@ La frecuencia relativa de un suceso dicot\'omico obedece a la ley fuerte de los 
 Sea $ \left\{X_n\right\}_{n\in\mathbb{N}}$ una sucesi\'on de variables aleatorias independientes e id\'enticamente distribuidas con media finita $\mu$. Entonces $\left\{X_n\right\}_{n\in\mathbb{N}}\in\mathscr{F}$.
 \end{teorema}
 
-\section{Teorema central del l\'imite.}
+\sectioncol{Teorema central del l\'imite.}
 
-\subsection{Introducci\'on.}
+\subsectioncol{Introducci\'on.}
 
 
-\subsection{Definici\'on.}
+\subsectioncol{Definici\'on.}
 \begin{definicion}
 Sea $ \left\{X_n\right\}_{n\in\mathbb{N}}$ una sucesi\'on de variables aleatorias definidas sobre el espacio probabil\'istico $\left(\Omega,\mathcal{A}, P\right) $, con medias y varianza finitas. Diremos que la sucesi\'on obedece al teorema central del l\'imite, y lo denotaremos por $\left\{X_n\right\}_{n\in\mathbb{N}}\in LN$ si y solo si la sucesi\'on $\left\{S_n\right\}_{n\in\mathbb{N}}$ definida por $S_n=\sum_{i=1}^nX_i$ converge en ley hacia una distribuci\'on normal. Es decir:
 \begin{equation*}

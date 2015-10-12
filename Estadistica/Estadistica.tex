@@ -12,7 +12,13 @@
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 \usepackage{babel}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \addto\shorthandsspanish{\spanishdeactivate{~<>}}
+
+\newcommand{\sectioncol}[1]{\section{{\color{blue} #1}}}
+\newcommand{\subsectioncol}[1]{\subsection{{\color{red} #1}}}
+\newcommand{\subsubsectioncol}[1]{\subsubsection{{\color{green} #1}}}
+
 
 \newtheorem{teorema}{Teorema}
 \newtheorem{definicion}{Definici\'on}
@@ -65,4 +71,9 @@
 \include{Tema21}
 
 \include{Tema22}
+
+\include{Tema23}
+
+\include{Tema24}
+
 \end{document}

@@ -1,51 +1,86 @@
 \chapter[Inferencia en el modelo lineal.]{Inferencia en el modelo lineal. \\ \normalsize Distribuci\'on muestral de los estimadores MCO. Contraste de hip\'otesis. Contraste acerca de un coeficiente del modelo. Contraste de un subconjunto param\'etrico. Inferencia para grandes muestras: consistencia, eficiencia y normalidad asint\'otica. Contrastes para grandes muestras basados en el Multiplicador de Lagrange. Predicci\'on en el modelo lineal.}
 
 
-\section{Inferencia en el modelo lineal.}
+\sectioncol{Inferencia en el modelo lineal.}
 
-Una vez hemos estimado el modelo puede ser interesante o necesario
-el contraste de distintas hip\'otesis sobre los coeficientes del modelo,
-para comprobar si cumplen las hip\'otesis te\'oricas subyacentes al mismo.
-Esto contrastes pueden ser de significaci\'on (contrastar si una o varias
-variables explicativas influyen en el valor de la variable dependiente),
-de valor del mismo, o puede ser interesante la definici\'on de intervalos
-o regiones de confianza para el valor de los par\'ametros.
+El modelo cl\'asico de regresi\'on lineal propone una serie de restricciones en la distribuci\'on conjunta de las variables dependientes e independientes. Necesitamos conocer la distribuci\'on muestral de los estimadores de los par\'ametros del modelo, para poder realizar contrastes de hip\'otesis acerca de la significaci\'on de los distintos par\'ametros del mismo. Estos contrastes nos permitir\'an determinar si las hip\'otesis de la teor\'ia econ\'omica se cumplen.
+
+A modo de recordatorio, las hip\'otesis cl\'asicas de partida para el modelo son las siguientes:
+
+\textbf{Hip\'otesis comunes:}
+\begin{itemize}
+\item Modelo lineal.
+\item No multicolinealidad perfecta de las variables explicativas.
+\item Exogeneidad (esperanza condicionada nula).
+\end{itemize}
+
+\textbf{Hip\'otesis para datos de secci\'on cruzada:}
+\begin{itemize}
+\item Muestra aleatoria.
+\end{itemize}
+
+\textbf{Hip\'otesis para datos de series temporales:}
+\begin{itemize}
+\item Distribuci\'on de probabilidad constante en el tiempo e independencia asint\'otica.
+\end{itemize}
 
 
-\section{Contraste de hip\'otesis.}
+\sectioncol{Distribuci\'on muestral de los estimadores MCO.}
+
+Si adem\'as de las hip\'otesis de especificaci\'on del modelo a\~nadimos la hip\'otrsis de homocedasticidad del t\'ermino de error y normalidad del t\'ermino de error, es decir, $\boldsymbol{\varepsilon}\sim N(\boldsymbol{0},\boldsymbol{I}_n\sigma^2)$ completamos el modelo cl\'asico de regresi\'on lineal. Bajo estos supuestos, podemos afirmar:
+\begin{teorema}
+Bajo los supuestos del modelo cl\'asico de regresi\'on lineal se cumple que:
+\begin{align*}
+\hat{\boldsymbol{\beta}}&\sim N(\boldsymbol{\beta}, \sigma^2\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}) \\
+\boldsymbol{X}\hat{\boldsymbol{\beta}}&\sim N(\boldsymbol{X}\boldsymbol{\beta}, \sigma^2\boldsymbol{P}) \\
+\hat{\boldsymbol{\varepsilon}}&\sim N(\boldsymbol{0}, \sigma^2\boldsymbol{M}) 
+\end{align*}
+\end{teorema}
+
+\begin{equation*}
+\hat{\boldsymbol{\beta}}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{y}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}
+(\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon})=\boldsymbol{\beta}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{\varepsilon}
+\end{equation*}
+
+Y como $\boldsymbol{\varepsilon}\sim N(\boldsymbol{0}_n;\sigma^2_\varepsilon\boldsymbol{I}_n)$ y $\boldsymbol{\beta}$ es una constante, $\hat{\boldsymbol{\beta}}\sim N(\boldsymbol{\beta};\sigma^2_\varepsilon\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1})$.
+
+
+
+
+\sectioncol{Contraste de hip\'otesis.}
 
 A partir de ahora, mantendremos el supuesto de que el t\'ermino de error
 del modelo sigue para cada observaci\'on una distribuci\'on normal, de
-media cero y varianza constante para todas las observaciones $\sigma_{u}^{2}$,
-es decir el vector $\boldsymbol{u}$ se distribuye seg\'un una normal
-multivariante $N\left(\boldsymbol{0}_{N};\sigma_{u}^{2}\boldsymbol{I}_{N}\right)$.
-Como el estimador MCO es una transformaci\'on lineal del vector $\boldsymbol{u}$,
-se tiene que $\hat{\boldsymbol{\beta}}_{MCO}\sim N_{k}\left(\boldsymbol{\beta};\sigma_{u}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\right)$.
+media cero y varianza constante para todas las observaciones $\sigma_{\varepsilon}^{2}$,
+es decir el vector $\boldsymbol{\varepsilon}$ se distribuye seg\'un una normal
+multivariante $N\left(\boldsymbol{0}_{N};\sigma_{\varepsilon}^{2}\boldsymbol{I}_{N}\right)$.
+Como el estimador MCO es una transformaci\'on lineal del vector $\boldsymbol{\varepsilon}$,
+se tiene que $\hat{\boldsymbol{\beta}}_{MCO}\sim N_{k}\left(\boldsymbol{\beta};\sigma_{\varepsilon}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\right)$.
 
 Adem\'as, se puede demostrar que siendo $\boldsymbol{x}\sim N_{k}\left(\boldsymbol{0}_{k};\sigma^{2}\boldsymbol{I}_{k}\right)$
 y $\boldsymbol{A}$ una matriz sim\'etrica e idempotente de rango $r$,
 entonces $\dfrac{1}{\sigma^{2}}\boldsymbol{x}^{\prime}\boldsymbol{A}\boldsymbol{x}\sim\chi^{2}(r)$.
-Por tanto, como $\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}=\boldsymbol{u}^{\prime}\boldsymbol{M}\boldsymbol{u}$
-se deduce que $\dfrac{1}{\sigma_{u}^{2}}\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}=\left(N-k\right)\dfrac{\hat{\sigma}_{u}^{2}}{\sigma_{u}^{2}}\sim\chi^{2}(N-k)$.
+Por tanto,  $\dfrac{1}{\sigma^{2}_{\varepsilon}}\boldsymbol{\varepsilon}^{\prime}\boldsymbol{M}\boldsymbol{\varepsilon}\sim\chi^{2}(n-k)$ y como $\boldsymbol{\varepsilon}^{\prime}\boldsymbol{M}\boldsymbol{\varepsilon}=\hat{\boldsymbol{\varepsilon}}^{\prime}\hat{\boldsymbol{\varepsilon}}$
+se deduce que $\dfrac{1}{\sigma_{\varepsilon}^{2}}\hat{\boldsymbol{\varepsilon}}^{\prime}\hat{\boldsymbol{\varepsilon}}=\left(N-k\right)\dfrac{\hat{\sigma}_{\varepsilon}^{2}}{\sigma_{\varepsilon}^{2}}\sim\chi^{2}(N-k)$.
 
-Como $\hat{\boldsymbol{\beta}}_{MCO}\sim N_{k}\left(\boldsymbol{\beta};\sigma_{u}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\right)$,
-se deduce que $\boldsymbol{X}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)\sim N_{k}\left(\boldsymbol{0}_{k};\sigma_{u}^{2}\boldsymbol{I}_{k}\right)$,
-as\'i que $\dfrac{1}{\sigma_{u}^{2}}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{I}_{k}\boldsymbol{X}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)=\dfrac{1}{\sigma_{u}^{2}}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{X}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)\sim\chi^{2}(k)$
+Como $\hat{\boldsymbol{\beta}}_{MCO}\sim N_{k}\left(\boldsymbol{\beta};\sigma_{\varepsilon}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\right)$,
+se deduce que $\boldsymbol{X}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)\sim N_{k}\left(\boldsymbol{0}_{k};\sigma_{\varepsilon}^{2}\boldsymbol{I}_{k}\right)$,
+as\'i que $\dfrac{1}{\sigma_{\varepsilon}^{2}}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{I}_{k}\boldsymbol{X}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)=\dfrac{1}{\sigma_{\varepsilon}^{2}}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{X}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)\sim\chi^{2}(k)$
 
-Por otro lado, sabemos que $\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u}$
-y que $\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}=\boldsymbol{u}^{\prime}\boldsymbol{M}\boldsymbol{u}$.
+Por otro lado, sabemos que $\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{\varepsilon}$
+y que $\hat{\boldsymbol{\varepsilon}}^{\prime}\hat{\boldsymbol{\varepsilon}}=\boldsymbol{\varepsilon}^{\prime}\boldsymbol{M}\boldsymbol{\varepsilon}$.
 Como una forma lineal $\boldsymbol{L}\boldsymbol{x}$ y una forma
 cuadr\'atica $\boldsymbol{x}^{\prime}\boldsymbol{A}\boldsymbol{x}$ se distribuyen
 de forma independiente si $\boldsymbol{LA}=\boldsymbol{0}$, y $\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{M}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\left[\boldsymbol{I}_{N}-\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\right]=\boldsymbol{0}_{N}$,
 podemos decir que $\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}$ y
-$\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}=\left(N-k\right)\hat{\sigma}_{u}^{2}$
+$\hat{\boldsymbol{\varepsilon}}^{\prime}\hat{\boldsymbol{\varepsilon}}=\left(N-k\right)\hat{\sigma}_{\varepsilon}^{2}$
 se distribuyen de forma independiente.
 
 Combinando todos estos resultados, podemos llegar a la conclusi\'on
 de que el estad\'istico:
-\[
-\dfrac{\dfrac{1}{\sigma_{u}^{2}}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{X}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)/k}{\dfrac{1}{\sigma_{u}^{2}}\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}/\left(N-k\right)}=\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)^{\prime}\left[\hat{\sigma}_{u}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\right]^{-1}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)/k\sim F_{k,N-k}
-\]
+\begin{equation*}
+\dfrac{\dfrac{1}{\sigma_{\varepsilon}^{2}}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{X}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)/k}{\dfrac{1}{\sigma_{\varepsilon}^{2}}\hat{\boldsymbol{\varepsilon}}^{\prime}\hat{\boldsymbol{\varepsilon}}/\left(N-k\right)}=\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)^{\prime}\left[\hat{\sigma}_{\varepsilon}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\right]^{-1}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)/k\sim F_{k,N-k}
+\end{equation*}
 
 
 Con este estad\'istico podemos contrastar la hip\'otesis nula $H_{0}:\boldsymbol{\beta}=\boldsymbol{\beta}^{0}$,
@@ -55,10 +90,9 @@ en la estimaci\'on. SI el valor del estad\'istico es menor que el valor
 de $F_{k,N-k}$ para el nivel de significaci\'on elegido, no podremos
 rechazar la hip\'otesis nula. En otro caso, la rechazaremos.
 
+\subsectioncol{Tratamiento general del contraste de hip\'otesis.}
 
-\section{Tratamiento general del contraste de hip\'otesis.}
-
-El apartado anterior nos permite contrastar una hip\'otesis sobre todos
+El contraste que hemos visto nos permite contrastar una hip\'otesis sobre todos
 los coeficientes del modelo, pero nos puede interesar contrastar hip\'otesis
 sobre el valor de uno o varios coeficientes del modelo, o sobre la
 significaci\'on de uno o varios de los coeficientes (es decir, sobre
@@ -76,23 +110,50 @@ $\boldsymbol{R}$ ser\'ia una matriz $1\times k$ con el primer t\'ermino
 igual a 1 y el resto cero, y $\boldsymbol{r}$ ser\'ia un escalar con
 valor $\beta^{0}$.
 
-Como $\boldsymbol{R}$ es una matriz constante, $\boldsymbol{R}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)\sim N_{k}\left(\boldsymbol{0};\sigma_{u}^{2}\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\right)$.
+Como $\boldsymbol{R}$ es una matriz constante, $\boldsymbol{R}\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)\sim N_{k}\left(\boldsymbol{0};\sigma_{\varepsilon}^{2}\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\right)$.
 Si la hip\'otesis nula es cierta, $\boldsymbol{R}\boldsymbol{\beta}=\boldsymbol{r}$
-y por tanto $\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}\sim N_{q}\left(\boldsymbol{0}_{q};\sigma_{u}^{2}\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\right)$.
-Finalmente, $\left(\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}\right)^{\prime}\left[\sigma_{u}^{2}\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\right]^{-1}\left(\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}\right)\sim\chi^{2}(q)$,
+y por tanto $\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}\sim N_{q}\left(\boldsymbol{0}_{q};\sigma_{\varepsilon}^{2}\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\right)$.
+Finalmente, $\left(\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}\right)^{\prime}\left[\sigma_{\varepsilon}^{2}\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\right]^{-1}\left(\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}\right)\sim\chi^{2}(q)$,
 y por tanto,
-\[
-\dfrac{\left(\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}\right)^{\prime}\left[\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\right]^{-1}\left(\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}\right)/q}{\dfrac{\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}}{N-k}}\sim F_{q,N-k}
-\]
+\begin{equation*}
+\dfrac{\left(\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}\right)^{\prime}\left[\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\right]^{-1}\left(\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}\right)/q}{\dfrac{\hat{\boldsymbol{\varepsilon}}^{\prime}\hat{\boldsymbol{\varepsilon}}}{N-k}}\sim F_{q,N-k}
+\end{equation*}
 
 
-O, lo que es lo mismo, $\left(\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}\right)^{\prime}\left[\hat{\sigma}_{u}^{2}\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\right]^{-1}\left(\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}\right)/q\sim F_{q,N-k}$.
+O, lo que es lo mismo, $\left(\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}\right)^{\prime}\left[\hat{\sigma}_{\varepsilon}^{2}\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\right]^{-1}\left(\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}\right)/q\sim F_{q,N-k}$.
 Y por tanto, si el valor del estad\'istico es menor que el valor de
 $F_{k,N-k}$ para el nivel de significaci\'on elegido, no podremos rechazar
 la hip\'otesis nula. En otro caso, la rechazaremos.
 
+\subsectioncol{Contraste de significaci\'on global del modelo.}
 
-\section{Contraste acerca de un coeficiente del modelo.}
+Si queremos contrastar la significaci\'on de todas las variables del
+modelo la matriz ser\'a: $\boldsymbol{R}=\left[\boldsymbol{0}_{k-1,1};\boldsymbol{I}_{k-1}\right]$
+y el vector $\boldsymbol{r}=\boldsymbol{0}_{k-1}$ (el t\'ermino independiente
+no se contrasta). Particionaremos la matriz $\boldsymbol{X}=\left[\boldsymbol{1}_{N};\boldsymbol{X}_{2}\right]$,
+con $\boldsymbol{X}_{1}$ de dimensi\'on $N\times1$ y $\boldsymbol{X}_{2}$
+de dimensiones $N\times k-1$, y el vector de par\'ametros en $\boldsymbol{\beta}=\left(\beta_{1};\boldsymbol{\beta}_{2}\right)$.
+\begin{equation*}
+\boldsymbol{X}^{\prime}\boldsymbol{X}=\left(\begin{array}{cc}
+N & \boldsymbol{1}^{\prime}_{N}\boldsymbol{X}_{2}\\
+\boldsymbol{X}^{\prime}_{2}\boldsymbol{1}_{N} & \boldsymbol{X}^{\prime}_{2}\boldsymbol{X}_{2}
+\end{array}\right)
+\end{equation*}
+
+
+\begin{equation*}
+F=\dfrac{\hat{\boldsymbol{\beta}}^{\prime}_{2}\left(\boldsymbol{X}^{\prime}_{2}\boldsymbol{Q}\boldsymbol{X}_{2}\right)\hat{\boldsymbol{\beta}}_{2}/\left(k-1\right)}{\dfrac{\hat{\boldsymbol{\varepsilon}}^{\prime}\hat{\boldsymbol{\varepsilon}}}{N-k}}\sim F_{k-1,N-k}
+\end{equation*}
+
+
+Con $\boldsymbol{Q}=\boldsymbol{I}_{N}-\dfrac{1}{N}\boldsymbol{1}_{N}\boldsymbol{1}^{\prime}_{N}$.
+Este estad\'istico admite una expresi\'on alternativa: $F=\dfrac{\dfrac{SCE}{k-1}}{\dfrac{SCR}{N-k}}=\dfrac{R^{2}/\left(k-1\right)}{\left(1-R^{2}\right)/\left(N-k\right)}$,
+s\'olo si el modelo contiene un t\'ermino independiente. Aunque ninguna
+de las variables sea significativa, el t\'ermino independiente ser\'ia
+aproximadamente igual a la media de la variable end\'ogena, y por tanto
+deber\'ia ser significativo.
+
+\sectioncol{Contraste acerca de un coeficiente del modelo.}
 
 En este caso, $H_{0}:\beta_{i}=\beta_{i}^{0}$. Entonces, $\boldsymbol{R}=\left[0,0,\ldots,1,0,\ldots,0\right]$
 ocupando el $1$ la posici\'on $i$-\'esima, y $\boldsymbol{r}=\beta_{i}^{0}$,
@@ -100,18 +161,19 @@ y por tanto $\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}=\hat{\beta}_{
 escalar. El producto $\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}=a_{ii}$,
 siendo $a_{ii}$ el elemento $i$-\'esimo de la diagonal de la matriz
 $\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}$, y el estad\'istico
-se convierte en $\dfrac{\left(\hat{\beta}_{i}-\beta_{i}^{0}\right)^{2}}{\hat{\sigma}_{u}^{2}a_{ii}}\sim F_{1,N-k}$.
-Como $Var(\hat{\boldsymbol{\beta}})=\sigma_{u}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}$,
-$\hat{Var}(\hat{\beta}_{i})=\hat{\sigma}_{u}^{2}a_{ii}$. Adem\'as,
-aplicando ra\'ices cuadradas, $\dfrac{\hat{\beta}_{i}-\beta_{i}^{0}}{\hat{\sigma}_{u}\sqrt{a_{ii}}}\sim t_{N-k}$.
+se convierte en $\dfrac{\left(\hat{\beta}_{i}-\beta_{i}^{0}\right)^{2}}{\hat{\sigma}_{\varepsilon}^{2}a_{ii}}\sim F_{1,N-k}$.
+Como $Var(\hat{\boldsymbol{\beta}})=\sigma_{\varepsilon}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}$,
+$\hat{Var}(\hat{\beta}_{i})=\hat{\sigma}_{\varepsilon}^{2}a_{ii}$. Adem\'as,
+aplicando ra\'ices cuadradas, $\dfrac{\hat{\beta}_{i}-\beta_{i}^{0}}{\hat{\sigma}_{\varepsilon}\sqrt{a_{ii}}}\sim t_{N-k}$.
+
 Para contrastar la significaci\'on de la variable explicativa $x_{i}$
 en el modelo, contrastamos que el valor de su coeficiente sea igual
-a cero, es decir, utilizamos el estad\'istico$\dfrac{\hat{\beta}_{i}}{\hat{\sigma}_{u}\sqrt{a_{ii}}}\sim t_{N-k}$,
+a cero, es decir, utilizamos el estad\'istico$\dfrac{\hat{\beta}_{i}}{\hat{\sigma}_{\varepsilon}\sqrt{a_{ii}}}\sim t_{N-k}$,
 que se suele conocer como el estad\'istico $t$ del cociente estimado
 $\hat{\beta}_{i}$.
 
 
-\section{Contraste de un subconjunto param\'etrico.}
+\sectioncol{Contraste de un subconjunto param\'etrico.}
 
 Ahora contrastamos la significaci\'on de un subconjunto de variables
 explicativas. Sin p\'erdida de generalidad supondremos que son las \'ultimas
@@ -123,259 +185,88 @@ de dimensiones $N\times s$, y el vector de par\'ametros en $\boldsymbol{\beta}=\
 El modelo econom\'etrico puede escribirse como $\boldsymbol{y}=\left(\boldsymbol{X}_{1};\boldsymbol{X}_{2}\right)\left(\begin{array}{c}
 \hat{\boldsymbol{\boldsymbol{\beta}}}_{1}\\
 \boldsymbol{\hat{\boldsymbol{\beta}}}_{2}
-\end{array}\right)+\hat{\boldsymbol{u}}=\boldsymbol{X}_{1}\hat{\boldsymbol{\boldsymbol{\beta}}}_{1}+\boldsymbol{X}_{2}\boldsymbol{\hat{\boldsymbol{\beta}}}_{2}+\hat{\boldsymbol{u}}$. Por tanto, $\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}=\boldsymbol{\hat{\boldsymbol{\beta}}}_{2}$,
+\end{array}\right)+\hat{\boldsymbol{\varepsilon}}=\boldsymbol{X}_{1}\hat{\boldsymbol{\boldsymbol{\beta}}}_{1}+\boldsymbol{X}_{2}\boldsymbol{\hat{\boldsymbol{\beta}}}_{2}+\hat{\boldsymbol{\varepsilon}}$. Por tanto, $\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}=\boldsymbol{\hat{\boldsymbol{\beta}}}_{2}$,
 y el producto $\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}$
 tiene como resultado la submatriz $s\times s$ inferior derecha de
 $\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}$. Esta submatriz
 es igual a $\left(\boldsymbol{X}^{\prime}_{2}\boldsymbol{M}_{1}\boldsymbol{X}_{2}\right)^{-1}$,
 con $\boldsymbol{M}_{1}=\boldsymbol{I}_{N}-\boldsymbol{X_{1}}\left(\boldsymbol{X_{1}}^{\prime}\boldsymbol{X_{1}}\right)^{-1}\boldsymbol{X_{1}}^{\prime}$,
 y por tanto, 
-\[
-F=\dfrac{\hat{\boldsymbol{\beta}}^{\prime}_{2}\left(\boldsymbol{X}^{\prime}_{2}\boldsymbol{M}_{1}\boldsymbol{X}_{2}\right)\hat{\boldsymbol{\beta}}_{2}/s}{\dfrac{\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}}{N-k}}\sim F_{s,N-k}
-\]
+\begin{equation*}
+F=\dfrac{\hat{\boldsymbol{\beta}}^{\prime}_{2}\left(\boldsymbol{X}^{\prime}_{2}\boldsymbol{M}_{1}\boldsymbol{X}_{2}\right)\hat{\boldsymbol{\beta}}_{2}/s}{\dfrac{\hat{\boldsymbol{\varepsilon}}^{\prime}\hat{\boldsymbol{\varepsilon}}}{N-k}}\sim F_{s,N-k}
+\end{equation*}
 
 
 Si en lugar de contrastar la significaci\'on queremos contrastar los
 valores de los par\'ametro, el estad\'{s}itico ser\'ia:
-\[
-F=\dfrac{\left(\hat{\boldsymbol{\beta}}_{2}-\boldsymbol{\beta}_{2}^{0}\right)^{\prime}\left(\boldsymbol{X}^{\prime}_{2}\boldsymbol{M}_{1}\boldsymbol{X}_{2}\right)\left(\hat{\boldsymbol{\beta}}_{2}-\boldsymbol{\beta}_{2}^{0}\right)/s}{\dfrac{\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}}{N-k}}\sim F_{s,N-k}
-\]
+\begin{equation*}
+F=\dfrac{\left(\hat{\boldsymbol{\beta}}_{2}-\boldsymbol{\beta}_{2}^{0}\right)^{\prime}\left(\boldsymbol{X}^{\prime}_{2}\boldsymbol{M}_{1}\boldsymbol{X}_{2}\right)\left(\hat{\boldsymbol{\beta}}_{2}-\boldsymbol{\beta}_{2}^{0}\right)/s}{\dfrac{\hat{\boldsymbol{\varepsilon}}^{\prime}\hat{\boldsymbol{\varepsilon}}}{N-k}}\sim F_{s,N-k}
+\end{equation*}
 
+\sectioncol{Inferencia para grandes muestras: consistencia, eficiencia y normalidad asint\'otica.}
 
+\subsectioncol{Consistencia del estimador.}
 
-\section{Contraste de significaci\'on global del modelo.}
+\subsectioncol{Normalidad asinto\'otica}
+Una de las hip\'otesis en las que nos basamos para realizar las inferencias sobre el modelo es que la distribuci\'on de los errores es normal. Esto implicar\'ia que, para unas $\boldsymbol{X}$ fijas, la distribuci\'on de las $\boldsymbol{y}$ ser\'ia tambi\'en normal. Esta hip\'otesis es muy fuerte, y no siempre se cumple.
 
-Si queremos contrastar la significaci\'on de todas las variables del
-modelo la matriz ser\'a: $\boldsymbol{R}=\left[\boldsymbol{0}_{k-1,1};\boldsymbol{I}_{k-1}\right]$
-y el vector $\boldsymbol{r}=\boldsymbol{0}_{k-1}$ (el t\'ermino independiente
-no se contrasta). Particionaremos la matriz $\boldsymbol{X}=\left[\boldsymbol{1}_{N};\boldsymbol{X}_{2}\right]$,
-con $\boldsymbol{X}_{1}$ de dimensi\'on $N\times1$ y $\boldsymbol{X}_{2}$
-de dimensiones $N\times k-1$, y el vector de par\'ametros en $\boldsymbol{\beta}=\left(\beta_{1};\boldsymbol{\beta}_{2}\right)$.
-\[
-\boldsymbol{X}^{\prime}\boldsymbol{X}=\left(\begin{array}{cc}
-N & \boldsymbol{1}^{\prime}_{N}\boldsymbol{X}_{2}\\
-\boldsymbol{X}^{\prime}_{2}\boldsymbol{1}_{N} & \boldsymbol{X}^{\prime}_{2}\boldsymbol{X}_{2}
-\end{array}\right)
-\]
+El hecho de que no se cumpla la hip\'otesis de normalidad no afecta a la insesgadez ni a la eficiencia del estimador, pero nos impide obtener la distribuci\'on de los estimadores, con lo que no podemos realizar los contrastes de hip\'otesis que hemos visto. Es por esto que vamos a ver el siguiente teorema:
 
+\begin{teorema}
+Bajo las hip\'otesis elementales del modelo, de linealidad, no multicolinealidad, exogeneidad y aleatoriedad, o su equivalente para ST, y suponiendo que grandes at\'ipicos sean poco probables, la distribuci\'on del estimador MCO es asint\'oticamente normal a medida que crece el tama\~no de la muestra, con media $\boldsymbol{\beta}$ y varianza $\sigma_{\varepsilon}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}$.
+Adem\'as, $\hat{\sigma}^2_\varepsilon$ es un estimador consistente de $\sigma^2_\varepsilon$ y $(\hat{\beta}_j-\beta_j)/\hat{\sigma}_{\varepsilon}a_{jj}\sim N(0;1)$.
+\end{teorema}
 
-\[
-F=\dfrac{\hat{\boldsymbol{\beta}}^{\prime}_{2}\left(\boldsymbol{X}^{\prime}_{2}\boldsymbol{Q}\boldsymbol{X}_{2}\right)\hat{\boldsymbol{\beta}}_{2}/\left(k-1\right)}{\dfrac{\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}}{N-k}}\sim F_{k-1,N-k}
-\]
+Este teorema se basa en el Teorema Central del L\'imite, y por ello la distribuci\'on es aproximada, no exacta, y cuanto mayor sea el tama\~no de la muestra mejor ser\'a la aproximaci\'on. Podemos considerar que si $n>100$ la aproximaci\'on ser\'a lo suficientemente confiable, salvo que haya indicios que nos indiquen lo contrario.
 
+La distribuci\'on del contraste es una normal, no una $t$ de Student, porque es una aproximaci\'on, sin embargo, ya que al aumentar $n$ la $t$ de Student tiende a la normal tipificada, podemos utilizarla para $n$ suficientemente grande. Por tanto, podemos realizar los contrastes basados en la $t$ de Student exactamente igual que con el modelo cl\'asico, siempre que $n$ sea suficientemente grande. hay que tener en cuenta que para aplicar esta aproximaci\'on lo que tiene que ser grande no es el tama\~no de la muestra, son los grados de libertad, lo que puede darproblemas con modelos con muchas variables.
 
-Con $\boldsymbol{Q}=\boldsymbol{I}_{N}-\dfrac{1}{N}\boldsymbol{1}_{N}\boldsymbol{1}^{\prime}_{N}$.
-Este estad\'istico admite una expresi\'on alternativa: $F=\dfrac{\dfrac{SCE}{k-1}}{\dfrac{SCR}{N-k}}=\dfrac{R^{2}/\left(k-1\right)}{\left(1-R^{2}\right)/\left(N-k\right)}$,
-s\'olo si el modelo contiene un t\'ermino independiente. Aunque ninguna
-de las variables sea significativa, el t\'ermino independiente ser\'ia
-aproximadamente igual a la media de la variable end\'ogena, y por tanto
-deber\'ia ser significativo.
+Para que este teorema se cumpla son necesarias tanto la heterocedasticidad como la exogeneidad.
 
+\subsectioncol{Eficiencia del estimador.}
 
-\section{Intervalos y regiones de confianza.}
+\sectioncol{Contrastes para grandes muestras basados en el Multiplicador de Lagrange.}
 
-Obtener una estimaci\'on puntual a partir de una muestra dada no es
-muy \'util a no ser que se pueda proporcionar un intervalo de confianza
-de dicha estimaci\'on. Para obtener estos intervalos utilizaremos los
-resultados anteriores.
+Vamos a ver un contraste para muestras grandes que puede resultar \'util en caso de contrastes de restricciones de exclusi\'on m\'ultiples. Usaremos el \textbf{estad\'istico del multiplicador de Lagrange}.
 
+Bajo los supuestos de Gauss-markov, a saber:
 
-\subsection{Intervalo de confianza para un solo coeficiente.}
+\begin{itemize}
+\item Linealidad del modelo.
+\item Observaciones obtenidas por muestreo aleatorio.
+\item Valor esperado condicionado nulo del t\'ermino de error.
+\item No multicolinealidad perfecta.
+\item Homocedasticidad.
+\end{itemize}
 
-Hemos visto que el estad\'istico $\dfrac{\hat{\beta}_{i}-\beta_{i}}{\hat{\sigma}_{u}\sqrt{a_{ii}}}\sim t_{N-k}$.
-Si definimos $t_{N-k;\alpha/2}$ como el valor para el que se cumple
-$P\left(t\geq t_{N-k;\alpha/2}\right)=\alpha/2$ en una distribuci\'on
-$t$ de Student, un intervalo de confianza del $\left(1-\alpha\right)\%$
-ser\'a $\left[\hat{\beta}_{i}-t_{N-k;\alpha/2}\hat{\sigma}_{u}\sqrt{a_{ii}},\hat{\beta}_{i}+t_{N-k;\alpha/2}\hat{\sigma}_{u}\sqrt{a_{ii}}\right]$.
-El tama�o del intervalo depende directamente de la varianza del estimador
-de $\beta_{i}$. Una vez construido el intervalo, contrastar una hip\'otesis
-$H_{0}:\beta_{i}=\beta_{i}^{0}$ equivale a rechazar la hip\'otesis
-nula si $\beta_{i}^{0}$ est\'a fuera del intervalo de confianza y no
-rechazarla si $\beta_{i}^{0}$ est\'a dentro del intervalo de confianza.
+Supongamos que tenemos el modelo habitual, con $n$ observaciones y $k$ variables explicarivas, y supongamos sin p\'erdida de generalidad que queremos contrastar la significaci\'on conjunta de las \'ultimas $q$ variables, es decir:
+\begin{equation*}
+H_0:\beta_{k-q+1}=\beta_{k-q+2}=\cdots=\beta_{k}=0
+\end{equation*}
 
+La hip\'otesis alternativa consiste en que al menos un coeficiente sea distinto de cero. La hip\'otesis nula impone $q$ restricciones al modelo, as\'i que podemos expresar el modelo restringido como:
+\begin{equation*}
+y=\beta_0+\beta_1x_1+\cdots+\beta{k-q}x_{k-q}+u
+\end{equation*}
 
-\subsection{Regiones de confianza para varios coeficientes.}
+Estimamos el modelo restringido (llamamos a los estimadores restringidos $\tilde{\beta}_i$). El modelo estimado ser\'a:
+\begin{equation*}
+y=\tilde{\beta}_0+\tilde{\beta}_1x_1+\cdots+\tilde{\beta}{k-q}x_{k-q}+\tilde{u}
+\end{equation*}
 
-Cuando se busca un rango de valores para varios coeficientes, no se
-tiene un intervalo, se tiene una regi\'on de confianza. An\'alogamente
-a la anterior secci\'on, utilizaremos el estad\'istico $F$. La matriz
-$\boldsymbol{R}$ ser\'a la que seleccione los coeficientes para los
-que queremos hallar la regi\'on de confianza, y el estad\'istico resultante
-ser\'a:
-\[
-\dfrac{\left(\hat{\boldsymbol{\beta}}_{2}-\boldsymbol{\beta}_{2}\right)^{\prime}\left[\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)_{2}^{-1}\right]^{-1}\left(\hat{\boldsymbol{\beta}}_{2}-\boldsymbol{\beta}_{2}\right)/s}{\hat{\sigma}_{u}^{2}}\sim F_{s,N-k}
-\]
+Si los coeficientes de las variables que hemos omitido son iguales a cero, los residuos restringidos no deber\'ian estar correlacionados con ninguna  de esas variables en la muestra. Para comprobar esto, regresamos los residuos restringidos frente a las $k$ variables del modelo (incluimos las variables s\'i significativas para tener en cuenta las posibles correlaciones internas entre ellas).
 
-
-donde $\boldsymbol{\beta}_{2}$ denota el subvector cuya regi\'on de
-confianza se quiere construir y $\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)_{2}^{-1}$
-denota la submatriz correspondiente extra\'ida de la matriz $\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}$.
-SI colocamos los coeficientes que nos interesan al final del modelo,
-ya hemos visto que $\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)_{2}^{-1}=\left(\boldsymbol{X}^{\prime}_{2}\boldsymbol{M}_{1}\boldsymbol{X}_{2}\right)^{-1}$,
-con $\boldsymbol{M}_{1}=\boldsymbol{I}_{N}-\boldsymbol{X_{1}}\left(\boldsymbol{X_{1}^{\prime}}\boldsymbol{X_{1}}\right)^{-1}\boldsymbol{X_{1}}^{\prime}$,
-y la regi\'on de confianza se obtiene mediante:
-
-\[
-1-\alpha=P\left[\left(\hat{\boldsymbol{\beta}}_{2}-\boldsymbol{\beta}_{2}\right)^{\prime}\left(\boldsymbol{X}^{\prime}_{2}\boldsymbol{M}_{1}\boldsymbol{X}_{2}\right)\left(\hat{\boldsymbol{\beta}}_{2}-\boldsymbol{\beta}_{2}\right)\leq\lambda_{\alpha}s\hat{\sigma}_{u}^{2}\right]
-\]
-
-
-Con $\lambda_{\alpha}$ un valor tal que $P\left(F\leq\lambda_{\alpha}\right)=1-\alpha$
-en una distribuci\'on $F_{s,N-k}$. Es conveniente recordar que $\left(\boldsymbol{X}^{\prime}_{2}\boldsymbol{M}_{1}\boldsymbol{X}_{2}\right)$
-es la submatriz de $\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)$ correspondiente
-a los coeficientes considerados.
-
-La dificultas surge de que el expresi\'on a la izquierda de la desigualdad
-es un polinomio de grado igual al n\'umero de coeficientes considerados,
-por lo que estas regiones s\'olo son \'utiles para el caso de dos coeficientes.
-La regi\'on de confianza consiste en una elipse, cuyas dimensiones dependen
-de las varianzas con las que se hayan estimado los coeficientes y
-su inclinaci\'on de la covarianza entre las estimaciones de los coeficientes.
-Se puede contrastar la hip\'otesis conjunta examinando si el punto compuesto
-por los valores de la hip\'otesis est\'a dentro de la regi\'on de confianza.
-
-
-\section{Estimaci\'on bajo restricciones.}
-
-En la mayor\'ia de las ocasiones en econometr\'ia se contrasta una hip\'otesis
-de cuya validez se est\'a razonablemente seguro, por lo que si el contraste
-no la rechaza se consideran como v\'alidas en el modelo que se est\'e
-considerando. Dado que el concepto de potencia de un contraste hace
-que una hip\'otesis nula no se descarte aun siendo err\'onea, conviene
-contrastar \'unicamente hip\'otesis nulas aceptables desde el punto de
-vista conceptual.
-
-Parece l\'ogico entonces que si contrastamos una hip\'otesis nula y \'esta
-no se rechaza, el modelo ganar\'ia en precisi\'on incorporando esta hip\'otesis
-al proceso de estimaci\'on. Veamos c\'omo.
-
-Buscaremos un estimador que minimice la suma de cuadrados, pero esta
-vez imponiendo un conjunto de restricciones lineales, $\boldsymbol{R}\boldsymbol{\beta}=\boldsymbol{r}$.
-El lagrangiano del problema ser\'a:
-\[
-L=\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right)^{\prime}\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right)-2\lambda^{\prime}\left(\boldsymbol{R}\boldsymbol{\beta}-\boldsymbol{r}\right)
-\]
- donde $\lambda$ es un vector de dimensiones $q\times1$, siendo
-$q$ el n\'umero de restricciones a considerar, de multiplicadores de
-Lagrange. Minimizamos el lagrangiano tomando derivadas:
-\[
-\begin{array}{cc}
-\dfrac{\partial L}{\partial\boldsymbol{\beta}}=-2\boldsymbol{X}^{\prime}\boldsymbol{y}+2\boldsymbol{X}^{\prime}\boldsymbol{X}\boldsymbol{\beta}-2\boldsymbol{R}^{\prime}\lambda=\boldsymbol{0}_{k} & \left(k\;{\textstyle derivadas}\right)\\
-\dfrac{\partial L}{\partial\boldsymbol{\beta}}=-2\left(\boldsymbol{R}\boldsymbol{\beta}-\boldsymbol{r}\right)=\boldsymbol{0}_{q} & \left(q\;{\textstyle derivadas}\right)
-\end{array}
-\]
- las soluciones a este sistema de ecuaciones son el estimador de \textbf{m\'inimos
-cuadrados restringidos}, $MCR$, y el vector de precios sombra (multiplicadores
-de Lagrange) de las restricciones.
-
-Premultiplicando la primera ecuaci\'on por $\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}$:
-
-\[
-\boldsymbol{R}\hat{\boldsymbol{\beta}}_{R}-\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{y}-\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\lambda=\boldsymbol{0}_{k}
-\]
-
-
-Y como $\hat{\boldsymbol{\beta}}_{MCO}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{y}$,
-y seg\'un la segunda ecuaci\'on $\boldsymbol{R}\hat{\boldsymbol{\beta}}_{R}=\boldsymbol{r}$,
-tenemos que:
-\[
-\lambda=\left[\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\right]^{-1}\left(\boldsymbol{r}-\boldsymbol{R}\hat{\boldsymbol{\beta}}_{MCO}\right)
-\]
-
-
-Y, sustituyendo $\lambda$ en la primera ecuaci\'on:
-\[
-\begin{array}{c}
-\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)\hat{\boldsymbol{\beta}}_{R}-\boldsymbol{X}^{\prime}\boldsymbol{y}-\boldsymbol{R}^{\prime}\left[\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\right]^{-1}\left(\boldsymbol{r}-\boldsymbol{R}\hat{\boldsymbol{\beta}}_{MCO}\right)=\boldsymbol{0}_{k}\\
-\hat{\boldsymbol{\beta}}_{R}=\hat{\boldsymbol{\beta}}_{MCO}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\left[\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\right]^{-1}\left(\boldsymbol{r}-\boldsymbol{R}\hat{\boldsymbol{\beta}}_{MCO}\right)
-\end{array}
-\]
- donde $\hat{\boldsymbol{\beta}}_{R}$ es el estimador de m\'inimos
-cuadrados restringidos del modelo. La interpretaci\'on que podemos inferir
-es que el estimador restringido es una correcci\'on del estimador sin
-restringir. Esta correcci\'on ser\'a mayor cuanto m\'as lejos est\'e el estimador
-$MCO$ de satisfacer las restricciones. Hay una serie de caracter\'isticas
-del estimador restringido:
+Si se cumple la hip\'otesis nula, el $R^2$ de la regresi\'on debe ser muy pr\'oximo a cero, ya que los residuos estar\'an aproximadamente incorrelacionados con todas las variables. Bajo la hip\'otesis nula se puede demostrar que el tama\~no muestral multiplicado por el $R^2$ de la regresi\'on auxiliar sigue una distribuci\'on asint\'otica $\chi^2_q$. Por tanto, el procedimiento del contraste ser\'ia:
 \begin{enumerate}
-\item El estimador $MCR$ es insesgado s\'olo si las restricciones bajo las
-que se ha obtenido son ciertas.
-\item El estimador $MCR$ satisface las restricciones.
-\item El estimador $MCR$ difiere del estimador $MCO$ s\'olo si \'este no satisface
-las restricciones en $H_{0}$, si el estimador $MCO$ satisface las
-restricciones coincide con el estimador $MCR$.
-\item La matriz de covarianzas del estimador $MCR$ es siempre inferior
-a la matriz de covarianzas del estimador $MCO$, incluso si las restricciones
-no son ciertas. Esto ocurre porque al imponer las restricciones limitamos
-la regi\'on del espacio param\'etrico en que buscamos el estimador.
+\item Estimar el modelo restringido con $k-q$ variables. Obtener los residuos $\tilde{u}$.
+\item Regresar $\tilde{u}$ sobre todas las variables independientes, y obtener el coeficiente de determinaci\'on correspondiente $R^2_u$.
+\item Calcular el estad\'istico $LM=nR^2_u$.
+\item Obtener el $p$-valor asociado al estad\'istico $LM$ a partir de una distribuci\'on $\chi^2_q$. Si $P(\chi^2_q>LM)<\alpha$, nivel de significatividad fijado, rechazamos la hip\'otesis nula, y por tanto al menos una de las $q$ variables es significativa. Si no es as\'i, no podemos rechazar la hip\'otesis nula.
 \end{enumerate}
-La matriz de covarianzas del estimador ser\'a:
 
-\[
-\begin{array}{c}
-Var(\hat{\boldsymbol{\beta}}_{R})=\sigma_{u}^{2}\left[\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}-\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\left[\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\right]^{-1}\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\right]\\
-Var(\hat{\boldsymbol{\beta}}_{MCO})-Var(\hat{\boldsymbol{\beta}}_{R})=\sigma_{u}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\left[\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}^{\prime}\right]^{-1}\boldsymbol{R}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}
-\end{array}
-\]
- la diferencia es una matriz semidefinida positiva, es decir, los
-elementos de la diagonal principal de $Var(\hat{\boldsymbol{\beta}}_{R})$
-ser\'an menores que los de $Var(\hat{\boldsymbol{\beta}}_{MCO})$.
+En este estad\'istico no desempe\~nan ning\'un papel los grados de libertad, s\'olo importa el n\'umero de variables a contrastar. Esto se debe a que es un estad\'istico de naturaleza asint\'otica. Sin embargo, para $n$ muy grande es posible que un valor de $R^2$ aparentemente bajo s\'i refleje significatividad de las variables, debido a la forma del estad\'istico.
 
-
-\section{Contraste de cambio estructural: Test de Chow.}
-
-Un contraste bastante importante es el que contrasta la hip\'otesis
-nula de que dos submuestras han sido generadas por la misma estructura
-, es decir, el mismo modelo. Se utiliza cuando se tiene informaci\'on
-acerca de un cambio que pueda afectar al modelo en un momento dado
-y se quiere contrastar si esa variaci\'on afecta a los coeficientes
-del modelo. Se considera el modelo restringido, $MR$,: 
-\[
-\begin{array}{cc}
-y_{i}=\boldsymbol{x}^{\prime}_{i}\boldsymbol{\beta}+u_{i} & i=1,2,\ldots,N_{1},N_{1}+1,\ldots,N\end{array}
-\]
- y el modelo sin restringir, $MSR$:
-
-\[
-\begin{array}{cc}
-y_{i}=\boldsymbol{x}^{\prime}_{i}\boldsymbol{\beta}_{1}+u_{i} & i=1,2,\ldots,N_{1}\\
-y_{i}=\boldsymbol{x}^{\prime}_{i}\boldsymbol{\beta}_{2}+u_{i} & i=N+1,\ldots,N
-\end{array}
-\]
- con una regresi\'on diferente para cada submuestra. La hip\'otesis nula
-es: $H_{0}:\boldsymbol{\beta}_{1}=\boldsymbol{\beta}_{2}$. A este
-contraste se le llama Test de Chow. Llamamos suma residual restringida,
-$SRR$, a la suma de los residuos del modelo restringido, y suma residual
-sin restringir, $SRS$, al agregado de las sumas residuales de los
-dos modelos sin restringir, que denotamos por $SR_{1}$ y $SR_{2}$.
-El estad\'istico para el contraste de la hip\'otesis de ausencia de cambio
-estructura ser\'a:
-\[
-F=\dfrac{\dfrac{SRR-\left(SR_{1}+SR_{2}\right)}{k}}{\dfrac{SR_{1}+SR_{2}}{N-2k}}\sim F_{k,N-2k}
-\]
-
-
-Si el estad\'istico $F$ es mayor que el valor de $F_{k,N-2k}$ para
-el nivel de significaci\'on contemplado, rechazaremos la hip\'otesis nula
-de ausencia de cambio estructural.
-
-Muchas veces se utiliza este contraste para comprobar si las \'ultimas
-observaciones recibidas suponen un cambio respecto al resto de la
-muestra. En estos casos puede que no se pueda estimar el segundo modelo
-sin restricciones por falta de grados de libertad.
-
-Si estamos en el caso l\'imite en el que $N_{2}=k$, los residuos son
-cero, y por tanto $SR_{2}=0$, por lo que el estad\'istico se reduce
-a:
-\[
-F=\dfrac{\left(SRR-SR_{1}\right)/T_{2}}{SR_{1}/\left(T_{1}-k\right)}\sim F_{T_{2},T_{1}-k}
-\]
-
-
-Si tenemos que $T_{2}<k$ se puede demostrar que el estad\'istico anterior
-sigue siendo v\'alido.
-
-
-\section{Predicci\'on en el modelo lineal.}
+\sectioncol{Predicci\'on en el modelo lineal.}
 
 El objeto final de los modelos lineales es, una vez estimados los
 mismos, utilizarlos para hacer predicciones sobre la variable end\'ogena
@@ -384,7 +275,7 @@ ya que el modelo representa la relaci\'on entre las variables, y es
 v\'alido a menos que la relaci\'on sea muy inestable.
 
 
-\subsection{C\'alculo de las predicciones.}
+\subsectioncol{C\'alculo de las predicciones.}
 
 El estimador $MCO$ refleja la mejor relaci\'on lineal entre las variables
 explicativas y la variable end\'ogena para la muestra de la que disponemos.
@@ -392,9 +283,9 @@ Suponemos que esa relaci\'on estimada es tambi\'en la mejor relaci\'on entre
 las variables fuera de la muestra. Bajo este supuesto, denotamos por
 $E_{T}$ el valor esperado en base a la informaci\'on disponible hasta
 el momento $T$. La funci\'on a utilizar para predecir $y_{T+1}$ ser\'a:
-\[
+\begin{equation*}
 E_{T}y_{T+1}=E_{T}\left(\boldsymbol{x}^{\prime}_{T+1}\boldsymbol{\beta}+u_{T+1}\right)=E_{T}\left(\boldsymbol{x}^{\prime}_{T+1}\boldsymbol{\beta}\right)+E_{T}u_{T+1}=E_{T}\left(\boldsymbol{x}^{\prime}_{T+1}\right)\hat{\boldsymbol{\beta}}_{T}+E_{T}u_{T+1}
-\]
+\end{equation*}
 Por tanto, para predecir $\boldsymbol{x}^{\prime}_{T+1}\boldsymbol{\beta}$
 multiplicamos los valores previstos para las $\boldsymbol{x}^{\prime}_{T+1}$
 por el estimador $MCO$ de los coeficientes. Este estimador lo representamos
@@ -433,13 +324,13 @@ De todas formas, una predicci\'on no es muy \'util si no podemos dar un
 intervalo de confianza de la misma. Vamos a calcularlo.
 
 
-\subsection{Error de predicci\'on.}
+\subsectioncol{Error de predicci\'on.}
 
 El error de predicci\'on se define como la diferencia entre el valor
 de la variable a predecir y la predicci\'on obtenida:
-\[
+\begin{equation*}
 e_{T}(1)=y_{T+1}-E_{T}y_{T+1}=\boldsymbol{x}^{\prime}_{T+1}\boldsymbol{\beta}-\boldsymbol{x}^{\prime}_{T+1}\hat{\boldsymbol{\beta}}_{T}+u_{T+1}=\boldsymbol{x}^{\prime}_{T+1}\left(\boldsymbol{\beta}-\hat{\boldsymbol{\beta}}_{T}\right)+u_{T+1}
-\]
+\end{equation*}
 
 
 Que es una variable aleatoria con un valor desconocido, puesto que
@@ -455,34 +346,34 @@ cero. As\'i, cuando las variables ex\'ogenas son conocidas de antemano
 la predicci\'on es insesgada.
 
 La varianza del error de predicci\'on ser\'a: 
-\[
+\begin{equation*}
 \begin{array}{c}
 \sigma_{e}^{2}=E\left\{ \boldsymbol{x}^{\prime}_{T+1}\left(\boldsymbol{\beta}-\hat{\boldsymbol{\beta}}_{T}\right)\left(\boldsymbol{\beta}-\hat{\boldsymbol{\beta}}_{T}\right)^{\prime}\boldsymbol{x}{}_{T+1}+2\boldsymbol{x}^{\prime}_{T+1}\left(\boldsymbol{\beta}-\hat{\boldsymbol{\beta}}_{T}\right)u_{T+1}+u_{T+1}^{2}\right\} =\\
-=\boldsymbol{x}^{\prime}_{T+1}E\left[\left(\boldsymbol{\beta}-\hat{\boldsymbol{\beta}}_{T}\right)\left(\boldsymbol{\beta}-\hat{\boldsymbol{\beta}}_{T}\right)^{\prime}\right]\boldsymbol{x}{}_{T+1}+E\left(u_{T+1}^{2}\right)=\sigma_{u}^{2}\boldsymbol{x}^{\prime}_{T+1}\left(\boldsymbol{X}_{T}^{\prime}\boldsymbol{X}_{T}\right)^{-1}\boldsymbol{x}{}_{T+1}+\sigma_{u}^{2}
+=\boldsymbol{x}^{\prime}_{T+1}E\left[\left(\boldsymbol{\beta}-\hat{\boldsymbol{\beta}}_{T}\right)\left(\boldsymbol{\beta}-\hat{\boldsymbol{\beta}}_{T}\right)^{\prime}\right]\boldsymbol{x}{}_{T+1}+E\left(u_{T+1}^{2}\right)=\sigma_{\varepsilon}^{2}\boldsymbol{x}^{\prime}_{T+1}\left(\boldsymbol{X}_{T}^{\prime}\boldsymbol{X}_{T}\right)^{-1}\boldsymbol{x}{}_{T+1}+\sigma_{\varepsilon}^{2}
 \end{array}
-\]
+\end{equation*}
 
 
 Donde se ha usado que $E\left(\hat{\boldsymbol{\beta}}_{T}u_{T+1}\right)=0$,
 ya que $u_{T+1}$ es independiente de los errores anteriores. De esta
-f\'ormula el \'unico par\'ametro desconocido es $\sigma_{u}^{2}$, que sustituiremos
+f\'ormula el \'unico par\'ametro desconocido es $\sigma_{\varepsilon}^{2}$, que sustituiremos
 por su estimador.
 
 
-\subsection{Intervalos de confianza para la predicci\'on.}
+\subsectioncol{Intervalos de confianza para la predicci\'on.}
 
 Bajo el supuesto de normalidad del t\'ermino de error, el error de predicci\'on
 es combinaci\'on lineal de dos variables con distribuci\'on normal:
 
-\[
+\begin{equation*}
 e_{T}(1)=-\boldsymbol{x}^{\prime}_{T+1}\left(\hat{\boldsymbol{\beta}}_{T}-\boldsymbol{\beta}\right)+u_{T+1}=-\boldsymbol{x}^{\prime}_{T+1}\left(\boldsymbol{X}_{T}^{\prime}\boldsymbol{X}_{T}\right)^{-1}\boldsymbol{X}_{T}^{\prime}u_{T}+u_{T+1}
-\]
+\end{equation*}
  y por tanto, $e_{t}(1)\sim N(0,\sigma_{e}^{2})$, donde $\sigma_{e}^{2}$
 lo hemos calculado antes. Por un razonamiento an\'alogo al realizado
 con las inferencias sobre coeficientes, tenemos que 
-\[
+\begin{equation*}
 \dfrac{e_{T}(1)}{\hat{\sigma}_{e}^{2}}=\dfrac{y_{T+1}-E_{T}y_{T+1}}{\hat{\sigma}_{e}^{2}}\sim t_{T-k}
-\]
+\end{equation*}
  y podemos utilizar esta expresi\'on para calcular un intervalo de confianza
 para el valor futuro $y_{T+1}$.
 
@@ -494,7 +385,7 @@ podr\'ia emplear la desigualdad de Tchebichev, expresada como $P\left[\left|E_{T
 asignando a $\lambda$ un valor apropiado (por ejemplo, tal que $\dfrac{1}{\lambda^{2}}=0,05$,
 y suponiendo que sustituir $\sigma_{e}$ por su estimador no supondr\'a
 un gran error. Por tanto 
-\[
+\begin{equation*}
 P\left[E_{T}y_{T+1}-\lambda\hat{\sigma}_{e}\leq y_{T+1}\leq E_{T}y_{T+1}+\lambda\hat{\sigma}_{e}\right]\geq1-\dfrac{1}{\lambda^{2}}
-\]
+\end{equation*}
 

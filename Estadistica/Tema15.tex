@@ -1,7 +1,7 @@
 \chapter[Cadenas de Markov.]{Cadenas de Markov.\\
 \normalsize Distribuci\'on de la cadena. Cadenas homog\'eneas. Clasificaci\'on de los estados. Tipos de cadenas. Distribuciones estacionarias.}
 
-\section{Introducci\'on.}
+\sectioncol{Introducci\'on.}
 Las cadenas de Markov son un tipo especial de proceso estoc\'astico. Un proceso estoc\'astico es una sucesi\'on de variables aleatorias que evolucionan en funci\'on de otra variable. En general, la variable en funci\'on de la que evolucionan suele ser el tiempo. Cada variable de un proceso estoc\'astico tiene su propia funci\'on de distribuci\'on de probabilidad, y pueden estar correlacionadas entre s\'i o no estarlo.
 
 En cuanto a los procesos estoc\'asticos dependientes del tiempo, se pueden ver de dos maneras equivalentes: como un conjunto de realizaciones temporales dependientes de un \'indice, o como un conjunto de variables aleatorias dependientes del tiempo.
@@ -95,7 +95,7 @@ Se dice que un proceso estoc\'astico con un conjunto lineal de \'indices y con f
 
 Esta definici\'on implica que la funci\'on de varianza es constante y la funci\'on de autocorrelaci\'on solo depende de la distancia entre los \'indices.
 
-\section{Cadenas de Markov.}
+\sectioncol{Cadenas de Markov.}
 
 \begin{definicion}
 Un proceso estoc\'astico en tiempo discreto se dice que cumple la \textbf{propiedad de Markov} si para cualquier $n\ge 0$ y para cualesquiera estados $x_0,x_1,x_2,\ldots,x_n,x_{n+1}$ se cumple que:
@@ -113,7 +113,7 @@ Una \textbf{cadena de Markov} es un proceso estoc\'astico en tiempo discreto con
 
 Una cadena de Markov cuyo conjunto de estados es finito se llama cadena finita.
 
-\subsection{Distribuci\'on de la cadena.}
+\subsectioncol{Distribuci\'on de la cadena.}
 
 La distribuci\'on de probabilidad de una cadena de Markov nos dar\'a la probabilidad de que la cadena ocupe cada uno de los estados del espacio de estados en cada instante de tiempo.
 
@@ -142,7 +142,7 @@ A la matriz en la que se disponen las probabilidades de transici\'on entre todos
 \end{itemize}
 
 
-\subsection{Cademas de Markov homog\'eneas.}
+\subsectioncol{Cademas de Markov homog\'eneas.}
 
 \begin{definicion}
 Una \textbf{cadena de Markov} se dice que es \textbf{homog\'enea} si se cumple que $p_{i,j}(t,t+1)=p_{i,j}$, o tambi\'en $P(t,t+1)=P$. Es decir, las probabilidades de transici\'on en un paso entre dos estados no dependen del tiempo, son constantes.
@@ -159,7 +159,7 @@ A la hora de calcular $P^t$ podemos hacer uso de la descomposici\'on de Jordan, 
 
 Una cadena homog\'enea queda especificada conociendo el vector de estados inicial y la matriz de transici\'on.
 
-\subsection{Clasificaci\'on de los estados.}
+\subsectioncol{Clasificaci\'on de los estados.}
 
 El hecho de que las cadenas de Markov homog\'eneas queden definidas por su matriz de transici\'on entre estados aconseja un an\'alisis de dicha matriz. Esto nos permitir\'a clasificar las relaciones entre los distintos estados de la cadena, as\'i como definir una tipolog\'ia dentro de los mismos.
 

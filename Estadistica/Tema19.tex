@@ -1,7 +1,7 @@
 \chapter[Estimaci\'on puntual I.]{Estimaci\'on puntual I. \\
 \normalsize Propiedades de los estimadores puntuales. Error cuadr\'atico medio. Estimadores insesgados, consistentes y suficientes.}
 
-\section{Introducci\'on.}
+\sectioncol{Introducci\'on.}
 
 Una parte de la inferencia estad\'istica consiste en obtener estimaciones acerca de los par\'ametros que definen la distribuci\'on de probabilidad de una poblaci\'on. As\'i, si tenemos una poblaci\'on normal, sin conocer los valores de $\mu$ y $\sigma^2$ no podremos calcular las probabilidades de los distintos sucesos, ni podremos realizar deducciones sobre la poblaci\'on.
 
@@ -16,7 +16,7 @@ Dado que para estimar un mismo par\'ametro podemos definir infinidad de estimado
 As\'i, un estimador ser\'a una variable aleatoria, funci\'on de las variables aleatorias muestrales. Una estimaci\'on ser\'a una realizaci\'on de esa variable aleatoria para una muestra determinada.
 
 
-\section{Propiedades de los estimadores.}
+\sectioncol{Propiedades de los estimadores.}
 
 Hemos visto que un estimador es un estad\'istico funci\'on de las variables aleatorias muestrales, y por tanto \'el mismo ser\'a una variable aleatoria con su funci\'on de distribuci\'on, su media y su varianza. De entre todos los etad\'isticos posibles, nos interesar\'a utilizar como estimador aquel que nos produzca las mejores estimaciones del par\'ametro desconocido. Para ello definimos el \textbf{error cuadr\'atico medio}, que utilizaremos como medida de la bondad del estimador.
 
@@ -56,9 +56,9 @@ La propiedad de invarianza refleja la conveniencia de que obtenido una estimador
 
 En cuanto a la robustez, normalmente al estimar un par\'ametro debemos realizar una serie de hip\'otesis sobre la poblaci\'on en estudio. Un estimador es robusto si desviaciones de las hip\'otesis iniciales no afectan a la bondad del estimador, o lo hacen de forma d\'ebil.
 
-\section{Estimadores insesgados, consistentes y suficientes.}
+\sectioncol{Estimadores insesgados, consistentes y suficientes.}
 
-\subsection{Estimadores insesgados.}
+\subsectioncol{Estimadores insesgados.}
 
 La funci\'on de densidad en el muestreo de un estimador depender\'a del par\'ametro o par\'ametros poblacionales, por lo que la esperanza matem\'atica del estimador ser\'a:
 
@@ -79,7 +79,7 @@ E(\hat{\theta})=\theta + b(\theta)
 Ya hemos visto que $ b(\theta)$ recibe el nombre de \textbf{sesgo} del estimador. Si es cero para todos los posibles valores de $\theta$, diremos que el estimador es insesgado. Si es mayor que cero, diremos que el estimador tiene un sesgo positivo y por tanto sobreestima el par\'ametro. Si es menor que cero, diremos que el estimador tiene un sesgo negativo y por tanto subestima el par\'ametro.
 
 Si un estimador es insesgado, no existir\'a error sistem\'atico si lo utilizamos para estimar un par\'ametro. Un estimador es \textbf{asint\'oticamente insesgado} cuando $b(\hat{\theta}\to\theta$ cunado $n\to\infty$. La insesgadez es una propiedad del estimador, no de una estimaci\'on concreta. Para verificar si un estimador es insesgado solo hay que calcular su esperanza matem\'atica.
-\subsubsection{Propiedades de los estimadores insesgados.}
+\subsubsectioncol{Propiedades de los estimadores insesgados.}
 
 \begin{enumerate}
 \item Si dos estimadores $\hat{\theta}_1$, $\hat{\theta}_2$ de un mismo par\'ametro son insesgados, entonces para cualquier n\'umero $c$ tal que $c\in(0,1)$ el estimador definido por $\hat{\theta}=c\hat{\theta}_1+(1-c)\hat{\theta}_2$ es insesgado.
@@ -99,7 +99,7 @@ E\left[\sum_{i=1}^nc_ix_i\right]=\sum_{i=1}^nc_iE(x_i)=\mu\sum_{i=1}^nc_i=\mu \L
 
 \end{enumerate}
 
-\subsection{Estimadores consistentes.}
+\subsectioncol{Estimadores consistentes.}
 
 A medida que el tama\~no de la muestra aumenta, tenemos cada vez m\'as informaci\'on acerca de la poblaci\'on. Por tanto, ser\'a deseable utilizar estimadores cuya bondad aumente a medida que aumenta el tama\~no de la muestra. Bajo este concepto es bajo el que se sit\'ua la propiedad de la consistencia de un estimador. Para ello nos basaremos en los criterios de convergencia de variables aleatorias.
 
@@ -133,7 +133,7 @@ Sustituyendo y tomando l\'imites:
 
 Y por tanto, para que se cumpla que $\lim_{n\to\infty}P\left(\left|\hat{\theta}_n-\theta\right|>\varepsilon\right)=0$ es suficiente que $\lim_{n\to\infty}V(\hat{\theta}_n)=0$ y $\lim_{n\to\infty}b(\hat{\theta}_n)=\theta$. Esta condici\'on no es necesaria.
 
-\subsubsection{Propiedades de los estimadores consistentes.}
+\subsubsectioncol{Propiedades de los estimadores consistentes.}
 
 \begin{enumerate}
 \item Si $\hat{\theta}$ es un estimador consistente de $\theta$, y sea $g$ una funci\'on cont\'inua, entonces $g(\hat{\theta})$ es un estimador consistente de $G(\theta)$.
@@ -145,7 +145,7 @@ Y por tanto, para que se cumpla que $\lim_{n\to\infty}P\left(\left|\hat{\theta}_
 
 
 
-\subsection{Estimadores suficientes.}
+\subsectioncol{Estimadores suficientes.}
 
 Hemos visto que los estimadores no son m\'as que estad\'isticos que utilizamos para resumir la informaci\'on que est\'a presente en nuestra muestra aleatoria simple. Cabe preguntarse por tanto, si al efectuar ese resumen no estaremos perdiendo alguna parte de la informaci\'on que contiene la muestra sobre el par\'ametro a estimar. Esto nos lleva a definir el concepto de suficiencia: intuitivamente, un estimador es suficiente si contiene toda la informaci\'on acerca del par\'ametro a estimar que est\'a presente en la muestra original. Claramente ser\'a deseable trabajar con estimadores suficientes.
 
@@ -192,7 +192,7 @@ f(x_1,\ldots,x_n;\theta_1,\theta_2)=g(T_1(X_1,\ldots,X_n),T_2(X_1,\ldots,X_n);\t
 \end{equation*}
 \end{teorema}
 
-\subsubsection{Estad\'istico minimal suficiente.}
+\subsubsectioncol{Estad\'istico minimal suficiente.}
 El concepto de suficiencia nos permite buscar un estad\'istico que contenga toda la informaci\'on presente en la muestra acerca del par\'ametro a estimar. Ahora buscamos el \textbf{estad\'istico minimal suficiente}, entendiendo por \'este un estad\'istico que resuma la informaci\'on contenida en la muestra lo m\'as posible, pero que siga siendo suficiente.
 
 \begin{definicion}
@@ -210,7 +210,7 @@ Si podemos encontrar una funci\'on $g(x_1,\ldots,x_n)$ tal que el cociente de la
 
 En el caso de tener $k$ par\'ametros deber\'iamos encontrar $k$ funciones para las que el cociente de verosimilitudes no dependa de los par\'ametros si y solo si $g_i(x_1,\ldots,x_n)=g_i(y_1,\ldots,y_n)$ para todo $i$.
 
-\subsubsection{Relaci\'on entre eficiencia y suficiencia.}
+\subsubsectioncol{Relaci\'on entre eficiencia y suficiencia.}
 
 Sabemos que si un estimador $\hat{\theta}$ es insesgado y su varianza alcanza la cota de Cramer-Rao, se verifica que 
 \begin{equation*}
@@ -237,7 +237,7 @@ dF_n(x_1,\ldots,x_n;\theta)=g(\hat{\theta},\theta)h(x_1,\ldots,x_n)
 \end{equation*}
 que, aplicando el criterio de factorizaci\'on de Fischer-Neymann, nos dice que el estimador es suficiente. Es decir, un estimador eficiente e insesgado es siempre suficiente.
 
-\subsubsection{Estimadores suficientes y estimadores UMVUE.}
+\subsubsectioncol{Estimadores suficientes y estimadores UMVUE.}
 
 La suficiencia desempe\~na un papel importante en la obtenci\'on de estimadores insesgados uniformemente de m\'inima varianza.
 
