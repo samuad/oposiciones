@@ -82,5 +82,14 @@ del modelo incorporar\'a dicha variable, mostrando autocorrelaci\'on.
 
 \subsectioncol{Consecuencias de la autocorrelaci\'on.}
 
-Al igual que con le heteroscedasticidad, la autocorrelaci\'on no afecta a la sesgadez ni a la consistencia del estimador.
+Al igual que con le heteroscedasticidad, la autocorrelaci\'on no afecta a la insesgadez del estimador, siempre que las variables independientes sean ex\'ogenas.
+
+En lo que se refiere a la consistencia, tampoco se ve afectada por la autocorrelaci\'on.
+
+SIn embargo, el teorema de Gauss-Markov requiere de homoscedasticidad y no autocorrelaci\'on de los errores, por lo que el estimador MCO ya no ser\'a ELIO, y por tanto no ser\'a eficiente. Adem\'as, los errores est\'adary los estad\'isticos que hemos utilizado para realizar inferencia sobre los estimadores tampoco son ya v\'alidos, ni siquiera asint\'oticamente.
+
+En cuanto a las medidas de bondad del ajuste, $R^2$ y $\bar{R}^2$, no se ven afectados siempre que los datos sean estacionarios y d\'ebilmente dependientes.
+
+\sectioncol{Inferencia robusta a la heterocedasticidad y a la autocorrelaci\'on.}
+
 
