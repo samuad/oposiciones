@@ -106,6 +106,10 @@ Y se cumple que $Var(u_i|\boldsymbol{x}_i)=\sigma^2_i$, con los $\sigma^2_i$ no 
 
 \begin{align*}
 \hat{\boldsymbol{\beta}}&=\boldsymbol{\beta}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u} \\
-Var(\hat{\boldsymbol{\beta}}|\boldsymbol{X})&=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}Var(\boldsymbol{u}|\boldsymbol{X})\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}
+Var(\hat{\boldsymbol{\beta}}|\boldsymbol{X})&=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}Var(\boldsymbol{u}|\boldsymbol{X})\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1} \\
 \end{align*}
 
+Y un estimador consistente de la varianza ser\'a:
+\begin{equation*}
+\hat{Var}(\hat{\boldsymbol{\beta}}|\boldsymbol{X})&=[n/(n-k)]\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\left(\sum_{i=1}^n\hat{u}_i^2\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1} \\
+\end{equation*}
