@@ -15,9 +15,68 @@ Hay que tener varias cosas en cuenta:
 \item Si la hip\'otesis se refiere al valor de un par\'ametro desconocido de la poblaci\'on hablamos de un contraste param\'etrico. Si no se refiere a ning\'un par\'ametro, si no a la distribuci\'on poblacional globalmente, hablamos de contrastes no param\'etricos.
 \end{itemize}
 
-En este tema nos centraremos en los constrastes param\'etricos simples.
+En este tema nos centraremos en los contrastes param\'etricos simples.
 
 \sectioncol{Errores y potencia de un contraste.}
 \subsectioncol{Planteamiento general de los contrastes de hip\'otesis.}
 
-Los elementos principales de un contraste de hip\'otesis
+Los elementos principales de un contraste de hip\'otesis consisten en una variable poblacional, $X$ y dos hip\'otesis, $H_0$ y $H_1$, no intercambiables acerca de la distribuci\'on de probabilidad asociada a $X$. Se trata de analizar, a partir de una muestra aleatoria, si se puede descartar $H_0$, o si no hay razones suficientes para descartarla a partir de la informaci\'on que proporciona la muestra.
+
+Por tanto, los dos \'unicos resultados posibles de un contraste ser\'an rechazar o no rechazar $H_0$. Dado que ello se decide a partir de los resultados incluidos en la muestra, el espacio muestral $\Chi$ se divide en dos regiones o subconjuntos: el subconjunto $C$, o regi\'on cr\'itica, que contiene todas las muestras aleatorias para las que se rechaza la hip\'otesis nula, y el subconjunto $C^c$, regi\'on de aceptaci\'on, que contiene todas aquellas muestras para las que no se puede rechazar la hip\'otesis nula. Por tanto, podemos ver un contraste de hip\'otesis como una divisi\'on del espacio muestral en estas dos regiones. Estos tests reciben el nombre de no aleatorizados.
+
+En cambio, un contraste aleatorizado define una funci\'on medible:
+\begin{equation*}
+\varsigma:\Chi\to[0,1]
+\end{equation*}
+
+llamada funci\'on cr\'itica del contraste, que refleja la probabilidad de rechazar la hip\'otesis nula para cada elemento del espacio muestral.
+
+El empleo de una u otra clase de contraste depender\'a de los efectos al aplicarlo.
+
+\subsectioncol{Errores de un contraste.}
+
+Tal y como hemos planteado los contrastes, se produce una doble disyuntiva:
+\begin{itemize}
+\item La hip\'otesis nula puede ser verdadera o falsa.
+\item Podemos rechazar o no rechazar la hip\'otesis nula.
+\end{itemize}
+
+Esto nos define cuatro posibles resultados de un contraste:
+
+\begin{tabular}{|c|c|c|}
+\hline 
+ & \textbf{$H\_0$ es cierta} & \textbf{$H\_0$ es falsa} \tabularnewline
+\hline 
+\hline 
+\textbf{Rechazar $H\_0$} & Error de tipo I & Decisi\'on correcta\tabularnewline
+\hline 
+\textbf{No rechazar $H\_0$}  & Decisi\'on correcta & Error de tipo II\tabularnewline
+\hline 
+\end{tabular}
+
+Lo deseable ser\'ia encontrar un contraste que minimizase ambos errores. Por desgracia, lo habitual es que la disminuci\'on en la probabilidad de cometer un error aumente la probabilidad de cometer el otro. En consecuencia, el procedimiento que se sigue tradicionalmente para dise\~nar un contraste es:
+\begin{enumerate}
+\item Fijar, en funci\'on de las hip\'otesis y el contexto del problema, una cota m\'inima para la probabilidad de cometer el error de tipo I. A esta cota se le llama \textit{nivle de significaci\'on}, $\alpha$, del contraste.
+\item Eliminar todos aquellos contrastes que no cumplan que $P(C|H_0)\leq\alpha$, o bien que $E_{H_0}(\varphi(X_1,\ldots,X_n))\leq\alpha$. Es decir, que la probabilidad de rechazar $H_0$ cuando es cierta no supere el valor fijado por el nivel de significaci\'on.
+\item Entre los contrastes no excluidos intentar hallar el que minimiza la probabilidad de cometer el error de tipo II, es decir, el que minimice $P(C^c|H_1)$ o bien $E_{H_1}(\varphi(X_1,\ldots,X_n))$.
+\end{enumerate}
+
+\subsectioncol{Potencia de un contraste.}
+
+Si estamos hablando de contrastes param\'etricos, podemos formular adem\'as la funci\'on de potencia del contraste, $\beta(\theta)=P(C|\theta)$ o bien $\beta(\theta)=E_{\theta}(\varphi(X_1,\ldots,X_n))$, que nos da la probabilidad de cometer error de tipo I para cada valor posible del par\'ametro. Un contraste tendr\'a un nivel de significaci\'on $\alpha$ si $\beta(\theta)\leq\alpha$ para cualquier valor de $\theta$ para el que se cumpla la hip\'otesis nula, $\theta\in\Theta_0$. El tama\~no tel contraste ser\'a el mayor valor de esta funci\'on de potencia en el subconjunto $\theta\in\Theta_0$.
+
+Si el valor del par\'ametro pertenece al subconjunto $\Theta_1$, de valores del par\'ametro para los que se cumple la hip\'otesis alternativa, est\'a claro que la probabilidad de cometer error del tipo II ser\'a $1-\beta(\theta)$, y por tanto hay que intentar maximizar la potencia para todos los valores $\theta\in\Theta_1$ simult\'aneamente. Salvo que $\Theta_1$ solo contenga un elemento, solo en circunstancias muy favorables existir\'an contrastes que maximicen la potencia para todos los valores tales que $\theta\in\Theta_1$. A estos contrastes se les llama contrastes uniformemente m\'as potentes.
+
+\sectioncol{Hip\'otesis simples.}
+
+\sectioncol{Lema de Neyman-Pearson.}
+
+Tenemos una poblaci\'on con una fucni\'on de densidad que depende de un par\'ametro, $f(x;\theta)$, y sobre ese par\'ametro se definen dos hip\'otesis simples, nula, $H_0:\theta=\theta_0$ y alternativa $H_1:\theta=\theta_1$. Sobre la poblaci\'on tomamos una muestra aleatoria simple de tama\~no $n$, cuya funci\'on de verosimilitud ser\'a $L(\boldsymbol{X};\theta)$. Particularizamos la verosimilitud para cada una de las hip\'otesis, $L(\boldsymbol{X};\theta_0)$ y $L(\boldsymbol{X};\theta_1)$. Si definimos un nivle de significaci\'on $\alpha$ y definimos la regi\'on cr\'itica como aquella para la que:
+
+\begin{equation*}
+\dfrac{L(\boldsymbol{X};\theta_0)}{L(\boldsymbol{X};\theta_1)}\leq K
+\end{equation*}
+
+El contraste que se obtiene de esta forma es \'optimo.
+
+
