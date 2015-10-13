@@ -86,10 +86,26 @@ Al igual que con le heteroscedasticidad, la autocorrelaci\'on no afecta a la ins
 
 En lo que se refiere a la consistencia, tampoco se ve afectada por la autocorrelaci\'on.
 
-SIn embargo, el teorema de Gauss-Markov requiere de homoscedasticidad y no autocorrelaci\'on de los errores, por lo que el estimador MCO ya no ser\'a ELIO, y por tanto no ser\'a eficiente. Adem\'as, los errores est\'adary los estad\'isticos que hemos utilizado para realizar inferencia sobre los estimadores tampoco son ya v\'alidos, ni siquiera asint\'oticamente.
+Sin embargo, el teorema de Gauss-Markov requiere de homoscedasticidad y no autocorrelaci\'on de los errores, por lo que el estimador MCO ya no ser\'a ELIO, y por tanto no ser\'a eficiente. Adem\'as, los errores est\'adary los estad\'isticos que hemos utilizado para realizar inferencia sobre los estimadores tampoco son ya v\'alidos, ni siquiera asint\'oticamente.
 
 En cuanto a las medidas de bondad del ajuste, $R^2$ y $\bar{R}^2$, no se ven afectados siempre que los datos sean estacionarios y d\'ebilmente dependientes.
 
 \sectioncol{Inferencia robusta a la heterocedasticidad y a la autocorrelaci\'on.}
 
+\subsectioncol{Inferencia robusta a la heterocedasticidad.}
+
+Puesto que los contrastes d ehip\'otesis acerca de los coeficientes del modelo son fundamentales en cualquier an\'alisis econom\'etrico, y dado que esta inferencia basada en el estimador MCO es incorrecta si aparece heteroscedasticidad, parece que tendremos que abandonar este estimador. Sin embargo, se han desarrollado una serie m\'etodos para ajustar los contrastes en presencia de heterocedasticidad de forma desconocida. Estos m\'etodos se conocen como m\'etodos \textit{robustos a la heterocedasticidad}, dado que al menos para muestras grandes son v\'alidos aun si no tenemos homoscedasticidad.
+
+Tenemos el modelo lineal:
+
+\begin{equation*}
+\boldsymbol{y}=\boldsymbol{X\beta}+\boldsymbol{u}
+\end{equation*}
+
+Y se cumple que $Var(u_i|\boldsymbol{x}_i)=\sigma^2_i$, con los $\sigma^2_i$ no necesariamente iguales, y $Cov(u_i,u_j|\boldsymbol{x}_i)=0$ si $i\neq j$. Entonces, sabemos que:
+
+\begin{align*}
+\hat{\boldsymbol{\beta}}&=\boldsymbol{\beta}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u} \\
+Var(\hat{\boldsymbol{\beta}}|\boldsymbol{X})&=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}Var(\boldsymbol{u}|\boldsymbol{X})\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}
+\end{align*}
 
