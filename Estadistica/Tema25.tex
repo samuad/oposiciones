@@ -1,0 +1,53 @@
+\chapter[Hip\'otesis compuestas y contrastes uniformemente m\'as potentes.]{Hip\'otesis compuestas y contrastes uniformemente m\'as potentes. \\
+\normalsize Contrastes de significaci\'on, p-valor. Contraste de raz\'on de verosimilitudes. Contrastes sobre la media y varianza en poblaciones normales. Contrastes en poblaciones no necesariamente normales. Muestras grandes.}
+
+\sectioncol{Introducci\'on.}
+
+
+\sectioncol{Hip\'otesis compuestas.}
+En general los contrastes en los que tanto la hip\'otesis nula como la alternativa son simples se presentan con muy poca frecuencia, ya que las conjeturas alternativas no suelen ser tan precisas. Pr otro lado, contrastes del tipo $H_0:\theta\in\Theta_0$ frente a $H_1:\theta\in\Theta_1$ de forma gen\'erica son demasiado gen\'ericos y no se suelen encontrar contrastes uniformemente de m\'axima potencia.
+
+Afortunadamente, en la pr\'actica muchas hip\'otesis son de la forma:
+
+
+{\addtolength{\leftskip}{50mm}
+$H_0:\theta\leq\theta_0$ frente a $H_1:\theta>\theta_0$\\
+$H_0:\theta\geq\theta_0$ frente a $H_1:\theta<\theta_0$
+}
+
+que reciben el nombre de contrastes unilaterales, o bien de la forma
+
+
+{\addtolength{\leftskip}{50mm}
+$H_0:\theta=\theta_0$ frente a $H_1:\theta\neq\theta_0$
+}\\
+que reciben el nombre de contrastes bilaterales.
+
+\subsectioncol{Hip\'otesis unilaterales.}
+Para este tipo de hip\'otesis no est\'a asegurada la existencia de un contraste uniformemente m\'as potente. Si embargo, s\'i que existe para ciertas familias de distribuciones y ciertas hip\'otesis.
+
+\begin{definicion}
+La distribuci\'on de probabilidad de una muestra dependiente de un par\'ametro $\theta$ es de raz\'on de verosimilitudes mon\'otona si existe un estad\'istico unidimensional $T$ tal que para $\theta<\theta^{\prime}$ fijos, el cociente de densidades de probabilidad,
+\begin{equation*}
+\dfrac{f_{\theta^{\prime}}(x_1,\ldots,x_n)}{f_{\theta}(x_1,\ldots,x_n)}
+\end{equation*}
+es una funci\'on mon\'otona de $T$.
+\end{definicion}
+
+Esta condici\'on se verifica para muchas distribuciones, como la de Poisson, Gamma, Beta, Normal, etc. Bajo esta condici\'on no hay dificultad en obtener tests uniformemente de m\'axima potencia para contrastar hip\'otesis unilaterales.
+
+\begin{teorema}
+\textbf{Teorema de Karlin-Rubin:} Si la distribuci\'on de probabilidad de una muestra tiene raz\'on de verosimilitud mon\'otona en el estad\'istico $T$, entonces 
+\begin{enumerate}
+\item Para cada $\alpha\in(0,1)$ existe un contraste $\varphi$ de tama\~no $\alpha$ u uniformemente m\'as potente para contrastar $H_0:\theta\leq\theta_0$ frente a $H_1:\theta>\theta_0$ que es de la forma:
+\begin{equation*}
+\varphi(x_1,\ldots,x_n)=\left\{\begin{matrix}{ccc}
+1 & si & T(x_1,\ldots,x_n)>c \\
+\gamma & si & T(x_1,\ldots,x_n)=c \\
+0 & si & T(x_1,\ldots,x_n)<c \\
+\end{matrix}\right.
+\end{equation*}
+\item Todo contraste cuya funci\'on cr\'itica tenga la forma de la anterior tiene funci\'on de potencia $\beta(\theta)$ estrictamente creciente mientras sea $0<\beta(\theta)<1$.
+\item Para cualquier contraste $\varphi^{\prime}$ con $E_{\theta}[\varphi^{\prime}]=\alpha$ se cumple que $E_{\theta}[\varphi]\leq E_{\theta}[\varphi^{\prime}]$ para cualquier $\theta\leq\theta_0$.
+\end{enumerate}
+\end{teorema}
