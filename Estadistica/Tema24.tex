@@ -22,11 +22,11 @@ En este tema nos centraremos en los contrastes param\'etricos simples.
 
 Los elementos principales de un contraste de hip\'otesis consisten en una variable poblacional, $X$ y dos hip\'otesis, $H_0$ y $H_1$, no intercambiables acerca de la distribuci\'on de probabilidad asociada a $X$. Se trata de analizar, a partir de una muestra aleatoria, si se puede descartar $H_0$, o si no hay razones suficientes para descartarla a partir de la informaci\'on que proporciona la muestra.
 
-Por tanto, los dos \'unicos resultados posibles de un contraste ser\'an rechazar o no rechazar $H_0$. Dado que ello se decide a partir de los resultados incluidos en la muestra, el espacio muestral $\Chi$ se divide en dos regiones o subconjuntos: el subconjunto $C$, o regi\'on cr\'itica, que contiene todas las muestras aleatorias para las que se rechaza la hip\'otesis nula, y el subconjunto $C^c$, regi\'on de aceptaci\'on, que contiene todas aquellas muestras para las que no se puede rechazar la hip\'otesis nula. Por tanto, podemos ver un contraste de hip\'otesis como una divisi\'on del espacio muestral en estas dos regiones. Estos tests reciben el nombre de no aleatorizados.
+Por tanto, los dos \'unicos resultados posibles de un contraste ser\'an rechazar o no rechazar $H_0$. Dado que ello se decide a partir de los resultados incluidos en la muestra, el espacio muestral $\chi$ se divide en dos regiones o subconjuntos: el subconjunto $C$, o regi\'on cr\'itica, que contiene todas las muestras aleatorias para las que se rechaza la hip\'otesis nula, y el subconjunto $C^c$, regi\'on de aceptaci\'on, que contiene todas aquellas muestras para las que no se puede rechazar la hip\'otesis nula. Por tanto, podemos ver un contraste de hip\'otesis como una divisi\'on del espacio muestral en estas dos regiones. Estos tests reciben el nombre de no aleatorizados.
 
 En cambio, un contraste aleatorizado define una funci\'on medible:
 \begin{equation*}
-\varsigma:\Chi\to[0,1]
+\psi :\chi\to[0,1]
 \end{equation*}
 
 llamada funci\'on cr\'itica del contraste, que refleja la probabilidad de rechazar la hip\'otesis nula para cada elemento del espacio muestral.
@@ -63,7 +63,7 @@ Lo deseable ser\'ia encontrar un contraste que minimizase ambos errores. Por des
 
 \subsectioncol{Potencia de un contraste.}
 
-Si estamos hablando de contrastes param\'etricos, podemos formular adem\'as la funci\'on de potencia del contraste, $\beta(\theta)=P(C|\theta)$ o bien $\beta(\theta)=E_{\theta}(\varphi(X_1,\ldots,X_n))$, que nos da la probabilidad de cometer error de tipo I para cada valor posible del par\'ametro. Un contraste tendr\'a un nivel de significaci\'on $\alpha$ si $\beta(\theta)\leq\alpha$ para cualquier valor de $\theta$ para el que se cumpla la hip\'otesis nula, $\theta\in\Theta_0$. El tama\~no tel contraste ser\'a el mayor valor de esta funci\'on de potencia en el subconjunto $\theta\in\Theta_0$.
+Si estamos hablando de contrastes param\'etricos, podemos formular adem\'as la funci\'on de potencia del contraste, $\beta(\theta)=P(C|\theta)$ o bien $\beta(\theta)=E_{\theta}(\varphi(X_1,\ldots,X_n))$, que nos da la probabilidad de rechazar la hip\'otesis nula para cada valor posible del par\'ametro. Un contraste tendr\'a un nivel de significaci\'on $\alpha$ si $\beta(\theta)\leq\alpha$ para cualquier valor de $\theta$ para el que se cumpla la hip\'otesis nula, $\theta\in\Theta_0$. El tama\~no tel contraste ser\'a el mayor valor de esta funci\'on de potencia en el subconjunto $\theta\in\Theta_0$.
 
 Si el valor del par\'ametro pertenece al subconjunto $\Theta_1$, de valores del par\'ametro para los que se cumple la hip\'otesis alternativa, est\'a claro que la probabilidad de cometer error del tipo II ser\'a $1-\beta(\theta)$, y por tanto hay que intentar maximizar la potencia para todos los valores $\theta\in\Theta_1$ simult\'aneamente. Salvo que $\Theta_1$ solo contenga un elemento, solo en circunstancias muy favorables existir\'an contrastes que maximicen la potencia para todos los valores tales que $\theta\in\Theta_1$. A estos contrastes se les llama contrastes uniformemente m\'as potentes.
 
@@ -71,7 +71,7 @@ Si el valor del par\'ametro pertenece al subconjunto $\Theta_1$, de valores del 
 
 \sectioncol{Lema de Neyman-Pearson.}
 
-Tenemos una poblaci\'on con una fucni\'on de densidad que depende de un par\'ametro, $f(x;\theta)$, y sobre ese par\'ametro se definen dos hip\'otesis simples, nula, $H_0:\theta=\theta_0$ y alternativa $H_1:\theta=\theta_1$. Sobre la poblaci\'on tomamos una muestra aleatoria simple de tama\~no $n$, cuya funci\'on de verosimilitud ser\'a $L(\boldsymbol{X};\theta)$. Particularizamos la verosimilitud para cada una de las hip\'otesis, $L(\boldsymbol{X};\theta_0)$ y $L(\boldsymbol{X};\theta_1)$. Si definimos un nivle de significaci\'on $\alpha$ y definimos la regi\'on cr\'itica como aquella para la que:
+Tenemos una poblaci\'on con una funci\'on de densidad que depende de un par\'ametro, $f(x;\theta)$, y sobre ese par\'ametro se definen dos hip\'otesis simples, nula, $H_0:\theta=\theta_0$ y alternativa $H_1:\theta=\theta_1$. Sobre la poblaci\'on tomamos una muestra aleatoria simple de tama\~no $n$, cuya funci\'on de verosimilitud ser\'a $L(\boldsymbol{X};\theta)$. Particularizamos la verosimilitud para cada una de las hip\'otesis, $L(\boldsymbol{X};\theta_0)$ y $L(\boldsymbol{X};\theta_1)$. Si definimos un nivle de significaci\'on $\alpha$ y definimos la regi\'on cr\'itica como aquella para la que:
 
 \begin{equation*}
 \dfrac{L(\boldsymbol{X};\theta_0)}{L(\boldsymbol{X};\theta_1)}\leq K
@@ -79,4 +79,36 @@ Tenemos una poblaci\'on con una fucni\'on de densidad que depende de un par\'ame
 
 El contraste que se obtiene de esta forma es \'optimo.
 
+\begin{teorema}
+\textbf{Lema de Neyman-Pearson:} Sea una poblaci\'on con funci\'on de distribuci\'on $f(x;\theta)$, dependiente de un par\'ametro. Sea un contraste de hip\'otesis formado por la hip\'otesis nula $H_0:\theta=\theta_0$ y la hip\'otesis alternativa $H_1:\theta=\theta_1$. Sea una muestra aleatoria con fucni\'on de densidad de probabilidad $f_{\theta}(x_1,\ldots,x_n)$. SI $C$ es un subconjunto del espacio muestral, y $k$ es un n\'umero positivo fijado tal que
+\begin{align*}
+\dfrac{f_{\theta_0}(x_1,\ldots,x_n)}{f_{\theta_1}(x_1,\ldots,x_n)}&\leq k si (x_1,\ldots,x_n) \in C \\
+\dfrac{f_{\theta_0}(x_1,\ldots,x_n)}{f_{\theta_1}(x_1,\ldots,x_n)}&> k si (x_1,\ldots,x_n) \notin C \\
+P((x_1,\ldots,x_n) \in C|\theta=\theta_0)=\alpha
+\end{align*}
+Entonces $C$ es la regi\'on cr\'itica de un contraste de significaci\'on $\alpha$ para el contraste anterior de m\'axima potencia dentro de la familia de contrastes no aleatorizados.
+\end{teorema}
 
+Este lema no solo nos indica que la regi\'on cr\'itica que cumple el primer punto sea la mejor, tambi\'en nos da un m\'etodo para determinarla, sin necesidad de comprobar la pertenencia del punto de la muestra a $C$, ya que 
+\begin{equation*}
+\left\{\boldsymbol{X}\in C\right\}\iff \left\{\dfrac{f_{\theta_0}(x_1,\ldots,x_n)}{f_{\theta_1}(x_1,\ldots,x_n)}\leq k\right\}\iff\left\{T(x_1,\ldots,x_n;\theta_0,\theta_1)\leq k_1\right\}
+\end{equation*}
+
+Siendo $T$ y $k_1$ el resultado de simplificar el cociente.
+
+Y por tanto, 
+\begin{equation*}
+P\left\{\boldsymbol{X}\in C\right\}=P\left\{\dfrac{f_{\theta_0}(x_1,\ldots,x_n)}{f_{\theta_1}(x_1,\ldots,x_n)}\leq k\right\}=P\left\{T(x_1,\ldots,x_n;\theta_0,\theta_1)\leq k_1\right\}
+\end{equation*}
+
+As\'i que habr\'a que encontrar el $k$ que cumpla que 
+\begin{equation*}
+P\left[\dfrac{f_{\theta_0}(x_1,\ldots,x_n)}{f_{\theta_1}(x_1,\ldots,x_n)}\leq k|\theta=\theta_0\right]=\alpha
+\end{equation*}
+
+O el $k_1$ que cumpla que
+\begin{equation*}
+P\left[T(x_1,\ldots,x_n;\theta_0,\theta_1)\leq k_1|\theta=\theta_0\right]=\alpha
+\end{equation*}
+
+En la mayor parte de casos, la dificultad se centra en determinar la distribuci\'on en el muestreo.
