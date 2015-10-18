@@ -94,7 +94,7 @@ En cuanto a las medidas de bondad del ajuste, $R^2$ y $\bar{R}^2$, no se ven afe
 
 \subsectioncol{Inferencia robusta a la heterocedasticidad.}
 
-Puesto que los contrastes d ehip\'otesis acerca de los coeficientes del modelo son fundamentales en cualquier an\'alisis econom\'etrico, y dado que esta inferencia basada en el estimador MCO es incorrecta si aparece heteroscedasticidad, parece que tendremos que abandonar este estimador. Sin embargo, se han desarrollado una serie m\'etodos para ajustar los contrastes en presencia de heterocedasticidad de forma desconocida. Estos m\'etodos se conocen como m\'etodos \textit{robustos a la heterocedasticidad}, dado que al menos para muestras grandes son v\'alidos aun si no tenemos homoscedasticidad.
+Puesto que los contrastes de hip\'otesis acerca de los coeficientes del modelo son fundamentales en cualquier an\'alisis econom\'etrico, y dado que esta inferencia basada en el estimador MCO es incorrecta si aparece heteroscedasticidad, parece que tendremos que abandonar este estimador. Sin embargo, se han desarrollado una serie m\'etodos para ajustar los contrastes en presencia de heterocedasticidad de forma desconocida. Estos m\'etodos se conocen como m\'etodos \textit{robustos a la heterocedasticidad}, dado que al menos para muestras grandes son v\'alidos aun si no tenemos homoscedasticidad.
 
 Tenemos el modelo lineal:
 
@@ -105,11 +105,287 @@ Tenemos el modelo lineal:
 Y se cumple que $Var(u_i|\boldsymbol{x}_i)=\sigma^2_i$, con los $\sigma^2_i$ no necesariamente iguales, y $Cov(u_i,u_j|\boldsymbol{x}_i)=0$ si $i\neq j$. Entonces, sabemos que:
 
 \begin{align*}
-\hat{\boldsymbol{\beta}}&=\boldsymbol{\beta}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u} \\
-Var(\hat{\boldsymbol{\beta}}|\boldsymbol{X})&=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}Var(\boldsymbol{u}|\boldsymbol{X})\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1} \\
+\hat{\boldsymbol{\beta}}&=\boldsymbol{\beta}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u}= \boldsymbol{\beta}+\left(n^{-1}\sum_{i=1}^n\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)^{-1}\left(n^{-1}\sum_{i=1}^n\boldsymbol{x}_i^{\prime}u_i\right)\\
+Var(\hat{\boldsymbol{\beta}})&=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}Var(\boldsymbol{u})\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1} \\
 \end{align*}
 
-Y un estimador consistente de la varianza ser\'a:
+Y, por la ley de los grandes n\'umeros:
+\begin{align*}
+\left(n^{-1}\sum_{i=1}^n\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)&\overset{p}{\to}E(\boldsymbol{x}^{\prime}\boldsymbol{x})\\
+\left(n^{-1}\sum_{i=1}^n\boldsymbol{x}_i^{\prime}u_i\right)&\overset{p}{\to}E(\boldsymbol{x}^{\prime}u)=\boldsymbol{0}\\
+\end{align*}
+
+
+Como $E(\boldsymbol{x}^{\prime}\boldsymbol{x})$ es no singular, por las hip\'otesis del modelo, aplicando las propiedades de la convergencia en probabilidad, 
+\begin{align*}
+\left(n^{-1}\sum_{i=1}^n\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)^{-1}&\overset{p}{\to}E(\boldsymbol{x}^{\prime}\boldsymbol{x})^{-1}\\
+\end{align*}
+
+Por tanto,
+\[\sqrt{n}(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta})=\left(n^{-1}\sum_{i=1}^n\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)^{-1}\left(n^{-1/2}\sum_{i=1}^n\boldsymbol{x}_i^{\prime}u_i\right) \]
+
+Como $\left(n^{-1}\sum_{i=1}^n\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)^{-1}\overset{p}{\to}E(\boldsymbol{x}^{\prime}\boldsymbol{x})^{-1}$, $\left(n^{-1}\sum_{i=1}^n\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)^{-1}-E(\boldsymbol{x}^{\prime}\boldsymbol{x})^{-1}\overset{p}{\to}0$. Por tanto, $\left(n^{-1}\sum_{i=1}^n\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)^{-1}-E(\boldsymbol{x}^{\prime}\boldsymbol{x})^{-1}=o_p(1)$ y $\left(n^{-1}\sum_{i=1}^n\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)^{-1}=E(\boldsymbol{x}^{\prime}\boldsymbol{x})^{-1}+o_p(1)$. Como adem\'as $\left(n^{-1/2}\sum_{i=1}^n\boldsymbol{x}_i^{\prime}u_i\right)=O_p(1)$, podemos escribir:
+
+\[\sqrt{n}(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta})=\left(E(\boldsymbol{x}^{\prime}\boldsymbol{x})\right)^{-1}\left(n^{-1/2}\sum_{i=1}^n\boldsymbol{x}_i^{\prime}u_i\right)+o_p(1) \]
+
+Por el teorema central del l\'imite, podemos decir que 
+\[ \left(n^{-1/2}\sum_{i=1}^n\boldsymbol{x}_i^{\prime}u_i\right)\overset{d}{\to}N(\boldsymbol{0};E(u^2\boldsymbol{x}^{\prime}\boldsymbol{x})\]
+
+Y por tanto, 
+\[\sqrt{n}(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta})\overset{d}{\to}N(\boldsymbol{0};\left(E(\boldsymbol{x}^{\prime}\boldsymbol{x})\right)^{-1}E(u^2\boldsymbol{x}^{\prime}\boldsymbol{x})\left(E(\boldsymbol{x}^{\prime}\boldsymbol{x})\right)^{-1})\]
+
+As\'i, la varianza asint\'otica de nuestro estimador ser\'a:
+
+\[Avar(\hat{\boldsymbol{\beta}})=n^{-1}\left(E(\boldsymbol{x}^{\prime}\boldsymbol{x})\right)^{-1}E(u^2\boldsymbol{x}^{\prime}\boldsymbol{x})\left(E(\boldsymbol{x}^{\prime}\boldsymbol{x})\right)^{-1}\]
+
+Como $\left(n^{-1}\sum_{i=1}^n\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)^{-1}\overset{p}{\to}E(\boldsymbol{x}^{\prime}\boldsymbol{x})^{-1}$, $\left(n^{-1}\sum_{i=1}^n\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)^{-1}$ ser\'a un estimador consistente de $E(\boldsymbol{x}^{\prime}\boldsymbol{x})^{-1}$.
+
+Como por la ley de los grandes n\'umeros $\left(n^{-1}\sum_{i=1}^nu_i^2\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)\overset{p}{\to}E(u^2\boldsymbol{x}^{\prime}\boldsymbol{x})$, $\left(n^{-1}\sum_{i=1}^n\hat{u}_i^2\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)$ ser\'a un estimador consistente de $E(u^2\boldsymbol{x}^{\prime}\boldsymbol{x})$, donde hemos sustituido los valores de la perturbaci\'on, desconocidos, por los residuos del modelo MCO.
+
+
+Y un estimador consistente de la varianza asint\'otica ser\'a:
 \begin{equation*}
-\hat{Var}(\hat{\boldsymbol{\beta}}|\boldsymbol{X})=[n/(n-k)]\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\left(\sum_{i=1}^n\hat{u}_i^2\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1} 
+\hat{Avar}(\hat{\boldsymbol{\beta}})=[n/(n-k)]\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\left(\sum_{i=1}^n\hat{u}_i^2\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1} 
 \end{equation*}
+
+
+Donde hemos a\~nadido el multiplicador $[n/(n-k)]$ como una correcci\'on de grados de libertad. Este elemento asegura que, si los $\hat{u}_i^2$ fuesen constantes para todas la $i$ (un evento casi imposible, pero la mayor evidencia de homocedasticidad que se puede encontrar), con este m\'etodo obtendr\'iamos los errores est\'andar del estimador MCO. Hay cierta evidencia que esto permite mejorar el comportamiento del estimador en muestras de tama\~no finito. Hay otras formas de ajustar la ecuaci\'on para conseguir esto, pero si $n$ es muy grande con respecto a $k$, estos ajustes son en general equivalentes.
+
+Los elementos de la diagonal principal de este estimador ser\'an las varianzas robustas a la heterocedasticidad de cada coeficiente del modelo:
+\begin{equation*}
+\hat{Var}(\hat{\beta}_j)=\dfrac{\sum_{i=1}^n\hat{r}_{ij}^2\hat{u}_i^2}{STC_j^2}
+\end{equation*}
+
+Donde $\hat{r}_{ij}$ es el residuo de regresar $x_j$ sobre el resto de variables explicativas, y $STC_j$ es la suma de cuadrados de los residuos de esta regesi\'on. La ra\'iz cuadrada de esta cantidad es el error est\'andar para $\hat{\beta}_j$ robusto a la heterocedasticidad.
+
+A partir de estos errores est\'andar es sencillo obtener un estad\'istico $t$ robusto a la heterocedasticidad. La forma general de un estad\'istico $t$ es:
+\begin{equation*}
+t=\dfrac{\text{valor estimado}-\text{valor a contrastar}}{\text{error est\'andar}}
+\end{equation*}
+
+Y puesto que el valor estimado lo obtenemos a partir de los estimadores MCO, el valor a contrastar viene de la hip\'otesis nula, y el error est\'andar robusto a la heterocedasticidad lo acabamos de calcular, podemos construir el estad\'istico. Hay que tener en cuenta que la distribuci\'on de este estad\'istico es asint\'otica, por lo que no valdr\'ia para muestras peque\~nas.
+
+En presencia del heterocedasticidad, los estad\'isticos $F$ para el contraste de hip\'otesis m\'ultiples y $LM$ dejan de ser v\'alidos. El estad\'istico robusto a la heterocedasticidad equivalente al $F$ se llama \textit{estad\'istico de Wald}, y se calcula as\'i:
+
+La forma matricial de la hip\'otesis nula es:
+\[ H_0:\boldsymbol{R\beta}=\boldsymbol{r}\]
+Donde $\boldsymbol{R}$ es una matriz $q\times k$, siendo $q$ el n\'umero de restricciones a contrastar, y $r$ es $q\times 1$
+
+A partir de lo que hemos visto es f\'acil definir que $\boldsymbol{R}(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta})\overset{d}{\to}N(\boldsymbol{0};\boldsymbol{R}^{\prime}Avar(\hat{\boldsymbol{\beta}})\boldsymbol{R})$, y si se cumple la hip\'otesis nula, $\boldsymbol{R\beta}=\boldsymbol{r}$, y por tanto,
+\[\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r}\overset{d}{\to}N(\boldsymbol{0};\boldsymbol{R}^{\prime}Avar(\hat{\boldsymbol{\beta}})\boldsymbol{R})\]
+
+Y, por tanto,
+\[(\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r})^{\prime}\left[\boldsymbol{R}^{\prime}Avar(\hat{\boldsymbol{\beta}})\boldsymbol{R}\right]^{-1} (\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r})\overset{d}{\to}\chi^2_q \]
+
+
+Tambi\'en tenemos que el estimador consistente de la varianza es:
+\begin{equation*}
+\hat{Avar}(\hat{\boldsymbol{\beta}})=[n/(n-k)]\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\left(\sum_{i=1}^n\hat{u}_i^2\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1} 
+\end{equation*}
+
+Y llegamos a la conclusi\'on de que:
+\[[n/(n-k)](\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r})^{\prime}\left[\boldsymbol{R}^{\prime}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\left(\sum_{i=1}^n\hat{u}_i^2\boldsymbol{x}_i^{\prime}\boldsymbol{x}_i\right)\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{R}\right]^{-1} (\boldsymbol{R}\hat{\boldsymbol{\beta}}-\boldsymbol{r})\overset{d}{\to}\chi^2_q \]
+
+Que recibe el nombre de estad\'istico de Wald, $W$, es robusto a la heterocedasticidad para muestras grandes. Con \'el podemos contrastar la significaci\'on de un grupo de coeficientes del modelo.
+
+
+\subsectioncol{Inferencia robusta a la autocorrelaci\'on.}
+
+Puesto que los contrastes de hip\'otesis acerca de los coeficientes del modelo son fundamentales en cualquier an\'alisis econom\'etrico, y dado que esta inferencia basada en el estimador MCO es incorrecta si aparece autocorrelaci\'on, parece que tendremos que abandonar este estimador. Sin embargo, se han desarrollado una serie m\'etodos para ajustar los contrastes en presencia de autocorrelaci\'on de forma desconocida.
+
+Consideremos el modelo de regresi\'on lineal m\'ultiple est\'andar:
+\[y=\boldsymbol{x}\boldsymbol{\beta}+u\]
+
+Nos interesa obtener un error est\'andar robusto a la autocorrelaci\'opn para los $\hat{\beta}_i$. 
+
+
+\sectioncol{Estimaci\'on por m\'inimos cuadrados generalizados factibles.}
+
+\subsectioncol{El estimador de m\'inimos cuadrados generalizados.}
+
+Vamos ahora a calcular un estimador del modelo que no dependa ni de la homocedasticidad ni de la ausencia de correlci\'on. En este caso, la matriz de varianzas y covarianzas de la perturbaci\'on ser\'a de la form: $\var(\boldsymbol{u})=\sigma_u^2\boldsymbol{\Sigma}$, donde $\boldsymbol{\Sigma}$ es una matriz sim\'etrica y definida positiva (por ser una matriz de varianzas).
+
+Sabemos que el estimador MCO bajo el supuesto de $Var\left(\boldsymbol{u}\right)=\sigma_{u}^{2}\boldsymbol{I}_{n}$
+es el estimador lineal insesgado de m\'inima varianza. Esta propiedad
+no se mantiene necesariamente si el supuesto sobre la matriz de covarianzas
+no se cumple, y puede haber un estimador lineal insesgado con menor
+varianza.
+
+En estas circunstancias, intentamos transformar el modelo en otro
+con los mismos coeficientes, pero cuyo t\'ermino de error tenga una
+matriz de covarianzas escalar. En este caso podr\'iamos utilizar el
+estimador MCO, y sabr\'iamos que es eficiente. Para ello premultiplicamos
+el modelo por una matriz $\boldsymbol{P}$ de dimensiones $n\times n$:
+$\boldsymbol{P}\boldsymbol{y}=\boldsymbol{P}\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{P}\boldsymbol{u}$,
+y denotamos $\boldsymbol{y}^{*}=\boldsymbol{P}\boldsymbol{y}$, $\boldsymbol{X}^{*}=\boldsymbol{P}\boldsymbol{X}$
+y $\boldsymbol{u}^{*}=\boldsymbol{P}\boldsymbol{u}$. Realmente hemos
+hecho un cambio de variable en el modelo, las nuevas $\boldsymbol{y}^{*}$
+son combinaciones lineales de las $\boldsymbol{y}$ antiguas y los
+coeficientes de esas combinaciones lineales son las filas de la matriz
+$\boldsymbol{P}$. Algo similar ocurre con las $\boldsymbol{X}^{*}$
+y las $\boldsymbol{u}^{*}$. Los coeficientes del modelo transformado
+son los mismos que los del modelo original. La matriz de covarianzas
+del t\'ermino de error del nuevo modelo es: $Var\left(\boldsymbol{u}^{*}\right)=Var\left(\boldsymbol{P}\boldsymbol{u}\right)=\sigma_{u}^{2}\boldsymbol{P}\boldsymbol{\Sigma}\boldsymbol{P}^{\prime}$.
+
+Como la matriz $\boldsymbol{\Sigma}$ es sim\'etrica y definida positiva,
+sabemos que siempre existe una matriz cuadrada no singular $\boldsymbol{V}$
+de modo que $\boldsymbol{\Sigma}=\boldsymbol{V}\boldsymbol{V}^{\prime}$,
+o equivalentemente, $\boldsymbol{V}^{-1}\boldsymbol{\Sigma}\left(\boldsymbol{V}^{-1}\right)^{\prime}=\boldsymbol{I}_{n}$,
+$\boldsymbol{\Sigma}^{-1}=\left(\boldsymbol{V}^{-1}\right)^{\prime}\boldsymbol{V}^{-1}$.
+As\'i, si hacemos $\boldsymbol{P}=\boldsymbol{V}^{-1}$ el t\'ermino de
+error del modelo transformado tiene matriz de covarianzas escalar.
+El estimador MCO de los par\'ametros del modelo transformado es: 
+\[
+\hat{\boldsymbol{\beta}}_{MCG}=\left(\boldsymbol{X}^{*\prime}\boldsymbol{X}^{*}\right)^{-1}\boldsymbol{X}^{*\prime}\boldsymbol{y}^{*}
+\]
+ y se le llama estimador de m\'inimos cuadrados generalizados de los
+coeficientes del modelo original. En funci\'on de las variables originales
+tenemos que:
+\[
+\hat{\boldsymbol{\beta}}_{MCG}=\left(\boldsymbol{X}\left(\boldsymbol{V}^{-1}\right)^{\prime}\boldsymbol{V}^{-1}\boldsymbol{X}\right)^{-1}\boldsymbol{X}\left(\boldsymbol{V}^{-1}\right)^{\prime}\boldsymbol{V}^{-1}\boldsymbol{y}=\left(\boldsymbol{X}^{\prime}\boldsymbol{\Sigma}^{-1}\boldsymbol{X}\right)^{-1}\boldsymbol{X}\boldsymbol{\Sigma}^{-1}\boldsymbol{y}
+\]
+ claramente vemos que es distinto del estimador MCO aplicado al modelo
+original.
+
+
+\subsubsectioncol{Propiedades del estimador MCG.}
+
+Como obtenemos el estimador a partir de aplicar MCO a un modelo transformado,
+podemos asegurar algunas propiedades:
+\begin{itemize}
+\item El estimador MCG es insesgado: $\hat{\boldsymbol{\beta}}_{MCG}=\boldsymbol{\beta}+\left(\boldsymbol{X}^{*\prime}\boldsymbol{X}^{*}\right)^{-1}\boldsymbol{X}^{*\prime}\boldsymbol{u}^{*}$
+y como $E\left(\boldsymbol{u}^{*}\right)=\boldsymbol{0}_{N}$, entonces
+$E\left(\hat{\boldsymbol{\beta}}_{MCG}\right)=\boldsymbol{\beta}$.
+\item Matriz de covarianzas: $Var\left(\hat{\boldsymbol{\beta}}_{MCG}\right)=\sigma_{u}^{2}\left(\boldsymbol{X}^{*\prime}\boldsymbol{X}^{*}\right)^{-1}=\sigma_{u}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{\Sigma}^{-1}\boldsymbol{X}\right)^{-1}$.
+\item Ecuaciones normales: el estimador MCG satisface un sistema de ecuaciones
+normales. Si $\left(\boldsymbol{X}^{*\prime}\boldsymbol{X}^{*}\right)\hat{\boldsymbol{\beta}}=\boldsymbol{X}^{*\prime}\boldsymbol{y}^{*}$
+es el sistema de ecuaciones normales que satisface el estimador MCO
+del modelo transformado, para el estimador MCG tendremos:
+\[
+\left(\boldsymbol{X}^{\prime}\boldsymbol{\Sigma}^{-1}\boldsymbol{X}\right)\hat{\boldsymbol{\beta}}_{MCG}=\boldsymbol{X}^{\prime}\boldsymbol{\Sigma}^{-1}\boldsymbol{y}
+\]
+ que es el sistema de ecuaciones normales que satisface el estimador
+MCG.
+\item Hay dos formas equivalentes de obtener el estimador MCG: descomponiendo
+la matriz $\boldsymbol{\Sigma}$ y transformando las matrices de datos
+del modelo original para aplicar MCO al modelo transformado, o usando
+la expresi\'on matricial del estimador,
+\item Eficiencia: el estimador MCG es el estimador lineal insesgado de m\'inima
+varianza del vector de par\'ametros $\boldsymbol{\beta}$, ya que el
+modelo transformado satisface todas las condiciones necesarias para
+que se le pueda aplicar el teorema de Gauss-Markov, as\'i que su estimador
+MCO es el estimador lineal insesgado de m\'inima varianza para sus coeficientes.
+Como ese estimador coincide con el estimador MCG del modelo original
+y los coeficientes son los mismos, el estimador MCG ser\'a el de varianza
+m\'inima. Puede ocurrir que ambos estimadores coincidan aunque la matriz
+de varianzas del t\'ermino de error no sea escalar.
+\end{itemize}
+
+\subsubsectioncol{Estimaci\'on del par\'ametro $\sigma_{u}^{2}$.}
+
+Como el modelo transformado tiene matriz de covarianzas escalar, tenemos
+que 
+\[
+\hat{\sigma}_{MCG}^{2}=\dfrac{\hat{\boldsymbol{u}}^{*\prime}\hat{\boldsymbol{u}}^{*}}{N-k}=\dfrac{\hat{\boldsymbol{u}}_{MCG}^{\prime}\boldsymbol{\Sigma}^{-1}\hat{\boldsymbol{u}}_{MCG}}{N-k}
+\]
+ donde $\hat{\boldsymbol{u}}_{MCG}=\boldsymbol{y}-\boldsymbol{X}\hat{\boldsymbol{\beta}}_{MCG}$.
+Este estimador es insesgado.
+
+
+\subsubsectioncol{El coeficiente de determinaci\'on.}
+
+En este contexto no podemos utilizar el estad\'istico $R^{2}$ como
+medida del ajuste del modelo. El modelo transformado puede no tener
+t\'ermino constante, con lo que el$R^{2}$ calculado no estar\'ia acotado
+entre cero y uno, adem\'as de que mide el ajuste de las variables transformadas,
+que no es lo que nos interesa. Calcul\'andolo con las variables de inter\'es
+tampoco se puede asegurar que est\'e acotado.
+
+\subsubsectioncol{El estimador MC ponderados?.}
+
+\subsectioncol{El estimador MCG factible.}
+
+El problema que presenta el estimador MCG es que hay que conocer la forma de la varianza del t\'ermino de error, y esto normalmente no es as\'i, salvo casos muy excepcionales.
+
+Sin embargo, lo que s\'i es m\'as habitual es poser especificar un modelo para la funci\'on de la heterocedasticidad, y desconocer sus par\'ametros. As\'i, podremos usar los datos para estimar los par\'ametros de este modelo. Esto dar\'a como resultado una estimaci\'on de cada element de la diagonal principal de la matriz de varianzas y covarianzas, $h_i$ que denominaremos $\hat{h}_i$. Si utilizamos el estimador en la transformaci\'on del modelo, obtendremos el estimador de m\'inimos cuadrados generalizados \textbf{factible (MCGF)}.
+
+Si en lugar de la estimaci\'on utiliz\'asemos el verdadero valor de las $h_i$ para transformar el modrçelo, el estimador ser\'ia insesgado, consistente y ELIO. El haber tenido que utilizar las $\hat{h}_i$, estimadas con los mismos datos, implica que el estimador ya no es insesgado (por lo tanto no es ELIO). SIn embargo el estimador MCGF es consistente y asint\'oticamente m\'as eficiente que el MCO, convirti\'endole en una buena alternativa para muestras grandes si hay evidencia de que la heterocedasticidad aumenta los errores est\'andar del estimador MCO.
+
+\sectioncol{Principales contrastes de heterocedasticidad y de autocorrelaci\'on.}
+
+\subsectioncol{Contrastes de heterocedasticidad.}
+
+Se han propuesto una serie de contrastes para detectar la presencia de heterocedasticidad en l varianza del t\'ermino de error. Estos contrastes se deben utilizar para contestar a la pregunta de si la varianza condicionada es funci\'on de las variables explicativas, y no para decidir que estimador debemos usar, principalmente porque nuestra hip\'otesis nula es la ausencia de heterocedasticidad, lo que no nos asegura que esta no est\'e presente aunque no podamos rechazar la hip\'otesis nula.
+
+\subsubsectioncol{Contraste de Breusch y Pagan.}
+
+Partimos del modelo lineal general, con el conjunto de supuestos cl\'asicos (que no incluyen la homocedasticidad), y queremos contrastar la hip\'otesis nula $H_0:Var(u_i)=E(u_i^2)=\sigma^2$, de que el modelo presenta homocedasticidad. Si $H_0$ se cumple, el valor esperado del cuadrado del t\'ermino de error no puede estar relacionado de ninguna forma con las variables independientes. Si la hip\'otesis nula no se cumple, $E(u^2)$ puede ser cualquier funci\'on de las variables independientes.
+
+Un m\'etodo simple es suponer una funci\'on lineal:
+
+\[u^2=\delta_0+\delta_1x_1+\cdots+\delta_kx_k+v\]
+
+Y en este caso, la hip\'otesis nula de homocedasticidad equivale a:
+\[H_0:\delta_1=\delta_2=\cdots+\delta_k=0\]
+
+Si se cumple la hip\'otesis nula, el t\'ermino de error, $v$, es independiente de las $x_i$, y por tanto, tanto el estad\'istico $F$ como el $LM$ de significatividad global de las variables independientes son v\'alidos. Estos estad\'isticos tendr\'an una justificaci\'on asint\'otica aunque $u$ no siga una distribuci\'on normal.
+
+Como no conecemos los errores reales de nuiestra muestra, vamos a usar los residuos como estimadores de los mismos. Por tanto, estimaremos la ecuaci\'on
+\[\hat{u}^2=\delta_0+\delta_1x_1+\cdots+\delta_kx_k+v\]
+
+Y calcularemos los estad\'isticos $F$ y $LM$ para la significatividad conjunta de $x_1,\ldots,x_k$. Se puede demostrar que el uso de los residuos no afecta a la distribuci\'on de los estad\'isticos para muestras grandes.
+\begin{align*}
+F&=\dfrac{R^2_{\hat{u}^2}/k}{1-R^2_{\hat{u}^2}/(n-k-1)}\sim F_{k;n-k-1}& \text{ Bajo la hip\'otesis nula}\\
+LM&=n\cdot R^2_{\hat{u}^2}\sim\chi^2_{k}& \text{ Bajo la hip\'otesis nula}
+\end{align*}
+
+A la versi\'on $LM$ del contraste se la llama contraste de Breusch y Pagan.
+
+\subsubsectioncol{Contraste de White.}
+
+El supuesto de homocedasticidad puede reemplazarse, sin que dejen de tener validez los errores est\'andar ni los contrastes de significatividad, por el supuesto m\'as d\'ebil de que el error al cuadrado, $u^2$, est\'a incorrelacionado con las variables independientes, sus cuadrados, y sus productos cruzados. Esto llev\'o a WHite a proponer un contraste de heterocedasticidad que a\~nade esto t\'erminos, para contrastar todas las fromas de heterocedasticidad que invalidan los errores est\'andar y los estad\'isticos.
+
+Por tanto, siguiendo el mismo prncipio que con el contraste de Breusch y Pagan, hay que regresar los cuadrados de los residuos del modelo MCO contra las variable sindependientes, sus cuadrados, y sus produztos cruzados, y contrastar la significaci\'on global del modelo. EL contraste de White utiliza el estad\'istico $LM$, que es asint\'oticamente v\'alido.
+
+El problema de este contraste es que los cuadrados y los productos cruzados hacen que aumenten mucho los grados de libertad del modelo, incluso para un n\'umero moderado de variables independientes.
+
+Para soslayar este problema, podemos usar el hecho de que los valores ajustados por MCO son funci º'on de las variables independientes:
+\[\hat{y}_i=\hat{\beta}_0+\hat{\beta}_1x_{i1}+\cdots+\hat{\beta}_kx_{ik}\]
+
+Por tanto, elevando al cuadrado las $\hat{y}_i$ obtendremos todos los produtos cruzados. As\'i, si ajustamos el modelo:
+\[\hat{u}^2=\delta_0+\delta_1\hat{y}+\delta_2\hat{y}^2+v\]
+
+Y usamos los estad\'isticos $F$ y $LM$ para contrastar la hip\'otesis nula de que $\delta_1=\delta_2=0$ estaremos realizando un contraste equivalente al de White.
+
+Dado que $\hat{y}$ es un estimador de $E(y|\boldsymbol{x})$, esta versi\'on del contraste es \'util en aquellas situaciones en las que se espera que la varianza cambie con el nivel de valor esperado.
+
+
+\subsectioncol{Contrastes de autocorrelaci\'on.}
+
+En general, los contrastes de autocorrelaci\'on se basan en el hecho de que si los errores est\'an correlacionados tambi\'en lo estar\'an los residuos. Por eso, el contraste mº'a intuitivo consiste en regresar los residuos estimados por MCO respecto de los mismos residuos retardados un per\'iodo, y usar el estad\'istico $t$ pata contrastar la significaci\'on del modelo. 
+
+Este contraste solo ser\'a v\'alido si los regresores no est\'an correlacionados con los errores en ning\'un instante, y por tanto no es correcto si existen retardos de la variable end\'ogena.
+
+\subsubsectioncol{Contraste de Durbin-Watson.}
+Solo es v\'alido de forma estricta si se cumplen las hip\'otesis de modelo lineal cl\'asico y el modelo tiene t\'ermino constante. Se basa en el estad\'istico de Durbin-Watson:
+
+\[
+DW=\dfrac{\sum_{i=2}^{n}\left(\hat{u}_{i}-\hat{u}_{i-1}\right)^{2}}{\sum_{i=2}^{n}\hat{u}_{i}^{2}}=2(1-\hat{\rho})-\dfrac{\hat{u}_1^2+\hat{u}_n^2}{\sum_{i=2}^{n}\hat{u}_{i}^{2}}
+\]
+
+Si la muestra es suficientemente grande, podemos despreciar el \'ultimo t\'ermino, y tenemos $DW\approx 2(1-\hat{\rho})$.
+
+Este contraste es conceptualmente igual al de significaci\'on de la regresi\'on de los residuos sobre s\'i mismos. Si no hay autocorrelaci\'on, $\hat{\rho}=0$ y $DW=2$. Si el valor es inferior a dos, cntrastaremos correlaci\'on positiva, si es superior a dos correlaci\'on negativa. El estad\'istico est\'a tabulado, y depende del nivel de significaci\'on, del tama\~no de la muestra y del n\'umero de variables explicativas. Las tablas muestran dos valores, $d_i$ o valorinferiro y $d_s$ o valor superior.
+\begin{itemize}
+\item Si $DW<d_i$, rechazamos la hip\'otesis nula de no existencia de autocorrelaci\'on, y la autocorrelaci\'on ser\'a positiva.
+\item Si $DW>d_s$, no podemos rechazar la hip\'otesis nula.
+\item Si $d_i<DW<d_s$, el contraste no es concluyente.
+\end{itemize}
+
+Si se quiere contrastar la hip\'otesis nula de ausencia de autocorrelaci\'on contra la hip\'otesis alternativa de autocorrelaci\'on negativa de primer orden, se lleva a cabo el mismo proceso, pero para el estad\'istico $4-DW$.
+
+Este contraste exige unas hip\'otesis muy fuertes, que no se cumplen con demasida frecuencia, y por otro lado tiene una amplia regi\'on de indecisi\'on. Es por esto que en general se prefieren otros contrastes.
+
+
+
+
