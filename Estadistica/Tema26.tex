@@ -6,6 +6,8 @@ Hasta ahora los contrastes que hemos visto se han basado en una poblaci\'on para
 
 Para obviar este problema se han desarrollado las t\'ecnicas no param\'etricas, en las que el conjunto de hip\'otesis de partida se reducen, e incluso desaparecen, con lo que disminuye el riesgo de errores dentro del proceso inferencial debido a una mala formulaci\'on de dichas hip\'otesis.
 
+Estos contrastes tienen la ventaja de que se pueden aplicar a caracter\'isticas cardinales e incluso nominales. Como inconveniente hay que destacar que en general son de baja potencia.
+
 Dentro de los contrastes no param\'etricos est\'an los de bondad del ajuste. El objetivo de los contrastes de bondad del ajuste es verificar si una muestra proviene de una poblaci\'on con una determinada distribuci\'on de probabilidad. En general la hip\'otesis nula asume que la distribuci\'on propuesta es la correcta. 
 
 
@@ -86,7 +88,7 @@ El contraste de Kolmogorov-Smirnoff es m\'as eficiente para casos en los que la 
 
 donde $I_{(-\infty,x)}(x_i)$ es la funci\'on indicador, que cumple que $I_{(-\infty,x]}(x_i)=1$ si $x_i\in(-\infty,x]$ y $I_{(-\infty,x]}(x_i)=0$ si $x_i\notin(-\infty,x]$.
 
-Si la poblaci\'on de la que viene la muestra tiene una funci\'on de distribuci\'on $F$, el teorema de Glvenko-Cantelli nos dice que hay una probabilidad uno de que al aumentar $n$ $F_n$ converja a $F$, es decir, $F_n\overset{c.s.}{\to}F$, o lo que es lo mismo, sea $\Delta_n=\sup_{x\in\mathbb{R}}|F_n(x)-F(x)|$,
+Si la poblaci\'on de la que viene la muestra tiene una funci\'on de distribuci\'on $F$, el teorema de Glivenko-Cantelli nos dice que hay una probabilidad uno de que al aumentar $n$ $F_n$ converja a $F$, es decir, $F_n\overset{c.s.}{\to}F$, o lo que es lo mismo, sea $\Delta_n=\sup_{x\in\mathbb{R}}|F_n(x)-F(x)|$,
 \[P\left[\lim_{n\to\infty}\Delta_n=0\right]=1\]
 
 Por tanto, para contrastar la hip\'otesis nula $H_0:F=F_0$, se utiliza el estad\'istico:
@@ -99,3 +101,67 @@ Se sabe que si $F_0$ es cont\'inua la distribuci\'on del estad\'istico no depend
 \[P\left(\sqrt{n}\Delta_n\leq z\right)\to\sum_{k=-\infty}^{\infty}(-1)^ke^{2k^2z^2}\]
 
 que tambi\'en est\'a tabulada.
+
+\sectioncol{Contrastes de normalidad.}
+
+El contraste de Kolmogorov-Smirnof no es v\'alido cuando nos encontramos ante una hip\'otesis compuesta, es decir, si no conocemos todos los par\'ametros de la distribuci\'on a contrastar, y un caso bastante importante es cuando se quiere contrastar si un conjunto de datos procede de una poblaci\'on normal con media y varianza desconocidas. Para este caso hay varias opciones:
+
+\subsectioncol{Contraste de normalidad de Lilliefors.}
+
+Consiste en aplicar el contraste de Kolmogorov-Smirnof estimando la media y la varianza por la media muestral y la cuasivarianza muestral y tipificando los valores muestrales del siguiente modo: $Z_i=\dfrac{X_i-\bar{X}}{S_X}$, para contrastar la hip\'otesis nula $H_0:Z\sim N(0;1)$. Aplicamos el contraste de K-S, y la regi\'on cr\'itica es del tipo $C=\{\Delta_n>c\}$, y los cuantiles del estad\'istico para los distintos valores de $n$ y $\alpha$ est\'an tabulados. Este contraste tiene una potencia baja para tama\~nos muestrales medianos.
+
+\subsectioncol{Contraste de normalidad de Shapiro-Wilks.}
+
+Este contraste funciona muy bien en muestras peque\~nas, y no es necesario estimar los par\'ametros de la normal. Se basa en medir el ajuste de los puntos de la muestra a una recta dibujada en papel normal. Se rechaza la normalidad para valores peque\~nos del estad\'istico.
+
+Se parte de la muestra ordenada, $X_{(1)}\leq X_{(2)}\leq\cdots\leq X_{(n)}$. El estad\'istico de Shapiro-Wilks viene dado por:
+\[W=\dfrac{\left[\sum_{i=1}^ka_{i,n}(X_{(n-i+1)}-X_{(i)})\right]^2}{\sum_{i=1}^n(X_i-\bar{X})^2}\]
+
+con $k=\dfrac{n}{2}$ si $n$ es par, $k=\dfrac{n-1}{2}$ si $n$ es impar. La regi\'on cr\'itica es de la forma $C=\{W<c\}$. Tanto los $a_{i,n}$ como los cuantiles del estad\'istico est\'an tabulados. La raz\'on de la forma de la regi\'on cr\'itica es que el estad\'istico mide el ajuste a la distribuci\'on, no la discrepancia entre las hip\'otesis.
+
+\sectioncol{Contrastes de independencia.}
+
+\subsectioncol{Contraste $\chi^2$ de independecia.}
+
+Supongamos que tenemos una poblaci\'on de la que se han observado dos caracter\'isticas, $X$ e $Y$, obteniendo una muestra aleatoria simple bidimensional. Sobre la base de dichas observaciones se desea contrastar si $X$ e $Y$ son independientes.
+
+Para ello dividimos el recorrido de $X$ en $k$ clase disjuntas, $A_1\ldots,A_r$ y el de $Y$ en $r$ clases, $B_1\ldots,B_k$. Al clasificar los elementos de la muestra en las distintas clases, aparecer\'a un n\'umero de ellos, $n_{ij}$ en cada una de las $k\times r$ combinaciones. COn esta clasificaci\'on podemos dibujar una \textit{tabla de contingencia}:
+\\
+\\
+
+\begin{tabular}{|c|cccc|c|}
+\hline 
+ & $B_1$ & $B_2$ & $\cdots$ & $B_r$ & Total \tabularnewline
+\hline 
+$A_1$ & $n_{11}$ & $n_{12}$ & $\cdots$ & $n_{1r}$ & $n_{1.}$ \tabularnewline
+$A_2$ & $n_{21}$ & $n_{22}$ & $\cdots$ & $n_{2r}$ & $n_{2.}$ \tabularnewline
+$\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ & $\vdots$ \tabularnewline
+$A_k$ & $n_{k1}$ & $n_{k2}$ & $\cdots$ & $n_{kr}$ & $n_{k.}$ \tabularnewline
+\hline 
+Total  & $n_{.1}$ & $n_{.2}$ & $\cdots$ & $n_{.r}$ & $n$ \tabularnewline
+\hline 
+\end{tabular}
+
+Si definimos como $p_{ij}$ la probabilidad que la distribuci\'on poblacional asigna al suceso $\{X\in A_i, Y\in B_j\}$, la hip\'otesis de independencia implica $p_{ij}=p_{i.}p_{.j}$ para cualesquiera $i$, $j$, con $p_{i.}=P\{X\in A_i\}$, $p_{.j}=\{Y\in B_j\}$. Por tanto, si nuestra hip\'otesis nula es que las variables son independientes, medimos la discrepancia mediante un estad\'istico an\'alogo al introducido por Pearson:
+
+\[\chi^2=\sum_{i=1}^k\sum_{j=1}^r\dfrac{\left(O_{ij}-E{ij}\right)^2}{E{ij}}=\sum_{i=1}^k\sum_{j=1}^r\dfrac{\left(n_{ij}-\dfrac{n_{i.}n_{.j}}{n}\right)^2}{\dfrac{n_{i.}n_{.j}}{n}}\sum_{j=1}^r\dfrac{n_{ij}^2}{\dfrac{n_{i.}n_{.j}}{n}}-n\]
+
+La regi\'on cr\'itica es del tipo $C=\{\chi^2>c\}$, y para calcularla se utiliza que, bajo la hip\'otesis nula, $\chi^2\overset{d}{\to}\chi^2_{(k-1)(r-1)}$. Este contraste se puede generalizar al caso de m\'as de dos variables, planteando tablas de contingencia de m\'as dimensiones. Es importante recordar que la distribuci\'on del estad\'istico es asint\'otica, por lo que debe haber un n\'umero suficiente de observaciones en cada celda.
+
+\subsectioncol{Contraste $\tau$ de Kendall.}
+
+Supongamos que tenemos una muestra aleatoria simple de una distribuci\'on bidimensional cont\'inua. Definimos:
+\begin{align*}
+\pi_{+}&=P[(X_1-X_2)(Y_1-Y_2)>0] \\
+\pi_{-}&=P[(X_1-X_2)(Y_1-Y_2)<0] 
+\end{align*}
+Son parº'ametros poblacionales que miden la probabilidad de que haya una asociaci\'on positiva o negativa entre las dos variables. Como la distribuci\'on es cont\'inua, $P[(X_1-X_2)(Y_1-Y_2)=0]=0$. Por tanto, como $\pi_+=1-\pi_-$, definimos $\tau=\pi_+-\pi_-=2\pi_+-1$, coeficiente de asociaci\'on de Kendall, que mide en cierto modo la asociaci\'on entre las variables. Si las variables son independientes, $\pi_+=\pi_-$ y por tanto $\tau=0$, aunque el rec\'iproco no es cierto.
+
+Una vez tenemos la muestra, podemos contrastar la independencia con un estimador de $\tau$. Para ello definimos:
+\[c_{ij}=\left\{\begin{matrix}
+1 & \text{  si  } (x_i-x_j)(y_1-y_j)>0 \\
+-1 & \text{  si  } (x_i-x_j)(y_1-y_j)<0 
+\end{matrix}\right.\]
+
+Cuya media es $\tau$, as\'i que definimos el coeficiente de asociaci`-on muestral>
+
