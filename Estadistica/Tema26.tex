@@ -163,5 +163,59 @@ Una vez tenemos la muestra, podemos contrastar la independencia con un estimador
 -1 & \text{  si  } (x_i-x_j)(y_1-y_j)<0 
 \end{matrix}\right.\]
 
-Cuya media es $\tau$, as\'i que definimos el coeficiente de asociaci`-on muestral>
+Cuya media es $\tau$, as\'i que definimos el coeficiente de asociaci\'on muestral:
+
+\[T=\dfrac{2}{n(n-1)}\sum_{1\leq i\leq j\leq n}c_{ij}\]
+
+Y si definimos $P$, n\'umero de $c_{ij}$ positivos, $N$, n\'umero de $c_{ij}$ negativos:
+
+\[T=\dfrac{2}{n(n-1)}(P-N)\]
+
+Y como $P+N=\dbinom{n}{2}$,
+\[T=\dfrac{4P}{n(n-1)}-1\]
+
+$T$ puede valer entre $-1$ y $1$, y un valor de $P$ alejado de cero indica que las variables no son independientes, ya que $\tau\neq0$. Por tanto, la regi\'on cr\'itica es del tipo $C=\{|T|>c\}$, que contrasta la independencia. La distribuci\'on de $T$ depende solo del orden en el que quedan las $Y_i$ despues de ordenar la muestra seg\'un las $X_i$. Para $n\leq10$ la distribuci\'on se obtiene contando permutaciones, y para $n>10$ se puede utilizar que:
+\[T\overset{d}{\to}N\left(0;\sqrt{\dfrac{2(2n+5)}{9n(n-1)}}\right)\]
+
+\subsectioncol{Coeficiente de correlaci\'on entre rangos de Spearman.}
+
+\sectioncol{Contraste de homogeneidad.}
+
+Estos contrastes se utilizan para comprobar si varias muestras provienen de poblaciones con la misma distribuci\'on de probabilidad.
+
+\subsectioncol{Contraste $\chi^2$ de homogeneidad.}
+
+Se basa en los mismos principios que el contraste $\chi^2$ de bondad del ajuste. Supongamos que tenemos $m$ muestras aleatorias, cuyos tama\~nos son, respectivamente, $(n_1,n_2,\ldots,n_m)$. A partir de estos datos se quiere determinar si la distribuci\'on poblacional es la misma en todos los casos, y por tanto se dispone de una muestra de tama\~no $n=n_1+n_2+\cdots+n_m$, o por el conrario provienen de poblaciones heterog\'eneas.
+
+Dividimos el rango de valores posibles de la variable en $k$ conjuntos disjuntos, $A_1, A_2,\ldots,A_k$ y clasificamos en cada uno de ellos las observaciones de cada muestra. Designamos por $n_{ij}$ en n\'umero de observaciones de la muestra $i$ que corresponden al subconjunto $A_j$, y podemos tabular los datos seg\'un las siguiente tabla de contingencia:
+\\
+\\
+\begin{tabular}{|c||cccc|c|}
+\hline 
+ Muestra & $A_1$ & $A_2$ & $\cdots$ & $A_k$ & Total \tabularnewline
+\hline 
+$1$ & $n_{11}$ & $n_{12}$ & $\cdots$ & $n_{1k}$ & $n_{1}$ \tabularnewline
+$2$ & $n_{21}$ & $n_{22}$ & $\cdots$ & $n_{2k}$ & $n_{2}$ \tabularnewline
+$\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ & $\vdots$ \tabularnewline
+$m$ & $n_{m1}$ & $n_{m2}$ & $\cdots$ & $n_{mk}$ & $n_{m}$ \tabularnewline
+\hline 
+Total  & $n_{.1}$ & $n_{.2}$ & $\cdots$ & $n_{.k}$ & $n$ \tabularnewline
+\hline 
+\end{tabular}
+
+Si se cumple la hip\'otesis nula, la probabilidad de que un elemento de la muestra pertenezca al subconjunto $j$, $p_j$, debe se la misma para todas las submuestras. En cambio, si las poblaciones no son homog\'eneas, las probabilidades $p_{ij}$ variar\'an para cada poblaci\'on. El contraste plantea la hip\'otesis nula:
+\[H_0:\left\{\begin{matrix}
+p_{1j}=p_{2j}=\cdots=p_{mj}(=p_j) \\
+\text{para cada  } j=1,2,\ldots,k
+\end{matrix}\right.\]
+
+Prente a la hip\'otesis alternativa de que alguna de las desigualdades sea cierta. El contraste utiliza los estimadores de m\'axima verosimilitud de las probabilidades para determinar las posibles discrepancias: 
+\[\hat{p}_{ij}=\dfrac{n_{ij}}{n_{i.}} \;\;\hat{p}_j=\dfrac{n_{.j}}{n}\]
+
+Para medir las discrepancias entre cada una de las probabilidades estimadas y la probabilidad conjunta se utiliza el estad\'istico:
+\[\chi^2=\sum_{i=1}^m\sum_{j=1}^k\dfrac{n_i}{\hat{p}_{j}}(\hat{p}_{ij}-p_j)^2=\sum_{i=1}^m\sum_{j=1}^k\dfrac{(n_{ij}-\dfrac{n_in_{.j}}{n})^2}{\dfrac{n_in_{.j}}{n}}\]
+
+La regi\'on cr\'itica es de la forma $C)\{\chi^2>c\}$, y la distribuci\'on asint\'otica es $\chi^2\overset{d}{\to}\chi^2_{(m-1)(k-1)}$.
+
+\subsectioncol{Contraste de homogeneidad de Kolmogorov-Smirnov.}
 
