@@ -7,8 +7,44 @@
 
 \sectioncol{Formas funcionales lineales y no lineales en el modelo de regresi\'on m\'ultiple.}
 
+\subsectioncol{Formas funcionales logar\'itmicas.}
+
+
 Seccion 6.2 Wooldridge
 \sectioncol{Regresi\'on m\'ultiple con variables explicativas con informaci\'on cualitativa.}
+EN muchos casos nuestros modelos tienen variables explicativas cuallitativas, es decir, no num\'ericas, como por ejemplo el sexo de un individuo, la provincia en la que est\'a situada una vivienda, el partido pol\'itico al que se ha votado... Vamos a ver como incluir estas variables en nuestros modelos.
+
+\subsectioncol{Descripci\'on de las variables cualitativas.}
+
+Si tenemos una variable cualitativa que puede tomar $r$ valores o categor\'ias, debemos definir $r-1$ variables ficticias.
+
+Es decir, sea la caracter\'istica $z$ que puede tomar los valores $a_1, a_2,\ldots,a_r$, definimos las variables ficticias $z_1, z_2,\ldots,z_{r-1}$, tales que 
+\[z_i=\left\{\begin{array}{ll}
+1 & \text{si } z=a_i \\
+0 & \text{si } z\neq a_i 
+\end{array}\right.\]
+
+No definimos la variable $z_k$, porque dado que el individuo siempre ha de pertenecer a una categor\'ia, tendr\'iamos que $z_k=1-\sum_{i=1}^{r-1}z_i$, y esto introducir\'ia colinealidad en el modelo.
+
+Los valores $1$ y $0$ son arbitrarios, y se podr\'ian haber elegido otros. Se eligen estos porque facilitan la interpretaci\'on de los coeficientes del modelo.
+
+As\'i, el modelo quedar\'ia:
+\[y=\beta_0+\beta_1x_1+\cdots\beta_kx_k+\delta_1z_1+\cdots\delta_{r-1}z_{r-1}+u\]
+
+Y podr\'iamos realizar la estimaci\'on del modelo como habitualmente.
+
+\subsectioncol{Interpretaci\'on de los coeficientes.}
+
+Si se cumple el supuesto de esperanza condiconada nula para el t\'ermino de error, cada coeficiente $\delta_i$ se puede expresar como:
+
+\[\delta_i=E(y|x_1,\ldots,x_k,z_1,\ldots,z_i=1,\ldots,z_{r-1})-E(y|x_1,\ldots,x_k,z_1,\ldots,z_i=0,\ldots,z_{r-1})\]
+
+Es decir, es la diferencia entre la esperanza de la variable dependiente si el individuo presenta el valor $a_i$ en la caracter\'istica $z$ o si presenta el valor $a_r$ (ya que el resto de los $z_j$, permanecen constantes y por lo tanto valdr\'an cero). As\'i, vemos que la categor\'ia que excluimos de las variables act\'ua como "categor\'ia base" con la que se comparan todas las dem\'as. Es conveniente tener esto en cuenta a la hora de elegir dicha categor\'ia base.
+
+En el caso de que la variable dependiente se presente en forma logar\'itmica, los coeficientes $\delta$ multiplicados por 100 se interpretan como la diferencia en porcentaje entre la categor\'ia base y la categor\'ia del coeficiente.
+
+
+
 Seccion 7.1 a 7.3
 \sectioncol{Regresi\'on m\'ultiple con variables binarias que interact\'uan.}
 Seccion 7.4
