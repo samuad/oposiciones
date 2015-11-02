@@ -307,15 +307,15 @@ tampoco se puede asegurar que est\'e acotado.
 
 El problema que presenta el estimador MCG es que hay que conocer la forma de la varianza del t\'ermino de error, y esto normalmente no es as\'i, salvo casos muy excepcionales.
 
-Sin embargo, lo que s\'i es m\'as habitual es poser especificar un modelo para la funci\'on de la heterocedasticidad, y desconocer sus par\'ametros. As\'i, podremos usar los datos para estimar los par\'ametros de este modelo. Esto dar\'a como resultado una estimaci\'on de cada element de la diagonal principal de la matriz de varianzas y covarianzas, $h_i$ que denominaremos $\hat{h}_i$. Si utilizamos el estimador en la transformaci\'on del modelo, obtendremos el estimador de m\'inimos cuadrados generalizados \textbf{factible (MCGF)}.
+Sin embargo, lo que s\'i es m\'as habitual es poder especificar un modelo para la funci\'on de la heterocedasticidad, y desconocer sus par\'ametros. As\'i, podremos usar los datos para estimar los par\'ametros de este modelo. Esto dar\'a como resultado una estimaci\'on de cada elemento de la diagonal principal de la matriz de varianzas y covarianzas, $h_i$ que denominaremos $\hat{h}_i$. Si utilizamos el estimador en la transformaci\'on del modelo, obtendremos el estimador de m\'inimos cuadrados generalizados \textbf{factible (MCGF)}.
 
-Si en lugar de la estimaci\'on utiliz\'asemos el verdadero valor de las $h_i$ para transformar el modrçelo, el estimador ser\'ia insesgado, consistente y ELIO. El haber tenido que utilizar las $\hat{h}_i$, estimadas con los mismos datos, implica que el estimador ya no es insesgado (por lo tanto no es ELIO). SIn embargo el estimador MCGF es consistente y asint\'oticamente m\'as eficiente que el MCO, convirti\'endole en una buena alternativa para muestras grandes si hay evidencia de que la heterocedasticidad aumenta los errores est\'andar del estimador MCO.
+Si en lugar de la estimaci\'on utiliz\'asemos el verdadero valor de las $h_i$ para transformar el modelo, el estimador ser\'ia insesgado, consistente y ELIO. El haber tenido que utilizar las $\hat{h}_i$, estimadas con los mismos datos, implica que el estimador ya no es insesgado (por lo tanto no es ELIO). Sin embargo el estimador MCGF es consistente y asint\'oticamente m\'as eficiente que el MCO, convirti\'endole en una buena alternativa para muestras grandes si hay evidencia de que la heterocedasticidad aumenta los errores est\'andar del estimador MCO.
 
 \sectioncol{Principales contrastes de heterocedasticidad y de autocorrelaci\'on.}
 
 \subsectioncol{Contrastes de heterocedasticidad.}
 
-Se han propuesto una serie de contrastes para detectar la presencia de heterocedasticidad en l varianza del t\'ermino de error. Estos contrastes se deben utilizar para contestar a la pregunta de si la varianza condicionada es funci\'on de las variables explicativas, y no para decidir que estimador debemos usar, principalmente porque nuestra hip\'otesis nula es la ausencia de heterocedasticidad, lo que no nos asegura que esta no est\'e presente aunque no podamos rechazar la hip\'otesis nula.
+Se han propuesto una serie de contrastes para detectar la presencia de heterocedasticidad en la varianza del t\'ermino de error. Estos contrastes se deben utilizar para contestar a la pregunta de si la varianza condicionada es funci\'on de las variables explicativas, y no para decidir que estimador debemos usar, principalmente porque nuestra hip\'otesis nula es la ausencia de heterocedasticidad, lo que no nos asegura que esta no est\'e presente aunque no podamos rechazar la hip\'otesis nula.
 
 \subsubsectioncol{Contraste de Breusch y Pagan.}
 
@@ -330,12 +330,12 @@ Y en este caso, la hip\'otesis nula de homocedasticidad equivale a:
 
 Si se cumple la hip\'otesis nula, el t\'ermino de error, $v$, es independiente de las $x_i$, y por tanto, tanto el estad\'istico $F$ como el $LM$ de significatividad global de las variables independientes son v\'alidos. Estos estad\'isticos tendr\'an una justificaci\'on asint\'otica aunque $u$ no siga una distribuci\'on normal.
 
-Como no conecemos los errores reales de nuiestra muestra, vamos a usar los residuos como estimadores de los mismos. Por tanto, estimaremos la ecuaci\'on
+Como no conecemos los errores reales de nuestra muestra, vamos a usar los residuos como estimadores de los mismos. Por tanto, estimaremos la ecuaci\'on
 \[\hat{u}^2=\delta_0+\delta_1x_1+\cdots+\delta_kx_k+v\]
 
 Y calcularemos los estad\'isticos $F$ y $LM$ para la significatividad conjunta de $x_1,\ldots,x_k$. Se puede demostrar que el uso de los residuos no afecta a la distribuci\'on de los estad\'isticos para muestras grandes.
 \begin{align*}
-F&=\dfrac{R^2_{\hat{u}^2}/k}{1-R^2_{\hat{u}^2}/(n-k-1)}\sim F_{k;n-k-1}& \text{ Bajo la hip\'otesis nula}\\
+F&=\dfrac{R^2_{\hat{u}^2}/k}{(1-R^2_{\hat{u}^2})/(n-k-1)}\sim F_{k;n-k-1}& \text{ Bajo la hip\'otesis nula}\\
 LM&=n\cdot R^2_{\hat{u}^2}\sim\chi^2_{k}& \text{ Bajo la hip\'otesis nula}
 \end{align*}
 
@@ -343,16 +343,16 @@ A la versi\'on $LM$ del contraste se la llama contraste de Breusch y Pagan.
 
 \subsubsectioncol{Contraste de White.}
 
-El supuesto de homocedasticidad puede reemplazarse, sin que dejen de tener validez los errores est\'andar ni los contrastes de significatividad, por el supuesto m\'as d\'ebil de que el error al cuadrado, $u^2$, est\'a incorrelacionado con las variables independientes, sus cuadrados, y sus productos cruzados. Esto llev\'o a WHite a proponer un contraste de heterocedasticidad que a\~nade esto t\'erminos, para contrastar todas las fromas de heterocedasticidad que invalidan los errores est\'andar y los estad\'isticos.
+El supuesto de homocedasticidad puede reemplazarse, sin que dejen de tener validez los errores est\'andar ni los contrastes de significatividad, por el supuesto m\'as d\'ebil de que el error al cuadrado, $u^2$, est\'a incorrelacionado con las variables independientes, sus cuadrados, y sus productos cruzados. Esto llev\'o a White a proponer un contraste de heterocedasticidad que a\~nade estos t\'erminos, para contrastar todas las formas de heterocedasticidad que invalidan los errores est\'andar y los estad\'isticos.
 
-Por tanto, siguiendo el mismo prncipio que con el contraste de Breusch y Pagan, hay que regresar los cuadrados de los residuos del modelo MCO contra las variable sindependientes, sus cuadrados, y sus produztos cruzados, y contrastar la significaci\'on global del modelo. EL contraste de White utiliza el estad\'istico $LM$, que es asint\'oticamente v\'alido.
+Por tanto, siguiendo el mismo principio que con el contraste de Breusch y Pagan, hay que regresar los cuadrados de los residuos del modelo MCO contra las variables independientes, sus cuadrados, y sus productos cruzados, y contrastar la significaci\'on global del modelo. El contraste de White utiliza el estad\'istico $LM$, que es asint\'oticamente v\'alido.
 
 El problema de este contraste es que los cuadrados y los productos cruzados hacen que aumenten mucho los grados de libertad del modelo, incluso para un n\'umero moderado de variables independientes.
 
-Para soslayar este problema, podemos usar el hecho de que los valores ajustados por MCO son funci º'on de las variables independientes:
+Para soslayar este problema, podemos usar el hecho de que los valores ajustados por MCO son funci\'on de las variables independientes:
 \[\hat{y}_i=\hat{\beta}_0+\hat{\beta}_1x_{i1}+\cdots+\hat{\beta}_kx_{ik}\]
 
-Por tanto, elevando al cuadrado las $\hat{y}_i$ obtendremos todos los produtos cruzados. As\'i, si ajustamos el modelo:
+Por tanto, elevando al cuadrado las $\hat{y}_i$ obtendremos todos los productos cruzados. As\'i, si ajustamos el modelo:
 \[\hat{u}^2=\delta_0+\delta_1\hat{y}+\delta_2\hat{y}^2+v\]
 
 Y usamos los estad\'isticos $F$ y $LM$ para contrastar la hip\'otesis nula de que $\delta_1=\delta_2=0$ estaremos realizando un contraste equivalente al de White.
@@ -362,7 +362,7 @@ Dado que $\hat{y}$ es un estimador de $E(y|\boldsymbol{x})$, esta versi\'on del 
 
 \subsectioncol{Contrastes de autocorrelaci\'on.}
 
-En general, los contrastes de autocorrelaci\'on se basan en el hecho de que si los errores est\'an correlacionados tambi\'en lo estar\'an los residuos. Por eso, el contraste mº'a intuitivo consiste en regresar los residuos estimados por MCO respecto de los mismos residuos retardados un per\'iodo, y usar el estad\'istico $t$ pata contrastar la significaci\'on del modelo. 
+En general, los contrastes de autocorrelaci\'on se basan en el hecho de que si los errores est\'an correlacionados tambi\'en lo estar\'an los residuos. Por eso, el contraste m\'as intuitivo consiste en regresar los residuos estimados por MCO respecto de los mismos residuos retardados un per\'iodo, y usar el estad\'istico $t$ pata contrastar la significaci\'on del modelo. 
 
 Este contraste solo ser\'a v\'alido si los regresores no est\'an correlacionados con los errores en ning\'un instante, y por tanto no es correcto si existen retardos de la variable end\'ogena.
 
@@ -375,7 +375,7 @@ DW=\dfrac{\sum_{i=2}^{n}\left(\hat{u}_{i}-\hat{u}_{i-1}\right)^{2}}{\sum_{i=2}^{
 
 Si la muestra es suficientemente grande, podemos despreciar el \'ultimo t\'ermino, y tenemos $DW\approx 2(1-\hat{\rho})$.
 
-Este contraste es conceptualmente igual al de significaci\'on de la regresi\'on de los residuos sobre s\'i mismos. Si no hay autocorrelaci\'on, $\hat{\rho}=0$ y $DW=2$. Si el valor es inferior a dos, cntrastaremos correlaci\'on positiva, si es superior a dos correlaci\'on negativa. El estad\'istico est\'a tabulado, y depende del nivel de significaci\'on, del tama\~no de la muestra y del n\'umero de variables explicativas. Las tablas muestran dos valores, $d_i$ o valorinferiro y $d_s$ o valor superior.
+Este contraste es conceptualmente igual al de significaci\'on de la regresi\'on de los residuos sobre s\'i mismos. Si no hay autocorrelaci\'on, $\hat{\rho}=0$ y $DW=2$. Si el valor es inferior a dos, contrastaremos correlaci\'on positiva, si es superior a dos correlaci\'on negativa. El estad\'istico est\'a tabulado, y depende del nivel de significaci\'on, del tama\~no de la muestra y del n\'umero de variables explicativas. Las tablas muestran dos valores, $d_i$ o valorinferior y $d_s$ o valor superior.
 \begin{itemize}
 \item Si $DW<d_i$, rechazamos la hip\'otesis nula de no existencia de autocorrelaci\'on, y la autocorrelaci\'on ser\'a positiva.
 \item Si $DW>d_s$, no podemos rechazar la hip\'otesis nula.
@@ -388,9 +388,9 @@ Este contraste exige unas hip\'otesis muy fuertes, que no se cumplen con demasid
 
 \subsubsectioncol{Contraste de Breusch y Godfrey.}
 
-Este contraste tiene como hip\'otesis nula la ausencia de autocorrelaci\'on frente a la hip\'otesis alternativa de presencia de autocorrelaci\'on lineal de orden $q$ en el t\'ermino de error. Se puede utilizar cuando el vextor de regresores incorpora retardos de la variable endo\'ogena, lo cual es muy habitual en modelos de series temporales. El contraste consiste en hacer la regresi\'on de los residuos como sigue:
+Este contraste tiene como hip\'otesis nula la ausencia de autocorrelaci\'on frente a la hip\'otesis alternativa de presencia de autocorrelaci\'on lineal de orden $q$ en el t\'ermino de error. Se puede utilizar cuando el vector de regresores incorpora retardos de la variable end\'ogena, lo cual es muy habitual en modelos de series temporales. El contraste consiste en hacer la regresi\'on de los residuos como sigue:
 
-\[\hat{u}_t=\beta_0+\beta_1x_{1t}+\beta_2x_{2t}+\cdots+\beta_kx_{kt}+\rho_1\hat{u}{t-1}+\rho_2\hat{u}{t-2}+\rho_q\hat{u}{t-q}+\varepsilon_t\]
+\[\hat{u}_t=\beta_0+\beta_1x_{1t}+\beta_2x_{2t}+\cdots+\beta_kx_{kt}+\rho_1\hat{u}_{t-1}+\rho_2\hat{u}_{t-2}+\cdots+\rho_q\hat{u}_{t-q}+\varepsilon_t\]
 
 Para contrastar la ausencia de autocorrelaci\'on contrastamos la significarividad de los t\'erminos asociados a los residuos retardados mediante el contraste LM. El estad\'istico que obtenemos es:
 \[BG_{LM}=(n-q)R^2_{\hat{u}}\]
