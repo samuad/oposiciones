@@ -126,8 +126,11 @@ con $k=\dfrac{n}{2}$ si $n$ es par, $k=\dfrac{n-1}{2}$ si $n$ es impar. La regi\
 Supongamos que tenemos una poblaci\'on de la que se han observado dos caracter\'isticas, $X$ e $Y$, obteniendo una muestra aleatoria simple bidimensional. Sobre la base de dichas observaciones se desea contrastar si $X$ e $Y$ son independientes.
 
 Para ello dividimos el recorrido de $X$ en $k$ clase disjuntas, $A_1\ldots,A_r$ y el de $Y$ en $r$ clases, $B_1\ldots,B_k$. Al clasificar los elementos de la muestra en las distintas clases, aparecer\'a un n\'umero de ellos, $n_{ij}$ en cada una de las $k\times r$ combinaciones. COn esta clasificaci\'on podemos dibujar una \textit{tabla de contingencia}:
-\\
-\\
+
+
+
+
+
 
 \begin{tabular}{|c|cccc|c|}
 \hline 
@@ -188,8 +191,10 @@ Estos contrastes se utilizan para comprobar si varias muestras provienen de pobl
 Se basa en los mismos principios que el contraste $\chi^2$ de bondad del ajuste. Supongamos que tenemos $m$ muestras aleatorias, cuyos tama\~nos son, respectivamente, $(n_1,n_2,\ldots,n_m)$. A partir de estos datos se quiere determinar si la distribuci\'on poblacional es la misma en todos los casos, y por tanto se dispone de una muestra de tama\~no $n=n_1+n_2+\cdots+n_m$, o por el conrario provienen de poblaciones heterog\'eneas.
 
 Dividimos el rango de valores posibles de la variable en $k$ conjuntos disjuntos, $A_1, A_2,\ldots,A_k$ y clasificamos en cada uno de ellos las observaciones de cada muestra. Designamos por $n_{ij}$ en n\'umero de observaciones de la muestra $i$ que corresponden al subconjunto $A_j$, y podemos tabular los datos seg\'un las siguiente tabla de contingencia:
-\\
-\\
+
+
+
+
 \begin{tabular}{|c||cccc|c|}
 \hline 
  Muestra & $A_1$ & $A_2$ & $\cdots$ & $A_k$ & Total \tabularnewline
@@ -219,3 +224,14 @@ La regi\'on cr\'itica es de la forma $C)\{\chi^2>c\}$, y la distribuci\'on asint
 
 \subsectioncol{Contraste de homogeneidad de Kolmogorov-Smirnov.}
 
+Se basa en los mismos principios que el contraste de Kolmogorov-Smirnov de bondad del ajuste. Supongamos que tenemos dos muestras aleatorias, cuyos tama\~nos son, respectivamente, $n, m$. A partir de estos datos se quiere determinar si la distribuci\'on poblacional es la misma en todos los casos, suponiendo que es cont\'inua, y por tanto se dispone de una muestra de tama\~no $N=n+m$, o por el conrario provienen de poblaciones heterog\'eneas.
+
+As\'i, la hip\'otesis nula ser\'a $H_0:F(x)=G(x)$ y la alternativa $H_1:F(x)\neq G(x)$, siendo $F(x)$, $G(x)$ las funciones de distribuci\'on respectivas.
+
+De igual modo que en el caso de los contrastes de bondad del ajuste el contraste de Kolmogorov-Smirnoff es m\'as eficiente para casos en los que las distribuciones de la hip\'otesis nula sean continuas.
+
+Realizaremos el contraste comparando las funciones de distribuci\'on emp\'iricas de ambas muestras, $F_n(x)$, $G_n(x)$. Si la distribuci\'on de probabilidad de las muestras coincide, el teorema de Glivenko-Cantelli nos dice que hay una probabilidad uno de que al aumentar $n$ $F_n-G_n$ converja a $0$, es decir, $F_n-G_n\overset{c.s.}{\to}0$, o lo que es lo mismo, sea $\Delta_{n,m}=\sup_{x\in\mathbb{R}}|F_n(x)-G_n(x)|$,
+\[P\left[\lim_{n,m\to\infty}\Delta_{n,m}=0\right]=1\]
+De esta forma, definimos el estad\'istico:
+\[ \Delta_{n,m}=\sup_{x\in\mathbb{R}}|F_n(x)-G_n(x)| \]
+La regi\'on cr\'itica es del tipo $C=\{\Delta_{n,m}>c\}$, y la distribuci\'on de probabilidad est\'a tabulada, siendo $c$ el valor tal que, para un nivel de significaci\'on $\alpha$, $P\{\Delta_{n,m}>c\}=\alpha$.
