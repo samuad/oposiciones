@@ -7,12 +7,131 @@
 
 \sectioncol{Formas funcionales lineales y no lineales en el modelo de regresi\'on m\'ultiple.}
 
+
+
+\subsectioncol{Formas funcionales lineales.}
+
+Veamos el significado de los coeficientes del modelo lineal. Si tenemos el modelo:
+\[y=\beta_0+\beta_1x_1+\beta_2x_2+\cdots+\beta_kx_k+u\]
+
+Supongamos que la variable $x_2$ var\'ia en una unidad manteniendo el resto de coeficientes constantes. Entonces:
+\[\hat{y}_1=\hat{\beta}_0+\hat{\beta}_1x_1+\hat{\beta}_2x_2+\cdots+\hat{\beta}_kx_k\]
+\[\hat{y}_2=\hat{\beta}_0+\hat{\beta}_1x_1+\hat{\beta}_2(x_2+1)+\cdots+\hat{\beta}_kx_k\]
+\[\hat{y}_2-\hat{y}_1=\Delta\hat{y}=\hat{\beta}_2\]
+
+Por tanto, el coeficiente de cada variable nos dice lo que var\'ia la estimaci\'on de la variable dependiente por cada unidad de dicha variable, manteniendose el resto de variables independientes constantes.
+
+EL problema con esta interpretaci\'on es que los coeficientes dependen de las unidades de medida de cada variable, y por tanto no podemos saber la importancia relativa de las variables independientes si sus unidades de medida son dif\'iciles de interpretar (por ejemplo, las puntuaciones de un examen.
+
+EN ese caso, podemos tipificar anto las variable independientes como la variable dependiente. Para ello les restamos su media muestral y las dividimos por su desviaci\'on t\'ipica muestral. As\'i, si el modelo estimado es:
+\[y_i=\hat{\beta}_0+\hat{\beta}_1x_{i1}+\hat{\beta}_2x_{i2}+\cdots+\hat{\beta}_kx_{ik}+\hat{u}_i\]
+
+Si promediamos la ecuaci\'on para todas las unidades de la muestra, teniendo en cuanta que los residuos tienen de media cero, tenemos que:
+
+\[\bar{y}=\hat{\beta}_0+\hat{\beta}_1\bar{x}_{1}+\hat{\beta}_2\bar{x}_{2}+\cdots+\hat{\beta}_k\bar{x}_{k}\]
+
+Y restando esta ecuaci\'on a las $n$ ecuaciones del modelo:
+\[y_i-\bar{y}=\hat{\beta}_1(x_{i1}-\bar{x}_{1})+\hat{\beta}_2(x_{i2}-\bar{x}_{2})+\cdots+\hat{\beta}_k(x_{ik}-\bar{x}_{k})+\hat{u}_i\]
+
+Si llamamos $\hat{\sigma}_y$ a la desviaci\'on t\'ipica muestral de la variable dependiente y $\hat{\sigma}_i$ a la desviaci\'on t\'ipica muestral de la variable independiente $x_i$, tras unos c\'alculos sencillos llegamos a la siguiente ecuaci\'on:
+\[(y_i-\bar{y})/\hat{\sigma}_y=(\hat{\sigma}_1/\hat{\sigma}_y)\hat{\beta}_1[(x_{i1}-\bar{x}_{1})/\hat{\sigma}_k]+(\hat{\sigma}_2/\hat{\sigma}_y)\hat{\beta}_2[(x_{i2}-\bar{x}_{2})/\hat{\sigma}_2]+\cdots+(\hat{\sigma}_k/\hat{\sigma}_y)\hat{\beta}_k[(x_{ik}-\bar{x}_{k})/\hat{\sigma}_k]+(\hat{u}_i/\hat{\sigma}_y)\]
+
+
+Y ajustando este modelo llegamos a los coeficientes tipificados o \textit{coeficientes beta}, $\hat{b}_i$, cuya f\'ormula es: $\hat{b}_i=(\hat{\sigma}_i/\hat{\sigma}_y)\hat{\beta}_i$.
+
+EL significado de estos coeficientes \textit{beta} es el siguiente: si $x_i$ aumenta en una desviaci\'on t\'ipica, entonces la variable dependiente, $y$, aumentar\'a en $\hat{b}_i$ desviaciones t\'ipicas. As\'i, podemos medir la influencia de cada variable independiente en la variable dependiente sin tener en cuenta las unidades de medida, lo que puede ser interesante.
+
+
+El modelo lineal s\'olo tiene que ser lineal en los coeficientes para que podamos estimarlo. As\'i, en muchos casos es interesante transfromar las variables por distintas razones.
+
 \subsectioncol{Formas funcionales logar\'itmicas.}
 
+Veamos una serie de casos en las que las variables se transforman tomando logaritmos. Por ejemplo, el modelo:
 
-Seccion 6.2 Wooldridge
+\[\log{y}=\beta_0+\beta_1\log{x_1}+\beta_2x_2+\cdots+\beta_kx_k+u\]
+
+Veamos la interpretaci\'on que tiene el coeficiente $\beta_1$: Si $x_1$ var\'ia manteni\'endose el resto de variables constantes, tendremos:
+
+\[\hat{\log{y_1}}=\hat{\beta}_0+\hat{\beta}_1\log{x_1}+\hat{\beta}_2x_2+\cdots+\hat{\beta}_kx_k\]
+\[\hat{\log{y_2}}=\hat{\beta}_0+\hat{\beta}_1\log{(x_1+\Delta x_1)}+\hat{\beta}_2x_2+\cdots+\hat{\beta}_kx_k\]
+\[\hat{\log{y_2}}-\hat{\log{y_1}}=\hat{\beta}_1(\log{(x_1+\Delta x_1)}-\log{x_1})\]
+
+Y como $\log{x}-\log{y}=\log{x/y}$, y $\log{(1+x)}=\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n}x^n\approx x$ si $|x|$ es suficientemente peque\~no, podemos decir:
+\[\hat{\log{y_2}}-\hat{\log{y_1}}=\hat{\log{y_2/y_1}}\approx\dfrac{y_2-y_1}{y_1}\]
+\[\hat{\log{x_1+\Delta x_1}}-\hat{\log{x_1}}=\hat{\log{x_1+\Delta x_1/x_1}}\approx\dfrac{\Delta x_1}{x_1}\]
+
+Y por tanto, 
+\[\beta_1=\dfrac{\Delta y/y}{\Delta x_1/x_1}\]
+Es decir, el coeficiente es igual a la elasticidad de $y$ respecto a $x$. Por tanto, por cada incremento de $x_1$ en un $1\%$, $y$ se incrementa un $\beta_1\%$. Esta aproximaci\'on solo es v\'alida si tanto $\Delta y/y$ como $\Delta x_1/x_1$ son suficientemente peque\~nos como para considerar $\sum_{n=2}^{\infty}\dfrac{(-1)^{n-1}}{n}x^n$ despreciable.
+
+Si realizamos el mismo ejercicio para el coeficiente $\beta_2$, tenemos que:
+
+\[\hat{\log{y+\Delta y}}-\hat{\log{y}}=\hat{\beta}_2\Delta x_2\]
+
+Aplicando la misma aproximaci\'on tenemos que 
+\[\%\hat{\Delta y}\approx100\hat{\beta}_2\Delta x_2 \]
+
+Es decir, que por cada incremento en una unidad de $x_2$, $y$ se incrementa un $100\hat{\beta}_2\%$. Sin embargo, esta aproximaci\'on no es v\'alida para cambios grandes en el logaritmo. EN estos casos, el valor exacto ser\'a:
+\[\%\hat{\Delta y}=100[e^{\hat{\beta}_2\Delta x_2}-1] \]
+y si $x_2$ var\'ia en una unidad, $y$ var\'ia un $100[e^{\hat{\beta}_2}-1]\%$. Hay que tener en cuenta que este estimador no es insesgado, aunque s\'i es consistente. Esto se debe a que la esperanza no es invariante ante funciones no lineales, aunque la convergencia en probabilidad es invariante ante funciones cont\'inuas.
+
+Si tuvi\'esemos el modelo:
+\[y=\beta_0+\beta_1\log{x_1}+\beta_2x_2+\cdots+\beta_kx_k+u\]
+
+Siguiendo los razonamientos anteriores, podremos decir que el coeficiente $\beta_1$ nos dice que si $x_1$ var\'ia un $1\%$, $y$ var\'ia $100\hat{\beta}_1$ unidades, siempre que la variaci\'on de $x_1$ no sea muy grande.
+
+Aparte de las interpretaciones de los coeficientes, hay que tener en cuenta que para los coeficientes de las variables logar\'itmicas son invariantes ante cambios de escala, con lo cual tambi\'en son independientes de la sunidades en que est\'en expresadas las mismas.
+
+Si $y>0$, $\log(y)$ puede hacer que la variable cumpla mejor las condiciones del modelo, reduciendo o incluso eliminando la heterocedasticidad y asimetr\'ias en la variable. Tambi\'en ocurre que tomar logaritmos reduce el rango de variaci\'on de la variable, por lo que las estimaciones ser\'an menos sensibles a valores extremos tanto de las variables independientes como de la dependiente. En general se suelen tomar logaritmos cuando las variables toman vaores positivos muy grandes. Si la variable empieza en cero, se puede transformar mediante $\log(1+y)$, sin que cambie la interpretaci\'on de los coeficientes , salvo en el caso de que $y=0$.
+
+Un inconveniente que tiene el tomar logaritmos de la variable $y$ es que esto nos permite estimar el valor de $\log y$, no el de $y$. Adem\'as, dos modelos, uno en $\log y$ y el otro en $y$ no se pueden comparar mediante sus $R^2$.
+
+\subsectioncol{Formas funcionales cuadr\'aticas.}
+
+Las funciones cuadr\'aticas son muy \'utilse para reflejar efectos marginales decrecientes de $x$ sobre $y$. Por ejemplo, en el modelo $y=\beta_0+\beta_1x+\beta_2x^2+u$, tenemos que $\partial y/\partial x=\beta_1+2\beta_2x$, y si $\beta_2<0$, el efecto de $x$ sobre $y$ decrecer\'a a medida que aumente $x$.
+
+Por tanto, para incrementos peque\~nos tenemos que 
+\[\Delta\hat{y}\approx(\hat{\beta}_1+2\hat{\beta}_2x)\Delta x\]
+
+EL problema de emplear una forma funcional cuadr\'atica es que llega un momento en que la relaci\'on entre $x$ e $y$ se invierte, y esto no siempre es l\'ogico desde el punto de vista del modelo. Es cecir, si $x=-\dfrac{\hat{\beta}_1}{2\hat{\beta}_2}$, el efecto de la $x$ sobre la $y$ es nulo, y a partir de ese punto pasa a ser de signo contrario al que ten\'ia antes. Si esto no tiene l\'ogica en la situaci\'on de nuestro modelo se puede deber a varios factores:
+\begin{itemize}
+\item El punto en el que el efecto se hace cero est\'a fuera del rango de valores posibles de la $x$.
+\item Nuestra muestra tiene muy pocos valores en ese intervalo.
+\item Hay alg\'un tipo de sesgo en nuestros datos.
+\item El modelo est\'a infraespecificado: hay alguna otra variable que explica el comportamiento.
+\end{itemize}
+
+
+Para el caso de modelos del tipo:
+\[\log{y}=\beta_0+\beta_1x+\beta_2x^2+u\]
+
+Se interpreta como que el efecto del cambio en la $x$ afecta al incremento porcentual de $y$ de forma creciente/decreciente, seg\'un el valor de los coeficientes.
+
+Si el modelo es del tipo:
+\[\log{y}=\beta_0+\beta_1\log{x}+\beta_2[\log{x}]^2+u\]
+
+Se interpreta como que la elasticidad de $y$ con respecto a $x$ es variable, de la forma $\hat{\beta}_1+\hat{\beta}_2\log{x}$.
+
+Tambi\'en se pueden estimar modelos con formas polin\'omicas de grado superior. La interpretaci\'on de los coeficientes en estos casos es m\'as compleja.
+
+\subsectioncol{T\'erminos de interacci\'on.}
+
+Veremos ahora modelos en los que las variables independientes interaccionan entre ellas. Por ejemplo:
+\[y=\beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_1x_2+u\]
+
+En este caso, el efecto parcial de $x_2$ sobre $y$, manteniendo constantes el resto de variables ser\'a:
+\[\dfrac{\Delta{\hat{y}}}{\Delta{x_2}}=\hat{\beta}_2+\hat{\beta}_3x_1\]
+
+Si $\beta_3>0$, el efecto de $x_2$ sobre $y$ ser\'a mayor cuanto mayor sea $x_1$, es decir, las variables interaccionan. Para resumir esta interacci\'on podemos calcular el efecto de $x_2$ sobre $y$ para valores interesantes de $x_1$ como su media, su mediana, su moda o alg\'un cuantil que consideremos interesante.
+
+Si reparametrizamos el modelo de la siguiente forma:
+\[y=\alpha_0+\delta_1x_1+\delta_2x_2+\beta_3(x_1-\mu_1)(x_2-\mu_2)+u\]
+
+Siendo $\mu_1$ y $\mu_2$ las medias de $x_1$ y $x_2$, los coeficientes $\delta_1$  es el efecto parcial de $x_1$ en el valor medio de $x_2$, y $\delta_2$ es el efecto parcial de $x_2$ en el valor medio de $x_1$. Esto lo podemos reproducir para cualquier valor interesante de $x_1$ y $x_2$ que queramos considerar.
+
 \sectioncol{Regresi\'on m\'ultiple con variables explicativas con informaci\'on cualitativa.}
-EN muchos casos nuestros modelos tienen variables explicativas cuallitativas, es decir, no num\'ericas, como por ejemplo el sexo de un individuo, la provincia en la que est\'a situada una vivienda, el partido pol\'itico al que se ha votado... Vamos a ver como incluir estas variables en nuestros modelos.
+
+En muchos casos nuestros modelos tienen variables explicativas cualitativas, es decir, no num\'ericas, como por ejemplo el sexo de un individuo, la provincia en la que est\'a situada una vivienda, el partido pol\'itico al que se ha votado... Vamos a ver como incluir estas variables en nuestros modelos.
 
 \subsectioncol{Descripci\'on de las variables cualitativas.}
 
@@ -35,18 +154,50 @@ Y podr\'iamos realizar la estimaci\'on del modelo como habitualmente.
 
 \subsectioncol{Interpretaci\'on de los coeficientes.}
 
-Si se cumple el supuesto de esperanza condiconada nula para el t\'ermino de error, cada coeficiente $\delta_i$ se puede expresar como:
+Si se cumple el supuesto de esperanza condicionada nula para el t\'ermino de error, cada coeficiente $\delta_i$ se puede expresar como:
 
 \[\delta_i=E(y|x_1,\ldots,x_k,z_1,\ldots,z_i=1,\ldots,z_{r-1})-E(y|x_1,\ldots,x_k,z_1,\ldots,z_i=0,\ldots,z_{r-1})\]
 
-Es decir, es la diferencia entre la esperanza de la variable dependiente si el individuo presenta el valor $a_i$ en la caracter\'istica $z$ o si presenta el valor $a_r$ (ya que el resto de los $z_j$, permanecen constantes y por lo tanto valdr\'an cero). As\'i, vemos que la categor\'ia que excluimos de las variables act\'ua como "categor\'ia base" con la que se comparan todas las dem\'as. Es conveniente tener esto en cuenta a la hora de elegir dicha categor\'ia base.
+Es decir, es la diferencia entre la esperanza de la variable dependiente si el individuo presenta el valor $a_i$ en la caracter\'istica $z$ o si presenta el valor $a_r$ (ya que el resto de los $z_j$, permanecen constantes y por lo tanto valdr\'an cero). As\'i, vemos que la categor\'ia que excluimos de las variables act\'ua como ``categor\'ia base'' con la que se comparan todas las dem\'as. Es conveniente tener esto en cuenta a la hora de elegir dicha categor\'ia base.
 
 En el caso de que la variable dependiente se presente en forma logar\'itmica, los coeficientes $\delta$ multiplicados por 100 se interpretan como la diferencia en porcentaje entre la categor\'ia base y la categor\'ia del coeficiente.
 
+En el caso de que los valores que puede tomar nuestra variable sean demasiados como para desglosarlos en variables ficticias, podemos agrupar los mismos en categor\'ias, especialmente si estamos hablando de variables ordinales.
 
 
-Seccion 7.1 a 7.3
 \sectioncol{Regresi\'on m\'ultiple con variables binarias que interact\'uan.}
+
+\subsectioncol{Interacci\'on entre variables binarias.}
+
+Puede haber modelos en los que aparezcan dos caracter\'isticas binarias que pueden interactuar. Para reflejar estos casos definimos modelos del tipo:
+
+\[y=\beta_0+\delta_1z_1+\delta_2z_2+\delta_3z_1z_2+u\]
+
+En este caso, si $z_1=1$, la diferencia entre ambas categor\'ias de la caracter\'istica que refleja $z_2$ es de $\delta_2+\delta_3$, y si $z_1=0$ la diferencia es de $\delta_2$, y de forma an\'aloga la influencia de $z_1$ depende de $z_2$. Contrastar la significatividad de $\delta_3$ implica contrastar que las caracter\'isticas no interact\'uan.
+
+\subsectioncol{Interacci\'on entre variables binarias y ordinarias.}
+
+Supongamos que tenes un modelo con la caracter\'istica $z$, binaria, que modelamos mediante la variable $z_1$, y una caracter\'istica num\'erica que modelamos mediante la variable $x_1$  modelamos seg\'un elmodelo:
+\[y=\beta_0+\delta_0z_1+\beta_1x_1+\delta_1z_1x_1+u\]
+
+En este caso, el coeficiente $\delta_0$ refleja la diferencia entre los t\'erminos constantes de ambas categor\'ias de la caracter\'istica $z$, y el coeficiente $\delta_1$ refleja la diferencia de pendiente entre las categor\'ias. Es decir, la pertenencia a una u otra categor\'ia tambi\'en influye en el impacto de la variable $x_1$ sobre la variable dependiente.
+
+Para contrastar que la caracter\'istica $z$ no influye en el impacto de la variable $x_1$, tendremos que hacer un contraste de significaci\'on sobre el coeficiente $\delta_1$. Para contrastar que la caracter\'istica $z$ no influye en la variable $y$, tenemos que contrastar la significatividad conjnta de $\delta_0$ y $\delta_1$.
+
+Este mismo sistema se puede utilizar si queremos contrastar si hay diferencia en el modelo de regresi\'on para dos grupos distintos de una poblaci\'on que se distinguen en una caracter\'aitica. Para ello, definimos la variable $z_1$ tal que $z_1=1$, $z_1=2$, refleja la pertenencia  acada grupo. Estimamos el modelo:
+
+\[y=\beta_0 + \delta_0z_1+\sum_{i=1}^k\beta_ix_i+\sum_{i=1}^k\delta_ix_iz_1+u\]
+
+Y para contrastar la hip\'otesis nula de que ambos modelos son iguales, contrastamos la significaci\'on conjunta de las variables $\delta_i$, es decir, $H_0:\delta_0=\delta_1=\ldots=\delta_k=0$, frente a $h_1:\exists i/\delta_i\neq 0$.
+
+Esto tambi\'en se puede contrastar usando el contraste de ambio estructural de Chow, que consiste en estimar el modelo restringido, considerando ambos grupos como una sola poblaci\'on, y por otro lado el modelo sin restringir, en el que consideramos ambos grupos como dso poblaciones y estimamos un modelo para cada uno de ellos. De esta forma, la suma de cuadrados de los residuos del modelo sin restringir saer\'a simplemente la suma de cuadados de los residuos de ambos modelos, y por tanto el estad\'istico del contraste ser\'a:
+\[F=\dfrac{SCR_T-(SCR_1+SCR_2)}{(SCR_1+SCR_2)}\dfrac{n-2(k+1)}{k+1}\sim F_{k+1,n-2(k+1)}\]
+
+A este contraste se le llama contraste de Chow. Como es de tipo $F$, requiere que exista homocedasticidad. Si realizamos un an\'alisis asint\'otico no es necesaria la normalidad de los residuos.
+
+En el contraste de Chow la hip\'otesis nula no permite ninguna diferencia entre los grupos, y muchas veces es \'util contrastar que las pendientes no dependen de la pertenencia a un grupo, aunqe el t\'ermino constante s\'i pueda depender. Para contrastar esta situaci\'on se puede realizar, bien contrastando la significatividad conjunta \'unicamente de los t\'erminos de interacci\'on. La otra es formando un estad\'istico $F$ en el que la regresi\'on del modelo restringido incluye una variable binaria ficticia en la que distinguimos entre los dos grupos.
+
+
 Seccion 7.4
 \sectioncol{Uso de variables proxy para variables explicativas no observables.}
 Seccion 9.2
