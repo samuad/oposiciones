@@ -182,13 +182,42 @@ $T$ puede valer entre $-1$ y $1$, y un valor de $P$ alejado de cero indica que l
 
 \subsectioncol{Coeficiente de correlaci\'on entre rangos de Spearman.}
 
+El coeficiente de correlaci\'on por rangos de Spearman entre dos variables, $(X,Y)$, $\rho_S$ se define como el coeficiente de correlaci\'on lineal entre las funciones de distribuci\'on de las variables. Este coeficiente es una medida de la dependencia mon\'otona entre $X$ e $Y$. Si $\rho_S\approx1$, indica una relaci\'on mon\'otona positiva. Si $\rho_S\approx-1$, indica una relaci\'on mon\'otona negariva. Si $\rho_S\approx0$, indica que no hay relaci\'on mon\'otona.
+
+El coeficiente es invariante ante transformaciones mon\'otonas.
+Si $X$ e $Y$ son independientes, $\rho_S=0$, pero el inverso no tiene por que ser cierto.
+Si $X$ e $Y$ siguen una normal bivariante, son independientes si y solo si $\rho_S=0$.
+
+Un estimador del coeficiente es:
+\[\hat{\rho}_S=\dfrac{\sum_{i=1}{^n}(a_i-\bar{a})(b_i-\bar{b})}{\sqrt{\sum_{i=1}{^n}(a_i-\bar{a})^2\sum_{i=1}{^n}(b_i-\bar{b})^2}}\]
+
+Siendo $a_i$, $b_i$ respectivamente los rangos de las $x_i$, $y_i$ si ordenamos la muestra de menor a mayor.
+
+La regi\'on cr\'itica del contraste ser\'a del tipo $C=\{\hat{\rho}_S>c\}$.
+
+Teniendo en cuenta que $\bar{a}=\bar{b}=\dfrac{1}{n}\sum_{i=1}^ni=\dfrac{n+1}{2}$ y que
+\[\sum_{i=1}^n(a_i-\bar{a}^2=\sum_{i=1}^n(b_i-\bar{b})^2=\sum_{i=1}^ni^2-n\dfrac{(n+1)^2}{4}=\dfrac{n(n^2-1)}{12}\]
+
+Se puede simplificar:
+\[\hat{\rho}_s=\dfrac{12}{n(n^2-1)}\sum_{i=1}^n(a_i-\bar{a})(b_i-\bar{b})\]
+
+Por otro lado, si ordenamos la muestra con respecto a las $x$ y denotamos por $r_j$ el rango de la $y$ que ocupa la posici\'on $j$, tenemos:
+
+\[U=\sum_{i=1}{^n}(b_i-a_i)^2=\sum_{i=1}{^n}(r_i-i)^2=\sum_{i=1}{^n}(b_i-\bar{b}+\bar{a}-a_i)^2=\dfrac{n(n^2-1)}{6}-2\sum_{i=1}{^n}(a_i-\bar{a})(b_i-\bar{b})=\dfrac{n(n^2-1)}{6}(1-\hat{\rho}_s)\]
+
+Y por tanto,
+\[\hat{\rho}_s=1-\dfrac{6U}{n(n^2-1)}\]
+
+Bajo la hip\'otesis nula se pueden calcular los l\'imites de la zona cr\'itica para $n\leq10$, y para $n>10$ puede probarse que:
+\[\hat{\rho}_s\overset{d}{\to} N\left(0,\dfrac{1}{\sqrt{(n-1)}}\right)\]
+
 \sectioncol{Contraste de homogeneidad.}
 
 Estos contrastes se utilizan para comprobar si varias muestras provienen de poblaciones con la misma distribuci\'on de probabilidad.
 
 \subsectioncol{Contraste $\chi^2$ de homogeneidad.}
 
-Se basa en los mismos principios que el contraste $\chi^2$ de bondad del ajuste. Supongamos que tenemos $m$ muestras aleatorias, cuyos tama\~nos son, respectivamente, $(n_1,n_2,\ldots,n_m)$. A partir de estos datos se quiere determinar si la distribuci\'on poblacional es la misma en todos los casos, y por tanto se dispone de una muestra de tama\~no $n=n_1+n_2+\cdots+n_m$, o por el conrario provienen de poblaciones heterog\'eneas.
+Se basa en los mismos principios que el contraste $\chi^2$ de bondad del ajuste. Supongamos que tenemos $m$ muestras aleatorias, cuyos tama\~nos son, respectivamente, $(n_1,n_2,\ldots,n_m)$. A partir de estos datos se quiere determinar si la distribuci\'on poblacional es la misma en todos los casos, y por tanto se dispone de una muestra de tama\~no $n=n_1+n_2+\cdots+n_m$, o por el contrario provienen de poblaciones heterog\'eneas.
 
 Dividimos el rango de valores posibles de la variable en $k$ conjuntos disjuntos, $A_1, A_2,\ldots,A_k$ y clasificamos en cada uno de ellos las observaciones de cada muestra. Designamos por $n_{ij}$ en n\'umero de observaciones de la muestra $i$ que corresponden al subconjunto $A_j$, y podemos tabular los datos seg\'un las siguiente tabla de contingencia:
 
@@ -220,7 +249,7 @@ Prente a la hip\'otesis alternativa de que alguna de las desigualdades sea ciert
 Para medir las discrepancias entre cada una de las probabilidades estimadas y la probabilidad conjunta se utiliza el estad\'istico:
 \[\chi^2=\sum_{i=1}^m\sum_{j=1}^k\dfrac{n_i}{\hat{p}_{j}}(\hat{p}_{ij}-p_j)^2=\sum_{i=1}^m\sum_{j=1}^k\dfrac{(n_{ij}-\dfrac{n_in_{.j}}{n})^2}{\dfrac{n_in_{.j}}{n}}\]
 
-La regi\'on cr\'itica es de la forma $C)\{\chi^2>c\}$, y la distribuci\'on asint\'otica es $\chi^2\overset{d}{\to}\chi^2_{(m-1)(k-1)}$.
+La regi\'on cr\'itica es de la forma $C)\{\chi^2>c\}$, y la distribuci\'on asint\'otica es $\chi^2\overline{d}{\to}\chi^2_{(m-1)(k-1)}$.
 
 \subsectioncol{Contraste de homogeneidad de Kolmogorov-Smirnov.}
 
