@@ -197,10 +197,42 @@ A este contraste se le llama contraste de Chow. Como es de tipo $F$, requiere qu
 
 En el contraste de Chow la hip\'otesis nula no permite ninguna diferencia entre los grupos, y muchas veces es \'util contrastar que las pendientes no dependen de la pertenencia a un grupo, aunqe el t\'ermino constante s\'i pueda depender. Para contrastar esta situaci\'on se puede realizar, bien contrastando la significatividad conjunta \'unicamente de los t\'erminos de interacci\'on. La otra es formando un estad\'istico $F$ en el que la regresi\'on del modelo restringido incluye una variable binaria ficticia en la que distinguimos entre los dos grupos.
 
-
-Seccion 7.4
 \sectioncol{Uso de variables proxy para variables explicativas no observables.}
-Seccion 9.2
+
+Hay ocasiones en las que no podemos incluir en el modelo alguna variable explicativa, debido a que \'esta es no observable (por ejemplo, la influencia de la habilidad en el salario de los trabajadores). El problema de esta exclusi\'on es que hace que los estimadores de los coeficientes sean sesgados, ya que si dividimos la matriz de variables independientes, $\boldsymbol{X}=\left(\boldsymbol{X_0};\boldsymbol{Z}\right)$, siendo $\boldsymbol{X_0}$ matriz $n\times r$ de variables observadas, y $\boldsymbol{Z}$ matriz $n\times(k-r)$ matriz de variables no observadas y omitidas, y siendo $\boldsymbol{\beta}^{\prime}=\left(\boldsymbol{\beta_0}^{\prime};\boldsymbol{\beta_z}^{\prime}\right)$, siendo $\boldsymbol{\beta_0}$ vector $r\times 1$ de coeficientes de las variables observadas, y $\boldsymbol{\beta_Z}$ matriz $(k-r)\times 1$ vector de coeficientes de las variable omitidas, el estimador de m\'inimos cuadrados ordinarios para el modelo con las variables omitidas ser\'a:
+
+\[\hat{\boldsymbol{\beta}}_{\boldsymbol{0}}=\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{y}\] 
+
+Y como la expresi\'on real del modelo es: 
+\[\boldsymbol{y}=\left[\boldsymbol{X_0}; \boldsymbol{Z}\right]\left[\begin{matrix}
+\boldsymbol{\beta_0} \\
+\boldsymbol{\beta_Z}
+\end{matrix}\right]+\boldsymbol{u} \]
+
+Tenemos que:
+
+\[\hat{\boldsymbol{\beta}}_{\boldsymbol{0}}=\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\left[\boldsymbol{X_0}; \boldsymbol{Z}\right]\left[\begin{matrix}
+\boldsymbol{\beta_0} \\
+\boldsymbol{\beta_Z}
+\end{matrix}\right]+\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{u}\]
+
+Y como:
+\[\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\left[\boldsymbol{X_0}; \boldsymbol{Z}\right]=\left[\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{X_0};\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{Z}\right]=\left[\boldsymbol{I_r};\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{Z}\right]\]
+
+Como consecuencia:
+
+\[E(\hat{\boldsymbol{\beta}}_{\boldsymbol{0}})=\left[\boldsymbol{I_r};\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{Z}\right]\left[\begin{matrix}
+\boldsymbol{\beta_0} \\
+\boldsymbol{\beta_Z}
+\end{matrix}\right]=\boldsymbol{\beta_0}+\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{Z}\boldsymbol{\beta_Z}\]
+
+Con lo que si las variables omitidas son significativas el estimador ser\'a insesgado.
+
+En general, lo que nos suele interesar es conocer el efecto de las variables observadas sobre nuestra varaible dependiente. El t\'ermino independiente no nos suele interesar, y dado que las
+variables omitidas no son observables, no tiene mucho sentido conocer su efecto sobre la variable dependiente, dado que en general no sabremos interpretar ese valor.
+
+Para eliminar o reducir el sesgo sobre las variables omitidas, intentaremos sutituir las variables no observables por variables que s\'i se puedan observar y mantengan una correlaci\'on con ellas. A estas variables las llamaremos \textbf{variables proxy}.
+
 \sectioncol{Errores de especificaci\'on.}
 Seccion 9.1
 \sectioncol{Contraste RESET.}
