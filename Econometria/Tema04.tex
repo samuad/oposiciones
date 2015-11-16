@@ -226,15 +226,174 @@ Como consecuencia:
 \boldsymbol{\beta_Z}
 \end{matrix}\right]=\boldsymbol{\beta_0}+\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{Z}\boldsymbol{\beta_Z}\]
 
-Con lo que si las variables omitidas son significativas el estimador ser\'a insesgado.
+Con lo que si las variables omitidas son significativas el estimador ser\'a sesgado.
 
 En general, lo que nos suele interesar es conocer el efecto de las variables observadas sobre nuestra varaible dependiente. El t\'ermino independiente no nos suele interesar, y dado que las
 variables omitidas no son observables, no tiene mucho sentido conocer su efecto sobre la variable dependiente, dado que en general no sabremos interpretar ese valor.
 
 Para eliminar o reducir el sesgo sobre las variables omitidas, intentaremos sutituir las variables no observables por variables que s\'i se puedan observar y mantengan una correlaci\'on con ellas. A estas variables las llamaremos \textbf{variables proxy}.
 
+Supongamos que tenemos el modelo:
+\[\boldsymbol{y}=\left[\boldsymbol{X_0}; \boldsymbol{X_1}\right]\left[\begin{matrix}
+\boldsymbol{\beta_0} \\
+\boldsymbol{\beta_1}
+\end{matrix}\right]+\boldsymbol{u} \]
+ visto anteriormente, con $k-r$ variables $\boldsymbol{X_1}$ no observables. SI podemos encontrar $k-r$ variables proxy que denotamos por $\boldsymbol{Z}$, que s\'i podamos observar y est\'en relacionadas con las variables no onsevables, podremos escribir para cada una de ellas:
+\[x_{1i}=\delta_{0i}+\delta_{1i}z_i+v_i\]
+
+Donde $v_i$ es la perturbaci\'on resultante de que la correlaci\'on entre ambas variables no es perfecta, y si $\delta_{1i}=0$, no tendremos una buena variable proxy. El m\'etodo consiste en sustituir las variables originales con las proxy. A este procedimiento se le conoce como \textbf{soluci\'on por sustituci\'on del problema de variables omitidas}. Como estamos reemplazando unas variables por otras que no son iguales, vamos a ver c\'omo deben ser estas variables proxy para que los estimadores sean consistentes.
+
+Para que los estimadores de los coeficientes de las variables no omitidas sean consistentes se tiene que cumplir:
+\begin{itemize}
+\item Si se cumple las hip\'otesis del modelo lineal, el error $u$ estar\'a incorrelacionado con las $\boldsymbol{X_0}$ y $\boldsymbol{X_1}$. Adem\'as, $u$ tami\'en debe estar incorrelacionado con las $\boldsymbol{Z}$. Esto quiere decir que si el modelo incluye las variables $\boldsymbol{X_0}$ y $\boldsymbol{X_1}$, entonces las $\boldsymbol{Z}$ son irrelevantes para el modelo, lo cual es l\'ogico, dado que s\'olo deben influir en el modelo por su relaci\'on con las $\boldsymbol{X_1}$. Por tanto, esta hip\'otesis es bastante razonable.
+\item Los errores $v_1$ est\'an incorrelacionados con $\boldsymbol{X_0}$, $\boldsymbol{X_1}$ y $\boldsymbol{Z}$. Para que esto ocurra, las $\boldsymbol{Z}$ deben ser buenas aproximaciones de las $\boldsymbol{X_1}$, y no deben depender de las $\boldsymbol{X_0}$.
+\end{itemize}
+
+Si estimamos el modelo sustituyendo las $\boldsymbol{X_1}$ por las $\boldsymbol{Z}$:
+\[\hat{\boldsymbol{\beta}}=\left(\left[\begin{matrix}
+\boldsymbol{X_0}^{\prime} \\
+\boldsymbol{Z}^{\prime}
+\end{matrix}\right]\left[\boldsymbol{X_0}; \boldsymbol{Z}\right]\right)^{-1}\left[\begin{matrix}
+\boldsymbol{X_0}^{\prime} \\
+\boldsymbol{Z}^{\prime}
+\end{matrix}\right]\left[\boldsymbol{X_0}; \boldsymbol{X_1}\right]\left[\begin{matrix}
+\boldsymbol{\beta_0} \\
+\boldsymbol{\beta_1}
+\end{matrix}\right]+\left(\left[\begin{matrix}
+\boldsymbol{X_0}^{\prime} \\
+\boldsymbol{Z}^{\prime}
+\end{matrix}\right]\left[\boldsymbol{X_0}; \boldsymbol{Z}\right]\right)^{-1}\left[\begin{matrix}
+\boldsymbol{X_0}^{\prime} \\
+\boldsymbol{Z}^{\prime}
+\end{matrix}\right]\boldsymbol{u}\]
+
+Por tanto, si ponemos el modelo en forma de ecuaciones:
+
+\[y=\beta_0+\sum_{i=1}^r\beta_ix_i+\sum_{i=r+1}^k\beta_ix_i+u\]
+
+Y sustituimos las $x_i$ no observadas por su expresi\'on en fucni\'on de las $z_i$:
+
+\[y=\beta_0+\sum_{i=1}^r\beta_ix_i+\sum_{i=r+1}^k\beta_i(\delta_{0i}+\delta_{1i}z_i+v_i)+u\]
+
+Y operando y reordenando, obtenemos:
+
+\[y=\beta_0+\sum_{i=r+1}^k\beta_i\delta_{0i}+\sum_{i=1}^r\beta_ix_i+\sum_{i=r+1}^k\beta_i\delta_{1i}z_i+u+\sum_{i=r+1}^k\beta_iv_i\]
+
+COn lo cual vemos que si sustituimos la svariables no observadas por sus variables proxy, obtenemos un modelo con estas caracter\'isticas:
+\begin{itemize}
+\item Si se cumplen las dos hip\'otesis que hemos fijado, cumple las hip\'otesis de un modelo lineal, ya que $u+\sum_{i=r+1}^k\beta_iv_i$ est\'an incorrelacionadas con las variables ex\'ogenas. Por tanto, los estimadores ser\'an insesgados o al menos consistentes.
+\item El estimador de los coeficientes correspondientes a las variables observadas no var\'ia.
+\item Tanto el t\'ermino independiente como los coeficientes de las variables no observadas no se estiman, pero ya hemos visto que estos en cualquier caso no nos interesan. Obtenemos en su lugar estimaciones del t\'ermino independiente y los coeficientes para las variables proxy, que pueden o no tener inter\'es para nuestro estudio.
+\end{itemize}
+
+Es importante tener en cuenta que si las variables proxy no cumplen las hip\'otesis que les hemos exigido, los estimadores que obtengamos ser\'an sesgados.
+
+\colsubsection{Uso de variables dependientes retardadas como variables proxy.}
+
+Hay vces en las que tenemos claro cual es la variable independiente no observable que afecta a nuestro modelo, y podemos encontrar una variable proxy adecuada. Sin embargo, e otras ocasiones bien no tenemos claro que factor puede afectar al modelo, o no podemos encontrar una variable proxy. En estos casos, se suele utilizar un retardo de la variable dependiente como mecanismo de control de las variables ocultas.
+
+Esto aumenta los requisitos sobre los datos si estamos trabajando sobre datos de corte transversal (necesitamos datos de dos periodos), pero nos permite tener en cuenta factores hist\'oricos que pueden tener influencia en el valor actual de la variable dependiente. De hecho, es de suponer los factores no observables que tengan influencia sobre el modelo en la actualidad tambi\'en la tendr\'ian en periodos pasados.
+
+Este es un m\'etodo que est\'a bastante extendido en la pr\'actica, y aunque no es perfecto, ayuda a mejorar la estimaci\'on en muchos casos.
+
+
 \sectioncol{Errores de especificaci\'on.}
-Seccion 9.1
+
+ntendemos como error de especificaci\'on aquel que se comete cuando el modelo que se quiere estimar no coincide con el modelo real que siguen los datos. Estos errores pueden ser de tres tipos: por omisi\'on de variables relevantes, por inclusi\'on de variables irrelevantes y por mala especificaci\'on funcional del modelo.
+
+\subsectioncol{Omisi\'on de variables relevantes.}
+
+Supongamos que tenemos un modelo del tipo:
+\[\boldsymbol{y}=\left[\boldsymbol{X_0}; \boldsymbol{X_1}\right]\left[\begin{matrix}
+\boldsymbol{\beta_0} \\
+\boldsymbol{\beta_1}
+\end{matrix}\right]+\boldsymbol{u} \]
+
+Pero que, debido a las razones que sean, nosostros estimamos asumiendo que el modelo es:
+
+\[ \boldsymbol{y}=\boldsymbol{X_0}\boldsymbol{\beta_0}+\boldsymbol{u} \]
+
+El estimador MC que obtendremos ser\'a:
+\[\hat{\boldsymbol{\beta}}=\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{y}\] 
+
+Si sustituimos las $\boldsymbol{y}$ por su expresi\'on seg\'un el modelo correcto:
+
+\[\hat{\boldsymbol{\beta}}=\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\left[\boldsymbol{X_0}; \boldsymbol{X_1}\right]\left[\begin{matrix}
+\boldsymbol{\beta_0} \\
+\boldsymbol{\beta_1}
+\end{matrix}\right]+\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{u}\]
+
+Y como:
+\[\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\left[\boldsymbol{X_0}; \boldsymbol{X_1}\right]=\left[\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{X_0};\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{X_1}\right]=\left[\boldsymbol{I_r};\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{X_1}\right]\]
+
+Como consecuencia:
+
+\[E(\hat{\boldsymbol{\beta}})=\left[\boldsymbol{I_r};\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{X_1}\right]\left[\begin{matrix}
+\boldsymbol{\beta_0} \\
+\boldsymbol{\beta_1}
+\end{matrix}\right]=\boldsymbol{\beta_0}+\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{X_1}\boldsymbol{\beta_1}\]
+
+Con lo que si las variables omitidas son significativas el estimador ser\'a sesgado. El sesgo se compone del producto de dos factores:
+\begin{itemize}
+\item Una matriz que tiene por columnas los estimadores por m\'inimos cuadrados de los coeficientes de las regresiones de las variables excluidas sobre las no excluidas.
+\item El vector de coeficientes que tienen las variables excluidas en el modelo verdadero. 
+\end{itemize}
+
+Por tanto, si las variables excluidas son ortogonales a las no excluidas, es decir, si $\boldsymbol{X_0}^{\prime}\boldsymbol{X_1}=\boldsymbol{0}_{r\times(k-r)}$. Evidentemente, esto es altamente improbable.
+
+Por otro lado, dado que la estimaci\'on de la varianza de la perturbaci\'on es $\hat{\sigma}^2_u=\dfrac{\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}}{N-k}$, si definimos $\boldsymbol{M}_0=\boldsymbol{I}_N-\boldsymbol{X_0}(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0})^{-1}\boldsymbol{X_0}^{\prime}$, la estimaci\'on que calcularemos ser\'a:
+\[E(\dfrac{\hat{\boldsymbol{u}}^{\prime}\hat{\boldsymbol{u}}}{N-r})=\sigma^u+\dfrac{\boldsymbol{\beta}^{\prime}\boldsymbol{X}^{\prime}\boldsymbol{M}_0\boldsymbol{X}\boldsymbol{\beta}}{N-r}\]
+
+Y la estimaci\'on de la varianza tendr\'a un sesgo positivo.
+
+\subsectioncol{Inclusi\'on de variables no relevantes.}
+
+En este caso, la matriz de observaciones de las variables ex\'ogenas que usaremos para la estimaci\'on ser\'a $\boldsymbol{X}_0=\left[\boldsymbol{X};\boldsymbol{X}_1\right]$, donde $\boldsymbol{X}_1$ es una matriz $N\times s$ de variables no relevantes para el modelo. Por tanto, es estimador ser\'a:
+
+\[\hat{\boldsymbol{\beta}}_0=\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{y}\] 
+
+Si sustituimos las $\boldsymbol{y}$ por su expresi\'on seg\'un el modelo correcto:
+
+\[\hat{\boldsymbol{\beta}}=\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{X}\boldsymbol{\beta}+\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\boldsymbol{X_0}^{\prime}\boldsymbol{u}\]
+
+Y como:
+\[\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)=\boldsymbol{I}_{k+s}=\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X};\boldsymbol{X_0}^{\prime}\boldsymbol{X_1}\right)\]
+
+Por tanto,
+\[\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X_0}\right)^{-1}\left(\boldsymbol{X_0}^{\prime}\boldsymbol{X}\right)=\left(\begin{matrix}
+\boldsymbol{I}_k \\
+\boldsymbol{0}_{s\times k}
+\end{matrix}\right)\]
+
+\[E\left(\begin{matrix}
+\hat{\boldsymbol{\beta}} \\
+\hat{\boldsymbol{\beta}}_1
+\end{matrix}\right)=\left(\begin{matrix}
+\boldsymbol{I}_k \\
+\boldsymbol{0}_{s\times k}
+\end{matrix}\right)\boldsymbol{\beta}_0=\left(\begin{matrix}
+\boldsymbol{\beta} \\
+\boldsymbol{0}_{s}
+\end{matrix}\right)\]
+
+Por tanto, el estimador de los coeficientes de las variables relevantes es insesgado, y el de las variables irrelevantes tiene esperanza cero, por lo que cabe esperar que los soeficientes de estas \'ultimas resultasen ser no significativos.
+
+Se puede demostrar que el estimador de la varianza de la perturbaci\'on tambi\'en es insesgado.
+
+Por tanto, podr\'ia parecer que la estrategia a seguir deber\'ia ser incluir cuantas m\'as variables sea posible en el modelo, dado que esto no introduce sesgo en los estimadores. Sin embargo, el incluir m\'as variables de las necesarias aumenta la varianza del estimador por lo que no solo perdemos precisi\'on, sino que nos puede hacer creer de forma err\'onea que un coeficiente no es significativo. 
+
+\subsectioncol{Errores de especificaci\'on funcional.}
+
+Un modelo de regresi\'on lineal adolece de errores de mala especificaci\'on cuando la forma funcional que proponemos no coincide con la forma funciona que relaciona las variables en la realidad.
+
+Si, por ejemplo, tenemos un fen\'omeno cuya relaci\'on entre variables es $y=\beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_2^2+u$, pero nosotros estimamos el modelo $y=\beta_0+\beta_1x_1+\beta_2x_2+u$, ya hemos visto que al omitir una variable relevante, los estimadores ser\'an sesgados, con un tama\~no para el sesgo que depende del valor de $\beta_3$ y de la correlaci\'on enytre las variables. Sin embargo, las consecuencias sobre el estimador del efecto de $x_2$ en el modelo son a\'un peores, pues aunque obtuvi\'esemos un estimador insesgado para $\beta_2$ nos estar\'iamos dejando el efecto de la variable al cuadrado y por tanto el efecto total ser\'ia $\beta_2+2\beta_3x_2$. Vemos que la diferencia entre el efecto real y el de nuestro modelo ser\'a mayor cuanto mayor sea $x_2$.
+
+Este mismo problema se introduce cuando en la relaci\'on funcional aparece un t\'ermino de interacci\'on entre dos variables: no solo los coeficientes que obtenemos son sesgados, sino que los efectos de las variables que aparecen enla interacci\'on tendr\'an una interpretaci\'on err\'onea.
+
+Otro posible mala especificaci\'on ocurrir\'a si usamos la variable en forma lineal en lugra de en forma logar\'itmica. Entonces los estimadores de los efectos parciales no ser\'an ni insesgados ni consistentes. Veremos m\'as adelante algunos contrastes para contemplar estos casos.
+
+En general, estas malas especificaciones funcionales se pueden intuir incluyendo t\'erminos cudr\'aticos en el modelo y relaizando un contraste $F$ de significaci\'on conjunta. SI los t\'erminos cuadr\'aticos son significativos, pueden incluirse en el modelo, aunque a veces pueden reflejar otros problemas con la especificaci\'on funcional, como el uso de la variable en nivel en vez de en logaritmos o viceversa. Puede ser dif\'icil identificar la causa por la que la forma funcional que se ha seleccionado es incorrecta. En muchos casos, para detectar estas relaciones no lineales es suficiente con usar logaritmos de ciertas variables y a\~nadir t\'erminos al cuadrado.
+
 \sectioncol{Contraste RESET.}
 Seccion 9.1
 \sectioncol{Contraste contra alternativas no anidadas.}
