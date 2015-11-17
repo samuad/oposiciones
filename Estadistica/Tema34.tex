@@ -19,7 +19,80 @@ Hay una serie de propiedades que nos sugiere la l\'ogica que debe presentar una 
 \item \textbf{Independencia ante cambios de posici\'on:} El indicador no debe variar si dos elementos cualesquiera intercambian su posici\'on en la distribuci\'on, sin que var\'ien los respectivos valores.
 \item \textbf{Principio ``d\'ebil'' de transferencias:} La desigualdad debe disminuir si se transfiere parte del valor de un elemento o otro con un valor de la magnitud menor.
 \item \textbf{Principio ``fuerte'' de transferencias:} Ante una transmisi\'on de valor de un individuo a otro con un valor menor, la desigualdad debe disminuir m\'as cuanta mayor sea la diferencia entre los valores de los elementos.
-
+\item \textbf{Descomposici\'on aditiva:} Si dividimos una poblaci\'on en grupos, la medida de la desigualdad de la poblaci\'on debe ser igual a la suma de las medidas de desigualdad intragrupales e intergrupales.
+\item \textbf{Rango del \'indice:} Es deseable que el \'indice tome valores entre cero y uno, donde cero refleja la igualdad total y uno refleja la mayor desigualdad posible.
 \end{itemize}
+
+Aunque se han propuesto varia medidas de desigualdad, ninguna de ellas cumple con las 7 propiedades deseables. Vamos a ver algunas de ellas.
+
+\subsubsectioncol{Medidas estad\'isticas.}
+
+Se basan en propiedades estad\'isticas de la distribuci\'on de rentas.
+
+\paragraph{Campo de variaci\'on.}
+
+Su f\'ormula es:
+\[CV=\dfrac{y_{max}-y_{min}}{\mu}\]
+
+Siendo $\mu$ la media de la distribuci\'on. No es muy \'util, ya que solo depende del mayor y el menor valor de la distribuci\'on.
+
+\paragraph{Desviaci\'on media relativa.}
+
+\[DMR=\dfrac{\sum_{i=1}^n|y_i-\mu|}{n}\]
+
+Tiene en cuenta todos los valores de la distribuci\'on, pero no es sensuble a transferencias que se produzcan entre individuos con un valor mayor (menor) que la media.
+
+\paragraph{Varianza.}
+
+\[V=\dfrac{\sum_{i=1}^n(y_i-\mu)^2}{n}\]
+
+\begin{itemize}
+\item Satisface el axioma de transferencias.
+\item Su valor depende del ingreso medio: cuanto mayor sea este, mayor ser\'a el valor de la varianza.
+\end{itemize}
+
+\paragraph{Coeficiente de variaci\'on.}
+
+\[CV=\dfrac{\sqrt{V}}{\mu}\]
+
+\begin{itemize}
+\item Corrige el problema de dependencia de la media.
+\item Tiene una limitaci\'on: el peso de las transferencias no var\'ia con la posici\'on media en la distribuci\'on. Es decir, el efecto de una transferencia depende de su valor, no de los valores asociados a los elementos implicados.
+\end{itemize}
+
+\paragraph{Varianza de los logaritmos.}
+\[V=\dfrac{\sum_{i=1}^n(\log{y_i}-\log{\mu})^2}{n}\]
+
+\begin{itemize}
+\item Frente a la varianza, concede m\'as peso a las transferencias que se producen en la parte baja de la distribuci\'on.
+\item No depende del ingreso medio.
+\end{itemize}
+
+\subsubsectioncol{Medidas basadas en la curva de Lorenz.}
+
+La curva de Lorenz muestra el porcentaje relativo de valor acumulado de los individuos ordenados de forma ascendente de acuerdo a la magnitud estudiada.
+
+As\'i, los puntos $(p_i,q_i)$ de la Curva de Lorenz se definen as\'i:
+
+\[p_i=\dfrac{i}{n} \;\; q_i=\dfrac{\sum_{j=1}^iy_j}{\sum_{j=1}^ny_j}\]
+
+Con $p_0=q_0=0$. Para distribuciones totalmente igualitarias (todos los $y_i$ son iguales), la curva de Lorenz coincide con la curva $p=q$. Para distribuciones con la m\'axima desigualdad, todos los $q_i$ son cero excepto $q_n$, que vale 1.
+
+Si generalizamos la renta mediante una variable aleatoria no negativa, $X$ cuya funci\'on de distribuci\'on es $F(x)$ y de media $\mu$, podemos definir la curva de Lorenz como:
+\[p=F(x)=\int_0^xdF(t)\;\;\; q=L(F(x))=\dfrac{1}{\mu}\int_0^xtdF(t)\]
+
+Y si definimos $F^{-1}(p)=\inf{x|F(x)\geq p}$ entonces
+\[L(p)=\dfrac{1}{\mu}\int_0^pF^{-1}(t)dt\]
+
+Para determinar la desigualdad de dos distribuciones $(x,y)$ se comparan sus curvas de Lorenz, y si $L_x>L_y$ para todo $p_i$, entonces se dice que $x$ domina a $y$, y $x$ ser\'a m\'as igualitaria que $y$.
+
+El problema que presenta la curva de Lorenz es que no nos permite comparar todas las distribuciones: si las curvas de Lorenz de dos distribuciones se cruzan, estas no son comparables.
+
+En los casos en que ambas distribuciones se cruza, es posible utilizar la curva de Lorenz generalizada. Esta curva se obtiene multiplicando las $q_i$ por la media de la distribuci\'on. Se considera que, dadas dos distribuciones $(x,y)$, si se comparan sus curvas de Lorenz generalizadas, y  $LG_x>LG_y$ para todo $p_i$, la distribuci\'on $x$ genera m\'as bienestar que la distribuci\'on $y$.
+
+\paragraph{Coeficiente de Gini.}
+
+Este coeficiente indica el \'area existente entre la curva de Lorenz y la l\'inea de equidistribuci\'on, expresada como una proporci\'on o porcentaje del \'area total.
+
 
 
