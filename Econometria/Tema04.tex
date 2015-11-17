@@ -395,6 +395,58 @@ Otro posible mala especificaci\'on ocurrir\'a si usamos la variable en forma lin
 En general, estas malas especificaciones funcionales se pueden intuir incluyendo t\'erminos cudr\'aticos en el modelo y relaizando un contraste $F$ de significaci\'on conjunta. SI los t\'erminos cuadr\'aticos son significativos, pueden incluirse en el modelo, aunque a veces pueden reflejar otros problemas con la especificaci\'on funcional, como el uso de la variable en nivel en vez de en logaritmos o viceversa. Puede ser dif\'icil identificar la causa por la que la forma funcional que se ha seleccionado es incorrecta. En muchos casos, para detectar estas relaciones no lineales es suficiente con usar logaritmos de ciertas variables y a\~nadir t\'erminos al cuadrado.
 
 \sectioncol{Contraste RESET.}
-Seccion 9.1
+
+Se han propuesto varios contrastes para detectar la mala especificaci\'on funcional. El contraste de RESET(regression specification error test) de Ramsey ha resultado muy \'util en este sentido.
+
+El contraste es uy sencillo: si el modelo original,
+\[y=\beta_0+\beta_1x_1+\cdots+\beta_kx_k+u\]
+Cumple la hip\'otesis de que la media de la perturbaci\'on condicionada a las variable independientes es cero, entonces ninguna funci\'on no lineal que a\~nadamos al modelo deber\'ia ser significativa.
+
+Si a\~nadi\'esemos la svariables en forma cuadr\'atica, nos encontrar\'iamos con el problema de que si tenemos muchas varaibles los grados de libertad del modelo disminuyen mucho, adem\'as de que no estamos contemplando otras posibles formas funcionales. Para evitar esto, se a\~naden polinomios de las predicciones del modelo original ajustadas por MCO.
+
+Tenemos que decidir cu\'antas funciones de los valores ajustados vamos a incluir en el contraste. No hay una respuesta v\'alida para todos los casos, pero con los t\'erminos al cuadrado y al cubo suele ser suficiente. Por tanto, la ecuaci\'on ampliada quedar\'a:
+
+\[y=\beta_0+\beta_1x_1+\cdots+\beta_kx_k+\delta_1\hat{y}^2+\delta_2\hat{y}^3+u\]
+
+La hip\'otesis nula es que el modelo original es correcto. Por tanto, contrastamos $H_0:\delta_1=\delta_2=0$ en el modelo ampliado. Para eso utilizamos el estad\'istico $F$, que si es significativo nos indicar\'a un posible problema de especificaci\'on funcional. Bajo la hip\'otesis nula, $F\sim F_{2;n-k-3}$ aproximadamente para muestras grandes. Tambi\'en podemos utilizar la versi\'on LM del contraste, o utilizar los m\'etodos apropiados para que el contraste sea robusto a la heterocedasticidad.
+
+El problema de este contraste es que no nos dice nada de la especificaci\'on funcional correcta si se rechaza la hip\'otesis nula.
+
+A veces se utiliza RESET como un contraste mucho m\'as general, para detectar variables omitidas e incluso heterocedasticidad. Sin embargo, la potencia de RESET para detectar variables omitidas es muy baja si \'estas tienen esperanzas que son lineales en las variables incluidas en el modelo, y es incapaz de detectar la heterocedasticidad si el modelo est\'a bien especificado. Por tanto, solamente debe usarse para detectar mala especificaci\'on funcional.
+
+
 \sectioncol{Contraste contra alternativas no anidadas.}
-Seccion 9.1
+
+Obtener contrastes para otras clases de mala especificaci\'on funcional (por ejemplo, decidir si una variable ha de aparecer en nivel o en logaritmo) no lleva a contrastes que se salen del marco habitual del contraste de hip\'otesis. As\'i, para contrastar el modelo:
+
+\[y=\beta_0+\beta_1x_1+\beta_2x_2+u\]
+
+contra el modelo
+
+\[y=\beta_0+\beta_1\log{x_1}+\beta_2\log{x_2}+u\]
+
+Nos encontramos con el problema de que los modelos no est\'an anidados y por tanto no podemos usar el contraste est\'andar de la $F$.
+
+Una posiblidad que se ha propuesto es proponer un modelo general que contenga a cada uno de los dos como un caso particular, del tipo:
+\[y=\beta_0+\beta_1x_1+\beta_2x_2+\beta_3\log{x_1}+\beta_4\log{x_2}+u\]
+
+y contrastar las restricciones que nos lleven a esos modelos. Por ejemplo, primero se puede contrastar $H_0:\beta_3=\beta_42=0$, que de cumplirse nos llevar\'a al primer modelo y despu\'es contrastar $H_0:\beta_1=\beta_2=0$ que nos define el segundo modelo. este modelo fue propuesto por Mizon y Richard.
+
+Otro m\'etodo es el propuesto por Davidson y MacKinnon. Estos autores destacan que si el primer modelo es el correcto, entonces el valor ajustado del segndo no deber\'ia ser significativo e el primero. Por tanto, se estima el segundo modelo por MCO y obtenemos los valores ajustado para las $y$. A estos valores les llamamos $\hat{\hat{y}}$. El \textbf{contraste de Davidson-MacKinnon} se basa el el estad\'istico $t$ correspondiente a $\hat{\hat{y}}$ en el modelo:
+
+\[y=\beta_0+\beta_1x_1+\beta_2x_2+\theta_1\hat{\hat{y}}+u\]
+ 
+Un estad\'istico significativo (contra una alternativa de dos colas) supone un rechazo del primer modelo.
+
+Del mismo modo, si llamamos $\hat{y}$ a los valores ajustados de la estimaci\'on del primer modelo, el contraste para el segundo modelo se basa en el estad\'istico $t$ de $\hat{y}$ en el modelo
+\[y=\beta_0+\beta_1\log{x_1}+\beta_2\log{x_2}+\theta_1\hat{y}+u\]
+
+Y un $t$ significativo rechaza el segundo modelo.
+
+Ambos contrastes sirve para contrastar cualquier par de modelos no anidados con la misma variable dependiente.
+
+Hay varios problemas a la hora de utilizar estos contrastes. Para empezar, puede que ninguno de los modelos se rechace. En este caso, podemos usar el $R^2$ ajustado para decidirnos por uno de ellos. Otra posibilidad es que se rechacen los dos, en cuyo caso habr\'a que buscar una alternativa. Sin embargo, en la p\'actica, si los efectos de las variables independientes m\'as importantes sobre la variable dependiente son similares, no tendr\'a importancia uqe modelo usar.
+
+Otro problema es que rechazar un modelo no implica que el otro sea correcto, ya que el rechazo puede deberse a diversas formas de mala especificaci\'on funcional.
+
+Por \'ultimo, un problema m\'as dif\'icil se produce cuando la duda en la especificaci\'on est\'a en la variable dependiente (por ejemplo, nivel frente a logaritmo). En este caso los contrastes que hemos visto no son v\'alidos.
