@@ -78,6 +78,10 @@ As\'i, los puntos $(p_i,q_i)$ de la Curva de Lorenz se definen as\'i:
 
 Con $p_0=q_0=0$. Para distribuciones totalmente igualitarias (todos los $y_i$ son iguales), la curva de Lorenz coincide con la curva $p=q$. Para distribuciones con la m\'axima desigualdad, todos los $q_i$ son cero excepto $q_n$, que vale 1.
 
+Si en lugar de un vector con la distribuci\'on, tenemos la magnitud agrupada por categor\'ias, es decir, $n_i$ individuos presentan el valor $y_i$ de nuestra magnitud, la curva de Lorenz se calcula:
+
+\[p_i=\dfrac{\sum_{j=1}^in_j}{n} \;\; q_i=\dfrac{\sum_{j=1}^in_jy_j}{\sum_{j=1}^nn_jy_j}\]
+
 Si generalizamos la renta mediante una variable aleatoria no negativa, $X$ cuya funci\'on de distribuci\'on es $F(x)$ y de media $\mu$, podemos definir la curva de Lorenz como:
 \[p=F(x)=\int_0^xdF(t)\;\;\; q=L(F(x))=\dfrac{1}{\mu}\int_0^xtdF(t)\]
 
@@ -92,7 +96,46 @@ En los casos en que ambas distribuciones se cruza, es posible utilizar la curva 
 
 \paragraph{Coeficiente de Gini.}
 
-Este coeficiente indica el \'area existente entre la curva de Lorenz y la l\'inea de equidistribuci\'on, expresada como una proporci\'on o porcentaje del \'area total.
+Este coeficiente indica el \'area existente entre la curva de Lorenz y la l\'inea de equidistribuci\'on, expresada como una proporci\'on del \'area total. Cuando este valor se expresa en porcentaje, se habla de \'indice de Gini.
+
+Por tanto, su f\'ormula ser\'a:
+
+\[C_G=\dfrac{\int_0^1(p-L(p))dp}{\int_0^1p dp}=1-2\int_0^1L(p)dp\]
+
+Si nuestra distribuci\'on de renta es discreta, la curva de Lorenz se compone de tantas l\'ineas rectas como individuos, por lo que operando se llega a la f\'ormula de Brown:
+
+\[C_G=1-\sum_{i=1}^n(p_i-p_{i-1})(q_i+q_{i-1})\]
+
+Hay tambi\'en otras f\'ormulas que se aproximan al valor del coeficiente, la m\'as utilizada es:
+
+\[C_G\approx \dfrac{\sum_{i=1}^{k-1}(p_i-q_i)}{\sum_{i=1}^{k-1}p_i}\]
+
+El coeficiente de Gini var\'ia entre cero y uno, siendo cero el valor que tienen las distribuciones con igualdad absoluta, y uno el valor m\'aximo te\'orico, asociado a las distribuciones l\'imite de desigualdad: una distribuci\'on con infinitos individuos en la que un s\'olo individuo concentra todo el valor.
+
+El Coeficiente de Gini es el indicador de desigualdad m\'as utilizado, debido a su facilidad de interpretaci\'on, sin embargo presenta varios inconvenientes:
+
+\begin{itemize}
+\item Es insensible a cambios en la distribuci\'on del ingreso que mantengan constante el \'area entre las curvas.
+\item No cumple la propiedad fuerte de transferencia: las transferencias de renta tienen el mismo peso independientemente de su posici\'on en la escala de ingresos.
+\item Si las corvas de Lorenz se cruzan su interpretaci\'on puede dar resultados ambiguos.
+\item No satisface la propiedad de descomposici\'on aditiva: el coeficiente de Gini total no es igual a la suma de los coeficientes de los grupos.
+\end{itemize}
+
+\subsubsectioncol{Medidas basadas en funciones de utilidad.}
+
+
+\subsubsectioncol{Medidas basadas en la entrop\'ia.}
+
+Estos indicadores aprovechan la noci\'on de "contenido informativo": cuanto m\'as improbable sea un evento, mayor informaci\'on aporta su realizaci\'on. As\'i, cuanta mayor entrop\'ia informativa tenga una distribuci\'on de renta, mayor ser\'a su desigualdad.
+
+\paragraph{\'Indice de Theil.}
+
+Se basa en la \textbf{entrop\'ia de Shannon}
+
+
+
+
+
 
 
 
