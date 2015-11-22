@@ -2,7 +2,25 @@
 \normalsize  Variables binarias para efectos temporales y variables en forma de n\'umeros \'indice. Uso de variables con tendencia en la regresi\'on. Uso de series d\'ebilmente dependientes. Transformaci\'on de series altamente persistentes. Tratamiento de la estacionalidad en el modelo.}
 
 
-\sectioncol{Introducci\'on.}
+\sectioncol{Modelo lineal con series de tiempo.}
+
+La principal diferencia que presentan los modelos da series temporales respecto a los modelos de corte transvrersal es que los datos provenientes d eun conjnto de series temporales vienen ordenados respecto al tiempo, es decir, los datos tienen un orden natural. Esto es importante, porque los datos pasados pueden afectar a los datos futuros, pero no al rev\'es.
+
+Otra distinci\'on fundamental es que, mientras que los datos de corte transversal se suponen provenientes de una muestra aleatoria tomada de una poblaci\'on mayor, en el ecaso de series temporales hemos de suponer que nuestros datos provienen de un proceso estoc\'astico o proceso de series temporales, es decir, una sucesi\'on de variables aleatorias cuyo \'indice es el tiempo. As\'i, un conjunto de datos de series temporales no es m\'as que una realizaci\'on del proceso estoc\'astico subyacente. Si fu\'esemos capaces de retorceder en el tiempo y volver a tomar los datos probablemente la realizaci\'on de ese proceso ser\'ia distinta, es por esto que consideramos a los datos como un conjunto de variables aleatorias. Por tanto, el conjunto de todas las posibles realizaciones de un proceso estoc\'astico equivale a la poblaci\'on total para un an\'alisis transversal, y el tama\~no muestral ser\'a el n\'umero de per\'iodos para los que disponemos de observaciones.
+
+\subsectioncol{Tipos de modelos con series temporales.}
+
+Vamos a ver dos tipos de modelos con series temporales que se pueden estimar f\'acilmente por m\'inimos cuadrados ordinarios.
+
+\paragraph{Modelos est\'aticos.}
+
+Esn estos modelos, la relaci\'on entyre las variables ex\'ogenas y la variable dependiente es contempor\'anea, esto es, tenemos datos de series temporales para un conjunto de variables, fechados de forma contempor\'anea y el modelo que las relaciona es del tipo $y_t=\beta_0+\sum_{i=1}^k\beta_ix_{ti}+u_t$.
+
+Estos tipos de modelos se formulan cuando se entiende que los cambios en las variables ex\'ogenas tendr\'an un efecto inmediato en la variable dependiente, o cuando estamos interesados en conocer la relaci\'on de intercambio entre las variables.
+
+\paragraph{Modelos de retardos distribuidos finitos.}
+
+
 
 
 \sectioncol{Variables binarias para efectos temporales y variables en forma de n\'umeros \'indice. }
