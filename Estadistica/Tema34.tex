@@ -126,11 +126,35 @@ El Coeficiente de Gini es el indicador de desigualdad m\'as utilizado, debido a 
 
 \subsubsectioncol{Medidas basadas en la entrop\'ia.}
 
-Estos indicadores aprovechan la noci\'on de "contenido informativo": cuanto m\'as improbable sea un evento, mayor informaci\'on aporta su realizaci\'on. As\'i, cuanta mayor entrop\'ia informativa tenga una distribuci\'on de renta, mayor ser\'a su desigualdad.
+Estos indicadores aprovechan la noci\'on de "contenido informativo": cuanto m\'as improbable sea un evento, mayor informaci\'on aporta su realizaci\'on.
 
 \paragraph{\'Indice de Theil.}
 
-Se basa en la \textbf{entrop\'ia de Shannon}
+El \'Indice de Theil es el mismos que la medida de redundancia en la teor\'ia de la informaci\'on, es decir, es igual a la m\'axima entrop\'ia posible en la distribuci\'on menos la entrop\'ia observada.
+
+El \'indice es:
+\[T_T=\dfrac{1}{N}\sum_{i=1}^N\left(\dfrac{x_i}{\bar{x}}\log{\dfrac{x_i}{\bar{x}}}\right)\]
+
+Para una distribuci\'on totalmente igualitaria el \'¡indice vale cero (es cuando tiene el m\'aximo de entrop\'ia). Si un solo elemento acumula todo el valor, el \'indice vale $\log{N}$, que es el m\'aximo de orden. Por tanto, dividiendo el \'indice por $\log{N}$ lo normalizamos, pasando a valer entre 0 y 1.
+
+El \'indice mide la distancia de nuestra distribuci\'on respecto a una distribuci\'on igualitaria. Se deriva de la \textbf{entrop\'ia de Shannon} de la teor\'ia de la informaci\'on, que es igual a 
+\[S=k\sum_{i=1}^N\left(p_i\log{\dfrac{1}{p_i}}\right)=-k\sum_{i=1}^N\left(p_i\log{p_i}\right)\]
+
+Donde $k$ es un coeficiente que depende del \'area de aplicaci\'on, y que en nuestro caso vale 1, y $p_i$ es la probabilidad de que se de suceso $i$. Para el c\'alculo de Theil, se define $p_i=\dfrac{x_i}{N\bar{x}}$. Por tanto, 
+
+\[T_T=S_{max}-S_t=\sum_{i=1}^N\left(\dfrac{\bar{x}}{N\bar{x}}\log{\dfrac{N\bar{x}}{\bar{x}}}\right)-\sum_{i=1}^N\left(\dfrac{x_i}{N\bar{x}}\log{\dfrac{N\bar{x}}{x_i}}\right)=\dfrac{1}{N}\sum_{i=1}^N\left(\dfrac{x_i}{\bar{x}}\log{\dfrac{x_i}{\bar{x}}}\right)\]
+
+Las principales ventajas de este \'indice  son:
+
+\begin{itemize}
+\item cumple con el principio de descomponibilidad aditiva. Es decir, para una poblaci\'on dividida en subgrupos,
+\[T_T=\sum_{i=1}^mn_iT_{Ti}+\dfrac{1}{m}\sum_{i=1}^m\left(\dfrac{\bar{x}_i}{\bar{x}}\log{\dfrac{\bar{x}_i}{\bar{x}}}\right)\]
+
+\item Cumple con el axioma fuerte de transferencias.
+
+\end{itemize}
+
+Su principal inconveniente es que es poco intuitivo y dif\'icil de entender, y que introduce la arbitrariedad de la base logar\'itmica que se use, ya que con otras tambi\'en se podr\'ia calcular.
 
 
 
