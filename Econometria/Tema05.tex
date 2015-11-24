@@ -14,11 +14,48 @@ Vamos a ver dos tipos de modelos con series temporales que se pueden estimar f\'
 
 \paragraph{Modelos est\'aticos.}
 
-Esn estos modelos, la relaci\'on entyre las variables ex\'ogenas y la variable dependiente es contempor\'anea, esto es, tenemos datos de series temporales para un conjunto de variables, fechados de forma contempor\'anea y el modelo que las relaciona es del tipo $y_t=\beta_0+\sum_{i=1}^k\beta_ix_{ti}+u_t$.
+Es estos modelos, la relaci\'on entre las variables ex\'ogenas y la variable dependiente es contempor\'anea, esto es, tenemos datos de series temporales para un conjunto de variables, fechados de forma contempor\'anea y el modelo que las relaciona es del tipo $y_t=\beta_0+\sum_{i=1}^k\beta_ix_{ti}+u_t$.
 
 Estos tipos de modelos se formulan cuando se entiende que los cambios en las variables ex\'ogenas tendr\'an un efecto inmediato en la variable dependiente, o cuando estamos interesados en conocer la relaci\'on de intercambio entre las variables.
 
 \paragraph{Modelos de retardos distribuidos finitos.}
+
+En un modelo de retardos distribu\'idos finitos, una o m\'as variables ex\'ogenas afectan a la variable dependientecon alg\'un retardo. Un ejemplo podr\'ia ser:
+
+\[ y_t=\beta_0+\sum_{j=0}^{q}\delta_jx_{t-j}+u_t\]
+
+Este modelo se utiliza para variables que influyen en la variable dependiente pero no de forma simult\'anea, sino con alg\'un retardo. El modelo que hemos puesto como ejempo es un modelo con retardos distribuidos finitos (RDF) de orden $q$.
+
+Para interpretar este modelo, supongamos que $X_0$ es constante igual a una cantidad $c$, en  el instante  $t$ aumenta hasta $c+1$ y en el instante $t+1$ vuelve a bajar hasta $c$. En ese caso, el valor esperado de $y$ en cada instante ser\'ia:
+\begin{align*}
+ y_{t-1}=&\beta_0+\sum_{j=0}^{q}\delta_jc = y_{t-1} \\
+ y_{t}=&\beta_0+\delta_0(c+1)+\sum_{j=1}^{q}\delta_jc = y_{t-1}+\delta_0 \\
+ y_{t+1}=&\beta_0+\delta_0c+\delta_1(c+1)+\sum_{j=2}^{q}\delta_jc = y_{t-1}+\delta_1 \\
+ y_{t+2}=&\beta_0+\delta_0c+\delta_1c+\delta2(c+1)+\sum_{j=3}^{q}\delta_jc = y_{t-1}+\delta_2 \\
+ &\cdots \\
+ y_{t+q}=&\beta_0+\sum_{j=0}^{q-1}\delta_jc+\delta_q(c+1) = y_{t-1} +\delta_q\\
+  y_{t+q+1}=&\beta_0+\sum_{j=0}^{q}\delta_jc = y_{t-1}
+\end{align*}
+
+Por tanto, podemos ver que $\delta_0$ es el efecto inmediato que un cambio en $x_0$ tiene en $y$. Normalmente se denomina \textbf{propensi\'on al impacto} o \textbf{modificador de impacto}. Por otro lado, $\delta_1$ es el efecto en $y$ de un cambio en $x_0$ un per\'iodo despu\'es de que el cambio se produzca, $\delta_2$ es el efecto dos periodos despu\'es del cambio, etc . En el momento $t+q+1$ $y$ vuelve a su valor inicial, debido a que en nuestro modelo hemos supuesto $q$ retardos. Si realizamos un gr\'afico de $\delta_j$ respecto a $j$, obtenemos su distribuci\'on de retardos, que muestra el efecto que tiene sobre $y$ un cambio temporal en $x_0$.
+
+Si el cambio en $x_0$ fuese permanente, es decir, si $x_0$ pasa de valer $c$ a valer $c+1$ para $t, t+1, \ldots$, el efecto ser\'ia el siguiente:
+
+\begin{align*}
+ y_{t-1}=&\beta_0+\sum_{j=0}^{q}\delta_jc = y_{t-1} \\
+ y_{t}=&\beta_0+\delta_0(c+1)+\sum_{j=1}^{q}\delta_jc = y_{t-1}+\delta_0 \\
+ y_{t+1}=&\beta_0+\delta_0(c+1)+\delta_1(c+1)+\sum_{j=2}^{q}\delta_jc = y_{t-1}+\delta_0+\delta_1 \\
+ y_{t+2}=&\beta_0+\delta_0(c+1)+\delta_1(c+1)+\delta2(c+1)+\sum_{j=3}^{q}\delta_jc = y_{t-1}+\delta_0+\delta_1+\delta_2 \\
+ &\cdots \\
+ y_{t+q}=&\beta_0+\sum_{j=0}^{q}\delta_j(c+1) = y_{t-1}+\sum_{j=0}^{q}\delta_j \\
+ y_{t+q+1}=&\beta_0+\sum_{j=0}^{q}\delta_j(c+1) = y_{t-1}+\sum_{j=0}^{q}\delta_j 
+\end{align*}
+
+Por tanto, vemos que $\sum_{j=0}^{q}\delta_j$ es el cambio a largo plazo que experimenta $y$ tras un aumento permanente de una unidad en $x_0$ y se denomina \textbf{propensi\'on a largo plazo (PLP)} o \textbf{multiplicador a largo plazo} y es a menudo de inter\'es en estos modelos.
+
+Como a menudo existe una correlaci\'on elevada entre los retardos de la variable independiente, estos modelos pueden presentar problemas de multicolinealidad, lo que hace que las estimaciones de los $\delta_i$ individuales sean muy imprecisas. Veremos que a\'un en este caso, a menudo podemos obtener buenos estimadores de la PLP.
+
+Estos modelos pueden tener m\'as de una variable con retardos, variables contempor\'aneas, etc. Puede ocurrir que el objetivo al estimar el modelo sea contrastar si la variable independiente tiene efecto retardado sobre la variable dependiente.
 
 
 
