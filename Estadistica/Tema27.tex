@@ -1,0 +1,26 @@
+\chapter[An\'alisis de la varianza.]{An\'alisis de la varianza. \\
+\normalsize An\'alisis de la varianza para una clasificaci\'on simple. Comprobaci\'on de las hip\'otesis iniciales del modelo. Contrastes de comparaciones m\'ultiples: m\'etodo de Tuckey y m\'etodo de Scheff\'e. An\'alisis de la varianza para una clasificaci\'on doble.}
+
+\sectioncol{Introducci\'on.}
+El an\'alisis de la varianza es un procedimiento dise\~nado para descomponer la variabilidad de un experimento en componentes que puedan asignarse a causas distintas. Se utiliza cuando tenemos un conjunto de elementos que se dividen en varios grupos diferenciados por un factor. Observamos una caracter\'istica cont\'inua que var\'ia aleatoriamente de esos elementos, y queremos conocer si el factor diferencial afecta al valor medio de la caracter\'istica en estudio.
+
+\sectioncol{An\'alisis de la varianza para una clasificaci\'on simple.}
+
+Supongamos que estamos interesados en estudiar una caracter\'istica $Y$ dentro de una poblaci\'on que se puede dividir en $m$ grupos atendiendo a un factor asociado a sus individuos. Tomamos una muestra aleatoria de tama\~no $N$, y para cada elemento registramos el valor de $Y$ y el grupo al que pertenece, obteniendo una muestra con $n_i$ elementos para el grupo $i$. Queremos averiguar si la media de $Y$ es igual para todos los grupos.
+
+Para ello, suponemos que la media de $Y$ oscila en torno a un valor $\mu$, y que cada grupo produce una variaci\'on en la media de su grupo de $\alpha_i$. Adem\'as, suponemos que la varianza del error aleatorio de observaci\'on, $\sigma^2$, es la misma para toda la poblaci\'on.
+
+Por tanto, formulamos el siguiente modelo:
+\[Y_{ij}=\mu+\alpha_i+e_{ij}\;\;\;i=1,\ldots,m,\;j=1,\ldots,n_i\]
+donde $\sum_{i=1}^{m}n_i=N$ y $e_ij\sim N(0,\sigma)$.
+
+En este modelo, cada elemento es como sigue:
+\begin{itemize}
+\item $Y_{ij} =$ valor de la caracter\'istica $Y$ en el individuo $j$ del grupo $i$.
+\item $\mu =$ parte del valor medio de la variable com\'un a todos los grupos.
+\item $\alpha_i = $ parte del valor medio de la variable espec\'ifico del grupo $i$.
+\item $e_ij=$ componentes aleatorios, independientes e ide\'enticamente distribu\'idos.
+\end{itemize}
+
+Dado que el error normalmente se debe a un conjunto muy grande de factores, cada uno de los cuales influye muy poco en el error final, aplicando el teorema central del l\'imite no es muy descabellado asumir su normalidad.
+
