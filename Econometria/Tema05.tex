@@ -57,8 +57,122 @@ Como a menudo existe una correlaci\'on elevada entre los retardos de la variable
 
 Estos modelos pueden tener m\'as de una variable con retardos, variables contempor\'aneas, etc. Puede ocurrir que el objetivo al estimar el modelo sea contrastar si la variable independiente tiene efecto retardado sobre la variable dependiente.
 
+\subsectioncol{Propiedades del estimador MCO para muestras finitas.}
+
+Veremos ahora c\'omo debemos modificar las hip\'otesis cl\'asicas del modelo para poderlas aplicar a un modelo de series temporales, y que propiedades se deducen de ellas para muestras finitas.
+
+\paragraph{Insesgadez de los estimadores.}
+
+La primera hip\'otesis cl\'asica establece que las variables se relacionan seg\'un un modelo lineal en los par\'ametros.
+
+\begin{hipotesis}
+\textbf{Linealidad en los par\'ametros:} El proceso estoc\'astico $\{(x_{t1},x_{t2},\ldots,x_{tk},y_t),t=1,2,\ldots,n\}$ sigue el modelo lineal
+\[y_t=\beta_0+\beta_1x_{t1}+\beta_2x_{t2}+\cdots+\beta_kx_{tk}+u_t\]
+donde $\{u_t,t=1,2,\ldots,n\}$ es la sucesi\'on de t\'erminos de error o perturbaciones.
+\end{hipotesis}
+ De igual modo que hemos hecho para el modelo con datos de corte transversal, podemos expresarlo en forma matricial, es decir, $\boldsymbol{y}=\boldsymbol{X\beta}+\boldsymbol{u}$.
+
+\begin{hipotesis}
+\textbf{Media condicionada nula:} Para cada instante $t$ el valor esperado del t\'ermino de error dadas las variables explicativas en todos los periodos temporales es cero, es decir,
+\[E(u_t|\boldsymbol{X})=0\]
+o, matricialmente:
+\[E(\boldsymbol{u}|\boldsymbol{X})=\boldsymbol{0}\]
+\end{hipotesis}
+
+Esta hip\'otesis es crucial a la hora de deducir las propiedades que hacen al estimador MCO conveninete, y se puede interpretar en t\'erminos de incorrelaci\'on. Es decir, la hip\'otesis de esperanza ondicionada nula implica que el t\'ermino de error ert\'a incorrelacionado con las variables explicativas en cada uno de los periodos temporales. El hecho de que est\'e expresado en funci\'on de la esperanza condicionada implica que la relaci\'on entre la variable independiente y las variables explicativas debe estar completamente especificada en el modelo.
+
+Si las $u_t$ son independientes de las $\boldsymbol{X}$ y $E(u_t)=0$ el supuesto se cumple autom\'aticamente.
+
+Si lo que se cumple es $E(u_t|\boldsymbol{x}_t)=0$, decimos que tenemos exogeneidad contempor\'anea, pero la hip\'otesis exige exogeneidad estricta.
+
+En el caso de datos de corte transversal, dado que suponemos muestreo aleatorio, la perturbaci\'on ser\'a autom\'aticamente independiete de las variables explicativas de otras observaciones. En el caso de series temporales esto no se produce, es por esto que debemos exigir expl\'icitamente la exogeneidad estricta.
+
+La exogeneidad estricta puede incumplirse por varias causas: por una mala especificaci\'on del modelo que no incluya todas las variables independientes implicadas, por la comisi\'on de errores de medida al medir los regresores, o porque el valor de la variable independienta pueda influir en valores futuros de alguna variable ex\'ogena. Para que una variable explicativa sea estrictamente ex\'ogena, no puede verse influida por valores pasados de la variable end\'ogena. Por desgracia, esta circunstancia se da en muchos casos, y muchas variables explicativas violan la hip\'otesis de exogeneidad estricta.
+
+Muchos ana\'alisis de modelos est\'aticos y de retardos distribuidos finitos suponen esta hip\'otesis mediante la hip\'otesisi m\'a fuerte de que las variables explicativas son deterministas, es decir, sin componente aleatorio, pero estop es obviamente falso si tenemos observaciones de series temporales.
+
+\begin{hipotesis}
+\textbf{No multicolinealidad perfecta:} En nuestro modelo ninguna variable independiente es cosntante o combinaci\'on lineal exacta de las dem\'as.
+\end{hipotesis}
+
+En el caso de que no se cumpla esta hip\'otesis, la matriz $\boldsymbol{X}$ ser\'a singular, y por tanto tendremos infinitos estimadores para los coeficientes del modelo.
+
+\begin{teorema}
+Bajo las anteriores hip\'otesis (linealidad, media condicionada nula y ausencia de multicolinealidad) los estimadores de m\'inimos cuadrados de los coeficientes del modelo son estimadores insesgados de los mismos.
+\end{teorema}
+
+Si se cumplen las hip\'otesis de linealidad y no multicolinealidad, el estimador MCO existe y su f\'ormula es $\hat{\boldsymbol{\beta}}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{y}$. Para comprobar si es insesgado, calculemos su esperanza. Para ello, primero calculamos la esperanza condicionada a  $\boldsymbol{X}$:
+
+Entonces: 
+\begin{equation*}
+\begin{array}{c}
+\hat{\boldsymbol{\beta}}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{y}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\left(\boldsymbol{X\beta}+\boldsymbol{u}\right)=\boldsymbol{\beta}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u}\\
+E\left(\hat{\boldsymbol{\beta}}|\boldsymbol{X}\right)=E\left[\boldsymbol{\beta}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u}|\boldsymbol{X}\right]=\boldsymbol{\beta}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}E\left(\boldsymbol{u}|\boldsymbol{X}\right)=\boldsymbol{\beta}
+\end{array}
+\end{equation*}
+Ya que $\boldsymbol{\beta}$ es un vector constante, aunque desconocido.
+
+Como por la ley de las esperanzas totales, $E[E\left(\hat{\boldsymbol{\beta}}|\boldsymbol{X}\right)]=E\left(\hat{\boldsymbol{\beta}}\right)$, $E(\hat{\boldsymbol{\beta}})=\boldsymbol{\beta}$ y el estimador es insesgado, siempre que se cumpla la hip\'otesis de esperanza condicionada nula.
+
+Para completar las hip\'otesis de Gauss-Markov para el caso de series temporales, necesitamos dos hip\'otesis adicionales.
+
+\begin{hipotesis}
+\textbf{Homoscedasticidad:} La varianza de la perturbaci\'on condicionada a $\boldsymbol{X}$ es constante para cualquier valor de $t$: $Var(u_t|\boldsymbol{X})=Var(u_t)=\sigma^2$, $t=1,2	\ldots,n$.
+\end{hipotesis}
+
+Por tanto, la varianza de la perturbaci\'on no puede depender de las variables ex\'ogenas (para lo que es suficiente que $u_t$ y $\boldsymbol{X}$ sean independientes) y esta varianza debe ser constante en el tiempo. Si esta hip\'otesis no se cumple, diremos que el modelo presenta \textit{heteroscedasticidad}, o bien que los errores son \textit{heterosced\'asticos}.
+
+Para que esta hip\'otesis se cumpla, las variables no observadas que afecten a la variable dependiente deben tener una variabilidad constante, y que la varianza de la variable end\'ogena no dependa del valor de ninguna variable ex\'ogena.
+
+\begin{hipotesis}
+\textbf{Ausencia de autocorrelaci\'on:} Condicionando a las variables ex\'ogenas, los errores en dos periodos de tiempoe st\'an incorrelacionados: $Corr(u_t, u_s|\boldsymbol{X})=0$ para todo $t\neq s$.
+\end{hipotesis}
+
+Si esta hip\'otesis no se cumple, diremos que el t\'ermino de error presenta \textbf{autocorrelaci\'on}.
+
+Si un modelo presenta homoscedasticidad y ausencia de autocorrelaci\'on, la matriz de varianzas-covarianzas del t\'ermino de error ser\'a:
+
+\[Var(\boldsymbol{u}|\boldsymbol{X})=\sigma^2\boldsymbol{I}_n\]
+
+Estas cinco hip\'otesis son las hip\'otesis de Gauss-Markov aplicadas al modelo con datos de series temporales.
+
+\begin{teorema}
+\textbf{Varianza del estimador MCO:} Bajo las hip\'otesis de Gauss-Markov (linealidad, media condicionada nula, ausencia de multicolinealidad, homocedasticidad y ausencia de autocorrelaci\'on) la matriz de varianzas-covarianzas de los estimadores condicionada a $\boldsymbol{X}$ es:
+
+\[Var(\hat{\boldsymbol{\beta}})=\sigma^2(\boldsymbol{X}^{\prime}\boldsymbol{X})^{-1}\]
+
+\end{teorema}
 
 
+\begin{equation*}
+\begin{array}{c}
+Var\left(\hat{\boldsymbol{\beta}}|\boldsymbol{X}\right)=E\left[\left(\hat{\boldsymbol{\beta}}-E\left(\hat{\boldsymbol{\beta}}\right)\right)\left(\hat{\boldsymbol{\beta}}-E\left(\hat{\boldsymbol{\beta}}\right)\right)^{\prime}|\boldsymbol{X}\right]=E\left[\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)^{\prime}|\boldsymbol{X}\right]=\\
+=E\left[\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u}\boldsymbol{u}^{\prime}\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}|\boldsymbol{X}\right]=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}E\left(\boldsymbol{u}\boldsymbol{u}^{\prime}|\boldsymbol{X}\right)\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}=\\
+=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\sigma_{u}^{2}\boldsymbol{I}_{N}\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}=\sigma_{u}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}
+\end{array}
+\end{equation*}
+
+La diagonal principal de esta matriz nos da la varianza de cada uno de los estimadores de los par\'ametros del modelo. Veamos qu\'e factores influyen en estas varianzas:
+
+\begin{itemize}
+\item Cuanto mayor sea la varianza de la perturbaci\'on, mayor ser\'a la varianza de los estimadores. Esto es lo esperado, cuanto m\'as se aparte nuestro sistema del modelo que hemos especificado, menos precisos ser\'an los estimadores.
+\item Cuanto mayor sea la dispersi\'on de las variables explicativas, o mayor sea el tama\~no de la muestra, menor ser\'a la varianza, ya que la matriz est\'a dividiendo. Esto es l\'ogico pues por un lado, cuanto m\'as repartida est\'e la muestra por el rango de variaci\'on posible m\'as informaci\'on capturaremos, y a mayor tama\~no de la muestra m\'as eficiente ser\'a nuestro estimador.
+\item Cuanta menos multicolineanlidad presenten las variales explicativas, menor ser\'a la varianza. Si las variables explicativas presentan un comportamiento muy cercano a la multicolinealidad, la matriz ser\'a muy pr\'oxima a ser singular, con un determinante pr\'oximo a cero. Por tanto, su inversa ser\'a muy grande y por tanto las varianzas tambi\'en, dando origen a estimadores muy poco eficientes.
+\end{itemize}
+
+\begin{teorema}
+\textbf{Estimador insesgado de $\sigma^2$:} Bajo las hip\'otesis de Gauss-Markov (linealidad, media condicionada nula, ausencia de multicolinealidad, homocedasticidad y ausencia de autocorrelaci\'on) el estimador
+
+\[Var(\hat{\sigma}^2)=\dfrac{\boldsymbol{u}^{\prime}\boldsymbol{u}}{n-k}\]
+
+es un estimador insesgado de $\sigma^2$.
+
+\end{teorema}
+
+\begin{teorema}
+\textbf{Teorema de Gauss-Markov:} Bajo las hip\'otesis de Gauss-Markov (linealidad, media condicionada nula, ausencia de multicolinealidad, homocedasticidad y ausencia de autocorrelaci\'on) los estimadores de m\'inimos cuadrados son los etimadores lineales insesgados de m\'inima varianza, condicionados a $\boldsymbol{X}$.
+
+\end{teorema}
 
 \sectioncol{Variables binarias para efectos temporales y variables en forma de n\'umeros \'indice. }
 Seccion 10.4, 
