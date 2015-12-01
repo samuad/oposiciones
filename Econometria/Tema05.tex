@@ -170,11 +170,31 @@ es un estimador insesgado de $\sigma^2$.
 \end{teorema}
 
 \begin{teorema}
-\textbf{Teorema de Gauss-Markov:} Bajo las hip\'otesis de Gauss-Markov (linealidad, media condicionada nula, ausencia de multicolinealidad, homocedasticidad y ausencia de autocorrelaci\'on) los estimadores de m\'inimos cuadrados son los etimadores lineales insesgados de m\'inima varianza, condicionados a $\boldsymbol{X}$.
+\textbf{Teorema de Gauss-Markov:} Bajo las hip\'otesis de Gauss-Markov (linealidad, media condicionada nula, ausencia de multicolinealidad, homocedasticidad y ausencia de autocorrelaci\'on) los estimadores de m\'inimos cuadrados ordinarios son los estimadores lineales insesgados de m\'inima varianza, condicionados a $\boldsymbol{X}$.
 
 \end{teorema}
 
+As\'i, los estimadores tiene las mismas propiedades para muestras finitas que con la ship\'otesis para datos de secci\'on cruzada.
+
+\subsectioncol{Inferencia bajo los supuestos del modelo lineal cl\'asico.}
+
+Si a las hip\'otesis anteriores les agregamos la siguiente hip\'otesis:
+
+\begin{hipotesis}
+\textbf{Normalidad de la perturbaci\'on:} Los errores $u_t$ son independientes de $\boldsymbol{X}$ y est\'an independiente e id\'enticamente distribuidos seg\'un una distribuci\'on $N(0;\sigma)$.
+\end{hipotesis}
+
+Esta hip\'otesis implica las hip\'otesis de media condicionada nula, heteroscedasticidad y ausencia de correlaci\'on, pero es m\'as restrictiva. Incluy\'endola tenemos las hip\'otesis correspondientes al modelo lineal cl\'asico, y podemos ennunciar el siguiente teorema:
+
+\begin{teorema}
+\textbf{Distribuciones muestrales normales:} Bajo las hip\'otesis del modelo lineal cl\'asico (linealidad, media condicionada nula, ausencia de multicolinealidad, homocedasticidad, ausencia de autocorrelaci\'on y normalidad) los estimadores de m\'inimos cuadrados ordinarios se distribuyen siguiendo una distribuci\'on normal, condicionados a $\boldsymbol{X}$. Adem\'as, bajo la hip\'otesis nula cada estad\'istico $t$ sigue una $t$ de Student, y cada estad\'istico $F$ sigue una $F$ de Snedecor. La construcci\'on habitual de intervalos de confianza sigue siendo v\'alida.
+\end{teorema}
+
+Este teorema implica que si se cumplen las hip\'otesis, todos los resultados obtenidos para datos de corte transversal se pueden aplicar a modelos de series temporales. Estos supuestos son mucho m\'as restrictivos para datos de series temporales, en particular la exogeneidad estricta y la ausencia de autocorrelaci\'on raramente se cumplen.
+
 \sectioncol{Variables binarias para efectos temporales y variables en forma de n\'umeros \'indice. }
+
+
 Seccion 10.4, 
 \sectioncol{Uso de variables con tendencia en la regresi\'on.}
 Seccion 10.5
