@@ -1,0 +1,327 @@
+\documentclass[oneside,spanish,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2cm,rmargin=2cm}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\usepackage{units}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+\usepackage[intlimits]{amsmath}
+\usepackage[spanish]{babel} % division de silabas en espa\~nol.
+\usepackage{ucs}
+\usepackage{amsfonts}
+
+\newcommand{\colsection}[1]{\section{{\color{blue} #1}}}
+\newcommand{\colsubsection}[1]{\subsection{{\color{red} #1}}}
+\newcommand{\colsubsubsection}[1]{\subsubsection{{\color{green} #1}}}
+
+\newcommand{\sectioncol}[1]{\section{{\color{blue} #1}}}
+\newcommand{\subsectioncol}[1]{\subsection{{\color{red} #1}}}
+\newcommand{\subsubsectioncol}[1]{\subsubsection{{\color{green} #1}}}
+
+\newtheorem{teorema}{Teorema}
+\newtheorem{definicion}{Definici\'on}
+\newtheorem{lema}{Lema}
+\newtheorem{corolario}{Corolario}
+\newtheorem{hipotesis}{Hip\'otesis}
+
+%opening
+\title{Oposiciones - Estad\'istica.}
+\author{Samuel B. Alonso Diez}
+\oddsidemargin -0,04cm
+\textwidth 17cm
+\topmargin -1,04cm
+\headheight 0cm
+\textheight 25cm
+\raggedright
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+
+
+\makeatother
+
+\addto\shorthandsspanish{\spanishdeactivate{~<>}}
+
+% -----------------------------------------------------------------------
+
+
+\begin{document}
+\tableofcontents
+
+\sectioncol{Tema 1. Fen\'omenos aleatorios. Espacios de probabilidad. Axiomas. Propiedades. Caso discreto. Caso continuo.}
+
+\paragraph{Axiomas de Kolmogorov.}
+
+En un espacio probabilizable o medible, $(\Omega, \mathcal{F})$, una probabilidad (o medida de probabilidad) es una aplicaci\'on $P:\mathcal{F}\to\mathbb{R}$ que verifica:
+
+\begin{itemize}
+\item $P(A)\geq0$ para todo $A\in\mathcal{F}$.
+\item Para cualquier colecci\'on numerable de conjuntos, $\{A_n\}\subset\mathcal{F}$ disjuntos entre s\'i, se cumple:
+\[P\left(\bigcup_{n}^{\infty}A_n\right)=\sum_n^{\infty}P(A_n)\]
+\item $P(\Omega)=1$.
+\end{itemize}
+
+Propiedades:
+\begin{itemize}
+\item $P(\emptyset)=0$.
+\item Se cumple la aditividad finita: $P\left(\bigcup_{i=1}^{n}A_i\right)=\sum_{i=1}^{n}P(A_i)$.
+\item Si $A\subset B\subset\Omega$, entonces $P(A)\leq P(B)$.
+\item Si $A\subset B\subset\Omega$, entonces $P(B-A)=P(B)-P(A)$.
+\item Sea $A\subset\Omega$, $P(A^c)=1-P(A)$.
+\item Sean $A\subset\Omega$, $B\subset\Omega$ cualesquiera, $P(A\cup B)=P(A)+P(B)-P(A\cap B)$.
+\end{itemize}
+
+\sectioncol{Tema 2. Probabilidad condicionada. Teoremas de la probabilidad condicionada. Independencia de sucesos. Teorema de la Probabilidad Total. Teorema de Bayes.}
+\begin{itemize}
+\item \textbf{Probabilidad condicionada:} $P(A|B)=\dfrac{P(A\cap B}{P(B)}$.
+\item \textbf{Teorema de la probabilidad total:} $P(B)=\sum_{i=1}^{\infty}P(B|A_i)P(A_i)$.
+\item \textbf{Teorema de Bayes:} $P(A_i|B)=\dfrac{P(A_i)P(B|A_i)}{\sum_{i=1}^{\infty}P(B|A_i)P(A_i)}$.
+\end{itemize}
+
+\sectioncol{Tema 3. Variable aleatoria unidimensional. Probabilidad inducida por una variable aleatoria. Funci\'on de distribuci\'on. Distribuciones discretas y absolutamente continuas. Cambio de variable en las distribuciones unidimensionales.}
+
+\paragraph{Funci\'on de distribuci\'on.}
+
+Una funci\'on $F:\mathbb{R}\to[0, 1]$ recibe el nombre de funci\'on de distribuci\'on
+si:
+\begin{itemize}
+\item Es creciente, es decir $F(x_1)\geq F(x_2)$ siempre que $x_1>x_2$.
+\item Es cont\'inua por la derecha, es decir, se cumple $\lim_{y\to x,y>x}{F(y)}=F(x)$.
+\item Verifica $\lim_{x\to-\infty}{F(x)}=0$ y $\lim_{x\to+\infty}{F(x)}=1$.
+\end{itemize}
+
+\paragraph{Funci\'on de densidad.}
+
+Una funci\'on $f:\mathbb{R}\to\mathbb{R}$ recibe el nombre de funci\'on de densidad
+si:
+\begin{itemize}
+\item $f(x)>0$ para todo $x$.
+\item Es integrable en el sentido de Riemann.
+\item Verifica $\int_{-\infty}^{+\infty}f(x)dx=1$.
+\end{itemize}
+
+\sectioncol{Tema 4. Distribuciones unidimensionales. Esperanza matem\'atica. Propiedades. Momentos de una variable aleatoria unidimensional. Otras medidas de posici\'on, dispersi\'on y de forma. Teorema de Markov y Desigualdad de Tchebychev.}
+\begin{itemize}
+\item \textbf{Esperanza matem\'atica:} $E(x)=\sum_{x\in I}xP(x)$, $E(x)=\int_{-\infty}^{+\infty}xf(x)dx$.
+\item \textbf{Esperanza matem\'atica de una funci\'on:} $E[g(x)]=\sum_{x\in I}g(x)P(x)$, $E(x)=\int_{-\infty}^{+\infty}g(x)f(x)dx$.
+\item $E(k)=k$.
+\item $E(x+y)=E(x)+E(y)$.
+\item $E(a\cdot g(x)+b\cdot h(y))=a\cdot E[g(x)]+b\cdot E[h(y)]$.
+
+\item \textbf{Momentos respecto al origen:} $\alpha_r=E[x^r]$. Momento de orden uno: media o esperanza, $\alpha_1=\mu$.
+\item \textbf{Momentos centrales o respecto a la media:} $\mu_r=E[(x-E(x))^r]$. Momento de orden dos: varianza: $\mu_2=Var(X)=\sigma^2$.
+\item Para cualquier $k$, se cumple: $\mu_k=\sum_{i=0}^k(-1)^{k-i}\dbinom{k}{i}\alpha_1^{k-i}\alpha_i$.
+\item Para cualquier $k$, se cumple: $\alpha_k=\sum_{i=0}^k\dbinom{k}{i}\alpha_1^{k-i}\mu_i$.
+\item $Var(X)=E[X^2]-(E[x])^2$.
+\item $Var(k)=0$.
+\item $Var(X+k)=Var(X)$.
+\item $Var(kX)=k^2Var(X)$.
+\item \textbf{Medidas de posici\'on:}
+\begin{itemize}
+\item \textbf{Media o esperanza.}
+\item \textbf{Mediana.}
+\item \textbf{Moda.}
+\item \textbf{Cuantiles.}
+\end{itemize}
+\item \textbf{Medidas de dispersi\'on:}
+\begin{itemize}
+\item \textbf{Varianza.}
+\item \textbf{Desviaci\'on est\'andar:} $\sigma_X=\sqrt{E[(X-E(X))^2]}$.
+\item \textbf{Coeficiente de variaci\'on:} $CV(X)=\dfrac{\sigma_X}{E(X)}$.
+\item \textbf{Promedio de las desviaciones absolutas:} $E[|X-E(X)|]$.
+\item \textbf{Recorrido intercuart\'ilico:} $R_Q=Q_3-Q_1$.
+\end{itemize}\item \textbf{Medidas de forma:}
+\begin{itemize}
+\item \textbf{Coeficiente de asimetr\'ia:} $\gamma_3=\dfrac{\mu_3}{\sigma^3}$.
+\item \textbf{Coeficiente de curtosis:} $\gamma_4=\dfrac{\mu_4}{\sigma^4}-3$.
+\end{itemize}
+\item \textbf{Desigualdad de Markov:} $P(|X|>a)\leq \dfrac{E(|X|)}{a}$.
+\item \textbf{Desigualdad de Chevichev:} Sea $X$ una variable aleatoria no negativa, y $f:\mathbb{R}^+\to\mathbb{R}^+$ creciente tal que $E[f(X)]<+\infty$, entonces para todo $\forall a\in\mathbb{R}$ se cumple:
+\[f(a)P(X\geq a)\leq E[f(X)]\]
+\item Si $X$ tiene varianza finita definimos $Y=|X-E[X]|$, $f(Y)=Y^2$, y por tanto, $E[Y^2]=Var(X)$.
+\[a^2P(|X-E[X]|\geq a)\leq Var(X)\]
+\[P(|X-E[X]|\geq a)\leq\dfrac{Var(X)}{a^2}\]
+\end{itemize}
+
+
+\sectioncol{Tema 5. Funciones generatrices. Funci\'on caracter\'istica: Propiedades. Teoremas.}
+\paragraph{Funci\'on generatriz de probabilidad:}
+
+\begin{itemize}
+\item Sea $X$ variable aleatoria con valores enteros no negativos, $g_X(z)=E[z^X]$.
+\item $P(X=n)=\dfrac{g_X^{(n)}(0)}{n!}$.
+\item $E[X]=g_X^{\prime}(1)$, $Varc(X)=g_X^{\prime\prime}(1)+g_X^{\prime}(1)-(g_X^{\prime}(1))^2$.
+\end{itemize}
+
+\paragraph{Funci\'on generatriz de momentos:}
+
+\begin{itemize}
+\item Sea $X$ variable aleatoria, $\psi(t)=E[e^tX]$, si existe un $h>0$ tal que la funci\'on existe y es finita para todo $|t|<h$.
+\item Si $\psi_X(t)=\psi_Y(t)$ para todo $|t|<h$ dado alg\'un $h>0$ ambas variables siguen la misma distribuci\'on.
+\item Si la funci\'on generatriz de momentos existe para todo $|t|<h$ dado alg\'un $h>0$, existen momentos de todo orden, y $E[X^r]=\psi_X^{(r)}(0)$.
+\end{itemize}
+
+\paragraph{Funci\'on Caracter\'istica:}
+
+\begin{itemize}
+\item Sea $X$ variable aleatoria, funci\'on caracter\'istica: $\varphi(t)=E[e^itX]$.
+\item $|\varphi(t)|\leq\varphi(0)=1$.
+\item $\varphi(t)$ es uniformemente cont\'inua.
+\item $\varphi(-t)=\bar{\varphi(t)}$.
+\item Si $\varphi(t)$ s funci\'on caracter\'istica de $X$, $\varphi(at)e^{itb}$ es la funci\'on caracter\'istica de $aX+b$.
+\item Si dos variables aleatorias tienen la misma funci\'on caracter\'istica, tienen la misma funci\'on de distribuci\'on.
+\item La funci\'on caracter\'istica de $X$ es real si y solo si su distribuci\'on es sim\'etrica.
+\item Si $X_1,X_2,\ldots,X_n$ son variables aleatorias independientes,
+\[\varphi_{X_1+X_2+\cdots+X_n}(t)=\varphi_{X_1}(t)\varphi_{X_2}(t)\cdots\varphi_{X_n}(t)\]
+\item \textbf{F\'ormula de inversi\'on de Levy:} $a<b$, $F$ cont\'inua en ambos,
+\[F(b)-F(a)=\lim_{n\to\infty}\int_{-n}^{+n}\dfrac{e^{-ita}-e^{-ita}}{it}\varphi(t)dt\]
+\item $\varphi_X^{(k)}=i^kE[X^k]$, si existen la derivada y el momento (la existencia de uno implica la del otro).
+\end{itemize}
+
+
+\sectioncol{Tema 6. Variables aleatorias bidimensionales. Funciones de distribuci\'on bidimensionales. Distribuciones discretas y absolutamente continuas. Distribuciones marginales y condicionadas. Independencia de variables aleatorias. Cambio de variable. Extensi\'on a dimensiones mayores.}
+\sectioncol{Tema 7. Esperanza de una variable aleatoria bidimensional. Propiedades. Momentos de una variable aleatoria bidimensional. Propiedades de la varianza y la covarianza. Desigualdad de Schwarz. Coeficiente de correlaci\'on. Funci\'on caracter\'istica bidimensional.}
+\sectioncol{Tema 8. Esperanza condicionada. Propiedades. L\'inea General de Regresi\'on. Regresi\'on m\'inimo cuadr\'atica. Propiedades.}
+\sectioncol{Tema 9. Distribuci\'on degenerada. Distribuci\'on uniforme discreta. Distribuci\'on de Bernouilli. Distribuci\'on binomial. Distribuci\'on de Poisson. Caracter\'isticas. Distribuci\'on de Poisson como l\'imite de la binomial.}
+\sectioncol{Tema 10. Distribuci\'on geom\'etrica. Distribuci\'on binomial negativa. Distribuci\'on hipergeom\'etrica. Propiedades de todas ellas.}
+\sectioncol{Tema 11. Distribuci\'on normal. Caracter\'isticas e importancia de la distribuci\'on normal en la teor\'ia y pr\'actica estad\'istica. Distribuci\'on lognormal. Distribuci\'on normal multivariante. Propiedades.}
+\sectioncol{Tema 12. Distribuci\'on uniforme. Distribuci\'on exponencial. Distribuciones gamma y beta. Distribuci\'on de Pareto. Distribuci\'on de Cauchy. Caracter\'isticas.}
+\sectioncol{Tema 13. Distribuciones X2, t de Student y F de Snedecor. Caracter\'isticas. Importancia de estas distribuciones en la teor\'ia y pr\'actica estad\'istica. Relaciones con la distribuci\'on normal.}
+\sectioncol{Tema 14. Convergencias de sucesiones de variables aleatorias: convergencia casi segura, convergencia en probabilidad, convergencia en media cuadr\'atica, convergencia en ley. Relaciones entre ellas. Convergencia de sumas de variables aleatorias. Leyes d\'ebiles y fuertes de los grandes n\'umeros. Aplicaciones a la inferencia estad\'istica y al muestreo. Teorema Central del L\'imite.}
+
+\subsectioncol{Convergencias.}
+\paragraph{Convergencia en probabilidad.}
+
+~\\$\{X_n\}_{n\in \mathbb{N}}$, $X_n\overset{p}{\to}X$ si $\lim_{n\to\infty}P\left(|X_n-X|>\varepsilon\right)=0$ $\forall\varepsilon>0$.
+
+\begin{itemize}
+\item $X_n\overset{p}{\to}X\Leftrightarrow X_n-X\overset{p}{\to}0$.
+\item Si $X_n\overset{p}{\to}X\Rightarrow  X_n-X_m\overset{p}{\to}0$.
+\item Si $X_n\overset{p}{\to}X$ y $Y_n\overset{p}{\to}Y\Rightarrow X_n\pm Y_n\overset{p}{\to}X\pm Y$.
+\item Si $X_n\overset{p}{\to}X$ y $k$ es una constante, $\Rightarrow kX_n\overset{p}{\to}kX$.\item Si $X_n\overset{p}{\to}a$ y $a$ es una constante, $\Rightarrow X_n^2\overset{p}{\to}a^2$.
+\item Si $X_n\overset{p}{\to}a$ y $Y_n\overset{p}{\to}b$, $a$ y $b$ constantes, $\Rightarrow X_nY_n\overset{p}{\to}ab$.
+\item Si $X_n\overset{p}{\to}1$ y $X_n\neq0$ en ning\'un caso, $\Rightarrow X_n^{-1}\overset{p}{\to}1$.
+\item Si $X_n\overset{p}{\to}a$ y $Y_n\overset{p}{\to}b$, $a$ y $b$ constantes, y $Y_n\neq0$, $b\neq0$, $\Rightarrow X_nY_n^{-1}\overset{p}{\to}ab^{-1}$.
+\item Si $X_n\overset{p}{\to}X$ y $Y$ es una variable aleatoria, $\Rightarrow X_nY\overset{p}{\to}XY$.
+\item Si $X_n\overset{p}{\to}X$ y $Y_n\overset{p}{\to}Y\Rightarrow X_nY_n\overset{p}{\to}XY$.
+\item Si $X_n\overset{p}{\to}X$ y $g$ es una funci\'on cont\'inua definida sobre $\mathbb{R}$, $\Rightarrow g(X_n)\overset{p}{\to}g(X)$.
+\end{itemize}
+
+\paragraph{Convergencia casi segura.}
+
+~\\$\{X_n\}_{n\in \mathbb{N}}$, $X_n\overset{cs}{\to}X$ si $P\left(\lim_{n\to\infty}X_n=X\right)=1$.
+\begin{itemize}
+\item $X_n\overset{cs}{\to}X\Leftrightarrow X_n-X\overset{cs}{\to}0$.
+\item Si $X_n\overset{cs}{\to}X\Rightarrow  X_n-X_m\overset{cs}{\to}0$.
+\item Si $X_n\overset{cs}{\to}X$ y $Y_n\overset{cs}{\to}Y\Rightarrow X_n\pm Y_n\overset{cs}{\to}X\pm Y$.
+\item Si $X_n\overset{cs}{\to}X$ y $k$ es una constante, $\Rightarrow kX_n\overset{cs}{\to}kX$.\item Si $X_n\overset{cs}{\to}a$ y $Y_n\overset{cs}{\to}b$, $a$ y $b$ constantes, $\Rightarrow X_nY_n\overset{cs}{\to}ab$.
+\item Si $X_n\overset{cs}{\to}a$ y $Y_n\overset{cs}{\to}b$, $a$ y $b$ constantes, y $Y_n\neq0$, $b\neq0$, $\Rightarrow X_nY_n^{-1}\overset{cs}{\to}ab^{-1}$.
+\item Si $X_n\overset{cs}{\to}X$ y $Y$ es una variable aleatoria, $\Rightarrow X_nY\overset{cs}{\to}XY$.
+\item Si $X_n\overset{cs}{\to}X$ y $Y_n\overset{cs}{\to}Y\Rightarrow X_nY_n\overset{cs}{\to}XY$.
+\item Si $X_n\overset{cs}{\to}X$ y $g$ es una funci\'on cont\'inua definida sobre $\mathbb{R}$, $\Rightarrow g(X_n)\overset{cs}{\to}g(X)$.
+\end{itemize}
+
+\paragraph{Convergencia en ley (o en distribuci\'on).}
+
+~\\$\{X_n\}_{n\in \mathbb{N}}$, $X_n\overset{\mathcal{L}}{\to}X$ si $\lim_{n\to\infty}F_n(x)=F(x)$.
+\begin{itemize}
+\item $X_n\overset{cs}{\to}X\Leftrightarrow X_n-X\overset{cs}{\to}0$.
+\item Si $X_n\overset{cs}{\to}X\Rightarrow  X_n-X_m\overset{cs}{\to}0$.
+\item Si $X_n\overset{cs}{\to}X$ y $Y_n\overset{cs}{\to}Y\Rightarrow X_n\pm Y_n\overset{cs}{\to}X\pm Y$.
+\item Si $X_n\overset{cs}{\to}X$ y $k$ es una constante, $\Rightarrow kX_n\overset{cs}{\to}kX$.\item Si $X_n\overset{cs}{\to}a$ y $Y_n\overset{cs}{\to}b$, $a$ y $b$ constantes, $\Rightarrow X_nY_n\overset{cs}{\to}ab$.
+\item Si $X_n\overset{cs}{\to}a$ y $Y_n\overset{cs}{\to}b$, $a$ y $b$ constantes, y $Y_n\neq0$, $b\neq0$, $\Rightarrow X_nY_n^{-1}\overset{cs}{\to}ab^{-1}$.
+\item Si $X_n\overset{cs}{\to}X$ y $Y$ es una variable aleatoria, $\Rightarrow X_nY\overset{cs}{\to}XY$.
+\item Si $X_n\overset{cs}{\to}X$ y $Y_n\overset{cs}{\to}Y\Rightarrow X_nY_n\overset{cs}{\to}XY$.
+\item Si $X_n\overset{cs}{\to}X$ y $g$ es una funci\'on cont\'inua definida sobre $\mathbb{R}$, $\Rightarrow g(X_n)\overset{cs}{\to}g(X)$.
+\end{itemize}
+
+\paragraph{Convergencia en media cuadr\'atica.}
+
+~\\$\{X_n\}_{n\in \mathbb{N}}$, $X_n\overset{\text{m.c.}}{\to}X$ si $\lim_{n\to\infty}E[(X_n-X)^2]=0$.
+\begin{itemize}
+\item Si $X_{n} \overset{m.c.}{\to} X $, entonces $X_{n} \overset{p}{\to} X $.
+\item Si $X_{n} \overset{m.c.}{\to} X $, entonces $E[X_n]\underset{n\to\infty}{\to}E[X]$ y $E[X_n^2]\underset{n\to\infty}{\to}E[X^2]$.
+\item Si $X_{n} \overset{m.c.}{\to} X $, entonces $V[X_n]\underset{n\to\infty}{\to}V[X]$.
+\item Sean $ \left\{X_n\right\}_{n\in\mathbb{N}}$, $ \left\{Y_m\right\}_{m\in\mathbb{N}}$ dos sucesiones de variables aleatorias tales que $X_{n} \overset{m.c.}{\to} X $ y $Y_{m} \overset{m.c.}{\to} Y $, entonces $E[X_nY_n]\underset{m,n\to\infty}{\to}E[XY]$.
+\item Sean $ \left\{X_n\right\}_{n\in\mathbb{N}}$, $ \left\{Y_m\right\}_{m\in\mathbb{N}}$ dos sucesiones de variables aleatorias tales que $X_{n} \overset{m.c.}{\to} X $ y $Y_{m} \overset{m.c.}{\to} Y $, entonces $Cov[X_n,Y_n]\underset{m,n\to\infty}{\to}Cov[X,Y]$
+
+\end{itemize}
+
+\paragraph{Relaciones entre convergencias.}
+
+~\\
+\[X_n\overset{cs}{\to}X\Rightarrow X_n\overset{p}{\to}X\Rightarrow X_n\overset{\mathcal{L}}{\to}X\]
+\[X_n\overset{\text{m.c.}}{\to}X\Rightarrow X_n\overset{p}{\to}X\]
+
+\subsectioncol{Leyes d\'ebiles y fuertes de los grandes n\'umeros.}
+
+\paragraph{Ley d\'ebil de los grandes n\'umeros.}
+~\\
+$\{X_n\}_{n\in \mathbb{N}}$ cumple la ley d\'ebil de los grandes n\'umeros respecto a las constantes de normalizaci\'on $B_n$ si existe una sucesi\'on de constantes, $\{A_n\}_{n\in \mathbb{N}}$, llamadas de centralizaci\'on, tales que $S_n=\sum_{i=1}^nX_i$ cumple que
+\[\dfrac{S_n-A_n}{B_n}\overset{p}{\to}0\]
+
+Un caso especial es si definimos $B_n=n$, $A_n=\sum_{i=1}^nE[X_i]$.
+
+\textbf{Teoremas:} Una sucesi\'on de variables aleatorias cumple la ley d\'ebil de los grandes n\'umeros si:
+\begin{itemize}
+\item Las variables de la sucesi\'on son independientes, est\'an id\'enticamente distribuídas y tienen media y varianza finitas.
+\item \textbf{Tchebychev:} Las variables de la sucesi\'on son independientes y su varianza est\'a acotada.
+\item \textbf{Markov:} Se cumple que $\lim_{n\to\infty}V(\bar{X}_n)=0$.
+\item \textbf{Khintchine:} Las variables de la sucesi\'on son independientes, id\'enticamente distribu\'idas, y su media es finita.
+\item \textbf{Bernouilli:} Las variables de la sucesi\'on son independientes e id\'enticamente distribu\'idas con una distribuci\'on $B(1,p)$.
+\end{itemize}
+
+\paragraph{Ley fuerte de los grandes n\'umeros.}
+~\\
+$\{X_n\}_{n\in \mathbb{N}}$ cumple la ley fuerte de los grandes n\'umeros respecto a las constantes de normalizaci\'on $B_n$ si existe una sucesi\'on de constantes, $\{A_n\}_{n\in \mathbb{N}}$, llamadas de centralizaci\'on, tales que $S_n=\sum_{i=1}^nX_i$ cumple que
+\[\dfrac{S_n-A_n}{B_n}\overset{cs}{\to}0\]
+
+Un caso especial es si definimos $B_n=n$, $A_n=\sum_{i=1}^nE[X_i]$.
+
+\textbf{Teoremas:} Una sucesi\'on de variables aleatorias cumple la ley fuerte de los grandes n\'umeros si:
+\begin{itemize}
+\item \textbf{Kolmogorov:} Las variables de la sucesi\'on son tales que existen $E[X_n]=\mu_n$, $V(X_n)=\sigma^2_n$ y se cumple que $\sum_{i=1}^{\infty}\sigma_i^2<\infty$.
+\item \textbf{Borel-Cantelli:} La frecuencia relativa de un suceso dicot\'omico obedece a la ley fuerte de los grandes n\'umeros.
+\item \textbf{Khintchine:} Las variables de la sucesi\'on son independientes, id\'enticamente distribu\'idas, y su media es finita.
+\end{itemize}
+
+\subsectioncol{Teorema central del l\'imite.}
+~\\
+$\{X_n\}_{n\in \mathbb{N}}$ con medias y varianzas finitas, cumple el teorema central del l\'imite si la sucesi\'on $\{S_n\}_{n\in \mathbb{N}}$ tal que $S_n=\sum_{i=1}^nX_i$ converge en ley a una distribuci\'on normal, es decir, si:
+\[\dfrac{S_n-E[S_n]}{\sqrt{V(S_n)}}\overset{\mathcal{L}}{\to}N(0,1)\]
+
+
+\textbf{Teoremas:} Una sucesi\'on de variables aleatorias cumple el teorema central del l\'imite si:
+\begin{itemize}
+\item \textbf{De Moivre:} Las variables de la sucesi\'on son independientes e id\'enticamente distribu\'idas con una distribuci\'on $B(1,p)$.
+\item \textbf{Levy-Lindeberg:} Las variables de la sucesi\'on son independientes, id\'enticamente distribu\'idas, y su media y varianza son finitas.
+\end{itemize}
+
+
+
+\sectioncol{Tema 15. Cadenas de Markov. Distribuci\'on de la cadena. Cadenas homog\'eneas. Clasificaci\'on de los estados. Tipos de cadenas. Distribuciones estacionarias.}
+\sectioncol{Tema 16. Procesos de Poisson. Proceso general de Nacimiento y Muerte. Proceso puro de Nacimiento. Proceso puro de Muerte. }
+\sectioncol{Tema 17. Fundamentos de la Inferencia Estad\'istica. Concepto de muestra aleatoria. Distribuci\'on de la muestra. Estad\'isticos y su distribuci\'on en el muestreo. Funci\'on de distribuci\'on emp\'irica y sus caracter\'isticas. Teorema de Glivenco-Cantelli.}
+\sectioncol{Tema 18. Distribuciones en el muestreo asociadas con poblaciones normales. Distribuciones de la media, varianza y diferencia de medias. Estad\'isticos ordenados. Distribuci\'on del mayor y menor valor. Distribuci\'on del recorrido.}
+\sectioncol{Tema 19. Estimaci\'on puntual I. Propiedades de los estimadores puntuales. Error cuadr\'atico medio. Estimadores insesgados, consistentes y suficientes.}
+\sectioncol{Tema 20. Estimaci\'on puntual II. Estimadores de m\'inima varianza. Estimadores eficientes. Estimadores robustos. Estimadores Bayesianos.}
+\sectioncol{Tema 21. M\'etodos de estimaci\'on. M\'etodo de los momentos. M\'etodo de la m\'inima X2. M\'etodo de la m\'inima varianza. M\'etodo de los m\'inimos cuadrados. M\'etodos Bayesianos.}
+\sectioncol{Tema 22. M\'etodo de estimaci\'on de m\'axima verosimilitud. Propiedades. Distribuci\'on asint\'otica de los estimadores de m\'axima verosimilitud.}
+\sectioncol{Tema 23. Estimaci\'on por intervalos. M\'etodos de construcci\'on de intervalos de confianza: m\'etodo pivotal y m\'etodo general de Neyman. Intervalos de confianza en poblaciones normales: media, varianza, diferencia de medias y cociente de varianzas. Regiones de confianza.}
+\sectioncol{Tema 24. Contrastes de hip\'otesis. Errores y potencia de un contraste. Hip\'otesis simples. Lema de Neyman-Pearson.}
+\sectioncol{Tema 25. Hip\'otesis compuestas y contrastes uniformemente m\'as potentes. Contrastes de significaci\'on, p-valor. Contraste de raz\'on de verosimilitudes. Contrastes sobre la media y varianza en poblaciones normales. Contrastes en poblaciones no necesariamente normales. Muestras grandes.}
+\sectioncol{Tema 26. Contrastes de bondad de ajuste. Contraste X2 de Pearson. Contraste de Kolmogorov-Smirnov. Contrastes de normalidad. Contrastes de independencia. Contraste de homogeneidad.}
+\sectioncol{Tema 27. An\'alisis de la varianza para una clasificaci\'on simple. Comprobaci\'on de las hip\'otesis iniciales del modelo. Contrastes de comparaciones m\'ultiples: m\'etodo de Tuckey y m\'etodo de Scheff\'e. An\'alisis de la varianza para una clasificaci\'on doble.}
+\sectioncol{Tema 28. An\'alisis de conglomerados. Medidas de disimilaridad. M\'etodos jer\'arquicos aglomerativos: el dendrograma. M\'etodos jer\'arquicos divisivos. M\'etodos no jer\'arquicos de clasificaci\'on.}
+\sectioncol{Tema 29. An\'alisis Discriminante. Clasificaci\'on con 2 grupos. Funci\'on discriminante de Fisher. Clasificaci\'on con m\'as de 2 grupos. Funciones Clasificadoras.}
+\sectioncol{Tema 30. An\'alisis de Componentes Principales. Formulaci\'on del Problema, resoluci\'on y propiedades. Determinaci\'on del n\'umero de componentes a considerar.}
+\sectioncol{Tema 31. An\'alisis Factorial. Formulaci\'on del Problema. T\'ecnicas de resoluci\'on. Relaci\'on con el An\'alisis de Componentes Principales. Rotaciones. Adecuaci\'on y Validaci\'on de hip\'otesis.}
+\sectioncol{Tema 32. An\'alisis de Correlaci\'on Can\'onica. Introducci\'on. Correlaci\'on can\'onica y variables can\'onicas: c\'alculo e interpretaci\'on geom\'etrica. Propiedades. Contrastaci\'on del modelo y an\'alisis de la dimensionalidad. Relaci\'on con otras t\'ecnicas de an\'alisis multivariante.}
+\sectioncol{Tema 33. \'Indices estad\'isticos: conceptos, criterios y propiedades. F\'ormulas agregativas. \'Indices en cadena. Paaschizaci\'on de \'indices. \'Indices de Roy. \'Indices de Divisia.}
+\sectioncol{Tema 34. \'Indices de desigualdad y medidas de concentraci\'on.}
+
+\end{document}
