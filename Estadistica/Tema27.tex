@@ -37,4 +37,32 @@ Nuestro modelo depende de $a+1$ par\'ametros: las $a$ medias de cada grupo, y la
 
 \[f(y_{ij};\mu_i,\sigma^2)=\dfrac{1}{\sigma\sqrt{2\pi}}e^{-\dfrac{1}{2}\left(\dfrac{y_{ij}-\mu_i}{\sigma}\right)^2}\]
 
+Como por hip\'otesis las observaciones son independientes entre s\'i, la funci\'on de verosimilitud ser\'a el producto de las funciones de densidad, y su logaritmo:
+\[\ln{L(\mu_i,\sigma^2)}=-\dfrac{N}{2}\ln{\sigma^2}-\dfrac{N}{2}\ln{2\pi}-\dfrac{1}{2}\sum_{i=1}^{a}\sum_{j=1}^{n_i}\left(\dfrac{y_{ij}-\mu_i}{\sigma}\right)^2\]
+Los estimadores de m\'axima verosimilitud de las $\mu_i$ se obtienen a partir de la condici\'on \[\dfrac{\partial\ln{L}}{\partial\mu_i}=0\Leftrightarrow\sum_{j=1}^{n_i}\left(\dfrac{y_{ij}-\mu_i}{\sigma}\right)=0\]
+
+Y por tanto, $\hat{\mu_i}=\dfrac{\sum_{j=1}^{n_i}Y_{ij}}{n_i}=\bar{Y}_{i.}$.
+
+Para obtener el estimador de la varianza, nos basamos en:
+
+\[\dfrac{\partial\ln{L}}{\partial\sigma^2}=0\Leftrightarrow-\dfrac{N}{2\sigma^2}+\dfrac{\sum_{i=1}^{a}\sum_{j=1}^{n_i}\left(y_{ij}-\mu_i\right)^2}{2\sigma^4}=0\]
+
+Y por tanto:
+\[\hat{\sigma}^2=\dfrac{\sum_{i=1}^{a}\sum_{j=1}^{n_i}\left(y_{ij}-\mu_i\right)^2}{N}=\dfrac{\sum_{i=1}^{a}\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{i.}\right)^2}{N}=\sum_{i=1}^{a}\dfrac{n_i-1}{N}S_i^2\]
+
+Siendo $S_i^2$ la cuasivarianza muestral de cada grupo. As\'i, el estimador de la varianza es la media ponderada de la cuasivarianza muestral de cada grupo.
+
+Los residuos del modelo, definidos como $e_{ij}=Y_{ij}-\hat{mu}_{i}$ se pueden interpretar como los estimadores de las perturbaciones. Estos residuos no son independientes, ya que est\'an sometidos a las restricciones que se derivan de la estimaci\'on de los par\'ametros, es decir, ya que $\hat{\mu_i}=\dfrac{\sum_{j=1}^{n_i}Y_{ij}}{n_i}=\bar{Y}_{i.}$, $\sum_{j=1}^{n_i}e_{ij}=\sum_{j=1}^{n_i}Y_{ij}-n_i\bar{Y}_{i.}=0$. Por tanto, existen $N-a$ residuos no determinados a priori. A este n\'umero lo llamamos grados de libertad de los residuos.
+
+Como $E[\bar{Y}_{i.}]=\dfrac{\sum_{j=1}^{n_i}E[Y_{ij}]}{n_i}=\mu_i$, $V[\bar{Y}_{i.}]=\dfrac{\sum_{j=1}^{n_i}V[Y_{ij}]}{n_i^2}=\dfrac{\sigma^2}{n_i}$, tenemos que $[\bar{Y}_{i.}\sim N\left(\mu_i;\dfrac{\sigma^2}{n_i}\right)$.
+
+Como $\sum_{i=1}^{a}\sum_{j=1}^{n_i}e_{ij}^2=\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{i.})^2=N\hat{\sigma}^2$,
+\[\dfrac{N\hat{\sigma}^2}{\sigma^2}=\sum_{i=1}^{a}\sum_{j=1}^{n_i}\left(\dfrac{y_{ij}-\bar{Y}_{i.}}{\sigma}\right)^2\sim\sum_{i=1}^{a}\chi^2_{n_i-1}=\chi^2_{N-a}\]
+
+Gracias a la propiedad reproductiva de la $\chi^2$, y a que las observaciones son independientes.
+
+Como $E[\dfrac{N\hat{\sigma}^2}{\sigma^2}]=N-a$, $E[\hat{\sigma}^2=\dfrac{N-a}{N}\sigma^2$, por lo que el estimador es sesgado. Un estimador insesgado ser\'a lo que llamamos varianza residual: $\hat{S}_R^2=\dfrac{N}{N-a}\hat{\sigma}^2=\dfrac{\sum_{i=1}^{a}\sum_{j=1}^{n_i}e_{ij}^2}{N-a}$, y su distribuci\'on ser\'a proporcional a una $\chi^2$ con $N-a$ grados de libertad.
+
+
+
 
