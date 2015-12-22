@@ -63,6 +63,41 @@ Gracias a la propiedad reproductiva de la $\chi^2$, y a que las observaciones so
 
 Como $E[\dfrac{N\hat{\sigma}^2}{\sigma^2}]=N-a$, $E[\hat{\sigma}^2=\dfrac{N-a}{N}\sigma^2$, por lo que el estimador es sesgado. Un estimador insesgado ser\'a lo que llamamos varianza residual: $\hat{S}_R^2=\dfrac{N}{N-a}\hat{\sigma}^2=\dfrac{\sum_{i=1}^{a}\sum_{j=1}^{n_i}e_{ij}^2}{N-a}$, y su distribuci\'on ser\'a proporcional a una $\chi^2$ con $N-a$ grados de libertad.
 
+Queremos contrastar la hip\'otesis nula de uqe los grupos son estad\'isticamente id\'enticos. Dado que por hip\'otesis su varianza es la misma, esto implicar\'a que a partir de nuestras $a$ muestras aleatorias simples tendremos que contrastar la siguiente hip\'otesis nula:
+\[H_0:\alpha_1=\alpha_2=\cdots=\alpha_a\]
+frente a la hip\'otesis alternativa de que no todas las medias espec\'ificas son iguales.
+O, de forma equivalente:
+\[H_0:\mu_1=\mu_2=\cdots=\mu_a\]
+frente a $H_1:$ al menos dos $\mu_i$ son distintas.
 
+Para facilitar los c\'alculos vamos a introducir la siguiente notaci\'on:
+\begin{itemize}
+\item \textbf{Tama\~no muestral global:} $N=\sum_{i=1}^an_i$.
+\item \textbf{Media muestral $i$-\'esima:} $\bar{Y}_{i.}=\dfrac{1}{n_i}\sum_{j=1}^{n_i}Y_{ij}$.
+\item \textbf{Total muestral $i$-\'esimo:} $Y_{i.}=n_i\bar{Y}_{i.}=\sum_{j=1}^{n_i}Y_{ij}$.
+\item \textbf{Media muestral global:} $\bar{Y}_{..}=\dfrac{1}{N}\sum_{i=1}^a\sum_{j=1}^{n_i}Y_{ij}=\sum_{i=1}^a\dfrac{n_i}{N}\bar{Y}_{i.}$.
+\item \textbf{Total muestral global:} $Y_{..}=N\bar{Y}_{..}=\sum_{i=1}^a\sum_{j=1}^{n_i}Y_{ij}=\sum_{i=1}^an_i\bar{Y}_{i.}$.
+\item \textbf{Cuasivarianza muestral $i$-\'esima:} $S_i^2=\dfrac{1}{n_i-1}\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{i.}\right)^2$.
+\item \textbf{Suma de cuadrados de las observaciones a sus medias grupales:} $SCE=\sum_{i=1}^a(n_i-1)S_i^2=\sum_{i=1}^a\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{i.}\right)^2$.
 
+Esta cantidad es una medida de las variaciones dentro de cada grupo debida a la aleatoriedad, es decir, no explicada por el modelo. Coincide con la suma de los residuos.
 
+\item \textbf{Suma de cuadrados de las medias grupales a la media total:} $SCTR=\sum_{i=1}^an_i\left(\bar{Y}_{i.}-\bar{Y}_{..}\right)^2$.
+
+Esta cantidad es una medida de la variabilidad de los datos debida a su pertenencia a grupos distintos, es decir, explicada por el modelo.
+\item \textbf{Suma de cuadrados total:} $SCT=\sum_{i=1}^a\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{..}\right)^2$.
+
+Esta cantidad es una medida de la variabilidad total de los datos.
+
+\item \textbf{Media de cuadrados del error:} $MCE=\dfrac{SCE}{N-a}$.
+\item \textbf{Media de cuadrados de los tratamientos:} $MCTR=\dfrac{SCTR}{a-1}$.
+
+\end{itemize}
+
+Podemos demostrar varios resultados:
+
+\textbf{Resultado 1:} $SCT=SCE+SCTR$:
+\begin{align*}
+SCT=\sum_{i=1}^a\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{..}\right)^2=&\sum_{i=1}^a\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{i.}+\bar{Y}_{i.}-\bar{Y}_{..}\right)^2=\\
+=\sum_{i=1}^a\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{i.}\right)^2+\sum_{i=1}^a\sum_{j=1}^{n_i}\left(\bar{Y}_{i.}-\bar{Y}_{..}\right)^2+&2\sum_{i=1}^a\left(\bar{Y}_{i.}-\bar{Y}_{..}\right)\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{i.}\right)=SCTR+SCE
+\end{align*}
