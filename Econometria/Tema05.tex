@@ -194,6 +194,30 @@ Este teorema implica que si se cumplen las hip\'otesis, todos los resultados obt
 
 \sectioncol{Variables binarias para efectos temporales y variables en forma de n\'umeros \'indice. }
 
+Las variables independientes ficticias o variables binarias son muy \'utiles cuando trabajamos con series temporales. Pues to que cada observaci\'on de nuestras variables representa un instante en el tiempo, podemos asociar nuestra variable ficticia a la ocurrencia o no ocurrencia d eun determinado evento en un determinado periodo. A menudo se utilizan para aislas determiandos periodos que pueden ser sistem\'aticamente diferentes al resto de periodos dentro de la muestra.
+
+Estas variables se utilizan mucho en el estudio de acintecimientos, que consiste en estimar el impacto d eun acontencimiento determinado sobre cualquier variable resultado. Como ejemplo, podemos citar el impacto de determinados acontecimientos en las acciones de empresas. Para este objetivo en muchos casos se recurre a m\'as de una variable ficticia, una que tome valor uno durante algunos periodos previso al aciontecimiento, y otra que tome valor uno a partir del acontecimiento para comprobar si la previsi\'on del mismo afecta a la variable.
+
+Antes de continuar, es necesario conocer la definici\'on de n\'umero \'indice. Un n\'umero \'indice es un n\'umero que refleja la evoluci\'on de una magnitud compar\'andola con dicha magnitud en un momento dado, y que en general agrega gran cantidad de informaci\'on. Como ejemplos de n\'umeros \'indices se pueden citar los \'indices de precios, o los \'indices de producci\'on industrial. Para interpretar un n\'umero\'indice debemos conocer el periodo base y el valor base. En general el valor base se define arbitrariamente a 100 o a 1, dependiendo de si el \'indice se expresa en porcentaje o en tanto por uno.
+
+Las variables en forma de n\'umeros \'idice se utilizan cuando se quiere reflejar el comportamiento agregado de varios agentes econ\'omicos diversos: se utilizan \'indices de producci\'on de un determinado sector industrial para reflejar la evoluci\'on de una industria en su coonjunto, por ejemplo.
+
+Los \'indices de precios son particularmente importantes porque se utilizan para transformar las series econ\'omicas de sus unidades monetaria nominales a unidades monetarias reales, es decir, sin tener en cuenta la inflaci\'on. Para transformar una cantidad de su valor nominal a su valor real se aplica la siguiente f\'ormula:
+
+\[Q_R=100\cdot\dfrac{Q_N}{IPC}\]
+
+Siendo $Q_R$ el valor de la serie en unidades monetarias correspondientes al periodo base del \'indice.
+
+En general las variables econ\'omicas de nuestras series temporales est\'an expresadas en t\'erminos reales. Si combinamos estas variables reales y los logaritmos neperianos podemos obtener resultados interesantes. Por ejemplo, si tenemos una cantidad monetaria expresada en t\'erminos reales, $Q_R=100\cdot\dfrac{Q_N}{IPC}$, en el siguiente modelo:
+
+\[\log{y}=\beta_0+\beta_1\log{Q_R}+u\]
+
+Y como $\log{Q_R}=\log{100\cdot\dfrac{Q_N}{IPC}}=\log{100}+\log{Q_N}-\log{IPC}$, tambi\'en lo podremos expresar como:
+\[\log{y}=\beta_0+\beta_1\log{Q_N}+\beta_2\log{IPC}+u\]
+
+on la restricci\'on de que $\beta_1=-\beta_2$. SI esta restricci\'on no se cumpliese, podr\'iamos concluir que los agentes econ\'omicos implicados en el modelo no entienden la distinci\'on entre valores nominales y valores reales, es decir, no son conscientes de la influencia de las variaciones de precios.
+
+Dado que las magnitudes de los n\'umeros \'indice no son informativas, en general estas variables se utilizan aplicando logaritmos, para poder interpretar los coeficientes de la regresi\'on en t\'erminos de cambios porcentuales.
 
 Seccion 10.4, 
 \sectioncol{Uso de variables con tendencia en la regresi\'on.}
