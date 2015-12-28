@@ -101,3 +101,53 @@ Podemos demostrar varios resultados:
 SCT=\sum_{i=1}^a\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{..}\right)^2=&\sum_{i=1}^a\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{i.}+\bar{Y}_{i.}-\bar{Y}_{..}\right)^2=\\
 =\sum_{i=1}^a\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{i.}\right)^2+\sum_{i=1}^a\sum_{j=1}^{n_i}\left(\bar{Y}_{i.}-\bar{Y}_{..}\right)^2+&2\sum_{i=1}^a\left(\bar{Y}_{i.}-\bar{Y}_{..}\right)\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{i.}\right)=SCTR+SCE
 \end{align*}
+
+\textbf{Resultado 2:} Se verifican las siguientes igualdades:
+\begin{itemize}
+\item $E[SCE]=(N-a)\sigma^2$.
+\[E[SCE]=\sum_{i=1}^aE[(n_i-1)S_i^2]=\sigma^2\sum_{i=1}^aE[\dfrac{(n_i-1)S_i^2}{\sigma^2}]=\sigma^2\sum_{i=1}^aE[\chi_{n_i-1}^2]=\sigma^2\sum_{i=1}^a(n_i-1)=(N-a)\sigma^2\]
+\item $E[SCTR]=(a-1)\sigma^2+\sum_{i=1}^an_i(\alpha_i-\bar{\alpha})^2$, donde $\bar{\alpha}=\sum_{i=1}^a\dfrac{n_i}{N}\alpha_i$.
+\begin{align}
+E[SCTR]=E[\sum_{i=1}^an_i(\bar{Y}_{i.}-\bar{Y}_{..})^2]=&\sum_{i=1}^aE[n_i\bar{Y}_{i.}^2]+\sum_{i=1}^an_iE[\bar{Y}_{..}^2]-2E[\sum_{i=1}^an_E[\bar{Y}_{i.}\bar{Y}_{..}]=\sum_{i=1}^aE[n_i\bar{Y}_{i.}^2]+NE[\bar{Y}_{..}^2]-2NE[\bar{Y}_{..}^2]=\\
+=\sum_{i=1}^an_iE[\bar{Y}_{i.}^2]-NE[\bar{Y}_{..}^2]=&\sum_{i=1}^an_i(\dfrac{\sigma^2}{n_i}+(\mu+\alpha_i)^2)-N\left[\dfrac{\sigma^2}{N}+\left(\sum_{i=1}^a\dfrac{n_i}{N}(\mu+\alpha_i)\right)^2\right]=(a-1)\sigma^2+\sum_{i=1}^an_i(\mu+\alpha_i)^2-N\left(\sum_{i=1}^a\dfrac{n_i}{N}(\mu+\alpha_i)\right)^2
+\end{align}
+\[E[\bar{Y}_{i.}^2]=V[\bar{Y}_{i.}]+E[\bar{Y}_{i.}]^2=\dfrac{\sigma^2}{n_i}+(\mu+\alpha_i)^2\]
+\[E[\bar{Y}_{..}^2]=V[\bar{Y}_{..}]+E[\bar{Y}_{..}]^2=\dfrac{\sigma^2}{N}+\left(\sum_{i=1}^a\dfrac{n_i}{N}(\mu+\alpha_i)\right)^2\]
+\item $E[SCT]=(N-1)\sigma^2+\sum_{i=1}^an_i(\alpha_i-\bar{\alpha})^2$. Se deduce de las dos anteriores y de que $SCT=SCE+SCTR$.
+\end{itemize}
+
+Como consecuencia de estos resultados, $E[MCE]=\sigma^2$, y por tanto $MCE$ ser\'a un estimador insesgado de la varianza; tambi\'en $E[S_i^2]=\sigma^2$, y tambi\'en son estimadores insesgados, aunque menos precisos por contar con menos observaciones.
+
+Definimos el estad\'istico:
+\[F=\dfrac{MCTR}{MCE}=\dfrac{SCTR/(a-1)}{SCE/(N-a)}\]
+
+Si lo consideramos como un estimador del siguiente cociente:
+\[R^{*}=\dfrac{E[MCTR]}{E[MCE]}=1+\dfrac{1}{(a-1)\sigma^2}\sum_{i=1}^an_i(\alpha_i-\bar{\alpha})^2\]
+
+Bajo la hip\'otesis nula, $R^{*}=1$ y bajo la hip\'otesis alternativa $R^{*}>1$. Un contraste basado en $F$ deber\'a rechazar la hip\'otesis nula si $F$ es grande. Para conocer la regi\'on cr\'itica de este contraste deberemos averiguar la distribuci\'on de $F$.
+
+\textbf{Resultado 3:} Bajo la hip\'otesis nula, $F\sim F_{a-1;N-a}$
+
+Gracias al teorema de Fisher, sabemos que $\bar{Y}_{i.}$ y $S_i^2$ son independientes. Como $\bar{Y}_{..}=\sum_{i=1}^a\dfrac{n_i}{N}\bar{Y}_{i.}$, tambi\'en ser\'a independiente de las $S_i^2$. Por tanto, $SCE$ y $SCTR$ son independientes.
+\[\dfrac{SCE}{\sigma^2}=\sum_{i=1}^a\dfrac{(n_i-1)S_i^2}{\sigma^2}\]
+
+Y como $\dfrac{(n_i-1)S_i^2}{\sigma^2}\sim\chi^2_{n_i-1}$ y la $\chi^2$ es reproductiva, 
+$\dfrac{SCE}{\sigma^2}\sim\chi^2_{N-a}$.
+
+\[\dfrac{SCTOT}{\sigma^2}=\dfrac{1}{\sigma^2}\sum_{i=1}^a\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{..})^2=\dfrac{(N-1)S^2}{\sigma^2}\sim\chi^2{N-1}\]
+
+Si se cumple la hip\'otesis nula. Y como $\dfrac{SCTOT}{\sigma^2}=\dfrac{SCE}{\sigma^2}+\dfrac{SCTR}{\sigma^2}$, y por la propiedad reproductiva de la $\chi^2$, $\dfrac{SCTR}{\sigma^2}\sim\chi^2_{a-1}$. As\'i, tenemos que:
+\[F=\dfrac{SCTR/\sigma^2(a-1)}{SCE/\sigma^2(N-a)}=\dfrac{\chi^2_{a-1}/(a-1)}{\chi^2_{N-a}/(N-a)\sim F_{a-1;N-a}}\]
+
+Si realizamos el contraste mediante la regi\'on cr\'itica, rechazamos $H_0$ con un nivel de significaci\'on $1-\alpha$ si $F\in RC$, siendo:
+\[RC=\{F>F_{a-1,N-a;\alpha}\}, \text{ con } P[F_{a-1,N-a}>F_{a-1,N-a;\alpha}]=\alpha\]
+Si realizamos el contraste mediante el p-valor, rechazamos $H_0$ con un nivel de significaci\'on $1-\alpha$ si el $p-$valor es $p\leq\alpha$, siendo:
+\[p=P[F_{a-1,N-a}>F]\]
+
+Estos resultados se suelen resumir en la tabla ANOVA.
+
+Se define el \textbf{coeficiente de determinaci\'on}, $R^2$ como:
+\[R^2=\dfrac{SCTR}{SCT}\]
+
+Y se utiliza como una medida de la variabilidad explicada por los grupos.
+
