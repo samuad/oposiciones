@@ -221,6 +221,51 @@ Dado que las magnitudes de los n\'umeros \'indice no son informativas, en genera
 
 Seccion 10.4, 
 \sectioncol{Uso de variables con tendencia en la regresi\'on.}
+La mayor\'ia de variables econ\'omicas presentan una tendencia, en general creciente, a lo largo del tiempo. Esta situaci\'on es necesario detectarla y tenerlo en cuenta, ya que si dos variables presentan tendencia, bien en la misma direcci\'on, bien en direcciones opuestas, epodemos concluir err\'oneamente que dichas variables est\'an relacionadas, cuando en realidad lo que ocurre es que ambas presentan una relaci\'on con el tiempo. Es por esto que en estos casos lo conveniente es eliminar esas tendencias temporales antes de analizar la relaci\'on entre las variables. En general, lo m\'as frecuente son las tendencias crecientes.
+
+\subsectioncol{Modelos que reflejan el comportamiento tendencial.}
+
+Una formulaci\'on bastante com\'un de la tendencia es la lineal, en la que se especifica la serie como:
+
+\[y_t=\alpha_0+\alpha_1t+e_t\]
+
+Donde $e_t$ refleja la serie una vez eliminada la tendencia. En el caso m\'as simple, $e_t$ es independiente e id\'enticamente distribuida con $E(e_t)=0$, $V(e_t)=\sigma_e^2$, aunque no tiene por que ser as\'i. En este caso, $\alpha_1$ refleja el cambio que se produce en la serie entre dos per\'iodos si el resto de factores permanecen constantes, es decir, $\Delta y_t=\alpha_1$ siempre que $\Delta e_t=0$. Otra forma de expresar estas series es a partir de su valor medio, como una funci\'on lineal del tiempo, es decir, $E(y_t)=\alpha_0+\alpha_1t$. Si $\alpha_1>0$, la tendencia de la serie ser\'a creciente, y si $\alpha_1<0$ la tendencia de la serie ser\'a decreciente. Los valores de la serie no se ajustan a la recta debido al componente aleatorio, pero sus valores esperados s\'i lo hacen. Si el t\'ermino $\{e_t\}$ tuviese alguna correlaci\'on con el tiempo esto no ser\'ia as\'i, aunque lo realmente importante para el an\'alisis de regresi\'on es el comportamiento lineal de la tendencia.
+
+Otra formulaci\'on habitual es la \textbf{tendencia exponencial}, en la que la serie presenta una tasa de crecimiento medio constante. En este caso, la serie se expresar\'ia como:
+
+\[\log{y_t}=\alpha_0+\alpha_1t+e_t\]
+
+Y como para cambios peque\~nos $\Delta\log{y_t}\approx\dfrac{y_t-y_{t-1}}{y_{t-1}}$, tenemos que si $\Delta e_t=0$, $\alpha_1$ es aproximadamente la tasa de crecimiento media en cada periodo.
+
+Aunque estas formulaciones son las m\'as habituales, las tendencias temporales pueden ser m\'as complicadas.
+
+\subsectioncol{An\'alisis de regresi\'on con tendencia temporal.}
+
+En general la presencia de variables, tanto explicativas como explicadas, que presenten tendencia no invalida las hip\'otesis del modelo lineal. SIn embargo, hay que tener en cuenta que los factores tendenciales que afectan a la variable dependiente tambi\'en pueden estar correlacionados con alguna variable explicativa, provoando que detectemos una relaci\'on entre ellas simplemente porque ambas crecen con el tiempo. a este tipo de relaci\'on se le llama \textbf{regresi\'on espuria}. La forma m\'as sencilla de eliminar este problema es a\~nadir una tendencia temporal al modelo.
+
+Supongamos que la variable dependiente crece o decrece en el tiempo debido a factores no observables. Por tanto, el modelo se dener\'ia expresar:
+
+\[y_t=\beta_0+\sum_{i=1}^{k}\beta_ix_{ti}+\alpha_1t+u_t\]
+
+Si omiti\'esemos el t\'ermino de tendencia estar\'iamos omitiendo una variable relevante, y por tanto nuestros estimadores ser\'ian sesgados. Esto es especialmente relevante si alguna $x_i$ presenta alg\'un tipo de tendencia teporal, ya que entonces estar\'ia muy correlacionada con $y$, y se puede dar una regresi\'on totalmente espuria.
+
+Tabi\'en puede ocurrir que el a\~nadir una tendencia haga que una variable explicativa sea m\'as significativa. Esto sucede si ambas variables presentan distintos tipod de tendencia, pero los movimientos de la variable independiente alrededor de su tendencia son los causantes de los de la variable dependiente alrededor de la suya.
+
+Adem\'as de la tendencia lineal, en el modelo se pueden incluir tendencias cuadr\'aticas, c\'ubicas... Sin embargo, no es conveniente introducir demasiados t\'erminos, ya que cualquier serie se puede ajustar con un polinomio de suficiente grado, y esto eliminar\'ia el efecto del resto de variables independientes, que es lo que realmente tiene inter\'es en el modelo.
+
+\subsectioncol{Regresiones con tendencia como regresiones sobre variables en desviaci\'on de su tendencia.}
+
+A la hora de interpretar los coeficientes de nuestro modelo con tendencia, podemos interpretarlos como los coeficientes de una regresi\'on con variables a las que se les ha eliminado la tendencia. Es decir, si regresamos la variable dependiente y cada variable independiente sobre na constante y una tendencia $t$, y usamos los residuos de esas regresiones como variables de una nueva regresi\'on (de esta forma eliminamos la influencia del tiempo en la regresi\'on), los estimadores que obtendremos coincidir\'an con los estimadores que hemos obtenido en el modelo con tendencia.
+
+Es decir, podemos interpretar nuestros coeficientes como los coeficientes de un modelo en el que o incluimos la tendencia pero hemos eliminado la tendencia de todas las variables. Este resultado se mantiene independientemente de la forma que asignemos a la tendencia.
+
+Esta interpretaci\'on nos muestra que es buena idea incluir una tendencia si alguna de las variables explicativas presenta tendencia, aunque la variable dependiente no la presente. SI o hacemos esto puede ocurrir que parezca que la variable explicativa no influye en la regresi\'on, cuando s\'i puede influir, a trav\'es de los movimientos en torno a su tendencia.
+
+\subsectioncol{C\'alculo del $R^2$ en modelos con tendencia.}
+
+
+
+
 Seccion 10.5
 \sectioncol{Uso de series d\'ebilmente dependientes.}
 Seccion 11.1
