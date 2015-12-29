@@ -52,7 +52,7 @@ Y por tanto:
 
 Siendo $S_i^2$ la cuasivarianza muestral de cada grupo. As\'i, el estimador de la varianza es la media ponderada de la cuasivarianza muestral de cada grupo.
 
-Los residuos del modelo, definidos como $e_{ij}=Y_{ij}-\hat{mu}_{i}$ se pueden interpretar como los estimadores de las perturbaciones. Estos residuos no son independientes, ya que est\'an sometidos a las restricciones que se derivan de la estimaci\'on de los par\'ametros, es decir, ya que $\hat{\mu_i}=\dfrac{\sum_{j=1}^{n_i}Y_{ij}}{n_i}=\bar{Y}_{i.}$, $\sum_{j=1}^{n_i}e_{ij}=\sum_{j=1}^{n_i}Y_{ij}-n_i\bar{Y}_{i.}=0$. Por tanto, existen $N-a$ residuos no determinados a priori. A este n\'umero lo llamamos grados de libertad de los residuos.
+Los residuos del modelo, definidos como $e_{ij}=Y_{ij}-\hat{\mu}_{i}$ se pueden interpretar como los estimadores de las perturbaciones. Estos residuos no son independientes, ya que est\'an sometidos a las restricciones que se derivan de la estimaci\'on de los par\'ametros, es decir, ya que $\hat{\mu_i}=\dfrac{\sum_{j=1}^{n_i}Y_{ij}}{n_i}=\bar{Y}_{i.}$, $\sum_{j=1}^{n_i}e_{ij}=\sum_{j=1}^{n_i}Y_{ij}-n_i\bar{Y}_{i.}=0$. Por tanto, existen $N-a$ residuos no determinados a priori. A este n\'umero lo llamamos grados de libertad de los residuos.
 
 Como $E[\bar{Y}_{i.}]=\dfrac{\sum_{j=1}^{n_i}E[Y_{ij}]}{n_i}=\mu_i$, $V[\bar{Y}_{i.}]=\dfrac{\sum_{j=1}^{n_i}V[Y_{ij}]}{n_i^2}=\dfrac{\sigma^2}{n_i}$, tenemos que $[\bar{Y}_{i.}\sim N\left(\mu_i;\dfrac{\sigma^2}{n_i}\right)$.
 
@@ -150,4 +150,43 @@ Se define el \textbf{coeficiente de determinaci\'on}, $R^2$ como:
 \[R^2=\dfrac{SCTR}{SCT}\]
 
 Y se utiliza como una medida de la variabilidad explicada por los grupos.
+
+\sectioncol{Comprobaci\'on de las hip\'otesis iniciales del modelo.}
+
+En el contraste que hemos realizado nos hemos basado en las siguientes hip\'otesis iniciales:
+
+\begin{itemize}
+\item Los t\'erminos de error presentan una distribuci\'on normal.
+\item Los t\'erminos de error son aleatorios e independientes entre s\'i.
+\item Los t\'erminos de error ienen todos la misma varianza (homoscedasticidad.)
+\end{itemize}
+
+Por tanto, ser\'a conveniente contrastar si estos supuestos se cumple, ya que en caso contrario no podremos utilizar los resultados aqu\'i vistos. En general, dado que estas hip\'otesis hacen referencia a los t\'erminos de error, se utilizan los residuos para contrastarlas, dado que los residuos se pueden ver como una muestra aleatoria de una variable con distribuci\'on normal con media cero y varianza constante.
+
+Hemos definido los residuos como la diferencia entre el valor esperado de la variable y el observado, es decir, dado que $Y_{ij}=\mu+\alpha_i+e_{ij}$, podemos definir $\hat{Y}_{ij}=\hat{\mu}+\hat{\alpha}_i$, usando como estimadores de $\mu$ y $\alpha_i$ las medias correspondientes. Por tanto, podemos calcular los residuos como $\hat{e}_{ij}=Y_{ij}-\bar{Y}_{i.}$.
+
+Para comprobar los supuestos del modelo podemos utilizar pruebas anal\'iticas y gr\'aficas. Las pruebas gr\'aficsa se utilizan porque, pese a que no son exactas, en la mayor\'ia de los casos proporcionan evidencia suficiente y son m\'as intuitivas. SI las pruebas gr\'aficas no fuesen concluyentes, se pueden utilizar las anal\'iticas.
+
+\subsectioncol{Supuesto de normalidad.}
+
+Para comprobar gr\'aficamente el supuesto de normalidad, se dibuja con los residuos una gr\'afica de probabilidad normal. Para dibujar esta gr\'afica se ordenan los residuos de menor a mayor, $r_1,r_2,\ldots,r_N$, y para cada residuo se calcula e valor $\dfrac{i-0,5}{N}$, siendo $i$ el puesto que ocupa el residuo en la ordenaci\'on. Para estos valores se obtiene un valor $Z_i$ tal que $P(Z<Z_i)=\dfrac{i-0,5}{N}$, con $Z$ siguiendo una distribuci\'on normal est\'andar. Acto seguido, se representan los pares $(r_i, Z_i)$.
+
+Si los residuos provienen de una distribuci\'on normal, deber\'an tender a alinearse en una l\'inea recta. Si claramente no se alinean, se puede concluir que la hip\'otesis de normalidad no se cumple.
+
+Para contrastar la normalidad de forma anal\'itica, se pueden usar contrastes de bondad del ajuste como el chi-cuadrado o el de Kolmogorov-Smirnof, o el contraste de normalidad de Shapiro-Wilks.
+
+\subsectioncol{Supuesto de varianza constante.}
+
+Para comprobar gr\'aficamente esta hip\'otesis se puede recurrir a un gr\'afico que represente en el eje de las $x$ los valores predichos y en el de las $y$ los residuos. Si la gr\'afica se distribuye de manera aleatoria, sin ning\'un patr\'on claro en el eje horizontal podremos inferir que las varianzas son constantes. Si por el contrario presenta alguna estructura, ser\'a se\~nal de que no se cumple el supuesto.
+
+Para contrastar de forma anal\'itiva la igualdad de varianzas se utiliza el \textbf{contraste de Bartlett}, que contrasta la hip\'otesis nula $H_0:\sigma_1^2=\sigma_2^2=\cdots=\sigma_a^2$ contra la hip\'otesis alternativa de que existen $i\neq j$ tales que $\sigma_i^2\neq\sigma_j^2$. Para ello utiliza el estad\'istico $\chi^2_0=2.3026\dfrac{q}{c}$ con:
+\[q=(N-a)\log_{10}{\dfrac{SCE}{N-a}}-\sum_{i=1}^a(n_i-1)\log_{10}{S_i^2}\]
+\[c=1+\dfrac{1}{3(a-1)\left(\sum_{i=1}^a(n_i-1)^{-1}-(N-k)^{-1}\right)}\]
+
+Bajo la hip\'otesis nula, $\chi^2_0\sim\chi^2_{a-1}$ y la regi\'on cr\'itica es de la forma
+\[C=\{\chi^2_0>chi^2_{a-1;\alpha}\}\]
+
+Este contraste es sensible a la falta de normalidad de las poblaciones de inter\'es, por lo que previamente deberemos comprobar dicha hip\'otesis.
+
+
 
