@@ -268,8 +268,146 @@ Esta interpretaci\'on nos muestra que es buena idea incluir una tendencia si alg
 
 Seccion 10.5
 \sectioncol{Uso de series d\'ebilmente dependientes.}
+
+La hip\'otesis cl\'asicas del modelo lineal general son en general demasiado estrictas para la mayor\'ia de modelos de series temporales que nos encontramos en el mundo real. En particular, la incorrelaci\'on de las series en el tiempo se da muy raramente. Popr ello, vamos a ver las propiedades del estimador MCO bajo unas hip\'otesis menos restrictivas.
+
+\subsectioncol{Series temporales estacionarias y no estacionarias.}
+
+En el estudio de series temporales es muy importante el concepto de proceso estoc\'astico estacionario. Intuitivamente, un proceso estoc\'astico estacionario es aquel en el que su distribuci\'on de probabilidad no var\'ia con el tiempo. De manera m\'as formal:
+
+\begin{definicion}
+\textbf{Proceso estoc\'astico estacionario:} El proceso estoc\'astico $\{x_t:t=1,2,\ldots\}$ es estacionario si para cada colecci\'on de \'indices temporales, $1\leq t_1<t_2<\ldots<t_m$ la distribuci\'on conjunta de $(x_{t_1},x_{t_2},\ldots,x_{t_m})$ es la misma que la distribuci\'on conjunta de $(x_{t_1+h},x_{t_2+h},\ldots,x_{t_m+h})$ para cualquier $h\geq1$, entero.
+\end{definicion}
+
+Una implicaci\'on inmediata de esta definici\'on es que la sucesi\'on $\{x_t:t=1,2,\ldots\}$ est\'a id\'enticamente distribuida. Esto no impone restricciones sobre la forma en que las $x_t$ se correlacionan entre s\'i, solo implica que esas correlaciones sean las mismas para todos los periodos temporales.
+
+Un proceso estoc\'astico que no es estacionario se conoce como \textbf{proceso no estacionario}. Dado que la estacionariedad es una caracter\'isica del proceso estoc\'astico subyacente y no de la realizaci\'on que disponemos (serie temporal) puese ser muy dif\'icil determinar si la serie temporal de que disponemos ha sido generada por un proceso estacionario. Sin embargo, es f\'acil detectar ciertas sucesiones que no son estacionarias: por ejemplo, si aparece una tendencia temporal clara, el proceso subyacente no ser\'a estacionario, ya que su media variar\'a con el tiempo.
+
+La condici\'on de estacionariedad estricta es muy restrictiva, y dif\'icil de comprobar. Sin embago, para algunas aplicaciones es suficiente con que se de una forma de estacionariedad m\'as d\'ebil.
+
+\begin{definicion}
+\textbf{Proceso estacionario en covarianza:} El proceso estoc\'astico $\{x_t:t=1,2,\ldots\}$ con un momento de segndo orden finito, $[E(x_t^2)<\infty]$ es \textbf{estacionario en covarianza} si:
+\begin{enumerate}
+\item $E(x_t)$ es constante.
+\item $Var(x_t)$ es constante.
+\item Para todo $t,h\geq1$, $Cov(x_t,x_{t+h})$ depende solo de $h$ y no de $t$.
+\end{enumerate}
+\end{definicion}
+
+De el hecho que la covarianza s\'olo dependa de la distancia entre los t\'erminos se deduce que la correlaci\'on tambi\'en depende solo de la distancia entre los t\'erminos.
+
+Si un proceso estacionario tiene momento de segundo orden finito, entonces ser\'a estacionario en covarianza. Sin embargo, la inversa no es cierta. As\'i, la estacionariedad o \textit{estacionariedad estricta} es un requisito m\'as fuerte que la estacionariedad en covarianza.
+
+Al plantear un modeo de regresi\'on simple para series temporales estamos suponiendo una cierta estacionariedad, ya que supoemos que los $\beta_j$ no var\'ian con el tiempo. Adem\'as, los supuestos del modelo implican que la varianza del proceso de error es constante en el tiempo y que la correlaci\'on entre los errores de dos per\'iodos es nula.
+
+\subsectioncol{Series temporales d\'ebilmente dependientes.}
+
+La estacionariedad introduce condiciones sobre las distribuciones conjuntas de un proceso estoc\'astico a lo largo del tiempo. Por otro lado, el concepto de series d\'ebilmente dependientes introduce restricciones sobre el grado en que pueden estar correlacionadas las varaibles $x_t$ y $x_{t+h}$ a medida que se incrementa la distancia teporal entre ellas. Se dice que un proceso de series teporales estacionario es d\'ebilmente dependiente si $x_t$ y $x_{t+h}$ son ``casi independientes'' a medida que aumenta $h$. o se puede definir en t\'erminos m\'as formales, porque no existe una definici\'on que abarque todos los casos de inter\'es. En nuestro caso basta con utilizar una definici\'on intuitiva: una serie estacionaria en covarianza es d\'ebilmente dependiente si la correlaci\'on entre $x_t$ y $x_{t+h}$ tiende a cero de manera suficientemente r\'apida cuando $h\to\infty$. Una serie estacionaria en covarianza que cumple que $\lim_{h\to\infty}{Corr(x_t,x_{t+h})}=0$ se dice \textbf{asint\'oticamente incorrelacionada}. Para que sea d\'ebilmente dependiente la convergencia hacia cero debe ser suficientemente r\'apida.
+
+El supuesto de dependencia d\'ebil se puede usar para sustituir al supuesto de muestra aleatoria y asegurarnos de que las series satisfacen la ley de los grandes n\'umeros y el Teorema Central del L\'imite. Las series temporales que no son d\'ebilmente dependientes no cumplenpor lo general el Teorema Central del L\'imite, por lo que su uso en el an\'alisis de
+regresi\'on m\'ultiple suele ser problem\'atico.
+
+Un ejemplo trivial de serie d\'ebilmente dependiente es una sucesi\'on de t\'erminos independientes id\'enticamente distribuidos, aunque su inter\'es es escaso. Un ejemplo m\'as interesante es una serie del tipo $x_t=e_t+\alpha_1e_{t-1}$, siendo $e_t$ una sucesi\'on independiente id\'enticamente distribuida con media cero y varianza $\sigma^2_e$. A este proceso se le llama proceso de medias m\'oviles de primer orden ($MA(1)$). Calculando sus momentos, obtenemos:
+\begin{align*}
+E(x_t)&=0\\
+Var(x_t)&=(1+\alpha_1^2)\sigma^2_e\\
+Cov(x_t,x_{t+1})&=\alpha_1\sigma^2_e\\
+Cov(x_t,x_{t+h})&=0\;\forall h\geq 2\\
+Corr(x_t,x_{t+1})&=\dfrac{\alpha_1}{(1+\alpha_1^2)}\\
+Corr(x_t,x_{t+h})&=0\;\forall h\geq 2
+\end{align*}
+
+Y por tanto una sucesi\'on $MA(1)$ es estacionaria d\'ebilmente dependiente.
+
+De forma similar se puede razonar para un proceso autorregresivo de primer orden $AR(1)$, es decir, $x_t=\rho_1x_{t-1}+e_t$, siendo $e_t$ una sucesi\'on independiente id\'enticamente distribuida con media cero y varianza $\sigma^2_e$. El punto inicial es $x_0$, y suponemos que $E(x_0)=0$ y que los $e_t$ son independientes de $x_0$. Calculando sus momentos, obtenemos:
+
+\begin{align*}
+E(x_t)&=0\\
+Var(x_t)&=\sigma_x^2=\dfrac{\sigma^2_e}{1+\rho_1^2}\\
+Cov(x_t,x_{t+h})&=\rho_1^h\sigma_y^2\\
+Corr(x_t,x_{t+h})&=\rho_1^h
+\end{align*}
+
+Y si exigimos la denomonada \textit{condici\'on de estabilidad}, $|\rho_1|<1$, dado que la correlaci\'on cae de forma exponencial, estaremos ante un proceso d\'ebilmente dependiente.
+
+Por \'ultimo, una serie co tendencia, que no es estacionaria, puede ser d\'ebilmente dependiente. Esto podr\'ia ser el caso para una serie en desviaciones de su tendencia temporal.
+
+\subsectioncol{Propiedades asint\'oticas del estimador MCO.}
+
+Dado que las hip\'otesis del modelo lineal cl\'asico son muy restrictivas para la mayor\'ia de series temporales, deberemos apelar a las propiedades del estimador MCO para muestras grandes. Veremos las hip\'otesis que las sustentan.
+
+\paragraph*{Linealidad y dependencia d\'ebil:}
+Suponemos que la relaci\'on entre la svariables del modelo es lineal, y que adem\'as el proceso estoc\'astico ${(\boldsymbol{x}_t,y_t):t=1,2,\ldots}$ es estacionario y d\'ebilmente dependiente. En particular, la ley de los grandes n\'umeros y el teorema central del l\'imite se pueden aplicar a las medias muestrales.
+
+\paragraph*{Media condicionada igual a cero:}
+Las variables explicativas son contempor\'aneamente ex\'ogenas, es decir, $E(u_t|\boldsymbol{x}_t)=0$.
+
+Este supuesto es mucho m\'as d\'ebil que el que hemos utilizado en datos transversales, que exige la exogeneidad respecto a todas las variables explicativas. En virtud de la estacionariedad, si la hip\'otesis se cumple para un periodo de tiempo, se cumple para todos los dem\'as.
+\paragraph*{Ausencia de colinealidad perfecta.}
+Es id\'entico al utilizado para datos transversales.
+
+\begin{teorema}
+\textbf{Consistencia del estimador MCO:} Bajo estas tres hip\'otesis, los estimadores MCO son consistentes, es decir, $\hat{\beta}_j\overset{p}{\to}\beta_j$ para todos los $j$.
+\end{teorema}
+
+Vemos que este teorema no nos garantiza la insesgadez del estimador, pero nos permite relajar la hip\'otesis de exogeneidad, a\~nadiendo la hip\'otesis de dependencia d\'ebil.
+
+Para poder obtener la distribuci\'on de los estimadores, y por tanto poder aplicar procedimientos de inferencia, debemos a\~nadir hip\'otesis sobre la varianza de la pertuebaci\'on.
+\paragraph*{Homoscedasticidad:}
+El t\'ermino de error es contempor\'aneamente homoscedastico, es decir, $Var(u_t|\boldsymbol{x}_t)=\sigma_u^2$.
+
+\paragraph*{Ausencia de correlaci\'on serial:}
+Para todo $t\neq s$,  $E(u_tu_s|\boldsymbol{x}_t,\boldsymbol{x}_s)=0$.
+
+\begin{teorema}
+\textbf{Normalidad asint\'otica del estimador MCO:} Bajo estas cinco hip\'otesis, los estimadores MCO siguen una distribuci\'on normal asint\'otica. Adem\'as, los errores est\'andar habituales, as\'i como los estad\'isticos $t$, $F$ y $LM$ son asint\'oticamente v\'alidos.
+\end{teorema}
+
+
+Bajo estas hip\'otesis se puede demostrar que los estimadores son asint\'oticamente eficientes. Los modelos con variables explicativas con tendencia pueden satisfacer estas hip\'otesis siempre que sean estacionarios en tendencia. Si incluimos  sus tedencias en el modelo cuando es necesario, los procedimientos de inferencia habituales son v\'alidos asint\'oticamente.
+
 Seccion 11.1
 \sectioncol{Transformaci\'on de series altamente persistentes.}
+
+Por desgracia, hay muchas series econ\'omicas que presentan una fuerte dependencia temporal. Estas series se llaman \textbf{altamente persistentes} o \textbf{fuertemente dependientes}. El problema que presentan estas series es que tienden a violar con mucha frecuencia las hip\'otesis del modelo lineal cl\'asico, y no se les pueden aplicar las hip\'otesis aligeradas, ya que no son d\'ebilmente dependientes. Veremos como pueden transformarse para usarlas en modelos de regresi\'on.
+
+Como ejemplo de una serie temporal altamente persistente, odemos considerar un proceso autorregresivo de primer orden con coeficiente igual a uno ($x_t=x_{t-1}+e_t$). Este proceso se conoce como paseo aleatorio, y si bien su valor esperado es constante, $E(x_t)=x_0$, su varianza es $Var(x_t)=\sigma_e^2t$, dependiente del tiempo (por tanto no es estacionario), y $Corr(x_t,x_{t+h})=\sqrt{\dfrac{t}{t+h}}$, con lo que el proceso no es estacionario en covarianza y la tendencia a cero de la correlaci\'on no se produce lo suficientemente r\'apido como para considerarlo d\'ebilmente dependiente.
+
+Un paseo aleatorio es un caso especial de un proceso de ra\'iz unitaria, en el sentido de que $\rho_1=1$.
+
+A los procesos d\'ebilmente dependientes se les conoce como procesos \textbf{integrados de orden cero} y se denotan por $I(0)$. En la pr\'actica quiere decir que no hay que realizar ninguna transformaci\'on con ellos antes de utilizarlos en un modelo de regresi\'on. Se dice que los procesos de ra\'iz unitaria son \textbf{integrados de orden uno} ($I(1)$), y su primera diferencia es d\'ebilmente dependiente (y a menudo estacionaria).
+
+Por ejemplo, en el paseo aleatorio:
+\[\Delta x_t=x_t-x_{t-1}=x_{t-1}+e_t-x_{t-1}=e_t\]
+
+Y como $e_t$ es independiente e id\'enticamente distribuida, es d\'ebilmente dependiente. Por eso, si sospechamos que un proceso es integrado de orden uno, a menudo tomamos una diferencia antes de uyilizarlos en un modelo de regresi\'on.
+
+Muchas series temporales que son estrictamente positivas son tales que su logaritmo es integrado de orden uno. En este caso la transformaci\'on que haremos ser\'a:
+\[\log{x_t}-\log{x_{t-1}}\approx\dfrac{x_t-x_{t-1}}{x_{t-1}}\]
+
+Y por tanto podemos usar directamente la variaci\'on proporcional o porcentual de $x_t$ en la regresi\'on.
+
+Una ventaja que tiene utilizar una diferencia de primer orden es que elimina las tendencias temporales lineales. As\'i, en lugar de incluirlas en la regresi\'on podemos diferenciar aquellas variables que claramente las presentan.
+
+Para saber si un proceso es integrado de orden uno se puede realizar un contraste de ra\'ices unitarias. Una forma m\'as r\'apida de estimarlo, aunque mucho menos segura, es calcular la autocorrelaci\'on de primer orden, o el coeficiente de correlaci\'on muestral entre $x_t$ y $x_{t-1}$ que representamos mediante $\hat{\rho}_1$. Este coeficiente es un estimador consistente para $\rho_1$ siempre que $|\rho_1|<1$. Sin embargo, no es insesgado, y su distribuci\'on de probabilidad es muy diferente si $|\rho_1|<1$ y si $|\rho_1|=1$, por lo que no podemos calcular un intervalo de confianza. EN general, se entiende que se debe diferenciar siempre que $\hat{\rho}_1>0.9$, aunque algunos autores lo recomiendan cuando $\hat{\rho}_1>0.8$.
+
+En el caso de las series con tendencia, es necesario eliminar la misma antes de obtener la autocorrelaci\'on de primer orden, ya que en otro caso tendemos a sobreestimarla.
+
 Seccion 11.3
 \sectioncol{Tratamiento de la estacionalidad en el modelo.}
+
+Muchas series econ\'omicas presenta un comportamiento estacional: sufren a lo argo del a\~no fluctuaciones debidas a la \'epoca del a\~no, y que son distintas del comportamiento global de la serie. Aunque en general las series macroecon\'omicas se publican desestacionalizadas (es decir, con el componente estacional eliminado), es \'util saber c\'omo tener en cuenta este comportamiento en el an\'alisis de regresi\'on , para el caso de que dispongamos de una serie sin desestacionalizar.
+
+En este caso, incluiremos variables ficticias para tener en cuenta la estacionalidad en las variables dependientes, en las variables independientes o en ambas.
+
+Para aplicar este m\'etodo debemos suponer que los patrones estacionales son m\'as o menos constantes a lo largo del tiempo. Ajustar\'iamos el siguiente modelo:
+
+\[y_t=\beta_0+\sum_{i=2}^{12}\delta_id_{it}+\sum_{i=1}^k\beta_ix_{it}\]
+
+Con $d_{it}=1$ si el mes coincide con $i$, y cero en caso contrario. En este caso, enero es el mes base. Si no hubiera estacionalidad, los par\'ametros $\delta_i$ ser\'ian todos iguales a cero, cosa que se puede contrastar con un contraste $F$.
+
+Si los datos son trimestrales, incluiremos variables ficticias para tres de los cuatro trimestres. Tambi\'en puede ser interesante incluir interacciones entre las variables estacionales y alguna $x_i$ para que el efecto de dichas $x_i$ sobre $y$ var\'ie a lo largo del a\~no.
+
+Igualmente que en el caso de la tendencia, esta aproximaci\'on es equivalente a regresar cada variable cntra las variables estacionales y calcular la regresi\'on para los residuos as\'i obtenidos.
+
 Seccion 10.5

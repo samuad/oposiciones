@@ -9,9 +9,80 @@ de modelos con expectativas racionales.}
 \sectioncol{Introducci\'on.}
 
 
-Trataremos en este tema de aquellos modelos econom\'etricos en los que
-las relaciones entre la variable end\'ogena y las variables explicativas
-no son contempor\'aneas, sino que aparecen
+Trataremos en este tema de aquellos modelos econom\'etricos en los que las relaciones entre la variable end\'ogena y las variables explicativas no son contempor\'aneas, sino que aparecen retardos de las mismas. Esto refleja situaciones en las que la influencia de una variable sobre otra solo se produce tras un cierto intervalo de tiempo o, a\'un siendo el impacto inmediato, este sigue influyendo durante un cierto n\'umero de per\'iodos.
+
+Ejemplos de modelos din\'amicos ser\'ian los siguientes:
+
+\begin{align*}
+y_t=&\beta_0+\beta_1x_{t-1}+u_t\\
+y_t=&\beta_0+\beta_1x_t+\beta_2x_{t-1}+\beta_3x_{t-2}+u_t\\
+y_t=&\beta_0+\beta_1x_{t-2}+\beta_2x_{t-3}+u_t
+\end{align*}
+
+Adem\'as, las variables econ\'omicas tienen bastante inercia, lo que hace que una variable dependa de su propio pasado, adem\'as de otras causas. Es importante tener en cuenta que la existencia de una relaci\'on din\'amica entre variables depende del periodo de observaci\'on. Si una variable influye sobre otra contempor\'aneamente y con un retardo mensual, y tenemos valores trimestrales de las mismas, la influencia retardada no se ver\'a reflejada en nuestros datos.
+
+\paragraph{Modelos de retardos distribuidos finitos.}
+
+En un modelo de retardos distribu\'idos finitos, una o m\'as variables ex\'ogenas afectan a la variable dependiente con alg\'un retardo. Un ejemplo podr\'ia ser:
+
+\[ y_t=\beta_0+\sum_{j=0}^{q}\delta_jx_{t-j}+u_t\]
+
+Este modelo se utiliza para variables que influyen en la variable dependiente pero no de forma simult\'anea, sino con alg\'un retardo. El modelo que hemos puesto como ejempo es un modelo con retardos distribuidos finitos (RDF) de orden $q$.
+
+Para interpretar este modelo, supongamos que $x$ es constante igual a una cantidad $c$, en  el instante  $t$ aumenta hasta $c+1$ y en el instante $t+1$ vuelve a bajar hasta $c$. En ese caso, el valor esperado de $y$ en cada instante ser\'ia:
+\begin{align*}
+ y_{t-1}=&\beta_0+\sum_{j=0}^{q}\delta_jc = y_{t-1} \\
+ y_{t}=&\beta_0+\delta_0(c+1)+\sum_{j=1}^{q}\delta_jc = y_{t-1}+\delta_0 \\
+ y_{t+1}=&\beta_0+\delta_0c+\delta_1(c+1)+\sum_{j=2}^{q}\delta_jc = y_{t-1}+\delta_1 \\
+ y_{t+2}=&\beta_0+\delta_0c+\delta_1c+\delta2(c+1)+\sum_{j=3}^{q}\delta_jc = y_{t-1}+\delta_2 \\
+ &\cdots \\
+ y_{t+q}=&\beta_0+\sum_{j=0}^{q-1}\delta_jc+\delta_q(c+1) = y_{t-1} +\delta_q\\
+  y_{t+q+1}=&\beta_0+\sum_{j=0}^{q}\delta_jc = y_{t-1}
+\end{align*}
+
+Por tanto, podemos ver que $\delta_0$ es el efecto inmediato que un cambio en $x_0$ tiene en $y$. Normalmente se denomina \textbf{propensi\'on al impacto} o \textbf{modificador de impacto}. Por otro lado, $\delta_1$ es el efecto en $y$ de un cambio en $x_0$ un per\'iodo despu\'es de que el cambio se produzca, $\delta_2$ es el efecto dos periodos despu\'es del cambio, etc . En el momento $t+q+1$ $y$ vuelve a su valor inicial, debido a que en nuestro modelo hemos supuesto $q$ retardos. Si realizamos un gr\'afico de $\delta_j$ respecto a $j$, obtenemos su distribuci\'on de retardos, que muestra el efecto que tiene sobre $y$ un cambio temporal en $x$. A esta sucesi\'on de efectos se le llama \textbf{funci\'on de respuesta al impulso}.
+
+Si el cambio en $x$ fuese permanente, es decir, si $x$ pasa de valer $c$ a valer $c+1$ para $t, t+1, \ldots$, el efecto ser\'ia el siguiente:
+
+\begin{align*}
+ y_{t-1}=&\beta_0+\sum_{j=0}^{q}\delta_jc = y_{t-1} \\
+ y_{t}=&\beta_0+\delta_0(c+1)+\sum_{j=1}^{q}\delta_jc = y_{t-1}+\delta_0 \\
+ y_{t+1}=&\beta_0+\delta_0(c+1)+\delta_1(c+1)+\sum_{j=2}^{q}\delta_jc = y_{t-1}+\delta_0+\delta_1 \\
+ y_{t+2}=&\beta_0+\delta_0(c+1)+\delta_1(c+1)+\delta2(c+1)+\sum_{j=3}^{q}\delta_jc = y_{t-1}+\delta_0+\delta_1+\delta_2 \\
+ &\cdots \\
+ y_{t+q}=&\beta_0+\sum_{j=0}^{q}\delta_j(c+1) = y_{t-1}+\sum_{j=0}^{q}\delta_j \\
+ y_{t+q+1}=&\beta_0+\sum_{j=0}^{q}\delta_j(c+1) = y_{t-1}+\sum_{j=0}^{q}\delta_j 
+\end{align*}
+
+Por tanto, vemos que $\sum_{j=0}^{q}\delta_j$ es el cambio a largo plazo que experimenta $y$ tras un aumento permanente de una unidad en $x_0$ y se denomina \textbf{propensi\'on a largo plazo (PLP)} o \textbf{multiplicador a largo plazo} y es a menudo de inter\'es en estos modelos. A la sucesi\'on de valores $\delta_0, \delta_0+\delta_1,\ldots$ se le llama \textbf{funci\'on de respuesta al escal\'on}.
+
+Como a menudo existe una correlaci\'on elevada entre los retardos de la variable independiente, estos modelos pueden presentar problemas de multicolinealidad, lo que hace que las estimaciones de los $\delta_i$ individuales sean muy imprecisas. Veremos que a\'un en este caso, a menudo podemos obtener buenos estimadores de la PLP.
+
+Estos modelos pueden tener m\'as de una variable con retardos, variables contempor\'aneas, etc. Puede ocurrir que el objetivo al estimar el modelo sea contrastar si la variable independiente tiene efecto retardado sobre la variable dependiente.
+
+El tratamiento de estos modelos difiere seg\'un que los valores retardados que aparecen como variables explicativas sean s\'olo d evariables ex\'ogenas, o haya tambi\'en retardos de la variable end\'ogena.
+
+\subsectioncol{Cuando todos los retardos corresponden a variables ex\'ogenas.}
+
+En este caso no tiene por que incumplirse las hip\'otesis del modelo lineal general, con lo que solo aparecen dos posibles dificultades:
+\begin{itemize}
+\item Los retardos consecutivos de una variable econ\'omica suelen estar correlacionados entre s\'i. Por tanto, pueden presentar multicolinealidad, que deber\'a ser tratada como corresponde.
+\item Si el modelo es de retardos infinitos, no tenemos informaci\'on suficiente para estimarlo. En estos casos necesitamos imponer alguna restricci\'on sobre ls coeficientes que nos permita transformar el modelo para reducir el n\'umero de variables explicativas.
+\end{itemize}
+
+\subsectioncol{Cuando hay valores retardados de la variable end\'ogena.}
+
+Veamos con un ejemplo c\'omo afectar\'a a las hip\'otesis del modelo. Si tenemos el modelo:
+\[y_t=\beta y_{t-1}+u_t\]
+
+Siendo $u_t$ un proceso de ruido blanco. El estimador MCO ser\'a:
+
+\[\hat{\beta}=\dfrac{\sum_{i=2}^Ty_ty_{t-1}}{\sum_{i=2}^Ty_{t-1}^2}=\dfrac{\sum_{i=2}^T(\beta y_{t-1}+u_t)y_{t-1}}{\sum_{i=2}^Ty_{t-1}^2}=\beta+\dfrac{\sum_{i=2}^Tu_ty_{t-1}}{\sum_{i=2}^Ty_{t-1}^2}\]
+\[E(\hat{\beta})=\beta+E\left(\dfrac{\sum_{i=2}^Tu_ty_{t-1}}{\sum_{i=2}^Ty_{t-1}^2}\right)\]
+
+En principio $y_{t-1}$ es independiente de $u_t$, por lo que $E(y_{t-1}u_t)=0$, pero dado que desarrollando el modelo podemos ver que $y_t=\sum_{s=0}^{\infty}\beta^su_{t-s}$, y en el denominador hay valors de $y_t$ posteriores a los $u_t$ correspondientes, no podemos descomponer la esperanza, y por tanto, el estimador ser\'a sesgado, auque como veremos m\'as adelante, consistente.
+
+Si el t\'ermino de error presenta autocorrelaci\'on, las $y_{t-1}$ estar\'an correlacionadas con $u_t$, con lo que se viola una de las hip\'otesis del modelo, y no podremos garantizar la consistencia del estimador.
 
 \sectioncol{Justificaci\'on te\'orica de los modelos econom\'etricos din\'amicos.}
 \sectioncol{Modelos de retardos infinitos.}
