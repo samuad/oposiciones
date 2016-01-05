@@ -12,14 +12,14 @@ Para ello, suponemos que la media de $Y$ oscila en torno a un valor $\mu$, y que
 
 Por tanto, formulamos el siguiente modelo:
 \[Y_{ij}=\mu+\alpha_i+e_{ij}\;\;\;i=1,\ldots,m,\;j=1,\ldots,n_i\]
-donde $\sum_{i=1}^{m}n_i=N$ y $e_ij\sim N(0,\sigma)$.
+donde $\sum_{i=1}^{m}n_i=N$ y $e_{ij}\sim N(0,\sigma)$.
 
 En este modelo, cada elemento es como sigue:
 \begin{itemize}
 \item $Y_{ij} =$ valor de la caracter\'istica $Y$ en el individuo $j$ del grupo $i$.
 \item $\mu =$ parte del valor medio de la variable com\'un a todos los grupos.
 \item $\alpha_i = $ parte del valor medio de la variable espec\'ifico del grupo $i$.
-\item $e_ij=$ componentes aleatorios, independientes e id\'enticamente distribu\'idos.
+\item $e_{ij}=$ componentes aleatorios, independientes e id\'enticamente distribu\'idos.
 \end{itemize}
 
 Dado que el error normalmente se debe a un conjunto muy grande de factores, cada uno de los cuales influye muy poco en el error final, aplicando el teorema central del l\'imite no es muy descabellado asumir su normalidad.
@@ -187,6 +187,52 @@ Bajo la hip\'otesis nula, $\chi^2_0\sim\chi^2_{a-1}$ y la regi\'on cr\'itica es 
 \[C=\{\chi^2_0>chi^2_{a-1;\alpha}\}\]
 
 Este contraste es sensible a la falta de normalidad de las poblaciones de inter\'es, por lo que previamente deberemos comprobar dicha hip\'otesis.
+
+\subsectioncol{Supuesto de independecia.}
+
+Para comprobar este supuesto gr\'aficamente basta con representar los residuos frente al orden en que se han obtenido las observaciones. Si esta gr\'afica presenta alg\'un patr\'on no aleatorio, existe evidencia de correlaci\'on entre los errores, y por tanto las hip\'otesis del modelo no se cumplen.
+
+Un contraste anal\'itico para comprobar la independencia de los residuos es el contraste de Durbin-Watson, aunque tiene el inconveniente de que solo contrasta la correlaci\'on entre residuos contiguos, y no detecta otros patrones.
+
+\sectioncol{Contrastes de comparaciones m\'ultiples: m\'etodo de Tuckey y m\'etodo de Scheff\'e.}
+
+Una vez hemos aplicado nuestro contraste, se pueden dar dos casos: que no rechacemos la hip\'otesis nula, en cuyo caso el procedimiento se da por finalizado y no podemos decir que los factores sean distintos, o que rechacemos la hip\'otesis nula. En este caso, sabemos que al menos un tratamiento tiene media distinta de los dem\'as, y nos interesar\'a discriminar cuales tienen medias distintas y cuales tienen medias iguales.
+
+Veremos varios m\'etodos para encontrar estos niveles con diferencias.
+
+\subsectioncol{M\'etodo de la diferencia m\'inima significativa de Fisher.}
+
+En este m\'etodo se utiliza el estad\'istico $F$. Sabemos que para cualesquiera dos medias el estad\'istico:
+
+\[t_0=\dfrac{\bar{Y}_{i.}-\bar{Y}_{j.}}{\sqrt{MCE\left(\dfrac{1}{n_i}+\dfrac{1}{n_j}\right)}}\]
+
+Que sigue una distibuci\'on $t$ de Student con $N-a$ grados de libertad. Por tanto, siempre que se cumpla que:
+
+\[|\bar{Y}_{i.}-\bar{Y}_{j.}|>t_{N-k;\alpha/2}\sqrt{MCE\left(\dfrac{1}{n_i}+\dfrac{1}{n_j}\right)}\]
+
+Podremos decir que la diferencia entre las medias es significativamente diferente de cero, y podremos rechazar la hip\'otesis nula de que las medias son iguales. Repitiendo este proceso para las $a(a-1)/2$ parejas de niveles del factor, vemos cuales son significativamente diferentes entre s\'i.
+
+A la cantidad
+\[LSD=t_{N-k;\alpha/2}\sqrt{MCE\left(\dfrac{1}{n_i}+\dfrac{1}{n_j}\right)}\]
+se le llama \textbf{diferencia significativa m\'inima}.
+
+Este m\'etodo tiene una potencia elevada, por lo que declara significativas incluso diferencias peque\~nas.
+
+\subsectioncol{M\'etodo de Tuckey.}
+
+
+Tuckey propuso un m\'etodo para comparar medias muestrales en las que el nivel de significaci\'on global es exactamente $\alpha$ cuando los tama\~nos muestrales son iguales y es como m\'aximo $\alpha$ cuando son distintos, con lo cual no aseguramos un nivel de significaci\'on id\'entico para todas las diferencias. Se basa en la utilizaci\'on del estad\'istico del \textbf{rango studentizado}:
+
+\[q=\dfrac{\bar{Y}_{max.}-\bar{Y}_{min.}}{\sqrt{MCE/n}}\]
+
+En el que $\bar{Y}_{max.}$ y $\bar{Y}_{min.}$ son las medias muestrales m\'axima y m\'inima. La distribuci\'on de este estad\'istico est\'a tabulada, en funci\'on del nivel de significaci\'on $\alpha$, del n\'umero de grupos, $a$, y del n\'umero de grados de libertad, $N-a$. Para tama\~nos muestrales iguales, el contraste de Tuckey establece que las medias son significativamente diferentes si el valor absoluto de sus diferencias muestrales es mayor que:
+\[T_{\alpha}=q_{\alpha}(a,N-a)\sqrt{MCE/n}\]
+
+De la misma forma, se podr\'ia construir una serie de intervalos de confianza al $100(1-\alpha)\%$ para todos los pares de medias de la forma:
+\[\bar{Y}_{i.}-\bar{Y}_{j.}-q_{\alpha}(a,N-a)\sqrt{MCE/n}\leq\mu_i-\mu_j\leq\bar{Y}_{i.}-\bar{Y}_{j.}+q_{\alpha}(a,N-a)\sqrt{MCE/n}\]
+
+Si los tama\~nos muestrales no son iguales $T_{\alpha}$ es distinto para cada par de medias y queda:
+\[T_{\alpha}=\dfrac{q_{\alpha}(a,N-a)}{\sqrt{2}}\sqrt{MCE\left(\dfrac{1}{n_i}+\dfrac{1}{n_j}\right)}\]
 
 
 
