@@ -234,5 +234,65 @@ De la misma forma, se podr\'ia construir una serie de intervalos de confianza al
 Si los tama\~nos muestrales no son iguales $T_{\alpha}$ es distinto para cada par de medias y queda:
 \[T_{\alpha}=\dfrac{q_{\alpha}(a,N-a)}{\sqrt{2}}\sqrt{MCE\left(\dfrac{1}{n_i}+\dfrac{1}{n_j}\right)}\]
 
+\subsectioncol{M\'etodo de Scheff\'e.}
 
+Este m\'etodo se basa en proponer un contraste sobre una combinaci\'on lineal de cualquier n\'umero de medias poblacionales, de la forma:
+\begin{align}
+H_0:&L=\sum_{i=1}^ac_i\mu_i=0\\
+H_1:&L=\sum_{i=1}^ac_i\mu_i\neq0
+\end{align}
 
+donde se cumple que $\sum_{i=1}^ac_i=0$.
+
+Un estimador insesgado de $L$ ser\'a $\hat{L}=\sum_{i=1}^ac_i\bar{Y}_{i.}$. Su varianza ser\'a:
+\[Var(\hat{L})=\sigma^2\sum_{i=1}^a\dfrac{c_i^2}{n_i}\]
+
+Y un estimador insesgado de la varianza ser\'a:
+\[S^2(\hat{L})=\dfrac{SCE}{N-a}\sum_{i=1}^a\dfrac{c_i^2}{n_i}\]
+
+Y como $\hat{L}$ tiene una distribuci\'on normal, por ser combinaci\'on lineal de variables normales, se puede demostrar que:
+\[\dfrac{(\hat{L}-L)^2}{(a-1)S^2(\hat{L})}\sim F_{a-1;N-a}\]
+
+Y por tanto, se puede calcular un intervalo de confianza al $100(1-\alpha)\%$ del valor de $L$ a partir de la expresi\'on:
+\[\dfrac{(\hat{L}-L)^2}{(a-1)S^2(\hat{L})}> F_{a-1,N-a:\alpha}\]
+
+Y la regi\'on cr\'itica del contraste ser\'a: 
+\[C=\left\{|\hat{L}|>\sqrt{(a-1)S^2(\hat{L})F_{a-1,N-a:\alpha}}\right\}\]
+\[C=\left\{|\hat{L}|>\sqrt{(a-1)F_{a-1,N-a:\alpha}\left(\dfrac{SCE}{N-a}\sum_{i=1}^a\dfrac{c_i^2}{n_i}\right)}\right\}\]
+
+Muchas veces nos encontramos con la dificultad de no saber a priori que contrastes pueden ser interesantes para nuestro caso particular. Scheff\'e ha propuesto un m\'etodo para comparar todos los posibles contrastes, asegurando que el error de tipo I es a lo sumo $\alpha$ en todos los casos.
+
+Supongamos que determinamos un conjunto de $m$ contrastes:
+\[L_u=\sum_{i=1}^ac_{iu}\mu_i\;\;\;u=1,2,\ldots,m\]
+Con sus correspondientes estimadores:
+\[\hat{L}_u=\sum_{i=1}^ac_{iu}\bar{Y}_{i.}\;\;\;u=1,2,\ldots,m\]
+
+El estimador de la varianza de estos estimadores ser\'a:
+\[S^2(\hat{L}_u)=\dfrac{SCE}{N-a}\sum_{i=1}^a\dfrac{c_{iu}^2}{n_i}\]
+
+Y las regiones cr\'iticas:
+\[C_u=\left\{|\hat{L}_u|>\sqrt{(a-1)F_{a-1,N-a:\alpha}\left(\dfrac{SCE}{N-a}\sum_{i=1}^a\dfrac{c_{iu}^2}{n_i}\right)}\right\}\]
+
+Tambi\'en podemos definir los intervalos de confianza simult\'aneos:
+\[\hat{L}_u-\sqrt{(a-1)F_{a-1,N-a:\alpha}\left(\dfrac{SCE}{N-a}\sum_{i=1}^a\dfrac{c_{iu}^2}{n_i}\right)}\leq L_u\leq\hat{L}_u+\sqrt{(a-1)F_{a-1,N-a:\alpha}\left(\dfrac{SCE}{N-a}\sum_{i=1}^a\dfrac{c_{iu}^2}{n_i}\right)}\]
+Que tendr\'an una probabilidad de ser verdaderos simult\'aneamente de al menos $1-\alpha$.
+
+\sectioncol{An\'alisis de la varianza para una clasificaci\'on doble.}
+
+Hasta ahora hemos visto el an\'alisis de la varianza intentando discriminar los efectos de un solo factor. Ahora vamos a ver c\'omo analizar la influencia de dos factores distintos. Analizaremos un modelo equilibrado (todas las submuestras tienen el mismo tama\~no) de efectos fijos (todos los posibles valores de los factores se observan en el experimento).
+
+El modelo matem\'atico en el que nos basamos es el siguiente:
+
+\[Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}+e_{ijk}\]
+
+Donde:
+\begin{itemize}
+\item $Y_{ijk}$ es el valor de la variable en estudio en el individuo $k$-\'esimo con el valor $i$ para el primer factor y el valor $j$ para el segundo factor.
+\item $\mu$ Es la media total de la variable en estudio.
+\item $\alpha_i$ es el efecto del nivel $i$-\'esimo del primer factor.
+\item $\beta_j$ es el efecto del nivel $j$-\'esimo del segundo factor.
+\item $(\alpha\beta)_{ij}$es el efecto de la interacci\'on entre el nivel $i$-\'esimo del primer factor y el nivel $j$-\'esimo del segundo factor.
+\item $e_{ijk}$ es el valor del error aleatorio en el individuo $k$-\'esimo con el valor $i$ para el primer factor y el valor $j$ para el segundo factor.
+\end{itemize} 
+
+En general tenemos $a$ niveles del factor uno, $b$ niveles del factor 2, y $ab$ muestras aleatorias, una por cada combinaci\'on de niveles, todas del mismo tama\~no, $n$.
