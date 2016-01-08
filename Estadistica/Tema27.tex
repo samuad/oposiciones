@@ -144,7 +144,16 @@ Si realizamos el contraste mediante la regi\'on cr\'itica, rechazamos $H_0$ con 
 Si realizamos el contraste mediante el p-valor, rechazamos $H_0$ con un nivel de significaci\'on $1-\alpha$ si el $p-$valor es $p\leq\alpha$, siendo:
 \[p=P[F_{a-1,N-a}>F]\]
 
-Estos resultados se suelen resumir en la tabla ANOVA.
+Estos resultados se suelen resumir en la tabla ANOVA, de esta forma:
+\\[10pt]
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\begin{tabular}[c]{@{}l@{}}Fuente de \\ variaci\'on\end{tabular} & G. de L.     & Suma de Cuadrados                                                                                 & Media                           & F                                                  \\ \hline
+Factor  & a-1 & $\displaystyle\sum_{i=1}^an_i(\bar{Y}_{i.}-\bar{Y}_{..})^2$                             & $\displaystyle\dfrac{SCTR}{a-1}$ & $\displaystyle F=\dfrac{SCTR/(a-1)}{SCE/(N-a)}$            \\
+Error & N-a & $\displaystyle\sum_{i=1}^a\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{i.})^2$                                   & $\displaystyle\dfrac{SCE}{N-a}$          &                                                    \\ \hline
+Total & N-1 & $\displaystyle\sum_{i=1}^a\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{..})^2$                                   &                                 &                                                    \\ \hline
+\end{tabular}
+
 
 Se define el \textbf{coeficiente de determinaci\'on}, $R^2$ como:
 \[R^2=\dfrac{SCTR}{SCT}\]
@@ -296,3 +305,61 @@ Donde:
 \end{itemize} 
 
 En general tenemos $a$ niveles del factor uno, $b$ niveles del factor 2, y $ab$ muestras aleatorias, una por cada combinaci\'on de niveles, todas del mismo tama\~no, $n$.
+
+Adem\'as,
+\[\sum_{i=1}^a\alpha_i=\sum_{j=1}^b\beta_j=\sum_{i=1}^a(\alpha\beta)_i=\sum_{j=1}^b(\alpha\beta)_j=0\]
+
+Y las $e_{ijk}$ son variables aleatorias independientes id\'enticamente distribuidas seg\'un una distribuci\'on $N(0,\sigma^2)$.
+
+El modelo tambi\'en se puede representar como $Y_{ijk}=\mu_{ij}+e_{ijk}$, con $\mu_{ij}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}$, y por tanto, $Y_{ijk}\sim N(\mu_{ij},\sigma^2)$.
+
+Queremos contrastar la hip\'otesis nula:
+\[H_0:\mu_{11}=\mu_{12}=\cdots=\mu_{ab}\]
+frente a la hip\'otesis alternativa, $H_0$ de que no todas las $\mu_{ij}$ son iguales.
+
+No rechazar la hip\'otesis nula equivale a no rechazar las siguientes hip\'otesis de forma simult\'anea:
+\begin{itemize}
+\item $H_0^{\prime}$: No hay diferencias entre los distintos niveles del factor $A$.
+\item $H_0^{\prime\prime}$: No hay diferencias entre los distintos niveles del factor $B$.
+\item $H_0^{\prime\prime\prime}$: No hay diferencias debidas a la interacci\'on entre los factores $A$ y $B$.
+\end{itemize}
+
+Introducimos la siguiente notaci\'on:
+
+\begin{itemize}
+\item \textbf{Suma de cuadrados residuales (o de errores):} $SCE=\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(Y_{ijk}-\bar{Y}_{ij.})^2$.
+\item \textbf{Suma de cuadrados entre niveles del factor A:} $SCTR_A=\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(\bar{Y}_{i..}-\bar{Y}_{...})^2$.
+\item \textbf{Suma de cuadrados entre niveles del factor B:} $SCTR_B=\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(\bar{Y}_{.j.}-\bar{Y}_{...})^2$.
+\item \textbf{Suma de cuadrados entre las interacciones:} $SCTR_{AB}=\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(\bar{Y}_{ij.}-\bar{Y}_{i..}-\bar{Y}_{.j.}+\bar{Y}_{...})^2$.
+\item \textbf{Suma de cuadrados Total:} $SCTR=\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(Y_{ijk}-\bar{Y}_{...})^2$.
+\item \textbf{Media de cuadrados del error:} $MCE=\dfrac{SCE}{ab(n-1)}$
+\item \textbf{Media de cuadrados entre niveles del factor A:} $MCTR_A=\dfrac{SCTR_A}{a-1}$.
+\item \textbf{Media de cuadrados entre niveles del factor B:} $MCTR_B=\dfrac{SCTR_B}{b-1}$.
+\item \textbf{Media de cuadrados entre las interacciones:} $MCTR_{AB}=\dfrac{SCTR_{AB}}{(a-1)(b-1)}$.
+\item \textbf{Suma de cuadrados Total:} $SCTR=\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(Y_{ijk}-\bar{Y}_{...})^2$.
+\end{itemize}
+
+Se verifica que $SCTR=SCTR_A+SCTRB+SCTR_{AB}+SCE$. La tabla ANOVA correspondiente a un modelo de dos factores ser\'ia:
+\\[10pt]
+
+%%\begin{table}[]
+%%\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\begin{tabular}[c]{@{}l@{}}Fuente de \\ variaci\'on\end{tabular} & G. de L.     & Suma de Cuadrados                                                                                 & Media                           & F                                                  \\ \hline
+Factor A                                                         & a-1        & $\displaystyle\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(\bar{Y}_{i..}-\bar{Y}_{...})^2$                             & $\displaystyle\dfrac{SCTR_A}{a-1}$           & $\displaystyle F_A=\dfrac{SCTR_A/(a-1)}{SCE/ab(n-1)}$            \\
+Factor B                                                         & b-1        & $\displaystyle\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(\bar{Y}_{.j.}-\bar{Y}_{...})^2$                             & $\displaystyle\dfrac{SCTR_B}{b-1}$           & $\displaystyle F_B=\dfrac{SCTR_B/(b-1)}{SCE/ab(n-1)}$            \\
+Factor AB                                                        & (a-1)(b-1) & $\displaystyle\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(\bar{Y}_{ij.}-\bar{Y}_{i..}-\bar{Y}_{.j.}+\bar{Y}_{...})^2$ & $\displaystyle\dfrac{SCTR_{AB}}{(a-1)(b-1)}$ & $\displaystyle F_{AB}=\dfrac{SCTR_{AB}/(a-1)(b-1)}{SCE/ab(n-1)}$ \\
+Error                                                            & ab(n-1)    & $\displaystyle\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(Y_{ijk}-\bar{Y}_{ij.})^2$                                   & $\displaystyle\dfrac{SCE}{ab(n-1)}$          &                                                    \\ \hline
+Total                                                            & abn-1      & $\displaystyle\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(Y_{ijk}-\bar{Y}_{...})^2$                                   &                                 &                                                    \\ \hline
+\end{tabular}
+%%\end{table}
+
+La regla de decisi\'on para el contraste de la $F$ se basa en el nivel de significaci\'on ($p$-valor):\\
+Rechazaremos $H_0^{\prime}$ si $F_A>F_{a-1,ab(n-1);\alpha}$.\\
+Rechazaremos $H_0^{\prime\prime}$ si $F_B>F_{b-1,ab(n-1);\alpha}$.\\
+Rechazaremos $H_0^{\prime\prime\prime}$ si $F_{AB}>F_{(a-1)(b-1),ab(n-1);\alpha}$.\\
+
+Si rechazamos alguna hip\'otesis nula, hay diferencias entre las medias, y se deben a los factores para los que se rechaza la hip\'otesis.
+
+Si no podemos rechazar ninguna hip\'otesis nula, no podemos afirmar que haya diferencias entre las medias, y por tanto no podemos afirmar que los factores influyan en las mismas.
