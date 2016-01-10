@@ -85,8 +85,199 @@ En principio $y_{t-1}$ es independiente de $u_t$, por lo que $E(y_{t-1}u_t)=0$, 
 Si el t\'ermino de error presenta autocorrelaci\'on, las $y_{t-1}$ estar\'an correlacionadas con $u_t$, con lo que se viola una de las hip\'otesis del modelo, y no podremos garantizar la consistencia del estimador.
 
 \sectioncol{Justificaci\'on te\'orica de los modelos econom\'etricos din\'amicos.}
+
+Tradicionalmente en econometr\'ia se utilizan dos explicaciones te\'oricas para justificar la existencia de este tipo de modelos.
+
+\subsectioncol{El modelo de expectativas adaptativas.}
+
+EN 1956 Cagan propuso un modelo que hac\'ia depender la demanda de saldos monetarios reales de la expectativa de inflaci\'on futura.
+\[\dfrac{M_t}{P_t}=\beta_1+\beta_2E_t\pi_{t+1}+u_t\]
+
+Nos encontramos con que la expectativa de inflaci\'on no es una variable que se pueda observar. Este modelo encierra distintas especificaciones seg\'un como propongamos que se forman las espectativas acerca de la tasa de inflaci\'on. Cagan utiliz\'o el mecanismo de expectativas adaptativas, propuesto por Friedman en su Teor\'ia del Consumo.
+
+\[E_t\pi_{t+1}=E_{t-1}\pi_{t}+\lambda(\pi_t-E_{t-1}\pi_{t})\]
+
+En el que la expectativa futura de inflaci\'on depende de la expectativa de inflaci\'on para el per\'iodo anterior modificada proporcionalmente al error de predicci\'on cometido. Este modelo tambi\'en puede escribirse
+\[E_t\pi_{t+1}=\lambda\pi_t+(1-\lambda)E_{t-1}\pi_{t}\]
+
+Si incorporamos las expectativas adaptativas al modelo de regresi\'on tenemos:
+
+\[\dfrac{M_t}{P_t}=\lambda\beta_1+\lambda\beta_2\pi_t+(1-\lambda)\left(\dfrac{M_{t-1}}{P_{t-1}}\right)+v_t\]
+
+Que es un modelo din\'amico. Estimando este modelo, se puede obtener $\lambda$ a partir de coeficiente de $\left(\dfrac{M_{t-1}}{P_{t-1}}\right)$, y $\beta_1$ y $\beta_2$ de forma similar.
+
+\subsectioncol{El modelo de ajuste parcial de Nerlove.}
+
+Supongamos que el nivel de capital deseado en la econom\'ia es funci\'on del nivel de producci\'on.
+\[K_t^{*}=\beta_1+\beta_2Y_t+u_t\]
+
+De manera an\'aloga al caso anterior, el nivel de capital deseado no es una variable observable. Para evitar esta dificultad, a\~nadimos el modelo de ajuste parcial del nivel de stock, que explica c\'omo se ajusta el nivel de capital real de una econom\'ia al nivel de capital deseado:
+\[K_t-K_{t-1}=\delta(K_t^{*}-K_{t-1}),\quad0<\delta<1\]
+
+Si introducimos el modelo en la ecuaci\'on, obtenemos:
+\[K_t=\delta\beta_1+\delta_beta_2 Y_t+(1-\delta)K_{t-1}+\delta u_t\]
+
+Que es un modelos din\'amico que una vez estimado nos permitir\'a calcular $\delta$, $\beta_1$ y $\beta_2$.
+
+
+
+\subsectioncol{El modelo de expectativas adaptativas.}
+
 \sectioncol{Modelos de retardos infinitos.}
+
+En ocasiones, el modelo que queremos ajustar es del tipo:
+\[y_t=\beta_1+\beta_2x_t+\beta_3x_{t-1}+\beta_4x_{t-2}+\beta_5x_{t-3}+\cdots+u_t\]
+
+s decir, la variable end\'ogena depende de infinitos retardos de la variable independiente. Claramente este modelo no se puede estimar, ya que tenemos infinitos coeficientes. Para poder trabajar con el modelo ser\'a necesario suponer alguna estructura en los eçcoeficientes de los retardos de la variable end\'ogena que reduzca el n\'umero de par\'ametros a estimar.
+
+\subsectioncol{El modelo de Koyck.}
+
+Una hip\'otesis habituel es que $\beta_i=\delta\beta_{i-1}$, con $|\delta|<1$ y $i\geq3$. Aplicando esta hip\'otesis a nuestro modelo tenemos:
+\[y_t=\beta_1+\beta_2x_t+\delta\beta_2x_{t-1}+\delta^2\beta_2x_{t-2}+\delta^3\beta_2x_{t-3}+\cdots+u_t=\beta_1+\beta_2\sum_{i=0}^{\infty}\delta^ix_{t-i}+u_t\]
+
+Que depende solo de $\beta_1$, $\beta_2$ y $\delta$. La exigencia de que $|\delta|<1$ es para evitar la situaci\'on en que cuanto m\'as alejada est\'e una observaci\'on de $t$ m\'as influya en $y_t$. 
+
+La propensi\'on al impacto es $\beta_2$, y la propendi\'on a largo plazo ser\'a $\beta_2\sum_{i=0}^{\infty}\limits\delta^i$ que como $|\delta|<1$ es $\dfrac{\beta_2}{1-\delta}$.
+
+Si restamos de $y_t$ $\delta y_{y-1}$:
+\[y_t-\delta y_{t-1}=(1-\delta)\beta_1+\beta_2x_t+u_t-\delta_u{t-1}\]
+
+Y nuestro modelo queda:
+\[y_t=(1-\delta)\beta_1+\beta_2x_t+\delta y_{t-1}+v_t\]
+
+Que es un modelo con retardos de la variable dependiente. El problema es que, dado que $y_{t-1}$ depende de $u_{t-1}$, hay correlaci\'on entre una de las variables explicativas y el t\'ermino de error, con lo cual no se cumple una de las hip\'otesis del modelo. Adem\'as, si $u_t$ est\'a incorrelacionado, $E(v_tv_{t-1})=E[(u_t-\delta_u{t-1})(u_{t-1}-\delta_u{t-2})]=-\delta E(u_{t-1}^2)=-\delta\sigma_u^2$, y por tanto el modelo presentar\'a autocorrelaci\'on.
+
+Si las $x_t$ presentan exogeneidad estricta, estar\'an incorreladas con $u_t$ y $u_{t-1}$ y por tanto con $v_t$, e igualmente $x_{t-1}$ estar\'a incorrelado con $v_t$. Dado que si $\beta_2\neq 0$ $y_{t-1}$ est\'a correlacionado con $x_{t-1}$, podemos usar $x_{t-1}$ como instrumento de $y_{t-1}$ y obtener un estimador de variables instrumentales. A\'un en este caso, tenemos que ajustar los errores est\'andar del estimador para tener en cuenta la autocorrelaci\'on del t\'ermino de error.
+%%%
+%Para estimar el modelo truncamos el polinomio de retardos en el primer contenido en la muestra ($t=1$), con lo que tendremos:
+%
+%\[y_t=\beta_1+\beta_2\sum_{i=0}^{t-1}\delta^ix_{t-i}+\delta^t\beta_2\sum_{i=0}^{\infty}\delta^ix_{-i}+u_t\]
+%
+%Si definimos:
+%\begin{itemize}
+%\item $ z_t=\sum_{i=0}^{t-1}\limits\delta^ix_{t-i}$, que podemos calcular para cada $t$, supuesto un valor de $\delta$.
+%\item $ \gamma=\beta_2\sum_{i=0}^{\infty}\limits\delta^ix_{-i}$, que es desconocido, pero constante.
+%\end{itemize}
+%
+%El modelo se transforma en:
+%\[y_t=\beta_1+\beta_2z_t+\gamma\delta^t+u_t\]
+%
+
+
+
+
 \sectioncol{Estimaci\'on con retardos de la variable end\'ogena.}
+
+En estos casos es fundamental distinguir entre si el t\'ermino de error tiene o no tiene autocorrelaci\'on.
+
+\subsectioncol{El t\'ermino de error no tiene autocorrelaci\'on.}
+En este caso tenemos un modelo del tipo:
+\[y_t=\beta_1+\beta_2y_{t-1}+\beta_3x_t+u_t\]
+
+que cumple las siguientes condiciones:
+
+\begin{itemize}
+\item $E(\boldsymbol{u})=\boldsymbol{0}_N$, $E(\boldsymbol{u}\boldsymbol{u}^{\prime})=\sigma_u^2\boldsymbol{I}_N$, es decir, no hay autocorrelaci\'on.
+\item $E(x_tu_t)=0$, ya que si el modelo est\'a bien especificado, $u_t$ no refleja ninguna dependencia de $y_t$ sobre $u_t$.
+\item $E(y_{t-1}u_t)=0$, por no haber autocorrelaci\'on.
+\item $\plim\left(\dfrac{\boldsymbol{X}^{\prime}\boldsymbol{X}}{N}\right)=\boldsymbol{\Sigma}_{xx}$ matriz sim\'etrica definida positiva. Esta condici\'on se satisface en general siempre que $|\beta_2|<1$ si existen las varianzas y covarianzas de las variables explicativas.
+\end{itemize}
+
+Con estos supuestos el teorema de Mann-Wald asegura que $\plim\left(\dfrac{\boldsymbol{X}^{\prime}\boldsymbol{u}}{N}\right)=\boldsymbol{0}_k$, y que $\left(\dfrac{\boldsymbol{X}^{\prime}\boldsymbol{u}}{\sqrt{N}}\right)\overset{d}{\to}N\left(\boldsymbol{0}_k;\sigma_u^2\boldsymbol{\Sigma}_{xx}\right)$.
+
+Por tanto,
+\[\plim\hat{\boldsymbol{\beta}}_{MCO}=\plim\left[\boldsymbol{\beta}+\left(\dfrac{\boldsymbol{X}^{\prime}\boldsymbol{X}}{N}\right)^{-1}\left(\dfrac{\boldsymbol{X}^{\prime}\boldsymbol{u}}{N}\right)\right]=\boldsymbol{\beta}+\plim\left[\left(\dfrac{\boldsymbol{X}^{\prime}\boldsymbol{X}}{N}\right)^{-1}\right]\plim\left(\dfrac{\boldsymbol{X}^{\prime}\boldsymbol{u}}{N}\right)=\boldsymbol{\beta}+\boldsymbol{\Sigma}_{xx}^{-1}\boldsymbol{0}_k=\boldsymbol{\beta}\]
+
+As\'i que el estimador MCO es consistente. Adem\'as, como 
+\[\hat{\boldsymbol{\beta}}_{MCO}=\boldsymbol{\beta}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u}\]
+Se deduce que:
+\[\sqrt{N}\left(\hat{\boldsymbol{\beta}}_{MCO}-\boldsymbol{\beta}\right)=\left(\dfrac{\boldsymbol{X}^{\prime}\boldsymbol{X}}{N}\right)^{-1}\left(\dfrac{\boldsymbol{X}^{\prime}\boldsymbol{u}}{\sqrt{N}}\right)\]
+y por tanto,
+\[\sqrt{N}\left(\hat{\boldsymbol{\beta}}_{MCO}-\boldsymbol{\beta}\right)\overset{d}{\to}\boldsymbol{\Sigma}_{xx}^{-1}N\left(\boldsymbol{0}_k;\sigma_u^2\boldsymbol{\Sigma}_{xx}\right)=N\left(\boldsymbol{0}_k;\sigma_u^2\boldsymbol{\Sigma}_{xx}^{-1}\right)\]
+
+Y teniendo en cuenta la convergencia en distribuci\'on y la convergencia en probabilidad de $\left(\dfrac{\boldsymbol{X}^{\prime}\boldsymbol{X}}{N}\right)$, para muestras suficientemente grandes se puede aproximar:
+
+\[\hat{\boldsymbol{\beta}}_{MCO}\sim N\left(\boldsymbol{\beta};\sigma_u^2\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)\right)\]
+
+En resumen, en ausencia de autocorrelaci\'on el estimador de m\'inimos cuadrados es consistente y converge en distribuci\'on a una normal, as\'i que para muestras suficientemente grandes est\'a justificado utilizarlo, as\'i como la matriz de covarianzas habitual y los contrastes de inferencia estad\'istica habituales. 
+
+\subsectioncol{El t\'ermino de error tiene autocorrelaci\'on.}
+En este caso tenemos un modelo del tipo:
+\begin{align*}
+y_t=&\beta_1+\beta_2y_{t-1}+\beta_3x_t+u_t\quad|\beta_2|<1\\
+u_t=&\rho u_{t-1}+\varepsilon_t\quad|\rho|<1
+\end{align*}
+
+donde $\varepsilon_t$ es ruido blanco.
+
+Como existe autocorrelaci\'on, ya no se cumple que $E(y_{t-1}u_t)=0$. Por tanto, el estimador MCO es sesgado y no es consistente, con lo que su sesgo no disminuir\'a al aumetar el tama\~no muestral. Esta inconsistencia aparecer\'a siempre que tengamos retardos de la variable end\'ogena y autocorrelaci\'on en el t\'ermino de error.
+
+Para obtener estimaciones consistentes de un modelo de este tipo debemos acudir al \textit{estimador de variables instrumentales}. Una variable instrumental, que hace de instrumento para una variable explicativa del modelo, es una variable que satisface tres condiciones:
+\begin{enumerate}
+\item No est\'a correlacionada con el t\'ermino de error.
+\item No est\'a incluida en el modelo como variable explicativa.
+\item Est\'a correlacionada con la variable para la cual hace de instrumento.
+\end{enumerate}
+
+En nuestro modelo en particular, el primer retardo de la variable ex\'ogena satisface estas tres condiciones, ya que por las hip\'otesis del modelo est\'a incorrelacionada con $u_{t-1}$ y por tanto con $u_t$, no est\'a incluida en el modelo, y est\'a correlacioneda con $y_{t-1}$ a trav\'es del propio modelo.
+
+Por tanto, tenemos nuestro vector de variables originales, $\boldsymbol{x}_t=(1, y_{t-1}, x_t)$, y el vector $\boldsymbol{z}_t=(1, x_{t-1}, x_t)$, en el que sustituimos las variables correlacionadas con el error por sus instrumentos.
+
+De esta forma, definimos el estimador de variables instrumentales como:
+\[\hat{\boldsymbol{\beta}}_{VI}=\left(\boldsymbol{Z}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{Z}^{\prime}\boldsymbol{y}\]
+
+Donde por $\boldsymbol{Z}$ denotamos la matriz de observaciones correspondientes al vector $\boldsymbol{z}_t$, y suponemos que la matriz $\left(\boldsymbol{Z}^{\prime}\boldsymbol{X}\right)$ es invertible.
+
+As\'i, 
+\[\hat{\boldsymbol{\beta}}_{VI}=\left(\boldsymbol{Z}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{Z}^{\prime}\boldsymbol{y}=\left(\boldsymbol{Z}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{Z}^{\prime}\left[\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{u}\right]=\boldsymbol{\beta}+\left(\boldsymbol{Z}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{Z}^{\prime}\boldsymbol{u}\]
+
+La correlaci\'on que debe existir entre el instrumento elegido y la variable explicativa que sustituye debe ser lo m\'as elevada posible pero no tan grade que provoque una correlaci\'on entre el instrumento y el t\'ermino de error.
+
+Para que este estimador sea insesgado, se deber\'ia dar que $E\left[\left(\boldsymbol{Z}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{Z}^{\prime}\boldsymbol{u}\right]=\boldsymbol{0}_k$. aunque en general desconocemos la esperanza de esta expresi\'on. Sin embargo, podremos afirmar que el estimador es consistente bas\'andonos en la siguiente proposici\'on:
+\begin{proposicion}
+Sea $\boldsymbol{Z}$ una matriz $N\times k$ de observaciones, sea $\boldsymbol{z}_t$ la fila de esta matriz correspondiente al instante $t$, y supongamos que se cumple:
+\begin{enumerate}
+\item  $E(z_tu_t)=0$ para todo $t$.
+\item $\plim\left(\dfrac{\boldsymbol{Z}^{\prime}\boldsymbol{X}}{N}\right)=\boldsymbol{\Sigma}_{zx}$, $\plim\left(\dfrac{\boldsymbol{Z}^{\prime}\boldsymbol{Z}}{N}\right)=\boldsymbol{\Sigma}_{zz}$, ambas no singulares y finitas.
+\end{enumerate}
+entonces el estimador de variables instrumentales es consistente.
+\end{proposicion}
+
+Veamos la demostraci\'on:
+\begin{align*}
+\plim\hat{\boldsymbol{\beta}}_{VI}=\boldsymbol{\beta}+\plim\left[\left(\dfrac{\boldsymbol{Z}^{\prime}\boldsymbol{X}}{N}\right)^{-1}\right]\plim\left(\dfrac{\boldsymbol{Z}^{\prime}\boldsymbol{u}}{N}\right)=\boldsymbol{\beta}+\boldsymbol{\Sigma}_{zx}^{-1}\boldsymbol{0}_k=\boldsymbol{\beta}
+\end{align*}
+ya que los instrumentos satisfacen $\plim\left(\dfrac{\boldsymbol{Z}^{\prime}\boldsymbol{u}}{N}\right)=0$
+
+Para ver la distribuci\'on asint\'otica de nuestro estimador, necesitamos demostrar otro resultado:
+
+\begin{proposicion}
+Sea $\boldsymbol{Z}$ una matriz $N\times k$ de observaciones, sea $\boldsymbol{z}_t$ la fila de esta matriz correspondiente al instante $t$, y sean $\boldsymbol{X}$ y $\boldsymbol{x}_t$ la matriz y las filas correspondientes a las variables explicativas del modelo. Supongamos que se cumple:
+\begin{enumerate}
+\item  $E(z_tu_t)=0$ para todo $t$.
+\item $\plim\left(\dfrac{\boldsymbol{Z}^{\prime}\boldsymbol{X}}{N}\right)=\boldsymbol{\Sigma}_{zx}$, no singular y finita 
+\item $\plim\left(\dfrac{\boldsymbol{Z}^{\prime}\boldsymbol{Z}}{N}\right)=\boldsymbol{\Sigma}_{zz}$, sim\'etrica, definida positiva
+\end{enumerate}
+entonces para el estimador de variables instrumentales se tiene:
+\[\sqrt{N}\left(\hat{\boldsymbol{\beta}}_{VI}-\boldsymbol{\beta}\right)\overset{d}{\to}N\left(\boldsymbol{0}_k;\sigma_u^2\left(\boldsymbol{\Sigma}_{zx}^{-1}\right)\boldsymbol{\Sigma}_{zz}\left(\boldsymbol{\Sigma}_{zx}^{-1}\right)^{\prime}\right)\]
+\end{proposicion}
+
+Como el teorema de Mann-Wals asegura que $\plim\left(\dfrac{\boldsymbol{Z}^{\prime}\boldsymbol{u}}{N}\right)=\boldsymbol{0}_k$, y que $\left(\dfrac{\boldsymbol{Z}^{\prime}\boldsymbol{u}}{\sqrt{N}}\right)\overset{d}{\to}N\left(\boldsymbol{0}_k;\sigma_u^2\boldsymbol{\Sigma}_{zz}\right)$, y como $\sqrt{N}\left(\hat{\boldsymbol{\beta}}_{VI}-\boldsymbol{\beta}\right)=\left(\dfrac{\boldsymbol{Z}^{\prime}\boldsymbol{X}}{N}\right)^{-1}\left(\dfrac{\boldsymbol{Z}^{\prime}\boldsymbol{u}}{\sqrt{N}}\right)$, queda demostrada la convergencia en distribuci\'on. Por tanto, para muestras grandes podemos utilizar como matriz de covarianzas del estinador VI:
+\[Var\left(\hat{\boldsymbol{\beta}}_{VI}\right)=\dfrac{\sigma_u^2}{N}\left(\boldsymbol{\Sigma}_{zx}^{-1}\right)\boldsymbol{\Sigma}_{zz}\left(\boldsymbol{\Sigma}_{zx}^{-1}\right)^{\prime}\], y si utilizamos las matrices de momentos muestrales para aproximar sus l\'imites, tenemos que para tama\~nos de muestra grandes:
+\[Var\left(\hat{\boldsymbol{\beta}}_{VI}\right)=\sigma_u^2\left(\boldsymbol{Z}^{\prime}\boldsymbol{X}\right)^{-1}\left(\boldsymbol{Z}^{\prime}\boldsymbol{Z}\right)\left[\left(\boldsymbol{Z}^{\prime}\boldsymbol{X}\right)^{-1}\right]^{\prime}\]
+
+Un estimador consistente para $\sigma_u^2$ ser\'a:
+\[\hat{\sigma}_u^2=\dfrac{\left(\boldsymbol{y}-\boldsymbol{X}\hat{\boldsymbol{\beta}}_{VI}\right)^{\prime}\left(\boldsymbol{y}-\boldsymbol{X}\hat{\boldsymbol{\beta}}_{VI}\right)}{N-k}\]
+
+Siempre que el error no tenga autocorrelaci\'on. En nuestro caso, s\'i que la tiene, aunque debido a la dificultad de extender este resultado al caso con autocorrelaci\'on se suele utilizar la matriz de autocovarianzas a\'un sabiendo que es solo una aproximaci\'on. Un modelo de este tipo se deber\'ia estimar por m\'axima verosimilitud.
+
+Es importante destacar que en la matriz de covaroanzas eel t\'ermino $\boldsymbol{Z}^{\prime}\boldsymbol{X}$, que es un estimador de la correlaci\'on entr elas variables ex\'ogenas y los instrumentos, est\'a dividiendo. Por tanto, a mayor correlaci\'on menor ser\'a la varianza del estimador de variables instrumentales.
+
+
+
+
+
+
 \sectioncol{Contraste de exogeneidad de Asuman.}
 \sectioncol{Eficiencia relativa de los estimadores de variables instrumentales.}
 \sectioncol{Estimaci\'on de modelos con expectativas racionales.}
