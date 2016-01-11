@@ -273,12 +273,41 @@ Siempre que el error no tenga autocorrelaci\'on. En nuestro caso, s\'i que la ti
 
 Es importante destacar que en la matriz de covaroanzas eel t\'ermino $\boldsymbol{Z}^{\prime}\boldsymbol{X}$, que es un estimador de la correlaci\'on entr elas variables ex\'ogenas y los instrumentos, est\'a dividiendo. Por tanto, a mayor correlaci\'on menor ser\'a la varianza del estimador de variables instrumentales.
 
+\subsectioncol{El estimador de variable sinstrumentales en dos etapas.}
 
+A la hora de obtener el estimador de variables instrumentales hemos supuesto que dispon\'iamos de un instrumento para cada variable que quer\'iamos sustituir. Sin embargo, lo habitual es disponer de m\'as instrumentos que variables explicativas, situaci\'on que se conoce como \textit{sobreidentificaci\'on}. En este caso, y dado que la matriz con la svariables instrumentales debe tener la misma dimensi\'on que la matriz original, podremos construir tantas variables instrumentaes como combinaciones lineales de instrumentos.
 
+Dado que cualquier combinaci\'on lineal de los instrumentos es a su vez un instrumento v\'alido, y nos interesa minimizar la varianza de nuestro estimador, y hemos visto que a mayor correlaci\'on entre variable e instrumento menor ser\'a la varianza, un enfoque v\'alido ser\'ia calcular una regresi\'on de la variable a sustituir sobre los instrumentos, y utilizar como instrumento los resultados de la regresi\'on. De esta forma maximizamos la correlaci\'on entre la variable original y su instrumento.
 
+Si hacemos esto, y utilizamos los nuevos instrumentos para obtener un estimador de variables isntrumentales, al estimador as\'i obtenido se le conoce como estimador de m\'inimos cuadrados en dos etapas, $\hat{\boldsymbol{\beta}}_{MC2E}$.
 
+En general, la regresi\'on de todas las variables explicativas sobre todos los instrumentos, recogidos en la matriz $\boldsymbol{W}$, genera la matriz de coeficientes $\left(\boldsymbol{W}^{\prime}\boldsymbol{W}\right)^{-1}\boldsymbol{W}^{\prime}\boldsymbol{X}$, y genera la nueva matriz de variables ex\'ogenas $\hat{\boldsymbol{X}}=\boldsymbol{W}\left(\boldsymbol{W}^{\prime}\boldsymbol{W}\right)^{-1}\boldsymbol{W}^{\prime}\boldsymbol{X}$, que utilizadas como variables instrumentales conducen a la expresi\'on definitiva del estimador de m\'inimos cuadrados en dos etapas:
+\[\hat{\boldsymbol{\beta}}_{MC2E}=\left[\boldsymbol{X}^{\prime}\boldsymbol{W}\left(\boldsymbol{W}^{\prime}\boldsymbol{W}\right)^{-1}\boldsymbol{W}^{\prime}\boldsymbol{X}\right]^{-1}\boldsymbol{X}^{\prime}\boldsymbol{W}\left(\boldsymbol{W}^{\prime}\boldsymbol{W}\right)^{-1}\boldsymbol{W}^{\prime}\boldsymbol{y}\]
+
+Dado que no es m\'as que un estimador de variables instrumentales que utiliza como instrumentos $\hat{\boldsymbol{X}}$, su varianza ser\'a:
+\[Var\left(\hat{\boldsymbol{\beta}}_{MC2E}\right)=\sigma_u^2\left(\hat{\boldsymbol{X}}^{\prime}\boldsymbol{X}\right)^{-1}\left(\hat{\boldsymbol{X}}^{\prime}\hat{\boldsymbol{X}}\right)\left[\left(\hat{\boldsymbol{X}}^{\prime}\boldsymbol{X}\right)^{-1}\right]^{\prime}\]
 
 \sectioncol{Contraste de exogeneidad de Asuman.}
+
+Dado que la no exogeneidad de las variables puede darse no solo por la aparici\'on de retardos de la variable end\'ogena, sino incluso con variables ex\'ogenas, es conveniente disponer de un contraste para comprobar la enxogeneidad de las variables explicativas.
+
+Reordenamos nuestro modelo como:
+\[\boldsymbol{y}=\boldsymbol{Y}_1\alpha+\boldsymbol{Z}_1\delta+\boldsymbol{u}\]
+
+Donde $\boldsymbol{Y}_1$ es una matriz $N\times r$ con las observaciones de las $r$ variables para las que sospechamos que puede haber endogeneidad, y $\boldsymbol{Z}_1$ es una matriz $N\times (k-r)$ con las observaciones de las $k-r$ variables que sabemos seguro que son ex\'ogenas. SUpongamos que disponemos de una lista de instrumentos para las variables end\'ogenas, en caso de que se necesitaran.
+
+La hip\'otesis nula del contraste es que todas las variables son ex\'ogenas, y la hip\'otesis alternativa que alguna de las $r$ primeras variables es end\'ogena. El contraste consiste en calcular el estimador MCO y obtener su suma residual, $SR_0$, y el estimador de variables instrumentales en dos etapas y obtener su suma residual, $SR_1$. A partir de estas sumas, obtenemso el estad\'istico:
+\[\left(\hat{\boldsymbol{\beta}}_{MCO}-\hat{\boldsymbol{\beta}}_{MC2E}\right)^{\prime}\left[Var\left(\hat{\boldsymbol{\beta}}_{MCO}\right)-Var\left(\hat{\boldsymbol{\beta}}_{MC2E}\right)\right]^{-1}\left(\hat{\boldsymbol{\beta}}_{MCO}-\hat{\boldsymbol{\beta}}_{MC2E}\right)=\dfrac{SR_0-SR_1}{\hat{\sigma}_u^2}\sim\chi^2_{r}\]
+
+bajo la hip\'otesis nula. As\'i, la regi\'on cr\'itica del contraste ser\'a aquella para la que el estad\'istico sea mayor que el valor $\chi^2_{r;\alpha}$.
+
+Este tipo de contraste se puede aplicar siempre que tengamos dos estimadores, uno que bajo la hip\'otesis nula es consistente y eficiente, pero que es inconsistente bajo la hip\'otesis alternativa, $\hat{\boldsymbol{\beta}}_{1}$, y otro que es consistente para ambas hip\'otesis, pero es posiblemente menos eficiente, $\hat{\boldsymbol{\beta}}_{2}$. Bajo la hip\'otesis nula $\hat{\boldsymbol{q}}=\hat{\boldsymbol{\beta}}_{1}-\hat{\boldsymbol{\beta}}_{2}$ converge en probabilidad a cero, pero no bajo la hip\'otesis alternativa. Hausman prob\'o que si la distribuci\'on asint\'otica de $\sqrt{N}\left(\hat{\boldsymbol{\beta}}_{2}-\boldsymbol{\beta}\right)$ est\'a bien definida, entonces la covarianza asint\'otica de $\sqrt{N}\hat{\boldsymbol{q}}$ y $\sqrt{N}\left(\hat{\boldsymbol{\beta}}_{1}-\boldsymbol{\beta}\right)$ es igual a cero, y por tanto la matriz de varianzas y covarianzas de $\hat{\boldsymbol{q}}$ es $Var\left(\hat{\boldsymbol{q}}\right)=Var\left(\hat{\boldsymbol{\beta}}_{1}\right)-Var\left(\hat{\boldsymbol{\beta}}_{2}\right)$.
+
+Por tanto el estad\'istico $\sqrt{N}\hat{\boldsymbol{q}}\sim N\left(\boldsymbol{0};Var\left(\hat{\boldsymbol{q}}\right)\right)$ y por tanto,
+\[N\hat{\boldsymbol{q}}Var\left(\hat{\boldsymbol{q}}\right)\hat{\boldsymbol{q}}\sim\chi^2_p\]
+
+Siendo $p$ el n\'umero de restricciones que se contrastan.
+
 \sectioncol{Eficiencia relativa de los estimadores de variables instrumentales.}
 \sectioncol{Estimaci\'on de modelos con expectativas racionales.}
 
