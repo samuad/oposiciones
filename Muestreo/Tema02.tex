@@ -2,7 +2,7 @@
 
 \chapter{Muestreo con probabilidades iguales. Estimadores lineales. Varianzas
 de los estimadores y sus estimaciones. Comparaci\'on entre el muestreo
-con y sin reposici\'on. Consideraciones sobre el tama�o de la muestra.}
+con y sin reposici\'on. Consideraciones sobre el tama\~no de la muestra.}
 
 
 \section{Muestreo con probabilidades iguales.}
@@ -26,7 +26,7 @@ tendr\'a una probabilidad $P\left(u_{i}\right)=\dfrac{1}{N}$, en la
 segunda la probabilidad de elegir una de las restantes ser\'a $P\left(u_{j}\right)=\dfrac{1}{N-1}$,
 y as\'i sucesivamente.
 
-En este caso, el n\'umero de muestras de tama�o $n$ de un espacio muestral
+En este caso, el n\'umero de muestras de tama\~no $n$ de un espacio muestral
 con $N$ unidades ser\'a el de las combinaciones sin repetici\'on de $N$
 elementos tomados de $n$ en $n$, es decir $C_{N,n}=\dbinom{N}{n}=\dfrac{N!}{n!\left(N-n\right)!}$,
 y la probabilidad de una muestra cualquiera ser\'a $P\left(u_{1},u_{2},\ldots,u_{n}\right)=\dfrac{1}{\dbinom{N}{n}}$.
@@ -103,7 +103,7 @@ $Cov\left(e_{i},e_{j}\right)=-\dfrac{n\left(N-n\right)}{N^{2}\left(N-1\right)}$.
 
 \subsubsection{Interviene el orden.}
 
-En este caso, el n\'umero de muestras de tama�o $n$ de un espacio muestral
+En este caso, el n\'umero de muestras de tama\~no $n$ de un espacio muestral
 con $N$ unidades ser\'a el de las variaciones sin repetici\'on de $N$
 elementos tomados de $n$ en $n$, es decir $V_{N,n}=\dbinom{N}{n}n!=\dfrac{N!}{\left(N-n\right)!}$,
 y la probabilidad de una muestra cualquiera ser\'a $P\left(u_{1},u_{2},\ldots,u_{n}\right)=\dfrac{1}{\dbinom{N}{n}n!}$.
@@ -116,7 +116,7 @@ mismas.
 
 \subsubsection{No interviene el orden.}
 
-En este caso, el n\'umero de muestras de tama�o $n$ de un espacio muestral
+En este caso, el n\'umero de muestras de tama\~no $n$ de un espacio muestral
 con $N$ unidades ser\'a el de las combinaciones con repetici\'on de $N$
 elementos tomados de $n$ en $n$, es decir $CR_{N,n}=\dbinom{N+n-1}{n}=\dfrac{\left(N+n-1\right)!}{n!\left(N-1\right)!}$,
 y la probabilidad de todas las muestras no ser\'a la misma, ya que este
@@ -125,7 +125,7 @@ m\'etodo de selecci\'on no produce muestras equiprobables.
 
 \subsubsection{Interviene el orden.}
 
-En este caso, el n\'umero de muestras de tama�o $n$ de un espacio muestral
+En este caso, el n\'umero de muestras de tama\~no $n$ de un espacio muestral
 con $N$ unidades ser\'a el de las variaciones con repetici\'on de $N$
 elementos tomados de $n$ en $n$, es decir $VR_{N,n}=N^{n}$, y la
 probabilidad de una muestra cualquiera ser\'a $P\left(u_{1},u_{2},\ldots,u_{n}\right)=\dfrac{1}{N^{n}}$.
@@ -140,7 +140,7 @@ $Cov\left(e_{i},e_{j}\right)=-nP_{i}P_{j}=-\dfrac{n}{N^{2}}$.
 
 \section{Estimadores lineales insesgados.}
 
-Supongamos que tenemos una poblaci\'on de tama�o $N$, para la que hemos
+Supongamos que tenemos una poblaci\'on de tama\~no $N$, para la que hemos
 definido una caracter\'istica $X_{i}$ que toma el valor $X_{i}$ en
 cada unidad $u_{i}$. Supongamos que tenemos un par\'ametro poblacional,
 funci\'on de los $N$ valores de las $X_{i}$, que es el que queremos
@@ -171,8 +171,8 @@ puede controlarse mediante su coeficiente.
 misma importancia en el estimador.
 \item Cuando las unidades de la muestra son compuestas, el valor de $w_{i}$
 puede regular la importancia de cada unidad compuesta asoci\'andola
-con su tama�o o con el n\'umero de unidades elementales que contiene.
-\item Los coeficientes pueden depender del tama�o de las unidades muestrales,
+con su tama\~no o con el n\'umero de unidades elementales que contiene.
+\item Los coeficientes pueden depender del tama\~no de las unidades muestrales,
 de su orden en la muestra o de las probabilidades que tienen de pertenecer
 a la muestra.
 \item Las funciones lineales son las m\'as sencillas de manejar matem\'aticamente.
@@ -327,7 +327,7 @@ con $p=\dfrac{1}{n}\sum_{i=1}^{n}A_{i}$, proporci\'on muestral.
 Es interesante comparar la eficiencia de los estimadores si se realiza
 el muestreosin reposici\'on respecto a si se realiza con reposici\'on.
 La forma de comprobar cual es m\'as eficiente es comparar sus varianzas.
-El estimador que a igual tama�o de la muestra tenga menor varianza
+El estimador que a igual tama\~no de la muestra tenga menor varianza
 ser\'a el m\'as eficiente.
 
 Antes de empezar, es conveniente tener en cuenta que $S_{X}^{2}=\dfrac{N}{N-1}\sigma_{X}^{2}$.
@@ -361,7 +361,7 @@ Var\left(\hat{P}_{CR}\right)=\dfrac{1}{n}P(1-P)
 
 Por tanto, el muestreo sin reposici\'on es m\'as eficiente que con reposici\'on.
 El grado de eficiencia que se consigue depende de la relaci\'on entre
-$N$ y $n$. Cuanto menor sea $n$ respecto al tama�o de la poblaci\'on
+$N$ y $n$. Cuanto menor sea $n$ respecto al tama\~no de la poblaci\'on
 menor ser\'a la ganancia en precisi\'on del muestreo sin reemplazamiento.
 Si $N-1\approx N$, entonces $V_{SR}=\left(1-f\right)V_{CR}$, es
 decir, cuanto menor sea la fracci\'on de muestreo mayor ser\'a la ganancia
@@ -369,28 +369,28 @@ en precisi\'on. A $\left(1-f\right)$ se le llama factor de correcci\'on
 para poblaciones finitas.
 
 
-\section{Consideraciones sobre el tama�o de la muestra.}
+\section{Consideraciones sobre el tama\~no de la muestra.}
 
-La importancia del tama�o muestral, radica en la precisi\'on del estimador
-y la representatividad de muestra. es decir, cuanto mayor sea el tama�o
+La importancia del tama\~no muestral, radica en la precisi\'on del estimador
+y la representatividad de muestra. es decir, cuanto mayor sea el tama\~no
 muestral m\'as preciso ser\'a el estimador.
 
 Sin embargo, este razonamiento nos llevar\'ia a proponer muestras de
-tama�o $N$, es decir, que contengan a toda la poblaci\'on. Normalmente
+tama\~no $N$, es decir, que contengan a toda la poblaci\'on. Normalmente
 esto no es posible por problemas de coste, disponibilidad... Es por
 esto que es necesario definir un criterio respecto a lo que se espera
-del estimador, y a partir de ah\'i tomar la muestra m\'as peque�a que
+del estimador, y a partir de ah\'i tomar la muestra m\'as peque\~na que
 nos permita cumplir con ese criterio. Ese criterio normalmente se
 expresa en funci\'on del error de muestreo deseado.
 
-Normalmente el tama�o de la muestra depender\'a de par\'ametros poblacionales
+Normalmente el tama\~no de la muestra depender\'a de par\'ametros poblacionales
 desconocidos que habr\'a que estimar.
 
 
-\subsection{Tama�o de la muestra para un error de muestreo dado.}
+\subsection{Tama\~no de la muestra para un error de muestreo dado.}
 
 Sea $e=\sigma_{\hat{\theta}}$ el error de muestreo m\'aximo que estamos
-dispuestos a admitir. Veamos cual es el tama�o de la muestra a seleccionar
+dispuestos a admitir. Veamos cual es el tama\~no de la muestra a seleccionar
 para cometer ese error:
 
 
@@ -417,7 +417,7 @@ $n=\dfrac{N^{2}P\left(P-1\right)}{e^{2}}$
 \item [{Proporci\'on~de~clase:}] $e^{2}=\dfrac{1}{n}P(1-P)$, $n=\dfrac{P(1-P)}{e^{2}}$.
 \end{description}
 
-\subsection{Tama�o de la muestra para un error de muestreo y un coeficiente de
+\subsection{Tama\~no de la muestra para un error de muestreo y un coeficiente de
 confianza dados.}
 
 Muchas veces no queremos fijar tanto la varianza de nuestro estimador
