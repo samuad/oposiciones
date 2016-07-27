@@ -1,0 +1,443 @@
+\selectlanguage{english}%
+
+\chapter{Muestreo con probabilidades iguales. Estimadores lineales. Varianzas
+de los estimadores y sus estimaciones. Comparaci\'on entre el muestreo
+con y sin reposici\'on. Consideraciones sobre el tama\~no de la muestra.}
+
+
+\section{Muestreo con probabilidades iguales.}
+
+Cuando la probabilidad que tiene cualquier unidad de la poblaci\'on
+de ser elegida para la muestra es la misma para todas la unidades
+decimos que estamos ante un m\'etodo de muestreo con probabilidades
+iguales. Habr\'a que distinguir entre muestreo sin reposici\'on y con
+reposici\'on, y entre los casos en que el orden de colocaci\'on de los
+elementos intervenga o no sea as\'i.
+
+
+\subsection{Muestreo sin reposici\'on.}
+
+
+\subsubsection{No interviene el orden.}
+
+En este caso cada unidad de muestreo puede aparecer como m\'aximo una
+vez en la muestra. Por tanto, en la primera extracci\'on cada unidad
+tendr\'a una probabilidad $P\left(u_{i}\right)=\dfrac{1}{N}$, en la
+segunda la probabilidad de elegir una de las restantes ser\'a $P\left(u_{j}\right)=\dfrac{1}{N-1}$,
+y as\'i sucesivamente.
+
+En este caso, el n\'umero de muestras de tama\~no $n$ de un espacio muestral
+con $N$ unidades ser\'a el de las combinaciones sin repetici\'on de $N$
+elementos tomados de $n$ en $n$, es decir $C_{N,n}=\dbinom{N}{n}=\dfrac{N!}{n!\left(N-n\right)!}$,
+y la probabilidad de una muestra cualquiera ser\'a $P\left(u_{1},u_{2},\ldots,u_{n}\right)=\dfrac{1}{\dbinom{N}{n}}$.
+Calculando a partir de las probabilidades de elegir una unidad, tenemos:
+\[
+\begin{array}{c}
+P\left(u_{1},u_{2},\ldots,u_{n}\right)=n!P\left(\left\{ u_{1},u_{2},\ldots,u_{n}\right\} \right)=n!P\left(u_{1}\right)P\left(u_{2}/u_{1}\right)P\left(u_{3}/u_{1}u_{2}\right)\cdots P\left(u_{n}/u_{1}u_{2}\ldots u_{n-1}\right)=\\
+=n!\dfrac{1}{N}\dfrac{1}{N-1}\dfrac{1}{N-2}\cdots\dfrac{1}{N-\left(n-1\right)}=\dfrac{1}{\dfrac{N!}{n!\left(N-n\right)!}}
+\end{array}
+\]
+
+
+Calculemos ahora la probabilidad que tiene una unidad $u_{i}$ de
+pertenecer a la muestra, ya que es necesario para desarrollar toda
+la teor\'ia del muestreo. La probabilidad de una unidad de pertenecer
+a la muestra ser\'a la suma de la probabilidad que tiene de salir en
+la priemer extracci\'on, m\'as la probabilidad de salir en la segunda
+extracci\'on no habiendo salido en la primera, m\'as la probabilidad de
+salir en la tercera extracci\'on no habiendo salido en la primera ni
+en la segunda... y s\'i hasta la extracci\'on $n$-\'esima. As\'i podemos
+escribir:
+
+\[
+P\left(u_{i}=u_{1}\right)=\dfrac{1}{N}
+\]
+
+
+\[
+P\left(u_{i}=u_{2}\cap u_{i}\neq u_{1}\right)=P\left(u_{i}=u_{2}/u_{i}\neq u_{1}\right)P\left(u_{i}\neq u_{1}\right)=\dfrac{1}{N-1}\dfrac{N-1}{N}=\dfrac{1}{N}
+\]
+
+
+\[
+P\left(u_{i}=u_{3}\cap u_{i}\neq u_{2}\cap u_{i}\neq u_{1}\right)=P\left(u_{i}=u_{3}/u\neq u_{2}\cap u_{i}\neq u_{1}\right)P\left(u_{i}\neq u_{2}/u_{i}\neq u_{1}\right)P\left(u_{i}\neq u_{1}\right)=\dfrac{1}{N-2}\dfrac{N-2}{N-1}\dfrac{N-1}{N}=\dfrac{1}{N}
+\]
+
+
+\[
+\vdots
+\]
+
+
+\[
+P\left(u_{i}=u_{n}\cap u_{i}\neq u_{n-1}\cap\cdots\cap u_{i}\neq u_{1}\right)=P\left(u_{i}=u_{n}/u_{i}\neq u_{n-1}\cap\cdots\cap u_{i}\neq u_{1}\right)\cdots P\left(u_{i}\neq u_{2}/u_{i}\neq u_{1}\right)P\left(u_{i}\neq u_{1}\right)=
+\]
+
+
+\[
+=\dfrac{1}{N-\left(n-1\right)}\dfrac{N-\left(n-1\right)}{N-\left(n-2\right)}\cdots\dfrac{N-2}{N-1}\dfrac{N-1}{N}=\dfrac{1}{N}
+\]
+
+
+y por tanto, $\pi_{i}=\dfrac{n}{N}$.
+
+Tambi\'en ser\'a necesario calcular la probabilidad de dos unidades distintas
+de pertenecer simult\'aneamente a la muestra. El n\'umero de muestras
+posibles ser\'a $\dbinom{N}{n}$, y el n\'umero de muestras en las que
+est\'en presentes las dos unidades que nos interesan ser\'a $\dbinom{N-2}{n-2}$.
+APlicando la visi\'on frecuentista del c\'alculo de probabilidades, la
+probabilidad ser\'a el n\'umero de casos favorables entre el n\'umero de
+casos posibles: 
+\[
+\pi_{ij}=\dfrac{\dbinom{N-2}{n-2}}{\dbinom{N}{n}}=\dfrac{\dfrac{\left(N-2\right)!}{\left(n-2\right)!\left(N-n\right)!}}{\dfrac{N!}{n!\left(N-n\right)!}}=\dfrac{\left(N-2\right)!n!}{N!\left(n-2\right)!}=\dfrac{n\left(n-1\right)}{N\left(N-1\right)}
+\]
+
+
+Si definimos la variable aleatoria $e_{i}$ como el n\'umero de veces
+que la unidad $u_{i}$ puede aparecer en la muestra, esta variable
+puede tomar valores entre $0$ y $1$ para cada unidad, y sigue una
+distribuci\'on de Bernouilli de par\'ametro $p=\dfrac{n}{N}$. Por tanto,
+$E\left[e_{i}\right]=\dfrac{n}{N}$, $Var\left(e_{i}\right)=\dfrac{n\left(N-n\right)}{N^{2}}$,
+$Cov\left(e_{i},e_{j}\right)=-\dfrac{n\left(N-n\right)}{N^{2}\left(N-1\right)}$.
+
+
+\subsubsection{Interviene el orden.}
+
+En este caso, el n\'umero de muestras de tama\~no $n$ de un espacio muestral
+con $N$ unidades ser\'a el de las variaciones sin repetici\'on de $N$
+elementos tomados de $n$ en $n$, es decir $V_{N,n}=\dbinom{N}{n}n!=\dfrac{N!}{\left(N-n\right)!}$,
+y la probabilidad de una muestra cualquiera ser\'a $P\left(u_{1},u_{2},\ldots,u_{n}\right)=\dfrac{1}{\dbinom{N}{n}n!}$.
+Las probabilidades de una unidad de pertenecer a la muestra son las
+mismas.
+
+
+\subsection{Muestreo con reposici\'on.}
+
+
+\subsubsection{No interviene el orden.}
+
+En este caso, el n\'umero de muestras de tama\~no $n$ de un espacio muestral
+con $N$ unidades ser\'a el de las combinaciones con repetici\'on de $N$
+elementos tomados de $n$ en $n$, es decir $CR_{N,n}=\dbinom{N+n-1}{n}=\dfrac{\left(N+n-1\right)!}{n!\left(N-1\right)!}$,
+y la probabilidad de todas las muestras no ser\'a la misma, ya que este
+m\'etodo de selecci\'on no produce muestras equiprobables.
+
+
+\subsubsection{Interviene el orden.}
+
+En este caso, el n\'umero de muestras de tama\~no $n$ de un espacio muestral
+con $N$ unidades ser\'a el de las variaciones con repetici\'on de $N$
+elementos tomados de $n$ en $n$, es decir $VR_{N,n}=N^{n}$, y la
+probabilidad de una muestra cualquiera ser\'a $P\left(u_{1},u_{2},\ldots,u_{n}\right)=\dfrac{1}{N^{n}}$.
+
+Si definimos la variable aleatoria $e_{i}$ como el n\'umero de veces
+que la unidad $u_{i}$ puede aparecer en la muestra, esta variable
+puede tomar valores entre $0$ y $n$ para cada unidad, y sigue una
+distribuci\'on binomial de par\'ametros $n$ y $p=\dfrac{1}{N}$. Por
+tanto, $E\left[e_{i}\right]=\dfrac{n}{N}$, $Var\left(e_{i}\right)=\dfrac{n\left(N-1\right)}{N^{2}}$,
+$Cov\left(e_{i},e_{j}\right)=-nP_{i}P_{j}=-\dfrac{n}{N^{2}}$.
+
+
+\section{Estimadores lineales insesgados.}
+
+Supongamos que tenemos una poblaci\'on de tama\~no $N$, para la que hemos
+definido una caracter\'istica $X_{i}$ que toma el valor $X_{i}$ en
+cada unidad $u_{i}$. Supongamos que tenemos un par\'ametro poblacional,
+funci\'on de los $N$ valores de las $X_{i}$, que es el que queremos
+estimar. En general este par\'ametro se puede expresar como una suma
+de elementos $Y_{i}$, que son funci\'on de los valores que la caracter\'istica
+$X_{i}$ presenta, $\theta=\sum_{i=1}^{N}Y_{i}$ donde $Y_{i}=Y\left(X_{i}\right)$.
+Por ejemplo:
+\begin{description}
+\item [{Total~poblacional:}] $X=\theta\left(X_{1},\ldots,X_{N}\right)=\sum_{i=1}^{N}X_{i}$,
+donde $Y_{i}=X_{i}$.
+\item [{Media~poblacional:}] $X=\theta\left(X_{1},\ldots,X_{N}\right)=\dfrac{1}{N}\sum_{i=1}^{N}X_{i}$,
+donde $Y_{i}=\dfrac{X_{i}}{N}$.
+\item [{Total~de~clase:}] $A=\theta\left(A_{1},\ldots,A_{N}\right)=\sum_{i=1}^{N}A_{i}$,
+donde $Y_{i}=A_{i}$. Donde $A_{i}$ se usa para caracter\'isticas cualitativas
+dicot\'omicas: $A_{i}=1$ si $u_{1}$ presenta la caracter\'istica, y
+$A_{i}=0$ si $u_{1}$ no presenta la caracter\'istica.
+\item [{Proporci\'on~de~clase:}] $A=\theta\left(A_{1},\ldots,A_{N}\right)=\dfrac{1}{N}\sum_{i=1}^{N}A_{i}$,
+donde $Y_{i}=\dfrac{A_{i}}{N}$.
+\end{description}
+En general las mejores propiedades suelen presentarlas los estimadores
+lineales, de la forma $\hat{\theta}=\sum_{i=1}^{n}w_{i}Y_{i}$.
+\begin{itemize}
+\item Todas las mediciones de la variable de estudio que aparecen en la
+muestra intervienen en el estimador.
+\item La importancia de la aportaci\'on al estimador de cada unidad muestral
+puede controlarse mediante su coeficiente.
+\item Cuando $w_{i}=1$ todas las unidades muestrales intervienen con la
+misma importancia en el estimador.
+\item Cuando las unidades de la muestra son compuestas, el valor de $w_{i}$
+puede regular la importancia de cada unidad compuesta asoci\'andola
+con su tama\~no o con el n\'umero de unidades elementales que contiene.
+\item Los coeficientes pueden depender del tama\~no de las unidades muestrales,
+de su orden en la muestra o de las probabilidades que tienen de pertenecer
+a la muestra.
+\item Las funciones lineales son las m\'as sencillas de manejar matem\'aticamente.
+\end{itemize}
+
+\subsection{Muestreo sin reposici\'on.}
+
+Queremos que el estimador sea insesgado, es decir, que su esperanza
+sea igual al par\'ametro que queremos estimar. Veamos cual ha de ser
+el valor de los coeficientes para que esto ocurra.
+
+\[
+E\left(\hat{\theta}\right)=E\left(\sum_{i=1}^{n}w_{i}Y_{i}\right)=E\left(\sum_{i=1}^{N}w_{i}Y_{i}e_{i}\right)=\sum_{i=1}^{N}w_{i}Y_{i}E\left(e_{i}\right)
+\]
+
+
+Ya que $e_{i}=1$ si $u_{i}$ pertenece a la muestra y$e_{i}=0$ si
+$u_{i}$ no pertenece a la muestra. Como $\theta=\sum_{i=1}^{N}Y_{i}$,
+entonces se tiene que cumplir que $w_{i}E\left(e_{i}\right)=1$ y
+por tanto, $w_{i}=\dfrac{1}{E\left(e_{i}\right)}$. Para muestreo
+sin reposici\'on y probabilidades iguales $E\left(e_{i}\right)=\dfrac{n}{N}$
+y por tanto$w_{i}=\dfrac{N}{n}$. Con esto podemos construir los estimadores:
+\begin{description}
+\item [{Total~poblacional:}] Como $Y_{i}=X_{i}$, $\hat{X}=\sum_{i=1}^{n}w_{i}Y_{i}=\sum_{i=1}^{n}\dfrac{N}{n}X_{i}=\dfrac{N}{n}\sum_{i=1}^{n}X_{i}=N\bar{x}$.
+\item [{Media~poblacional:}] Como $Y_{i}=\dfrac{X_{i}}{N}$, $\hat{\bar{X}}=\sum_{i=1}^{n}w_{i}Y_{i}=\sum_{i=1}^{n}\dfrac{N}{n}\dfrac{X_{i}}{N}=\dfrac{1}{n}\sum_{i=1}^{n}X_{i}=\bar{x}$.
+\item [{Total~de~clase:}] Como $Y_{i}=A_{i}$, $\hat{A}=\sum_{i=1}^{n}w_{i}Y_{i}=\sum_{i=1}^{n}\dfrac{N}{n}A_{i}=\dfrac{N}{n}\sum_{i=1}^{n}A_{i}$.
+\item [{Proporci\'on~de~clase:}] Como $Y_{i}=\dfrac{A_{i}}{N}$, $\hat{P}=\sum_{i=1}^{n}w_{i}Y_{i}=\sum_{i=1}^{n}\dfrac{N}{n}\dfrac{A_{i}}{N}=\dfrac{1}{n}\sum_{i=1}^{n}A_{i}$.
+\end{description}
+
+\subsection{Muestreo con reposici\'on.}
+
+Queremos que el estimador sea insesgado, es decir, que su esperanza
+sea igual al par\'ametro que queremos estimar. Veamos cual ha de ser
+el valor de los coeficientes para que esto ocurra.
+
+\[
+E\left(\hat{\theta}\right)=E\left(\sum_{i=1}^{n}w_{i}Y_{i}\right)=E\left(\sum_{i=1}^{N}w_{i}Y_{i}e_{i}\right)=\sum_{i=1}^{N}w_{i}Y_{i}E\left(e_{i}\right)
+\]
+
+
+Ya que $e_{i}$ es igual al n\'umero de veces que $u_{i}$ aparece en
+la muestra, por tanto $Y_{i}e_{i}$ es lo mismo que sumar $Y_{i}$
+tantas veces como la unidad$u_{i}$ aparece en la muestra. Como $\theta=\sum_{i=1}^{N}Y_{i}$,
+entonces se tiene que cumplir que $w_{i}E\left(e_{i}\right)=1$ y
+por tanto, $w_{i}=\dfrac{1}{E\left(e_{i}\right)}$. Para muestreo
+con reposici\'on y probabilidades iguales $E\left(e_{i}\right)=\dfrac{n}{N}$
+y por tanto$w_{i}=\dfrac{N}{n}$. Con esto podemos construir los estimadores:
+\begin{description}
+\item [{Total~poblacional:}] Como $Y_{i}=X_{i}$, $\hat{X}=\sum_{i=1}^{n}w_{i}Y_{i}=\sum_{i=1}^{n}\dfrac{N}{n}X_{i}=\dfrac{N}{n}\sum_{i=1}^{n}X_{i}=N\bar{x}$.
+\item [{Media~poblacional:}] Como $Y_{i}=\dfrac{X_{i}}{N}$, $\hat{\bar{X}}=\sum_{i=1}^{n}w_{i}Y_{i}=\sum_{i=1}^{n}\dfrac{N}{n}\dfrac{X_{i}}{N}=\dfrac{1}{n}\sum_{i=1}^{n}X_{i}=\bar{x}$.
+\item [{Total~de~clase:}] Como $Y_{i}=A_{i}$, $\hat{A}=\sum_{i=1}^{n}w_{i}Y_{i}=\sum_{i=1}^{n}\dfrac{N}{n}A_{i}=\dfrac{N}{n}\sum_{i=1}^{n}A_{i}$.
+\item [{Proporci\'on~de~clase:}] Como $Y_{i}=\dfrac{A_{i}}{N}$, $\hat{P}=\sum_{i=1}^{n}w_{i}Y_{i}=\sum_{i=1}^{n}\dfrac{N}{n}\dfrac{A_{i}}{N}=\dfrac{1}{n}\sum_{i=1}^{n}A_{i}$.
+\end{description}
+Podemos observar que coinciden con los estimadores de estoa par\'ametros
+si el muestreo se realiza sin reposici\'on.
+
+
+\section{Varianzas de los estimadores y sus estimaciones.}
+
+Es importante conocer la expresi\'on de la varianza de estos estimadores,
+as\'i como una forma de estimar la misma, para poder evaluar la calidad
+de los mismos.
+
+
+\subsection{Varianza del estimador en muestreo sin reposici\'on.}
+
+\[
+\begin{array}{c}
+Var\left(\hat{\theta}\right)=Var\left(\dfrac{N}{n}\sum_{i=1}^{n}Y_{i}\right)=Var\left(\dfrac{N}{n}\sum_{i=1}^{N}Y_{i}e_{i}\right)=\dfrac{N^{2}}{n^{2}}\left[\sum_{i=1}^{N}Y_{i}^{2}V\left(e_{i}\right)+\sum_{i=1}^{N}\sum_{j\neq i}^{N}Y_{i}Y_{j}Cov\left(e_{i},e_{j}\right)\right]=\\
+=\dfrac{N^{2}}{n^{2}}\left[\dfrac{n\left(N-n\right)}{N^{2}}\sum_{i=1}^{N}Y_{i}^{2}-\dfrac{n\left(N-n\right)}{N^{2}\left(N-1\right)}\sum_{i=1}^{N}\sum_{j\neq i}^{N}Y_{i}Y_{j}\right]=\dfrac{N-n}{n}\left[\sum_{i=1}^{N}Y_{i}^{2}-\dfrac{1}{\left(N-1\right)}\sum_{i=1}^{N}\sum_{j\neq i}^{N}Y_{i}Y_{j}\right]=\\
+=\dfrac{N-n}{n}\left[\sum_{i=1}^{N}Y_{i}^{2}-\dfrac{1}{\left(N-1\right)}\left(\sum_{i=1}^{N}\sum_{j=1}^{N}Y_{i}Y_{j}-\sum_{i=1}^{N}Y_{i}^{2}\right)\right]=\dfrac{N-n}{n\left(N-1\right)}\left[\left(N-1\right)\sum_{i=1}^{N}Y_{i}^{2}+\left(\sum_{i=1}^{N}Y_{i}^{2}-Y^{2}\right)\right]=\\
+=\dfrac{N-n}{n\left(N-1\right)}\left[N\sum_{i=1}^{N}Y_{i}^{2}-Y^{2}\right]=\dfrac{N^{2}\left(N-n\right)}{n\left(N-1\right)}\left[\sum_{i=1}^{N}\dfrac{Y_{i}^{2}}{N}-\bar{Y}^{2}\right]=\dfrac{N^{2}\left(N-n\right)}{n\left(N-1\right)}\sigma_{Y}^{2}=\dfrac{N^{2}\left(N-n\right)}{N}\dfrac{S_{Y}^{2}}{n}\\
+\\
+\end{array}
+\]
+
+
+Y se obtienen las siguientes varianzas:
+\begin{description}
+\item [{Total~poblacional:}] Como $Y_{i}=X_{i}$, $Var\left(\hat{X}\right)=N^{2}\left(1-f\right)\dfrac{S_{X}^{2}}{n}$,
+con $f=\dfrac{n}{N}$ y $S_{X}^{2}=\dfrac{1}{N-1}\sum_{i=1}^{N}\left(X_{i}-\bar{X}\right)^{2}$,
+cuasivarianza poblacional.
+\item [{Media~poblacional:}] Como $Y_{i}=\dfrac{X_{i}}{N}$, $Var\left(\hat{\bar{X}}\right)=\left(1-f\right)\dfrac{S_{X}^{2}}{n}$,
+con $f=\dfrac{n}{N}$ y $S_{X}^{2}=\dfrac{1}{N-1}\sum_{i=1}^{N}\left(X_{i}-\bar{X}\right)^{2}$,
+cuasivarianza poblacional.
+\item [{Total~de~clase:}] Como $Y_{i}=A_{i}$, $Var\left(\hat{A}\right)=\dfrac{N^{3}}{N-1}\left(1-f\right)\dfrac{P\left(1-P\right)}{n}$.
+\item [{Proporci\'on~de~clase:}] Como $Y_{i}=\dfrac{A_{i}}{N}$, $Var\left(\hat{P}\right)=\dfrac{N}{N-1}\left(1-f\right)\dfrac{P\left(1-P\right)}{n}$.
+\end{description}
+
+\subsection{Estimaci\'on de las varianzas.}
+
+Los estimadores insesgados para estas varainzas son los siguientes:
+\begin{description}
+\item [{Total~poblacional:}] Como $Y_{i}=X_{i}$, $\hat{Var}\left(\hat{X}\right)=N^{2}\left(1-f\right)\dfrac{s_{X}^{2}}{n}$,
+con $f=\dfrac{n}{N}$ y $s_{X}^{2}=\dfrac{1}{n-1}\sum_{i=1}^{n}\left(X_{i}-\bar{x}\right)^{2}$,
+cuasivarianza muestral.
+\item [{Media~poblacional:}] Como $Y_{i}=\dfrac{X_{i}}{N}$, $\hat{Var}\left(\hat{\bar{X}}\right)=\left(1-f\right)\dfrac{s_{X}^{2}}{n}$,
+con $f=\dfrac{n}{N}$ y $s_{X}^{2}=\dfrac{1}{n-1}\sum_{i=1}^{n}\left(X_{i}-\bar{x}\right)^{2}$,
+cuasivarianza muestral.
+\item [{Total~de~clase:}] Como $Y_{i}=A_{i}$, $\hat{Var}\left(\hat{A}\right)=\dfrac{N^{3}}{N-1}\left(1-f\right)\dfrac{p\left(1-p\right)}{n}$,
+con $f=\dfrac{n}{N}$ y $p=\dfrac{1}{n}\sum_{i=1}^{n}A_{i}$, proporci\'on
+muestral.
+\item [{Proporci\'on~de~clase:}] Como $Y_{i}=\dfrac{A_{i}}{N}$, $\hat{Var}\left(\hat{P}\right)=\dfrac{N}{N-1}\left(1-f\right)\dfrac{p\left(1-p\right)}{n}$,
+con $f=\dfrac{n}{N}$ y $p=\dfrac{1}{n}\sum_{i=1}^{n}A_{i}$, proporci\'on
+muestral.
+\end{description}
+
+\subsection{Varianza del estimador en muestreo con reposici\'on.}
+
+\[
+\begin{array}{c}
+Var\left(\hat{\theta}\right)=Var\left(\dfrac{N}{n}\sum_{i=1}^{n}Y_{i}\right)=Var\left(\dfrac{N}{n}\sum_{i=1}^{N}Y_{i}e_{i}\right)=\dfrac{N^{2}}{n^{2}}\left[\sum_{i=1}^{N}Y_{i}^{2}V\left(e_{i}\right)+2\sum_{i=1}^{N}\sum_{j>i}^{N}Y_{i}Y_{j}Cov\left(e_{i},e_{j}\right)\right]=\\
+=\dfrac{N^{2}}{n^{2}}\left[\dfrac{n\left(N-1\right)}{N^{2}}\sum_{i=1}^{N}Y_{i}^{2}-2\dfrac{n}{N^{2}}\sum_{i=1}^{N}\sum_{j>i}^{N}Y_{i}Y_{j}\right]=\dfrac{1}{n}\left[\left(N-1\right)\sum_{i=1}^{N}Y_{i}^{2}-2\sum_{i=1}^{N}\sum_{j>i}^{N}Y_{i}Y_{j}\right]\cdots\\
+\left(\sum_{i=1}^{N}Y_{i}\right)^{2}=\sum_{i=1}^{N}Y_{i}^{2}+2\sum_{i=1}^{N}\sum_{j>i}^{N}Y_{i}Y_{j}\\
+-2\sum_{i=1}^{N}\sum_{j>i}^{N}Y_{i}Y_{j}=\sum_{i=1}^{N}Y_{i}^{2}-\left(\sum_{i=1}^{N}Y_{i}\right)^{2}=\sum_{i=1}^{N}Y_{i}^{2}-\theta^{2}\\
+\dfrac{1}{n}\left[\left(N-1\right)\sum_{i=1}^{N}Y_{i}^{2}-2\sum_{i=1}^{N}\sum_{j>i}^{N}Y_{i}Y_{j}\right]=\dfrac{1}{n}\left[\left(N-1\right)\sum_{i=1}^{N}Y_{i}^{2}+\sum_{i=1}^{N}Y_{i}^{2}-\theta^{2}\right]=\dfrac{1}{n}\left[N\sum_{i=1}^{N}Y_{i}^{2}-\theta^{2}\right]\\
+Var\left(\hat{\theta}\right)=\dfrac{1}{n}\left[N\sum_{i=1}^{N}Y_{i}^{2}-\theta^{2}\right]
+\end{array}
+\]
+
+
+Y se obtienen las siguientes varianzas:
+\begin{description}
+\item [{Total~poblacional:}] Como $Y_{i}=X_{i}$, $Var\left(\hat{X}\right)=\dfrac{1}{n}\left[N\sum_{i=1}^{N}X_{i}^{2}-\left(\sum_{i=1}^{N}X_{i}\right)^{2}\right]=\dfrac{N^{2}}{n}\left[\bar{X^{2}}-\bar{X}^{2}\right]=\dfrac{N^{2}}{n}\sigma_{X}^{2}$,
+con $\sigma_{X}^{2}=\dfrac{1}{N}\sum_{i=1}^{N}\left(X_{i}-\bar{X}\right)^{2}$,
+varianza poblacional.
+\item [{Media~poblacional:}] Como $Y_{i}=\dfrac{X_{i}}{N}$, $Var\left(\hat{\bar{X}}\right)=\dfrac{1}{n}\left[N\sum_{i=1}^{N}\dfrac{X_{i}^{2}}{N^{2}}-\left(\sum_{i=1}^{N}\dfrac{X_{i}}{N}\right)^{2}\right]=\dfrac{1}{n}\left[\bar{X^{2}}-\bar{X}^{2}\right]=\dfrac{1}{n}\sigma_{X}^{2}$,
+con $\sigma_{X}^{2}=\dfrac{1}{N}\sum_{i=1}^{N}\left(X_{i}-\bar{X}\right)^{2}$,
+varianza poblacional.
+\item [{Total~de~clase:}] Como $Y_{i}=A_{i}$, $Var\left(\hat{A}\right)=\dfrac{1}{n}\left[N\sum_{i=1}^{N}A_{i}^{2}-\left(\sum_{i=1}^{N}A_{i}\right)^{2}\right]=\dfrac{N^{2}}{n}\left[P-P^{2}\right]=\dfrac{N^{2}}{n}P(1-P)$.
+\item [{Proporci\'on~de~clase:}] Como $Y_{i}=\dfrac{A_{i}}{N}$, $Var\left(\hat{P}\right)=\dfrac{1}{n}\left[N\sum_{i=1}^{N}\dfrac{A_{i}^{2}}{N^{2}}-\left(\sum_{i=1}^{N}\dfrac{A_{i}}{N}\right)^{2}\right]=\dfrac{1}{n}\left[P-P^{2}\right]=\dfrac{1}{n}P(1-P)$.
+\end{description}
+
+\subsection{Estimaci\'on de las varianzas.}
+
+Los estimadores insesgados para estas varainzas son los siguientes:
+\begin{description}
+\item [{Total~poblacional:}] Como $Y_{i}=X_{i}$, $\hat{Var}\left(\hat{X}\right)=N^{2}\dfrac{s_{X}^{2}}{n}$,
+con $s_{X}^{2}=\dfrac{1}{n-1}\sum_{i=1}^{n}\left(X_{i}-\bar{x}\right)^{2}$,
+cuasivarianza muestral.
+\item [{Media~poblacional:}] Como $Y_{i}=\dfrac{X_{i}}{N}$, $\hat{Var}\left(\hat{\bar{X}}\right)=\dfrac{s_{X}^{2}}{n}$,
+con $s_{X}^{2}=\dfrac{1}{n-1}\sum_{i=1}^{n}\left(X_{i}-\bar{x}\right)^{2}$,
+cuasivarianza muestral.
+\item [{Total~de~clase:}] Como $Y_{i}=A_{i}$, $\hat{Var}\left(\hat{A}\right)=N^{2}\dfrac{p\left(1-p\right)}{n}$,
+con $p=\dfrac{1}{n}\sum_{i=1}^{n}A_{i}$, proporci\'on muestral.
+\item [{Proporci\'on~de~clase:}] Como $Y_{i}=\dfrac{A_{i}}{N}$, $\hat{Var}\left(\hat{P}\right)=\dfrac{p\left(1-p\right)}{n}$,
+con $p=\dfrac{1}{n}\sum_{i=1}^{n}A_{i}$, proporci\'on muestral.
+\end{description}
+
+\section{Comparaci\'on entre el muestreo con y sin reposici\'on.}
+
+Es interesante comparar la eficiencia de los estimadores si se realiza
+el muestreosin reposici\'on respecto a si se realiza con reposici\'on.
+La forma de comprobar cual es m\'as eficiente es comparar sus varianzas.
+El estimador que a igual tama\~no de la muestra tenga menor varianza
+ser\'a el m\'as eficiente.
+
+Antes de empezar, es conveniente tener en cuenta que $S_{X}^{2}=\dfrac{N}{N-1}\sigma_{X}^{2}$.
+Veamos la varianza del estimador del total:
+
+\[
+\left.\begin{array}{l}
+Var\left(\hat{X}_{SR}\right)=N^{2}\left(1-f\right)\dfrac{S_{X}^{2}}{n}=N^{2}\left(\dfrac{N-n}{N}\right)\dfrac{N}{N-1}\dfrac{\sigma_{X}^{2}}{n}=N^{2}\dfrac{N-n}{N-1}\dfrac{\sigma_{X}^{2}}{n}\\
+Var\left(\hat{X}_{CR}\right)=N^{2}\dfrac{\sigma_{X}^{2}}{n}
+\end{array}\right\} \Rightarrow\dfrac{Var\left(\hat{X}_{SR}\right)}{Var\left(\hat{X}_{CR}\right)}=\dfrac{N-n}{N-1}<1\Rightarrow Var\left(\hat{X}_{SR}\right)<Var\left(\hat{X}_{CR}\right)
+\]
+\[
+\left.\begin{array}{l}
+Var\left(\hat{\bar{X}}_{SR}\right)=\left(1-f\right)\dfrac{S_{X}^{2}}{n}=\left(\dfrac{N-n}{N}\right)\dfrac{N}{N-1}\dfrac{\sigma_{X}^{2}}{n}=\dfrac{N-n}{N-1}\dfrac{\sigma_{X}^{2}}{n}\\
+Var\left(\hat{\bar{X}}_{CR}\right)=\dfrac{\sigma_{X}^{2}}{n}
+\end{array}\right\} \Rightarrow\dfrac{Var\left(\hat{\bar{X}}_{SR}\right)}{Var\left(\hat{\bar{X}}_{CR}\right)}=\dfrac{N-n}{N-1}<1\Rightarrow Var\left(\hat{\bar{X}}_{SR}\right)<Var\left(\hat{\bar{X}}_{CR}\right)
+\]
+\[
+\left.\begin{array}{l}
+Var\left(\hat{A}_{SR}\right)=\dfrac{N^{3}}{N-1}\left(1-f\right)\dfrac{P\left(1-P\right)}{n}=\dfrac{N^{2}}{N-1}\left(N-n\right)\dfrac{P\left(1-P\right)}{n}\\
+Var\left(\hat{A}_{CR}\right)=\dfrac{N^{2}}{n}P(1-P)
+\end{array}\right\} \Rightarrow\dfrac{Var\left(\hat{A}_{SR}\right)}{Var\left(\hat{A}_{CR}\right)}=\dfrac{N-n}{N-1}<1\Rightarrow Var\left(\hat{A}_{SR}\right)<Var\left(\hat{A}_{CR}\right)
+\]
+\[
+\left.\begin{array}{l}
+Var\left(\hat{P}_{SR}\right)=\dfrac{N}{N-1}\left(1-f\right)\dfrac{P\left(1-P\right)}{n}=\dfrac{1}{N-1}\left(N-n\right)\dfrac{P\left(1-P\right)}{n}\\
+Var\left(\hat{P}_{CR}\right)=\dfrac{1}{n}P(1-P)
+\end{array}\right\} \Rightarrow\dfrac{Var\left(\hat{P}_{SR}\right)}{Var\left(\hat{P}_{CR}\right)}=\dfrac{N-n}{N-1}<1\Rightarrow Var\left(\hat{P}_{SR}\right)<Var\left(\hat{P}_{CR}\right)
+\]
+
+
+Por tanto, el muestreo sin reposici\'on es m\'as eficiente que con reposici\'on.
+El grado de eficiencia que se consigue depende de la relaci\'on entre
+$N$ y $n$. Cuanto menor sea $n$ respecto al tama\~no de la poblaci\'on
+menor ser\'a la ganancia en precisi\'on del muestreo sin reemplazamiento.
+Si $N-1\approx N$, entonces $V_{SR}=\left(1-f\right)V_{CR}$, es
+decir, cuanto menor sea la fracci\'on de muestreo mayor ser\'a la ganancia
+en precisi\'on. A $\left(1-f\right)$ se le llama factor de correcci\'on
+para poblaciones finitas.
+
+
+\section{Consideraciones sobre el tama\~no de la muestra.}
+
+La importancia del tama\~no muestral, radica en la precisi\'on del estimador
+y la representatividad de muestra. es decir, cuanto mayor sea el tama\~no
+muestral m\'as preciso ser\'a el estimador.
+
+Sin embargo, este razonamiento nos llevar\'ia a proponer muestras de
+tama\~no $N$, es decir, que contengan a toda la poblaci\'on. Normalmente
+esto no es posible por problemas de coste, disponibilidad... Es por
+esto que es necesario definir un criterio respecto a lo que se espera
+del estimador, y a partir de ah\'i tomar la muestra m\'as peque\~na que
+nos permita cumplir con ese criterio. Ese criterio normalmente se
+expresa en funci\'on del error de muestreo deseado.
+
+Normalmente el tama\~no de la muestra depender\'a de par\'ametros poblacionales
+desconocidos que habr\'a que estimar.
+
+
+\subsection{Tama\~no de la muestra para un error de muestreo dado.}
+
+Sea $e=\sigma_{\hat{\theta}}$ el error de muestreo m\'aximo que estamos
+dispuestos a admitir. Veamos cual es el tama\~no de la muestra a seleccionar
+para cometer ese error:
+
+
+\subsubsection{Muestreo sin reemplazamiento.}
+\begin{description}
+\item [{Total~poblacional:}] $e^{2}=N^{2}\left(1-\dfrac{n}{N}\right)\dfrac{S_{X}^{2}}{n}=\dfrac{N^{2}S_{X}^{2}}{n}-\dfrac{N^{2}S_{X}^{2}}{N}$
+y por tanto, $n=\dfrac{N^{2}S_{X}^{2}}{e^{2}+NS_{X}^{2}}$.
+\item [{Media~poblacional:}] $e^{2}=\left(1-\dfrac{n}{N}\right)\dfrac{S_{X}^{2}}{n}=\dfrac{S_{X}^{2}}{n}-\dfrac{S_{X}^{2}}{N}$
+y por tanto, $n=\dfrac{NS_{X}^{2}}{Ne^{2}+S_{X}^{2}}$.
+\item [{Total~de~clase:}] $e^{2}=\dfrac{N^{3}}{N-1}\left(1-\dfrac{n}{N}\right)\dfrac{P\left(1-P\right)}{n}=N^{2}\left(\dfrac{N}{N-1}\dfrac{P\left(1-P\right)}{n}-\dfrac{N}{N-1}\dfrac{P\left(1-P\right)}{N}\right)$
+y por tanto, $n=\dfrac{\dfrac{N}{N-1}P\left(P-1\right)}{\dfrac{e^{2}}{N^{2}}+\dfrac{N}{N-1}\dfrac{P\left(1-P\right)}{N}}=\dfrac{N^{3}P\left(P-1\right)}{e^{2}\left(N-1\right)+N^{2}P\left(P-1\right)}$
+\item [{Proporci\'on~de~clase:}] $e^{2}=\dfrac{N}{N-1}\left(1-\dfrac{n}{N}\right)\dfrac{P\left(1-P\right)}{n}=\dfrac{N}{N-1}\dfrac{P\left(1-P\right)}{n}-\dfrac{N}{N-1}\dfrac{P\left(1-P\right)}{N}$,
+$n=\dfrac{NP(1-P)}{e^{2}\left(N-1\right)+P(1-P)}$.
+\end{description}
+
+\subsubsection{Muestreo con reemplazamiento.}
+\begin{description}
+\item [{Total~poblacional:}] $e^{2}=N^{2}\dfrac{\sigma_{X}^{2}}{n}$ y
+por tanto, $n=\dfrac{N^{2}\sigma_{X}^{2}}{e^{2}}$.
+\item [{Media~poblacional:}] $e^{2}=\dfrac{\sigma_{X}^{2}}{n}$ y por
+tanto, $n=\dfrac{\sigma_{X}^{2}}{e^{2}}$.
+\item [{Total~de~clase:}] $e^{2}=\dfrac{N^{2}}{n}P(1-P)$ y por tanto,
+$n=\dfrac{N^{2}P\left(P-1\right)}{e^{2}}$
+\item [{Proporci\'on~de~clase:}] $e^{2}=\dfrac{1}{n}P(1-P)$, $n=\dfrac{P(1-P)}{e^{2}}$.
+\end{description}
+
+\subsection{Tama\~no de la muestra para un error de muestreo y un coeficiente de
+confianza dados.}
+
+Muchas veces no queremos fijar tanto la varianza de nuestro estimador
+cmo establecer la m\'axima aplitud del intervalo de confianza que a
+un nivel de confianza dado que generaremos con el mismo, es decir
+queremos fijar un $e_{\alpha}$ y un $\alpha$ tales que: 
+\[
+P\left(-e_{\alpha}\leq\hat{\theta}-\theta\leq e_{\alpha}\right)=1-\alpha
+\]
+
+
+Por tanto:
+\[
+P\left(\dfrac{-e_{\alpha}}{\sigma\left(\hat{\theta}\right)}\leq\dfrac{\hat{\theta}-\theta}{\sigma\left(\hat{\theta}\right)}\leq\dfrac{e_{\alpha}}{\sigma\left(\hat{\theta}\right)}\right)=1-\alpha
+\]
+
+
+Y suponiendo una distribuci\'on normal, $\lambda_{\alpha}=\dfrac{e_{\alpha}}{\sigma\left(\hat{\theta}\right)}$,
+tal que $P\left(x\leq\lambda_{\alpha}\right)=1-\dfrac{\alpha}{2}$,
+de las tablas de la distribuci\'on normal est\'andar. Por tanto, necesitaremos
+que $\sigma\left(\hat{\theta}\right)=\dfrac{e_{\alpha}}{\lambda_{\alpha}}$,
+y con este valor podemos aplicar las f\'ormulas del caso anterior.\selectlanguage{spanish}%
+

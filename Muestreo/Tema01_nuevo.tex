@@ -1,0 +1,43 @@
+
+\chapter[Concepto de poblaci\'on, marco y muestra.]{Concepto de poblaci\'on, marco y muestra.\\
+	\normalsize Muestreo probabil\'istico. Distribuci\'on de un estimador en el muestreo. Error cuadr\'atico medio y sus componentes. Intervalos de confianza: Estimadores insesgados y sesgados. M\'etodos de selecci\'on. Probabilidad de la unidad de pertenecer a la muestra y propiedades. Comparaci\'on con el muestreo no probabil\'istico: Muestreo por cuotas.}
+
+\section{Concepto de poblaci\'on, marco y muestra.}
+
+El muestreo consiste en seleccionar un subconjunto de una poblaci\'on al objeto de observarlo y a partir de esa observaci\'on inferir caracter\'isticas de la poblaci\'on completa. 
+
+Cuando hablamos de muestreo, se suele presentar una \textbf{poblaci\'on} consistente en un n\'umero finito y conocido de individuos o unidades. Cada unidad tiene asociada una variable de inter\'es, que es de la que se quiere obtener informaci\'on, con un valor que se desconoce, pero que se supone fijo para cada unidad de la poblaci\'on. Por tanto no se trata de una variable aleatoria. Las unidades dentro de la poblaci\'on est\'an identificadas y generalmente se numeran de forma correlativa.
+
+Para obtener informaci\'on sobre la variable de inter\'es se selecciona un subconjunto o \textbf{muestra} de la poblaci\'on y se observa el valor de la variable para cada uno de los miembros del mismo asociado a la unidad a la que pertenece. Estos valores se utilizar\'an para deducir alg\'un valor acumulativo de la caracter\'istica observada.
+
+El proceso consistente en seleccionar la muestra de la poblaci\'on y utilizarla para inferir alg\'un tipo de informaci\'on acerca de la caracter\'istica observada se denomina muestreo. El objetivo del mismo es seleccionar una muestra lo m\'as significativa posible de la poblaci\'on, y a partir de ella obtener un estimador de nuestra caracter\'istica objeto de estudio lo m\'as preciso posible.
+
+As\'i, el conjunto de individuos acerca de los cuales deseamos hacer alguna inferencia recibe el nombre de \textbf{poblaci\'on objetivo}. Dado que en algunas circunstancias puede ocurrir que no tengamos acceso al total de la poblaci\'on para hacer nuestras observaciones, aparece el concepto de \textbf{poblaci\'on investigada}, que es el subconjunto de la poblaci\'on que tenemos la posibilidad de observar. A cada miembro individual de la poblaci\'on se le conoce como \textbf{unidad de la poblaci\'on}.
+
+Si al elegir la muestra elegimos unidades de la poblaci\'on, diremos que estamos escogiendo \textbf{unidades elementales de muestreo}. Tambi\'en podemos escoger la muestra entre grupos no solapados de unidades elementales, en cuyo caso hablaremos de \textbf{unidades de muestreo compuestas}. En cualquier caso, las\textbf{ unidades de muestreo} deben ser subconjuntos de la poblaci\'on disjuntos entre s\'i y cuya uni\'on equivalga a toda la poblaci\'on a investigar.
+
+A la lista ordenada de todas las unidades de muestreo se le da el nombre de \textbf{marco}. Lo ideal es que el marco sea tal que las unidades elementales que contenga coincidan con las que componen la poblaci\'on objetivo, pero en la mayor\'ia de los casos esto no es as\'i debido a desactualizaciones, errores y omisiones. En cualquier caso, debe estar lo suficientemente pr\'oximo a la poblaci\'on objetivo como para poder hacer inferencias acerca de la misma bas\'andonos en la informaci\'on obtenida del marco.
+
+Al subconjunto de la poblaci\'on, compuesto por unidades de muestreo elegidas del marco, que se va a observar se le llama \textbf{muestra}.
+
+\section{Muestreo probabil\'istico.}
+
+Como hemos visto, el objeto del muestreo es inferir informaci\'on de una poblaci\'on que no se puede observar completa por motivos de coste, incomodidad, imposibilidad log\'istica, etc. Por tanto, nos interesar\'a elegir la muestra de forma que sea lo m\'as representativa posible de la poblaci\'on y nos d\'e la mayor cantidad posible de informaci\'on acerca de la misma, y con la menor cantidad de incertidumbre. Una forma de alcanzar este objetivo es seleccionar la muestra mediante un procedimiento aleatorio y aplicar los resultados de la teor\'ia de la probabilidad y la inferencia estad\'istica para hacer deducciones sobre la poblaci\'on. Esto es lo que se conoce como \textbf{muestreo probabil\'istico}.
+
+Para que un procedimiento de muestreo se considere probabil\'istico debe cumplir las siguientes condiciones:
+
+\begin{itemize}
+	\item Podemos definir el conjunto de muestras distintas que son posibles si el procedimiento se aplica a nuestra poblaci\'on de estudio.
+	\item Cada muestra posible tiene asignada una probabilidad de ser elegida, que se conoce como \textbf{probabilidad de selecci\'on}. Como consecuencia, cada unidad de muestreo tiene asignada una probabilidad de pertenecer a la muestra.
+	\item El m\'etodo para calcular la estimaci\'on a partir de la muestra debe estar previamente definido y debe conducir a una estimaci\'on \'unica para cada muestra.
+\end{itemize}
+
+Si nuestro procedimiento de muestreo cumple estas propiedades, podremos calcular la distribuci\'on de probabilidad de las estimaciones que genera el mismo. Por tanto podremos identificar cada una de las estimaciones posibles con un suceso de un experimento aleatorio y a partir del mismo utilizar la teor\'ia de la probabilidad y la inferencia estad\'istica para realizar deducciones sobre la poblaci\'on.
+
+En la pr\'actica, en lugar de conocer la probabilidad de cada muestra posible, que puede ser un trabajo muy engorroso debido a la gran cantidad de muestras posibles, se suele conocer la probabilidad de cada unidad de muestreo de estar incluida en la muestra.
+
+As\'i, a la terna compuesta por la poblaci\'on, el conjunto de muestras posibles y la probabilidad de seleccionar cada una de estas muestras se le llama procedimiento de muestreo. Para obtener una estimaci\'on del par\'ametro en estudio utilizaremos un estimador que a cada muestra posible asignar\'a una estimaci\'on del par\'ametro en estudio. Al conjunto formado por la poblaci\'on, las muestras posibles, sus probabilidades y el estimador se le llama m\'etodo de estimaci\'on, y tambi\'en dise\~no muestral.
+
+Por tanto, para establecer un m\'etodo de estimaci\'on deberemos definir un procedimiento de muestreo y un estimador. El estimador debe ser tal que sea calculable y est\'e definido para todas las muestras posibles. 
+
+\section{Distribuci\'on de un estimador en el muestreo.}
