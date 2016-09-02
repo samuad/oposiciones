@@ -2,16 +2,412 @@
 \normalsize  Variables binarias para efectos temporales y variables en forma de n\'umeros \'indice. Uso de variables con tendencia en la regresi\'on. Uso de series d\'ebilmente dependientes. Transformaci\'on de series altamente persistentes. Tratamiento de la estacionalidad en el modelo.}
 
 
-\sectioncol{Introducci\'on.}
+\sectioncol{Modelo lineal con series de tiempo.}
 
+La principal diferencia que presentan los modelos da series temporales respecto a los modelos de corte transvrersal es que los datos provenientes d eun conjnto de series temporales vienen ordenados respecto al tiempo, es decir, los datos tienen un orden natural. Esto es importante, porque los datos pasados pueden afectar a los datos futuros, pero no al rev\'es.
+
+Otra distinci\'on fundamental es que, mientras que los datos de corte transversal se suponen provenientes de una muestra aleatoria tomada de una poblaci\'on mayor, en el ecaso de series temporales hemos de suponer que nuestros datos provienen de un proceso estoc\'astico o proceso de series temporales, es decir, una sucesi\'on de variables aleatorias cuyo \'indice es el tiempo. As\'i, un conjunto de datos de series temporales no es m\'as que una realizaci\'on del proceso estoc\'astico subyacente. Si fu\'esemos capaces de retorceder en el tiempo y volver a tomar los datos probablemente la realizaci\'on de ese proceso ser\'ia distinta, es por esto que consideramos a los datos como un conjunto de variables aleatorias. Por tanto, el conjunto de todas las posibles realizaciones de un proceso estoc\'astico equivale a la poblaci\'on total para un an\'alisis transversal, y el tama\~no muestral ser\'a el n\'umero de per\'iodos para los que disponemos de observaciones.
+
+\subsectioncol{Tipos de modelos con series temporales.}
+
+Vamos a ver dos tipos de modelos con series temporales que se pueden estimar f\'acilmente por m\'inimos cuadrados ordinarios.
+
+\paragraph{Modelos est\'aticos.}
+
+Es estos modelos, la relaci\'on entre las variables ex\'ogenas y la variable dependiente es contempor\'anea, esto es, tenemos datos de series temporales para un conjunto de variables, fechados de forma contempor\'anea y el modelo que las relaciona es del tipo $y_t=\beta_0+\sum_{i=1}^k\beta_ix_{ti}+u_t$.
+
+Estos tipos de modelos se formulan cuando se entiende que los cambios en las variables ex\'ogenas tendr\'an un efecto inmediato en la variable dependiente, o cuando estamos interesados en conocer la relaci\'on de intercambio entre las variables.
+
+\paragraph{Modelos de retardos distribuidos finitos.}
+
+En un modelo de retardos distribu\'idos finitos, una o m\'as variables ex\'ogenas afectan a la variable dependientecon alg\'un retardo. Un ejemplo podr\'ia ser:
+
+\[ y_t=\beta_0+\sum_{j=0}^{q}\delta_jx_{t-j}+u_t\]
+
+Este modelo se utiliza para variables que influyen en la variable dependiente pero no de forma simult\'anea, sino con alg\'un retardo. El modelo que hemos puesto como ejempo es un modelo con retardos distribuidos finitos (RDF) de orden $q$.
+
+Para interpretar este modelo, supongamos que $X_0$ es constante igual a una cantidad $c$, en  el instante  $t$ aumenta hasta $c+1$ y en el instante $t+1$ vuelve a bajar hasta $c$. En ese caso, el valor esperado de $y$ en cada instante ser\'ia:
+\begin{align*}
+ y_{t-1}=&\beta_0+\sum_{j=0}^{q}\delta_jc = y_{t-1} \\
+ y_{t}=&\beta_0+\delta_0(c+1)+\sum_{j=1}^{q}\delta_jc = y_{t-1}+\delta_0 \\
+ y_{t+1}=&\beta_0+\delta_0c+\delta_1(c+1)+\sum_{j=2}^{q}\delta_jc = y_{t-1}+\delta_1 \\
+ y_{t+2}=&\beta_0+\delta_0c+\delta_1c+\delta2(c+1)+\sum_{j=3}^{q}\delta_jc = y_{t-1}+\delta_2 \\
+ &\cdots \\
+ y_{t+q}=&\beta_0+\sum_{j=0}^{q-1}\delta_jc+\delta_q(c+1) = y_{t-1} +\delta_q\\
+  y_{t+q+1}=&\beta_0+\sum_{j=0}^{q}\delta_jc = y_{t-1}
+\end{align*}
+
+Por tanto, podemos ver que $\delta_0$ es el efecto inmediato que un cambio en $x_0$ tiene en $y$. Normalmente se denomina \textbf{propensi\'on al impacto} o \textbf{modificador de impacto}. Por otro lado, $\delta_1$ es el efecto en $y$ de un cambio en $x_0$ un per\'iodo despu\'es de que el cambio se produzca, $\delta_2$ es el efecto dos periodos despu\'es del cambio, etc . En el momento $t+q+1$ $y$ vuelve a su valor inicial, debido a que en nuestro modelo hemos supuesto $q$ retardos. Si realizamos un gr\'afico de $\delta_j$ respecto a $j$, obtenemos su distribuci\'on de retardos, que muestra el efecto que tiene sobre $y$ un cambio temporal en $x_0$.
+
+Si el cambio en $x_0$ fuese permanente, es decir, si $x_0$ pasa de valer $c$ a valer $c+1$ para $t, t+1, \ldots$, el efecto ser\'ia el siguiente:
+
+\begin{align*}
+ y_{t-1}=&\beta_0+\sum_{j=0}^{q}\delta_jc = y_{t-1} \\
+ y_{t}=&\beta_0+\delta_0(c+1)+\sum_{j=1}^{q}\delta_jc = y_{t-1}+\delta_0 \\
+ y_{t+1}=&\beta_0+\delta_0(c+1)+\delta_1(c+1)+\sum_{j=2}^{q}\delta_jc = y_{t-1}+\delta_0+\delta_1 \\
+ y_{t+2}=&\beta_0+\delta_0(c+1)+\delta_1(c+1)+\delta2(c+1)+\sum_{j=3}^{q}\delta_jc = y_{t-1}+\delta_0+\delta_1+\delta_2 \\
+ &\cdots \\
+ y_{t+q}=&\beta_0+\sum_{j=0}^{q}\delta_j(c+1) = y_{t-1}+\sum_{j=0}^{q}\delta_j \\
+ y_{t+q+1}=&\beta_0+\sum_{j=0}^{q}\delta_j(c+1) = y_{t-1}+\sum_{j=0}^{q}\delta_j 
+\end{align*}
+
+Por tanto, vemos que $\sum_{j=0}^{q}\delta_j$ es el cambio a largo plazo que experimenta $y$ tras un aumento permanente de una unidad en $x_0$ y se denomina \textbf{propensi\'on a largo plazo (PLP)} o \textbf{multiplicador a largo plazo} y es a menudo de inter\'es en estos modelos.
+
+Como a menudo existe una correlaci\'on elevada entre los retardos de la variable independiente, estos modelos pueden presentar problemas de multicolinealidad, lo que hace que las estimaciones de los $\delta_i$ individuales sean muy imprecisas. Veremos que a\'un en este caso, a menudo podemos obtener buenos estimadores de la PLP.
+
+Estos modelos pueden tener m\'as de una variable con retardos, variables contempor\'aneas, etc. Puede ocurrir que el objetivo al estimar el modelo sea contrastar si la variable independiente tiene efecto retardado sobre la variable dependiente.
+
+\subsectioncol{Propiedades del estimador MCO para muestras finitas.}
+
+Veremos ahora c\'omo debemos modificar las hip\'otesis cl\'asicas del modelo para poderlas aplicar a un modelo de series temporales, y que propiedades se deducen de ellas para muestras finitas.
+
+\paragraph{Insesgadez de los estimadores.}
+
+La primera hip\'otesis cl\'asica establece que las variables se relacionan seg\'un un modelo lineal en los par\'ametros.
+
+\begin{hipotesis}
+\textbf{Linealidad en los par\'ametros:} El proceso estoc\'astico $\{(x_{t1},x_{t2},\ldots,x_{tk},y_t),t=1,2,\ldots,n\}$ sigue el modelo lineal
+\[y_t=\beta_0+\beta_1x_{t1}+\beta_2x_{t2}+\cdots+\beta_kx_{tk}+u_t\]
+donde $\{u_t,t=1,2,\ldots,n\}$ es la sucesi\'on de t\'erminos de error o perturbaciones.
+\end{hipotesis}
+ De igual modo que hemos hecho para el modelo con datos de corte transversal, podemos expresarlo en forma matricial, es decir, $\boldsymbol{y}=\boldsymbol{X\beta}+\boldsymbol{u}$.
+
+\begin{hipotesis}
+\textbf{Media condicionada nula:} Para cada instante $t$ el valor esperado del t\'ermino de error dadas las variables explicativas en todos los periodos temporales es cero, es decir,
+\[E(u_t|\boldsymbol{X})=0\]
+o, matricialmente:
+\[E(\boldsymbol{u}|\boldsymbol{X})=\boldsymbol{0}\]
+\end{hipotesis}
+
+Esta hip\'otesis es crucial a la hora de deducir las propiedades que hacen al estimador MCO conveninete, y se puede interpretar en t\'erminos de incorrelaci\'on. Es decir, la hip\'otesis de esperanza ondicionada nula implica que el t\'ermino de error ert\'a incorrelacionado con las variables explicativas en cada uno de los periodos temporales. El hecho de que est\'e expresado en funci\'on de la esperanza condicionada implica que la relaci\'on entre la variable independiente y las variables explicativas debe estar completamente especificada en el modelo.
+
+Si las $u_t$ son independientes de las $\boldsymbol{X}$ y $E(u_t)=0$ el supuesto se cumple autom\'aticamente.
+
+Si lo que se cumple es $E(u_t|\boldsymbol{x}_t)=0$, decimos que tenemos exogeneidad contempor\'anea, pero la hip\'otesis exige exogeneidad estricta.
+
+En el caso de datos de corte transversal, dado que suponemos muestreo aleatorio, la perturbaci\'on ser\'a autom\'aticamente independiete de las variables explicativas de otras observaciones. En el caso de series temporales esto no se produce, es por esto que debemos exigir expl\'icitamente la exogeneidad estricta.
+
+La exogeneidad estricta puede incumplirse por varias causas: por una mala especificaci\'on del modelo que no incluya todas las variables independientes implicadas, por la comisi\'on de errores de medida al medir los regresores, o porque el valor de la variable independienta pueda influir en valores futuros de alguna variable ex\'ogena. Para que una variable explicativa sea estrictamente ex\'ogena, no puede verse influida por valores pasados de la variable end\'ogena. Por desgracia, esta circunstancia se da en muchos casos, y muchas variables explicativas violan la hip\'otesis de exogeneidad estricta.
+
+Muchos ana\'alisis de modelos est\'aticos y de retardos distribuidos finitos suponen esta hip\'otesis mediante la hip\'otesisi m\'a fuerte de que las variables explicativas son deterministas, es decir, sin componente aleatorio, pero estop es obviamente falso si tenemos observaciones de series temporales.
+
+\begin{hipotesis}
+\textbf{No multicolinealidad perfecta:} En nuestro modelo ninguna variable independiente es cosntante o combinaci\'on lineal exacta de las dem\'as.
+\end{hipotesis}
+
+En el caso de que no se cumpla esta hip\'otesis, la matriz $\boldsymbol{X}$ ser\'a singular, y por tanto tendremos infinitos estimadores para los coeficientes del modelo.
+
+\begin{teorema}
+Bajo las anteriores hip\'otesis (linealidad, media condicionada nula y ausencia de multicolinealidad) los estimadores de m\'inimos cuadrados de los coeficientes del modelo son estimadores insesgados de los mismos.
+\end{teorema}
+
+Si se cumplen las hip\'otesis de linealidad y no multicolinealidad, el estimador MCO existe y su f\'ormula es $\hat{\boldsymbol{\beta}}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{y}$. Para comprobar si es insesgado, calculemos su esperanza. Para ello, primero calculamos la esperanza condicionada a  $\boldsymbol{X}$:
+
+Entonces: 
+\begin{equation*}
+\begin{array}{c}
+\hat{\boldsymbol{\beta}}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{y}=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\left(\boldsymbol{X\beta}+\boldsymbol{u}\right)=\boldsymbol{\beta}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u}\\
+E\left(\hat{\boldsymbol{\beta}}|\boldsymbol{X}\right)=E\left[\boldsymbol{\beta}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u}|\boldsymbol{X}\right]=\boldsymbol{\beta}+\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}E\left(\boldsymbol{u}|\boldsymbol{X}\right)=\boldsymbol{\beta}
+\end{array}
+\end{equation*}
+Ya que $\boldsymbol{\beta}$ es un vector constante, aunque desconocido.
+
+Como por la ley de las esperanzas totales, $E[E\left(\hat{\boldsymbol{\beta}}|\boldsymbol{X}\right)]=E\left(\hat{\boldsymbol{\beta}}\right)$, $E(\hat{\boldsymbol{\beta}})=\boldsymbol{\beta}$ y el estimador es insesgado, siempre que se cumpla la hip\'otesis de esperanza condicionada nula.
+
+Para completar las hip\'otesis de Gauss-Markov para el caso de series temporales, necesitamos dos hip\'otesis adicionales.
+
+\begin{hipotesis}
+\textbf{Homoscedasticidad:} La varianza de la perturbaci\'on condicionada a $\boldsymbol{X}$ es constante para cualquier valor de $t$: $Var(u_t|\boldsymbol{X})=Var(u_t)=\sigma^2$, $t=1,2	\ldots,n$.
+\end{hipotesis}
+
+Por tanto, la varianza de la perturbaci\'on no puede depender de las variables ex\'ogenas (para lo que es suficiente que $u_t$ y $\boldsymbol{X}$ sean independientes) y esta varianza debe ser constante en el tiempo. Si esta hip\'otesis no se cumple, diremos que el modelo presenta \textit{heteroscedasticidad}, o bien que los errores son \textit{heterosced\'asticos}.
+
+Para que esta hip\'otesis se cumpla, las variables no observadas que afecten a la variable dependiente deben tener una variabilidad constante, y que la varianza de la variable end\'ogena no dependa del valor de ninguna variable ex\'ogena.
+
+\begin{hipotesis}
+\textbf{Ausencia de autocorrelaci\'on:} Condicionando a las variables ex\'ogenas, los errores en dos periodos de tiempoe st\'an incorrelacionados: $Corr(u_t, u_s|\boldsymbol{X})=0$ para todo $t\neq s$.
+\end{hipotesis}
+
+Si esta hip\'otesis no se cumple, diremos que el t\'ermino de error presenta \textbf{autocorrelaci\'on}.
+
+Si un modelo presenta homoscedasticidad y ausencia de autocorrelaci\'on, la matriz de varianzas-covarianzas del t\'ermino de error ser\'a:
+
+\[Var(\boldsymbol{u}|\boldsymbol{X})=\sigma^2\boldsymbol{I}_n\]
+
+Estas cinco hip\'otesis son las hip\'otesis de Gauss-Markov aplicadas al modelo con datos de series temporales.
+
+\begin{teorema}
+\textbf{Varianza del estimador MCO:} Bajo las hip\'otesis de Gauss-Markov (linealidad, media condicionada nula, ausencia de multicolinealidad, homocedasticidad y ausencia de autocorrelaci\'on) la matriz de varianzas-covarianzas de los estimadores condicionada a $\boldsymbol{X}$ es:
+
+\[Var(\hat{\boldsymbol{\beta}})=\sigma^2(\boldsymbol{X}^{\prime}\boldsymbol{X})^{-1}\]
+
+\end{teorema}
+
+
+\begin{equation*}
+\begin{array}{c}
+Var\left(\hat{\boldsymbol{\beta}}|\boldsymbol{X}\right)=E\left[\left(\hat{\boldsymbol{\beta}}-E\left(\hat{\boldsymbol{\beta}}\right)\right)\left(\hat{\boldsymbol{\beta}}-E\left(\hat{\boldsymbol{\beta}}\right)\right)^{\prime}|\boldsymbol{X}\right]=E\left[\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)\left(\hat{\boldsymbol{\beta}}-\boldsymbol{\beta}\right)^{\prime}|\boldsymbol{X}\right]=\\
+=E\left[\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\boldsymbol{u}\boldsymbol{u}^{\prime}\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}|\boldsymbol{X}\right]=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}E\left(\boldsymbol{u}\boldsymbol{u}^{\prime}|\boldsymbol{X}\right)\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}=\\
+=\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{\prime}\sigma_{u}^{2}\boldsymbol{I}_{N}\boldsymbol{X}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}=\sigma_{u}^{2}\left(\boldsymbol{X}^{\prime}\boldsymbol{X}\right)^{-1}
+\end{array}
+\end{equation*}
+
+La diagonal principal de esta matriz nos da la varianza de cada uno de los estimadores de los par\'ametros del modelo. Veamos qu\'e factores influyen en estas varianzas:
+
+\begin{itemize}
+\item Cuanto mayor sea la varianza de la perturbaci\'on, mayor ser\'a la varianza de los estimadores. Esto es lo esperado, cuanto m\'as se aparte nuestro sistema del modelo que hemos especificado, menos precisos ser\'an los estimadores.
+\item Cuanto mayor sea la dispersi\'on de las variables explicativas, o mayor sea el tama\~no de la muestra, menor ser\'a la varianza, ya que la matriz est\'a dividiendo. Esto es l\'ogico pues por un lado, cuanto m\'as repartida est\'e la muestra por el rango de variaci\'on posible m\'as informaci\'on capturaremos, y a mayor tama\~no de la muestra m\'as eficiente ser\'a nuestro estimador.
+\item Cuanta menos multicolineanlidad presenten las variales explicativas, menor ser\'a la varianza. Si las variables explicativas presentan un comportamiento muy cercano a la multicolinealidad, la matriz ser\'a muy pr\'oxima a ser singular, con un determinante pr\'oximo a cero. Por tanto, su inversa ser\'a muy grande y por tanto las varianzas tambi\'en, dando origen a estimadores muy poco eficientes.
+\end{itemize}
+
+\begin{teorema}
+\textbf{Estimador insesgado de $\sigma^2$:} Bajo las hip\'otesis de Gauss-Markov (linealidad, media condicionada nula, ausencia de multicolinealidad, homocedasticidad y ausencia de autocorrelaci\'on) el estimador
+
+\[Var(\hat{\sigma}^2)=\dfrac{\boldsymbol{u}^{\prime}\boldsymbol{u}}{n-k}\]
+
+es un estimador insesgado de $\sigma^2$.
+
+\end{teorema}
+
+\begin{teorema}
+\textbf{Teorema de Gauss-Markov:} Bajo las hip\'otesis de Gauss-Markov (linealidad, media condicionada nula, ausencia de multicolinealidad, homocedasticidad y ausencia de autocorrelaci\'on) los estimadores de m\'inimos cuadrados ordinarios son los estimadores lineales insesgados de m\'inima varianza, condicionados a $\boldsymbol{X}$.
+
+\end{teorema}
+
+As\'i, los estimadores tiene las mismas propiedades para muestras finitas que con la ship\'otesis para datos de secci\'on cruzada.
+
+\subsectioncol{Inferencia bajo los supuestos del modelo lineal cl\'asico.}
+
+Si a las hip\'otesis anteriores les agregamos la siguiente hip\'otesis:
+
+\begin{hipotesis}
+\textbf{Normalidad de la perturbaci\'on:} Los errores $u_t$ son independientes de $\boldsymbol{X}$ y est\'an independiente e id\'enticamente distribuidos seg\'un una distribuci\'on $N(0;\sigma)$.
+\end{hipotesis}
+
+Esta hip\'otesis implica las hip\'otesis de media condicionada nula, heteroscedasticidad y ausencia de correlaci\'on, pero es m\'as restrictiva. Incluy\'endola tenemos las hip\'otesis correspondientes al modelo lineal cl\'asico, y podemos ennunciar el siguiente teorema:
+
+\begin{teorema}
+\textbf{Distribuciones muestrales normales:} Bajo las hip\'otesis del modelo lineal cl\'asico (linealidad, media condicionada nula, ausencia de multicolinealidad, homocedasticidad, ausencia de autocorrelaci\'on y normalidad) los estimadores de m\'inimos cuadrados ordinarios se distribuyen siguiendo una distribuci\'on normal, condicionados a $\boldsymbol{X}$. Adem\'as, bajo la hip\'otesis nula cada estad\'istico $t$ sigue una $t$ de Student, y cada estad\'istico $F$ sigue una $F$ de Snedecor. La construcci\'on habitual de intervalos de confianza sigue siendo v\'alida.
+\end{teorema}
+
+Este teorema implica que si se cumplen las hip\'otesis, todos los resultados obtenidos para datos de corte transversal se pueden aplicar a modelos de series temporales. Estos supuestos son mucho m\'as restrictivos para datos de series temporales, en particular la exogeneidad estricta y la ausencia de autocorrelaci\'on raramente se cumplen.
 
 \sectioncol{Variables binarias para efectos temporales y variables en forma de n\'umeros \'indice. }
+
+Las variables independientes ficticias o variables binarias son muy \'utiles cuando trabajamos con series temporales. Pues to que cada observaci\'on de nuestras variables representa un instante en el tiempo, podemos asociar nuestra variable ficticia a la ocurrencia o no ocurrencia d eun determinado evento en un determinado periodo. A menudo se utilizan para aislas determiandos periodos que pueden ser sistem\'aticamente diferentes al resto de periodos dentro de la muestra.
+
+Estas variables se utilizan mucho en el estudio de acintecimientos, que consiste en estimar el impacto d eun acontencimiento determinado sobre cualquier variable resultado. Como ejemplo, podemos citar el impacto de determinados acontecimientos en las acciones de empresas. Para este objetivo en muchos casos se recurre a m\'as de una variable ficticia, una que tome valor uno durante algunos periodos previso al aciontecimiento, y otra que tome valor uno a partir del acontecimiento para comprobar si la previsi\'on del mismo afecta a la variable.
+
+Antes de continuar, es necesario conocer la definici\'on de n\'umero \'indice. Un n\'umero \'indice es un n\'umero que refleja la evoluci\'on de una magnitud compar\'andola con dicha magnitud en un momento dado, y que en general agrega gran cantidad de informaci\'on. Como ejemplos de n\'umeros \'indices se pueden citar los \'indices de precios, o los \'indices de producci\'on industrial. Para interpretar un n\'umero\'indice debemos conocer el periodo base y el valor base. En general el valor base se define arbitrariamente a 100 o a 1, dependiendo de si el \'indice se expresa en porcentaje o en tanto por uno.
+
+Las variables en forma de n\'umeros \'idice se utilizan cuando se quiere reflejar el comportamiento agregado de varios agentes econ\'omicos diversos: se utilizan \'indices de producci\'on de un determinado sector industrial para reflejar la evoluci\'on de una industria en su coonjunto, por ejemplo.
+
+Los \'indices de precios son particularmente importantes porque se utilizan para transformar las series econ\'omicas de sus unidades monetaria nominales a unidades monetarias reales, es decir, sin tener en cuenta la inflaci\'on. Para transformar una cantidad de su valor nominal a su valor real se aplica la siguiente f\'ormula:
+
+\[Q_R=100\cdot\dfrac{Q_N}{IPC}\]
+
+Siendo $Q_R$ el valor de la serie en unidades monetarias correspondientes al periodo base del \'indice.
+
+En general las variables econ\'omicas de nuestras series temporales est\'an expresadas en t\'erminos reales. Si combinamos estas variables reales y los logaritmos neperianos podemos obtener resultados interesantes. Por ejemplo, si tenemos una cantidad monetaria expresada en t\'erminos reales, $Q_R=100\cdot\dfrac{Q_N}{IPC}$, en el siguiente modelo:
+
+\[\log{y}=\beta_0+\beta_1\log{Q_R}+u\]
+
+Y como $\log{Q_R}=\log{100\cdot\dfrac{Q_N}{IPC}}=\log{100}+\log{Q_N}-\log{IPC}$, tambi\'en lo podremos expresar como:
+\[\log{y}=\beta_0+\beta_1\log{Q_N}+\beta_2\log{IPC}+u\]
+
+on la restricci\'on de que $\beta_1=-\beta_2$. SI esta restricci\'on no se cumpliese, podr\'iamos concluir que los agentes econ\'omicos implicados en el modelo no entienden la distinci\'on entre valores nominales y valores reales, es decir, no son conscientes de la influencia de las variaciones de precios.
+
+Dado que las magnitudes de los n\'umeros \'indice no son informativas, en general estas variables se utilizan aplicando logaritmos, para poder interpretar los coeficientes de la regresi\'on en t\'erminos de cambios porcentuales.
+
 Seccion 10.4, 
 \sectioncol{Uso de variables con tendencia en la regresi\'on.}
+La mayor\'ia de variables econ\'omicas presentan una tendencia, en general creciente, a lo largo del tiempo. Esta situaci\'on es necesario detectarla y tenerlo en cuenta, ya que si dos variables presentan tendencia, bien en la misma direcci\'on, bien en direcciones opuestas, epodemos concluir err\'oneamente que dichas variables est\'an relacionadas, cuando en realidad lo que ocurre es que ambas presentan una relaci\'on con el tiempo. Es por esto que en estos casos lo conveniente es eliminar esas tendencias temporales antes de analizar la relaci\'on entre las variables. En general, lo m\'as frecuente son las tendencias crecientes.
+
+\subsectioncol{Modelos que reflejan el comportamiento tendencial.}
+
+Una formulaci\'on bastante com\'un de la tendencia es la lineal, en la que se especifica la serie como:
+
+\[y_t=\alpha_0+\alpha_1t+e_t\]
+
+Donde $e_t$ refleja la serie una vez eliminada la tendencia. En el caso m\'as simple, $e_t$ es independiente e id\'enticamente distribuida con $E(e_t)=0$, $V(e_t)=\sigma_e^2$, aunque no tiene por que ser as\'i. En este caso, $\alpha_1$ refleja el cambio que se produce en la serie entre dos per\'iodos si el resto de factores permanecen constantes, es decir, $\Delta y_t=\alpha_1$ siempre que $\Delta e_t=0$. Otra forma de expresar estas series es a partir de su valor medio, como una funci\'on lineal del tiempo, es decir, $E(y_t)=\alpha_0+\alpha_1t$. Si $\alpha_1>0$, la tendencia de la serie ser\'a creciente, y si $\alpha_1<0$ la tendencia de la serie ser\'a decreciente. Los valores de la serie no se ajustan a la recta debido al componente aleatorio, pero sus valores esperados s\'i lo hacen. Si el t\'ermino $\{e_t\}$ tuviese alguna correlaci\'on con el tiempo esto no ser\'ia as\'i, aunque lo realmente importante para el an\'alisis de regresi\'on es el comportamiento lineal de la tendencia.
+
+Otra formulaci\'on habitual es la \textbf{tendencia exponencial}, en la que la serie presenta una tasa de crecimiento medio constante. En este caso, la serie se expresar\'ia como:
+
+\[\log{y_t}=\alpha_0+\alpha_1t+e_t\]
+
+Y como para cambios peque\~nos $\Delta\log{y_t}\approx\dfrac{y_t-y_{t-1}}{y_{t-1}}$, tenemos que si $\Delta e_t=0$, $\alpha_1$ es aproximadamente la tasa de crecimiento media en cada periodo.
+
+Aunque estas formulaciones son las m\'as habituales, las tendencias temporales pueden ser m\'as complicadas.
+
+\subsectioncol{An\'alisis de regresi\'on con tendencia temporal.}
+
+En general la presencia de variables, tanto explicativas como explicadas, que presenten tendencia no invalida las hip\'otesis del modelo lineal. SIn embargo, hay que tener en cuenta que los factores tendenciales que afectan a la variable dependiente tambi\'en pueden estar correlacionados con alguna variable explicativa, provoando que detectemos una relaci\'on entre ellas simplemente porque ambas crecen con el tiempo. a este tipo de relaci\'on se le llama \textbf{regresi\'on espuria}. La forma m\'as sencilla de eliminar este problema es a\~nadir una tendencia temporal al modelo.
+
+Supongamos que la variable dependiente crece o decrece en el tiempo debido a factores no observables. Por tanto, el modelo se dener\'ia expresar:
+
+\[y_t=\beta_0+\sum_{i=1}^{k}\beta_ix_{ti}+\alpha_1t+u_t\]
+
+Si omiti\'esemos el t\'ermino de tendencia estar\'iamos omitiendo una variable relevante, y por tanto nuestros estimadores ser\'ian sesgados. Esto es especialmente relevante si alguna $x_i$ presenta alg\'un tipo de tendencia teporal, ya que entonces estar\'ia muy correlacionada con $y$, y se puede dar una regresi\'on totalmente espuria.
+
+Tabi\'en puede ocurrir que el a\~nadir una tendencia haga que una variable explicativa sea m\'as significativa. Esto sucede si ambas variables presentan distintos tipod de tendencia, pero los movimientos de la variable independiente alrededor de su tendencia son los causantes de los de la variable dependiente alrededor de la suya.
+
+Adem\'as de la tendencia lineal, en el modelo se pueden incluir tendencias cuadr\'aticas, c\'ubicas... Sin embargo, no es conveniente introducir demasiados t\'erminos, ya que cualquier serie se puede ajustar con un polinomio de suficiente grado, y esto eliminar\'ia el efecto del resto de variables independientes, que es lo que realmente tiene inter\'es en el modelo.
+
+\subsectioncol{Regresiones con tendencia como regresiones sobre variables en desviaci\'on de su tendencia.}
+
+A la hora de interpretar los coeficientes de nuestro modelo con tendencia, podemos interpretarlos como los coeficientes de una regresi\'on con variables a las que se les ha eliminado la tendencia. Es decir, si regresamos la variable dependiente y cada variable independiente sobre na constante y una tendencia $t$, y usamos los residuos de esas regresiones como variables de una nueva regresi\'on (de esta forma eliminamos la influencia del tiempo en la regresi\'on), los estimadores que obtendremos coincidir\'an con los estimadores que hemos obtenido en el modelo con tendencia.
+
+Es decir, podemos interpretar nuestros coeficientes como los coeficientes de un modelo en el que o incluimos la tendencia pero hemos eliminado la tendencia de todas las variables. Este resultado se mantiene independientemente de la forma que asignemos a la tendencia.
+
+Esta interpretaci\'on nos muestra que es buena idea incluir una tendencia si alguna de las variables explicativas presenta tendencia, aunque la variable dependiente no la presente. SI o hacemos esto puede ocurrir que parezca que la variable explicativa no influye en la regresi\'on, cuando s\'i puede influir, a trav\'es de los movimientos en torno a su tendencia.
+
+\subsectioncol{C\'alculo del $R^2$ en modelos con tendencia.}
+
+
+
+
 Seccion 10.5
 \sectioncol{Uso de series d\'ebilmente dependientes.}
+
+La hip\'otesis cl\'asicas del modelo lineal general son en general demasiado estrictas para la mayor\'ia de modelos de series temporales que nos encontramos en el mundo real. En particular, la incorrelaci\'on de las series en el tiempo se da muy raramente. Popr ello, vamos a ver las propiedades del estimador MCO bajo unas hip\'otesis menos restrictivas.
+
+\subsectioncol{Series temporales estacionarias y no estacionarias.}
+
+En el estudio de series temporales es muy importante el concepto de proceso estoc\'astico estacionario. Intuitivamente, un proceso estoc\'astico estacionario es aquel en el que su distribuci\'on de probabilidad no var\'ia con el tiempo. De manera m\'as formal:
+
+\begin{definicion}
+\textbf{Proceso estoc\'astico estacionario:} El proceso estoc\'astico $\{x_t:t=1,2,\ldots\}$ es estacionario si para cada colecci\'on de \'indices temporales, $1\leq t_1<t_2<\ldots<t_m$ la distribuci\'on conjunta de $(x_{t_1},x_{t_2},\ldots,x_{t_m})$ es la misma que la distribuci\'on conjunta de $(x_{t_1+h},x_{t_2+h},\ldots,x_{t_m+h})$ para cualquier $h\geq1$, entero.
+\end{definicion}
+
+Una implicaci\'on inmediata de esta definici\'on es que la sucesi\'on $\{x_t:t=1,2,\ldots\}$ est\'a id\'enticamente distribuida. Esto no impone restricciones sobre la forma en que las $x_t$ se correlacionan entre s\'i, solo implica que esas correlaciones sean las mismas para todos los periodos temporales.
+
+Un proceso estoc\'astico que no es estacionario se conoce como \textbf{proceso no estacionario}. Dado que la estacionariedad es una caracter\'isica del proceso estoc\'astico subyacente y no de la realizaci\'on que disponemos (serie temporal) puese ser muy dif\'icil determinar si la serie temporal de que disponemos ha sido generada por un proceso estacionario. Sin embargo, es f\'acil detectar ciertas sucesiones que no son estacionarias: por ejemplo, si aparece una tendencia temporal clara, el proceso subyacente no ser\'a estacionario, ya que su media variar\'a con el tiempo.
+
+La condici\'on de estacionariedad estricta es muy restrictiva, y dif\'icil de comprobar. Sin embago, para algunas aplicaciones es suficiente con que se de una forma de estacionariedad m\'as d\'ebil.
+
+\begin{definicion}
+\textbf{Proceso estacionario en covarianza:} El proceso estoc\'astico $\{x_t:t=1,2,\ldots\}$ con un momento de segndo orden finito, $[E(x_t^2)<\infty]$ es \textbf{estacionario en covarianza} si:
+\begin{enumerate}
+\item $E(x_t)$ es constante.
+\item $Var(x_t)$ es constante.
+\item Para todo $t,h\geq1$, $Cov(x_t,x_{t+h})$ depende solo de $h$ y no de $t$.
+\end{enumerate}
+\end{definicion}
+
+De el hecho que la covarianza s\'olo dependa de la distancia entre los t\'erminos se deduce que la correlaci\'on tambi\'en depende solo de la distancia entre los t\'erminos.
+
+Si un proceso estacionario tiene momento de segundo orden finito, entonces ser\'a estacionario en covarianza. Sin embargo, la inversa no es cierta. As\'i, la estacionariedad o \textit{estacionariedad estricta} es un requisito m\'as fuerte que la estacionariedad en covarianza.
+
+Al plantear un modeo de regresi\'on simple para series temporales estamos suponiendo una cierta estacionariedad, ya que supoemos que los $\beta_j$ no var\'ian con el tiempo. Adem\'as, los supuestos del modelo implican que la varianza del proceso de error es constante en el tiempo y que la correlaci\'on entre los errores de dos per\'iodos es nula.
+
+\subsectioncol{Series temporales d\'ebilmente dependientes.}
+
+La estacionariedad introduce condiciones sobre las distribuciones conjuntas de un proceso estoc\'astico a lo largo del tiempo. Por otro lado, el concepto de series d\'ebilmente dependientes introduce restricciones sobre el grado en que pueden estar correlacionadas las varaibles $x_t$ y $x_{t+h}$ a medida que se incrementa la distancia teporal entre ellas. Se dice que un proceso de series teporales estacionario es d\'ebilmente dependiente si $x_t$ y $x_{t+h}$ son ``casi independientes'' a medida que aumenta $h$. o se puede definir en t\'erminos m\'as formales, porque no existe una definici\'on que abarque todos los casos de inter\'es. En nuestro caso basta con utilizar una definici\'on intuitiva: una serie estacionaria en covarianza es d\'ebilmente dependiente si la correlaci\'on entre $x_t$ y $x_{t+h}$ tiende a cero de manera suficientemente r\'apida cuando $h\to\infty$. Una serie estacionaria en covarianza que cumple que $\lim_{h\to\infty}{Corr(x_t,x_{t+h})}=0$ se dice \textbf{asint\'oticamente incorrelacionada}. Para que sea d\'ebilmente dependiente la convergencia hacia cero debe ser suficientemente r\'apida.
+
+El supuesto de dependencia d\'ebil se puede usar para sustituir al supuesto de muestra aleatoria y asegurarnos de que las series satisfacen la ley de los grandes n\'umeros y el Teorema Central del L\'imite. Las series temporales que no son d\'ebilmente dependientes no cumplenpor lo general el Teorema Central del L\'imite, por lo que su uso en el an\'alisis de
+regresi\'on m\'ultiple suele ser problem\'atico.
+
+Un ejemplo trivial de serie d\'ebilmente dependiente es una sucesi\'on de t\'erminos independientes id\'enticamente distribuidos, aunque su inter\'es es escaso. Un ejemplo m\'as interesante es una serie del tipo $x_t=e_t+\alpha_1e_{t-1}$, siendo $e_t$ una sucesi\'on independiente id\'enticamente distribuida con media cero y varianza $\sigma^2_e$. A este proceso se le llama proceso de medias m\'oviles de primer orden ($MA(1)$). Calculando sus momentos, obtenemos:
+\begin{align*}
+E(x_t)&=0\\
+Var(x_t)&=(1+\alpha_1^2)\sigma^2_e\\
+Cov(x_t,x_{t+1})&=\alpha_1\sigma^2_e\\
+Cov(x_t,x_{t+h})&=0\;\forall h\geq 2\\
+Corr(x_t,x_{t+1})&=\dfrac{\alpha_1}{(1+\alpha_1^2)}\\
+Corr(x_t,x_{t+h})&=0\;\forall h\geq 2
+\end{align*}
+
+Y por tanto una sucesi\'on $MA(1)$ es estacionaria d\'ebilmente dependiente.
+
+De forma similar se puede razonar para un proceso autorregresivo de primer orden $AR(1)$, es decir, $x_t=\rho_1x_{t-1}+e_t$, siendo $e_t$ una sucesi\'on independiente id\'enticamente distribuida con media cero y varianza $\sigma^2_e$. El punto inicial es $x_0$, y suponemos que $E(x_0)=0$ y que los $e_t$ son independientes de $x_0$. Calculando sus momentos, obtenemos:
+
+\begin{align*}
+E(x_t)&=0\\
+Var(x_t)&=\sigma_x^2=\dfrac{\sigma^2_e}{1+\rho_1^2}\\
+Cov(x_t,x_{t+h})&=\rho_1^h\sigma_y^2\\
+Corr(x_t,x_{t+h})&=\rho_1^h
+\end{align*}
+
+Y si exigimos la denomonada \textit{condici\'on de estabilidad}, $|\rho_1|<1$, dado que la correlaci\'on cae de forma exponencial, estaremos ante un proceso d\'ebilmente dependiente.
+
+Por \'ultimo, una serie co tendencia, que no es estacionaria, puede ser d\'ebilmente dependiente. Esto podr\'ia ser el caso para una serie en desviaciones de su tendencia temporal.
+
+\subsectioncol{Propiedades asint\'oticas del estimador MCO.}
+
+Dado que las hip\'otesis del modelo lineal cl\'asico son muy restrictivas para la mayor\'ia de series temporales, deberemos apelar a las propiedades del estimador MCO para muestras grandes. Veremos las hip\'otesis que las sustentan.
+
+\paragraph*{Linealidad y dependencia d\'ebil:}
+Suponemos que la relaci\'on entre la svariables del modelo es lineal, y que adem\'as el proceso estoc\'astico ${(\boldsymbol{x}_t,y_t):t=1,2,\ldots}$ es estacionario y d\'ebilmente dependiente. En particular, la ley de los grandes n\'umeros y el teorema central del l\'imite se pueden aplicar a las medias muestrales.
+
+\paragraph*{Media condicionada igual a cero:}
+Las variables explicativas son contempor\'aneamente ex\'ogenas, es decir, $E(u_t|\boldsymbol{x}_t)=0$.
+
+Este supuesto es mucho m\'as d\'ebil que el que hemos utilizado en datos transversales, que exige la exogeneidad respecto a todas las variables explicativas. En virtud de la estacionariedad, si la hip\'otesis se cumple para un periodo de tiempo, se cumple para todos los dem\'as.
+\paragraph*{Ausencia de colinealidad perfecta.}
+Es id\'entico al utilizado para datos transversales.
+
+\begin{teorema}
+\textbf{Consistencia del estimador MCO:} Bajo estas tres hip\'otesis, los estimadores MCO son consistentes, es decir, $\hat{\beta}_j\overset{p}{\to}\beta_j$ para todos los $j$.
+\end{teorema}
+
+Vemos que este teorema no nos garantiza la insesgadez del estimador, pero nos permite relajar la hip\'otesis de exogeneidad, a\~nadiendo la hip\'otesis de dependencia d\'ebil.
+
+Para poder obtener la distribuci\'on de los estimadores, y por tanto poder aplicar procedimientos de inferencia, debemos a\~nadir hip\'otesis sobre la varianza de la pertuebaci\'on.
+\paragraph*{Homoscedasticidad:}
+El t\'ermino de error es contempor\'aneamente homoscedastico, es decir, $Var(u_t|\boldsymbol{x}_t)=\sigma_u^2$.
+
+\paragraph*{Ausencia de correlaci\'on serial:}
+Para todo $t\neq s$,  $E(u_tu_s|\boldsymbol{x}_t,\boldsymbol{x}_s)=0$.
+
+\begin{teorema}
+\textbf{Normalidad asint\'otica del estimador MCO:} Bajo estas cinco hip\'otesis, los estimadores MCO siguen una distribuci\'on normal asint\'otica. Adem\'as, los errores est\'andar habituales, as\'i como los estad\'isticos $t$, $F$ y $LM$ son asint\'oticamente v\'alidos.
+\end{teorema}
+
+
+Bajo estas hip\'otesis se puede demostrar que los estimadores son asint\'oticamente eficientes. Los modelos con variables explicativas con tendencia pueden satisfacer estas hip\'otesis siempre que sean estacionarios en tendencia. Si incluimos  sus tedencias en el modelo cuando es necesario, los procedimientos de inferencia habituales son v\'alidos asint\'oticamente.
+
 Seccion 11.1
 \sectioncol{Transformaci\'on de series altamente persistentes.}
+
+Por desgracia, hay muchas series econ\'omicas que presentan una fuerte dependencia temporal. Estas series se llaman \textbf{altamente persistentes} o \textbf{fuertemente dependientes}. El problema que presentan estas series es que tienden a violar con mucha frecuencia las hip\'otesis del modelo lineal cl\'asico, y no se les pueden aplicar las hip\'otesis aligeradas, ya que no son d\'ebilmente dependientes. Veremos como pueden transformarse para usarlas en modelos de regresi\'on.
+
+Como ejemplo de una serie temporal altamente persistente, odemos considerar un proceso autorregresivo de primer orden con coeficiente igual a uno ($x_t=x_{t-1}+e_t$). Este proceso se conoce como paseo aleatorio, y si bien su valor esperado es constante, $E(x_t)=x_0$, su varianza es $Var(x_t)=\sigma_e^2t$, dependiente del tiempo (por tanto no es estacionario), y $Corr(x_t,x_{t+h})=\sqrt{\dfrac{t}{t+h}}$, con lo que el proceso no es estacionario en covarianza y la tendencia a cero de la correlaci\'on no se produce lo suficientemente r\'apido como para considerarlo d\'ebilmente dependiente.
+
+Un paseo aleatorio es un caso especial de un proceso de ra\'iz unitaria, en el sentido de que $\rho_1=1$.
+
+A los procesos d\'ebilmente dependientes se les conoce como procesos \textbf{integrados de orden cero} y se denotan por $I(0)$. En la pr\'actica quiere decir que no hay que realizar ninguna transformaci\'on con ellos antes de utilizarlos en un modelo de regresi\'on. Se dice que los procesos de ra\'iz unitaria son \textbf{integrados de orden uno} ($I(1)$), y su primera diferencia es d\'ebilmente dependiente (y a menudo estacionaria).
+
+Por ejemplo, en el paseo aleatorio:
+\[\Delta x_t=x_t-x_{t-1}=x_{t-1}+e_t-x_{t-1}=e_t\]
+
+Y como $e_t$ es independiente e id\'enticamente distribuida, es d\'ebilmente dependiente. Por eso, si sospechamos que un proceso es integrado de orden uno, a menudo tomamos una diferencia antes de uyilizarlos en un modelo de regresi\'on.
+
+Muchas series temporales que son estrictamente positivas son tales que su logaritmo es integrado de orden uno. En este caso la transformaci\'on que haremos ser\'a:
+\[\log{x_t}-\log{x_{t-1}}\approx\dfrac{x_t-x_{t-1}}{x_{t-1}}\]
+
+Y por tanto podemos usar directamente la variaci\'on proporcional o porcentual de $x_t$ en la regresi\'on.
+
+Una ventaja que tiene utilizar una diferencia de primer orden es que elimina las tendencias temporales lineales. As\'i, en lugar de incluirlas en la regresi\'on podemos diferenciar aquellas variables que claramente las presentan.
+
+Para saber si un proceso es integrado de orden uno se puede realizar un contraste de ra\'ices unitarias. Una forma m\'as r\'apida de estimarlo, aunque mucho menos segura, es calcular la autocorrelaci\'on de primer orden, o el coeficiente de correlaci\'on muestral entre $x_t$ y $x_{t-1}$ que representamos mediante $\hat{\rho}_1$. Este coeficiente es un estimador consistente para $\rho_1$ siempre que $|\rho_1|<1$. Sin embargo, no es insesgado, y su distribuci\'on de probabilidad es muy diferente si $|\rho_1|<1$ y si $|\rho_1|=1$, por lo que no podemos calcular un intervalo de confianza. EN general, se entiende que se debe diferenciar siempre que $\hat{\rho}_1>0.9$, aunque algunos autores lo recomiendan cuando $\hat{\rho}_1>0.8$.
+
+En el caso de las series con tendencia, es necesario eliminar la misma antes de obtener la autocorrelaci\'on de primer orden, ya que en otro caso tendemos a sobreestimarla.
+
 Seccion 11.3
 \sectioncol{Tratamiento de la estacionalidad en el modelo.}
+
+Muchas series econ\'omicas presenta un comportamiento estacional: sufren a lo argo del a\~no fluctuaciones debidas a la \'epoca del a\~no, y que son distintas del comportamiento global de la serie. Aunque en general las series macroecon\'omicas se publican desestacionalizadas (es decir, con el componente estacional eliminado), es \'util saber c\'omo tener en cuenta este comportamiento en el an\'alisis de regresi\'on , para el caso de que dispongamos de una serie sin desestacionalizar.
+
+En este caso, incluiremos variables ficticias para tener en cuenta la estacionalidad en las variables dependientes, en las variables independientes o en ambas.
+
+Para aplicar este m\'etodo debemos suponer que los patrones estacionales son m\'as o menos constantes a lo largo del tiempo. Ajustar\'iamos el siguiente modelo:
+
+\[y_t=\beta_0+\sum_{i=2}^{12}\delta_id_{it}+\sum_{i=1}^k\beta_ix_{it}\]
+
+Con $d_{it}=1$ si el mes coincide con $i$, y cero en caso contrario. En este caso, enero es el mes base. Si no hubiera estacionalidad, los par\'ametros $\delta_i$ ser\'ian todos iguales a cero, cosa que se puede contrastar con un contraste $F$.
+
+Si los datos son trimestrales, incluiremos variables ficticias para tres de los cuatro trimestres. Tambi\'en puede ser interesante incluir interacciones entre las variables estacionales y alguna $x_i$ para que el efecto de dichas $x_i$ sobre $y$ var\'ie a lo largo del a\~no.
+
+Igualmente que en el caso de la tendencia, esta aproximaci\'on es equivalente a regresar cada variable cntra las variables estacionales y calcular la regresi\'on para los residuos as\'i obtenidos.
+
 Seccion 10.5

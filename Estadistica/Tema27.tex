@@ -1,0 +1,365 @@
+\chapter[An\'alisis de la varianza.]{An\'alisis de la varianza. \\
+\normalsize An\'alisis de la varianza para una clasificaci\'on simple. Comprobaci\'on de las hip\'otesis iniciales del modelo. Contrastes de comparaciones m\'ultiples: m\'etodo de Tuckey y m\'etodo de Scheff\'e. An\'alisis de la varianza para una clasificaci\'on doble.}
+
+\sectioncol{Introducci\'on.}
+El an\'alisis de la varianza es un procedimiento dise\~nado para descomponer la variabilidad de un experimento en componentes que puedan asignarse a causas distintas. Se utiliza cuando tenemos un conjunto de elementos que se dividen en varios grupos diferenciados por un factor. Observamos una caracter\'istica cont\'inua que var\'ia aleatoriamente de esos elementos, y queremos conocer si el factor diferencial afecta al valor medio de la caracter\'istica en estudio.
+
+\sectioncol{An\'alisis de la varianza para una clasificaci\'on simple.}
+
+Supongamos que estamos interesados en estudiar una caracter\'istica $Y$ dentro de una poblaci\'on que se puede dividir en $m$ grupos atendiendo a un factor asociado a sus individuos. Tomamos una muestra aleatoria de tama\~no $N$, y para cada elemento registramos el valor de $Y$ y el grupo al que pertenece, obteniendo una muestra con $n_i$ elementos para el grupo $i$. Queremos averiguar si la media de $Y$ es igual para todos los grupos.
+
+Para ello, suponemos que la media de $Y$ oscila en torno a un valor $\mu$, y que cada grupo produce una variaci\'on en la media de su grupo de $\alpha_i$. Adem\'as, suponemos que la varianza del error aleatorio de observaci\'on, $\sigma^2$, es la misma para toda la poblaci\'on.
+
+Por tanto, formulamos el siguiente modelo:
+\[Y_{ij}=\mu+\alpha_i+e_{ij}\;\;\;i=1,\ldots,m,\;j=1,\ldots,n_i\]
+donde $\sum_{i=1}^{m}n_i=N$ y $e_{ij}\sim N(0,\sigma)$.
+
+En este modelo, cada elemento es como sigue:
+\begin{itemize}
+\item $Y_{ij} =$ valor de la caracter\'istica $Y$ en el individuo $j$ del grupo $i$.
+\item $\mu =$ parte del valor medio de la variable com\'un a todos los grupos.
+\item $\alpha_i = $ parte del valor medio de la variable espec\'ifico del grupo $i$.
+\item $e_{ij}=$ componentes aleatorios, independientes e id\'enticamente distribu\'idos.
+\end{itemize}
+
+Dado que el error normalmente se debe a un conjunto muy grande de factores, cada uno de los cuales influye muy poco en el error final, aplicando el teorema central del l\'imite no es muy descabellado asumir su normalidad.
+
+Es bastante importante que la selecci\'on de los individuos sea aleatoria. De esta forma protegeremos al modelo de fuentes desconocidas de variaci\'on que de otra forma podr\'ian provocar sesgos de selecci\'on y nos proveemos de una base estad\'istica para justificar las hip\'otesis asociadas al modelo.
+
+En el caso de que el factor diferenciador sea, en lugar de una caracter\'istica de los individuos, un tratamiento que se les da tras su elecci\'on, es necesarios realizar la asignaci\'on de forma aleatoria.
+
+Dado que nuestro modelo lo podemos representar como:
+\[Y_{ij}=\mu_i+e_{ij}\]
+
+donde $\mu_i=\mu+\alpha_i$ es la media de cada grupo. Por tanto, $Y_{ij}\sim N(\mu_i;\sigma)$. Queremos contrastar la hip\'otesis nula de que todos los grupos son iguales, es decir, $H_0:\mu_1=\mu_2=\cdots=\mu_a$. Si esta hip\'otesis es cierta, se podr\'an considerar nuestras observaciones como una muestra de una \'unica poblaci\'on.
+
+Nuestro modelo depende de $a+1$ par\'ametros: las $a$ medias de cada grupo, y la varianza com\'un a todos los grupos. Para estimar estos par\'ametros utilizaremos el m\'etodo de m\'axima verosimilitud. La funci\'on de densidad de una observaci\'on cualquiera ser\'a:
+
+\[f(y_{ij};\mu_i,\sigma^2)=\dfrac{1}{\sigma\sqrt{2\pi}}e^{-\dfrac{1}{2}\left(\dfrac{y_{ij}-\mu_i}{\sigma}\right)^2}\]
+
+Como por hip\'otesis las observaciones son independientes entre s\'i, la funci\'on de verosimilitud ser\'a el producto de las funciones de densidad, y su logaritmo:
+\[\ln{L(\mu_i,\sigma^2)}=-\dfrac{N}{2}\ln{\sigma^2}-\dfrac{N}{2}\ln{2\pi}-\dfrac{1}{2}\sum_{i=1}^{a}\sum_{j=1}^{n_i}\left(\dfrac{y_{ij}-\mu_i}{\sigma}\right)^2\]
+Los estimadores de m\'axima verosimilitud de las $\mu_i$ se obtienen a partir de la condici\'on \[\dfrac{\partial\ln{L}}{\partial\mu_i}=0\Leftrightarrow\sum_{j=1}^{n_i}\left(\dfrac{y_{ij}-\mu_i}{\sigma}\right)=0\]
+
+Y por tanto, $\hat{\mu_i}=\dfrac{\sum_{j=1}^{n_i}Y_{ij}}{n_i}=\bar{Y}_{i.}$.
+
+Para obtener el estimador de la varianza, nos basamos en:
+
+\[\dfrac{\partial\ln{L}}{\partial\sigma^2}=0\Leftrightarrow-\dfrac{N}{2\sigma^2}+\dfrac{\sum_{i=1}^{a}\sum_{j=1}^{n_i}\left(y_{ij}-\mu_i\right)^2}{2\sigma^4}=0\]
+
+Y por tanto:
+\[\hat{\sigma}^2=\dfrac{\sum_{i=1}^{a}\sum_{j=1}^{n_i}\left(y_{ij}-\mu_i\right)^2}{N}=\dfrac{\sum_{i=1}^{a}\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{i.}\right)^2}{N}=\sum_{i=1}^{a}\dfrac{n_i-1}{N}S_i^2\]
+
+Siendo $S_i^2$ la cuasivarianza muestral de cada grupo. As\'i, el estimador de la varianza es la media ponderada de la cuasivarianza muestral de cada grupo.
+
+Los residuos del modelo, definidos como $e_{ij}=Y_{ij}-\hat{\mu}_{i}$ se pueden interpretar como los estimadores de las perturbaciones. Estos residuos no son independientes, ya que est\'an sometidos a las restricciones que se derivan de la estimaci\'on de los par\'ametros, es decir, ya que $\hat{\mu_i}=\dfrac{\sum_{j=1}^{n_i}Y_{ij}}{n_i}=\bar{Y}_{i.}$, $\sum_{j=1}^{n_i}e_{ij}=\sum_{j=1}^{n_i}Y_{ij}-n_i\bar{Y}_{i.}=0$. Por tanto, existen $N-a$ residuos no determinados a priori. A este n\'umero lo llamamos grados de libertad de los residuos.
+
+Como $E[\bar{Y}_{i.}]=\dfrac{\sum_{j=1}^{n_i}E[Y_{ij}]}{n_i}=\mu_i$, $V[\bar{Y}_{i.}]=\dfrac{\sum_{j=1}^{n_i}V[Y_{ij}]}{n_i^2}=\dfrac{\sigma^2}{n_i}$, tenemos que $[\bar{Y}_{i.}\sim N\left(\mu_i;\dfrac{\sigma^2}{n_i}\right)$.
+
+Como $\sum_{i=1}^{a}\sum_{j=1}^{n_i}e_{ij}^2=\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{i.})^2=N\hat{\sigma}^2$,
+\[\dfrac{N\hat{\sigma}^2}{\sigma^2}=\sum_{i=1}^{a}\sum_{j=1}^{n_i}\left(\dfrac{y_{ij}-\bar{Y}_{i.}}{\sigma}\right)^2\sim\sum_{i=1}^{a}\chi^2_{n_i-1}=\chi^2_{N-a}\]
+
+Gracias a la propiedad reproductiva de la $\chi^2$, y a que las observaciones son independientes.
+
+Como $E[\dfrac{N\hat{\sigma}^2}{\sigma^2}]=N-a$, $E[\hat{\sigma}^2=\dfrac{N-a}{N}\sigma^2$, por lo que el estimador es sesgado. Un estimador insesgado ser\'a lo que llamamos varianza residual: $\hat{S}_R^2=\dfrac{N}{N-a}\hat{\sigma}^2=\dfrac{\sum_{i=1}^{a}\sum_{j=1}^{n_i}e_{ij}^2}{N-a}$, y su distribuci\'on ser\'a proporcional a una $\chi^2$ con $N-a$ grados de libertad.
+
+Queremos contrastar la hip\'otesis nula de uqe los grupos son estad\'isticamente id\'enticos. Dado que por hip\'otesis su varianza es la misma, esto implicar\'a que a partir de nuestras $a$ muestras aleatorias simples tendremos que contrastar la siguiente hip\'otesis nula:
+\[H_0:\alpha_1=\alpha_2=\cdots=\alpha_a\]
+frente a la hip\'otesis alternativa de que no todas las medias espec\'ificas son iguales.
+O, de forma equivalente:
+\[H_0:\mu_1=\mu_2=\cdots=\mu_a\]
+frente a $H_1:$ al menos dos $\mu_i$ son distintas.
+
+Para facilitar los c\'alculos vamos a introducir la siguiente notaci\'on:
+\begin{itemize}
+\item \textbf{Tama\~no muestral global:} $N=\sum_{i=1}^an_i$.
+\item \textbf{Media muestral $i$-\'esima:} $\bar{Y}_{i.}=\dfrac{1}{n_i}\sum_{j=1}^{n_i}Y_{ij}$.
+\item \textbf{Total muestral $i$-\'esimo:} $Y_{i.}=n_i\bar{Y}_{i.}=\sum_{j=1}^{n_i}Y_{ij}$.
+\item \textbf{Media muestral global:} $\bar{Y}_{..}=\dfrac{1}{N}\sum_{i=1}^a\sum_{j=1}^{n_i}Y_{ij}=\sum_{i=1}^a\dfrac{n_i}{N}\bar{Y}_{i.}$.
+\item \textbf{Total muestral global:} $Y_{..}=N\bar{Y}_{..}=\sum_{i=1}^a\sum_{j=1}^{n_i}Y_{ij}=\sum_{i=1}^an_i\bar{Y}_{i.}$.
+\item \textbf{Cuasivarianza muestral $i$-\'esima:} $S_i^2=\dfrac{1}{n_i-1}\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{i.}\right)^2$.
+\item \textbf{Suma de cuadrados de las observaciones a sus medias grupales:} $SCE=\sum_{i=1}^a(n_i-1)S_i^2=\sum_{i=1}^a\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{i.}\right)^2$.
+
+Esta cantidad es una medida de las variaciones dentro de cada grupo debida a la aleatoriedad, es decir, no explicada por el modelo. Coincide con la suma de los residuos.
+
+\item \textbf{Suma de cuadrados de las medias grupales a la media total:} $SCTR=\sum_{i=1}^an_i\left(\bar{Y}_{i.}-\bar{Y}_{..}\right)^2$.
+
+Esta cantidad es una medida de la variabilidad de los datos debida a su pertenencia a grupos distintos, es decir, explicada por el modelo.
+\item \textbf{Suma de cuadrados total:} $SCT=\sum_{i=1}^a\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{..}\right)^2$.
+
+Esta cantidad es una medida de la variabilidad total de los datos.
+
+\item \textbf{Media de cuadrados del error:} $MCE=\dfrac{SCE}{N-a}$.
+\item \textbf{Media de cuadrados de los tratamientos:} $MCTR=\dfrac{SCTR}{a-1}$.
+
+\end{itemize}
+
+Podemos demostrar varios resultados:
+
+\textbf{Resultado 1:} $SCT=SCE+SCTR$:
+\begin{align*}
+SCT=\sum_{i=1}^a\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{..}\right)^2=&\sum_{i=1}^a\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{i.}+\bar{Y}_{i.}-\bar{Y}_{..}\right)^2=\\
+=\sum_{i=1}^a\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{i.}\right)^2+\sum_{i=1}^a\sum_{j=1}^{n_i}\left(\bar{Y}_{i.}-\bar{Y}_{..}\right)^2+&2\sum_{i=1}^a\left(\bar{Y}_{i.}-\bar{Y}_{..}\right)\sum_{j=1}^{n_i}\left(Y_{ij}-\bar{Y}_{i.}\right)=SCTR+SCE
+\end{align*}
+
+\textbf{Resultado 2:} Se verifican las siguientes igualdades:
+\begin{itemize}
+\item $E[SCE]=(N-a)\sigma^2$.
+\[E[SCE]=\sum_{i=1}^aE[(n_i-1)S_i^2]=\sigma^2\sum_{i=1}^aE[\dfrac{(n_i-1)S_i^2}{\sigma^2}]=\sigma^2\sum_{i=1}^aE[\chi_{n_i-1}^2]=\sigma^2\sum_{i=1}^a(n_i-1)=(N-a)\sigma^2\]
+\item $E[SCTR]=(a-1)\sigma^2+\sum_{i=1}^an_i(\alpha_i-\bar{\alpha})^2$, donde $\bar{\alpha}=\sum_{i=1}^a\dfrac{n_i}{N}\alpha_i$.
+\begin{align}
+E[SCTR]=E[\sum_{i=1}^an_i(\bar{Y}_{i.}-\bar{Y}_{..})^2]=&\sum_{i=1}^aE[n_i\bar{Y}_{i.}^2]+\sum_{i=1}^an_iE[\bar{Y}_{..}^2]-2E[\sum_{i=1}^an_E[\bar{Y}_{i.}\bar{Y}_{..}]=\sum_{i=1}^aE[n_i\bar{Y}_{i.}^2]+NE[\bar{Y}_{..}^2]-2NE[\bar{Y}_{..}^2]=\\
+=\sum_{i=1}^an_iE[\bar{Y}_{i.}^2]-NE[\bar{Y}_{..}^2]=&\sum_{i=1}^an_i(\dfrac{\sigma^2}{n_i}+(\mu+\alpha_i)^2)-N\left[\dfrac{\sigma^2}{N}+\left(\sum_{i=1}^a\dfrac{n_i}{N}(\mu+\alpha_i)\right)^2\right]=(a-1)\sigma^2+\sum_{i=1}^an_i(\mu+\alpha_i)^2-N\left(\sum_{i=1}^a\dfrac{n_i}{N}(\mu+\alpha_i)\right)^2
+\end{align}
+\[E[\bar{Y}_{i.}^2]=V[\bar{Y}_{i.}]+E[\bar{Y}_{i.}]^2=\dfrac{\sigma^2}{n_i}+(\mu+\alpha_i)^2\]
+\[E[\bar{Y}_{..}^2]=V[\bar{Y}_{..}]+E[\bar{Y}_{..}]^2=\dfrac{\sigma^2}{N}+\left(\sum_{i=1}^a\dfrac{n_i}{N}(\mu+\alpha_i)\right)^2\]
+\item $E[SCT]=(N-1)\sigma^2+\sum_{i=1}^an_i(\alpha_i-\bar{\alpha})^2$. Se deduce de las dos anteriores y de que $SCT=SCE+SCTR$.
+\end{itemize}
+
+Como consecuencia de estos resultados, $E[MCE]=\sigma^2$, y por tanto $MCE$ ser\'a un estimador insesgado de la varianza; tambi\'en $E[S_i^2]=\sigma^2$, y tambi\'en son estimadores insesgados, aunque menos precisos por contar con menos observaciones.
+
+Definimos el estad\'istico:
+\[F=\dfrac{MCTR}{MCE}=\dfrac{SCTR/(a-1)}{SCE/(N-a)}\]
+
+Si lo consideramos como un estimador del siguiente cociente:
+\[R^{*}=\dfrac{E[MCTR]}{E[MCE]}=1+\dfrac{1}{(a-1)\sigma^2}\sum_{i=1}^an_i(\alpha_i-\bar{\alpha})^2\]
+
+Bajo la hip\'otesis nula, $R^{*}=1$ y bajo la hip\'otesis alternativa $R^{*}>1$. Un contraste basado en $F$ deber\'a rechazar la hip\'otesis nula si $F$ es grande. Para conocer la regi\'on cr\'itica de este contraste deberemos averiguar la distribuci\'on de $F$.
+
+\textbf{Resultado 3:} Bajo la hip\'otesis nula, $F\sim F_{a-1;N-a}$
+
+Gracias al teorema de Fisher, sabemos que $\bar{Y}_{i.}$ y $S_i^2$ son independientes. Como $\bar{Y}_{..}=\sum_{i=1}^a\dfrac{n_i}{N}\bar{Y}_{i.}$, tambi\'en ser\'a independiente de las $S_i^2$. Por tanto, $SCE$ y $SCTR$ son independientes.
+\[\dfrac{SCE}{\sigma^2}=\sum_{i=1}^a\dfrac{(n_i-1)S_i^2}{\sigma^2}\]
+
+Y como $\dfrac{(n_i-1)S_i^2}{\sigma^2}\sim\chi^2_{n_i-1}$ y la $\chi^2$ es reproductiva, 
+$\dfrac{SCE}{\sigma^2}\sim\chi^2_{N-a}$.
+
+\[\dfrac{SCTOT}{\sigma^2}=\dfrac{1}{\sigma^2}\sum_{i=1}^a\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{..})^2=\dfrac{(N-1)S^2}{\sigma^2}\sim\chi^2{N-1}\]
+
+Si se cumple la hip\'otesis nula. Y como $\dfrac{SCTOT}{\sigma^2}=\dfrac{SCE}{\sigma^2}+\dfrac{SCTR}{\sigma^2}$, y por la propiedad reproductiva de la $\chi^2$, $\dfrac{SCTR}{\sigma^2}\sim\chi^2_{a-1}$. As\'i, tenemos que:
+\[F=\dfrac{SCTR/\sigma^2(a-1)}{SCE/\sigma^2(N-a)}=\dfrac{\chi^2_{a-1}/(a-1)}{\chi^2_{N-a}/(N-a)\sim F_{a-1;N-a}}\]
+
+Si realizamos el contraste mediante la regi\'on cr\'itica, rechazamos $H_0$ con un nivel de significaci\'on $1-\alpha$ si $F\in RC$, siendo:
+\[RC=\{F>F_{a-1,N-a;\alpha}\}, \text{ con } P[F_{a-1,N-a}>F_{a-1,N-a;\alpha}]=\alpha\]
+Si realizamos el contraste mediante el p-valor, rechazamos $H_0$ con un nivel de significaci\'on $1-\alpha$ si el $p-$valor es $p\leq\alpha$, siendo:
+\[p=P[F_{a-1,N-a}>F]\]
+
+Estos resultados se suelen resumir en la tabla ANOVA, de esta forma:
+\\[10pt]
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\begin{tabular}[c]{@{}l@{}}Fuente de \\ variaci\'on\end{tabular} & G. de L.     & Suma de Cuadrados                                                                                 & Media                           & F                                                  \\ \hline
+Factor  & a-1 & $\displaystyle\sum_{i=1}^an_i(\bar{Y}_{i.}-\bar{Y}_{..})^2$                             & $\displaystyle\dfrac{SCTR}{a-1}$ & $\displaystyle F=\dfrac{SCTR/(a-1)}{SCE/(N-a)}$            \\
+Error & N-a & $\displaystyle\sum_{i=1}^a\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{i.})^2$                                   & $\displaystyle\dfrac{SCE}{N-a}$          &                                                    \\ \hline
+Total & N-1 & $\displaystyle\sum_{i=1}^a\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{..})^2$                                   &                                 &                                                    \\ \hline
+\end{tabular}
+
+
+Se define el \textbf{coeficiente de determinaci\'on}, $R^2$ como:
+\[R^2=\dfrac{SCTR}{SCT}\]
+
+Y se utiliza como una medida de la variabilidad explicada por los grupos.
+
+\sectioncol{Comprobaci\'on de las hip\'otesis iniciales del modelo.}
+
+En el contraste que hemos realizado nos hemos basado en las siguientes hip\'otesis iniciales:
+
+\begin{itemize}
+\item Los t\'erminos de error presentan una distribuci\'on normal.
+\item Los t\'erminos de error son aleatorios e independientes entre s\'i.
+\item Los t\'erminos de error ienen todos la misma varianza (homoscedasticidad.)
+\end{itemize}
+
+Por tanto, ser\'a conveniente contrastar si estos supuestos se cumple, ya que en caso contrario no podremos utilizar los resultados aqu\'i vistos. En general, dado que estas hip\'otesis hacen referencia a los t\'erminos de error, se utilizan los residuos para contrastarlas, dado que los residuos se pueden ver como una muestra aleatoria de una variable con distribuci\'on normal con media cero y varianza constante.
+
+Hemos definido los residuos como la diferencia entre el valor esperado de la variable y el observado, es decir, dado que $Y_{ij}=\mu+\alpha_i+e_{ij}$, podemos definir $\hat{Y}_{ij}=\hat{\mu}+\hat{\alpha}_i$, usando como estimadores de $\mu$ y $\alpha_i$ las medias correspondientes. Por tanto, podemos calcular los residuos como $\hat{e}_{ij}=Y_{ij}-\bar{Y}_{i.}$.
+
+Para comprobar los supuestos del modelo podemos utilizar pruebas anal\'iticas y gr\'aficas. Las pruebas gr\'aficsa se utilizan porque, pese a que no son exactas, en la mayor\'ia de los casos proporcionan evidencia suficiente y son m\'as intuitivas. SI las pruebas gr\'aficas no fuesen concluyentes, se pueden utilizar las anal\'iticas.
+
+\subsectioncol{Supuesto de normalidad.}
+
+Para comprobar gr\'aficamente el supuesto de normalidad, se dibuja con los residuos una gr\'afica de probabilidad normal. Para dibujar esta gr\'afica se ordenan los residuos de menor a mayor, $r_1,r_2,\ldots,r_N$, y para cada residuo se calcula e valor $\dfrac{i-0,5}{N}$, siendo $i$ el puesto que ocupa el residuo en la ordenaci\'on. Para estos valores se obtiene un valor $Z_i$ tal que $P(Z<Z_i)=\dfrac{i-0,5}{N}$, con $Z$ siguiendo una distribuci\'on normal est\'andar. Acto seguido, se representan los pares $(r_i, Z_i)$.
+
+Si los residuos provienen de una distribuci\'on normal, deber\'an tender a alinearse en una l\'inea recta. Si claramente no se alinean, se puede concluir que la hip\'otesis de normalidad no se cumple.
+
+Para contrastar la normalidad de forma anal\'itica, se pueden usar contrastes de bondad del ajuste como el chi-cuadrado o el de Kolmogorov-Smirnof, o el contraste de normalidad de Shapiro-Wilks.
+
+\subsectioncol{Supuesto de varianza constante.}
+
+Para comprobar gr\'aficamente esta hip\'otesis se puede recurrir a un gr\'afico que represente en el eje de las $x$ los valores predichos y en el de las $y$ los residuos. Si la gr\'afica se distribuye de manera aleatoria, sin ning\'un patr\'on claro en el eje horizontal podremos inferir que las varianzas son constantes. Si por el contrario presenta alguna estructura, ser\'a se\~nal de que no se cumple el supuesto.
+
+Para contrastar de forma anal\'itiva la igualdad de varianzas se utiliza el \textbf{contraste de Bartlett}, que contrasta la hip\'otesis nula $H_0:\sigma_1^2=\sigma_2^2=\cdots=\sigma_a^2$ contra la hip\'otesis alternativa de que existen $i\neq j$ tales que $\sigma_i^2\neq\sigma_j^2$. Para ello utiliza el estad\'istico $\chi^2_0=2.3026\dfrac{q}{c}$ con:
+\[q=(N-a)\log_{10}{\dfrac{SCE}{N-a}}-\sum_{i=1}^a(n_i-1)\log_{10}{S_i^2}\]
+\[c=1+\dfrac{1}{3(a-1)\left(\sum_{i=1}^a(n_i-1)^{-1}-(N-k)^{-1}\right)}\]
+
+Bajo la hip\'otesis nula, $\chi^2_0\sim\chi^2_{a-1}$ y la regi\'on cr\'itica es de la forma
+\[C=\{\chi^2_0>chi^2_{a-1;\alpha}\}\]
+
+Este contraste es sensible a la falta de normalidad de las poblaciones de inter\'es, por lo que previamente deberemos comprobar dicha hip\'otesis.
+
+\subsectioncol{Supuesto de independecia.}
+
+Para comprobar este supuesto gr\'aficamente basta con representar los residuos frente al orden en que se han obtenido las observaciones. Si esta gr\'afica presenta alg\'un patr\'on no aleatorio, existe evidencia de correlaci\'on entre los errores, y por tanto las hip\'otesis del modelo no se cumplen.
+
+Un contraste anal\'itico para comprobar la independencia de los residuos es el contraste de Durbin-Watson, aunque tiene el inconveniente de que solo contrasta la correlaci\'on entre residuos contiguos, y no detecta otros patrones.
+
+\sectioncol{Contrastes de comparaciones m\'ultiples: m\'etodo de Tuckey y m\'etodo de Scheff\'e.}
+
+Una vez hemos aplicado nuestro contraste, se pueden dar dos casos: que no rechacemos la hip\'otesis nula, en cuyo caso el procedimiento se da por finalizado y no podemos decir que los factores sean distintos, o que rechacemos la hip\'otesis nula. En este caso, sabemos que al menos un tratamiento tiene media distinta de los dem\'as, y nos interesar\'a discriminar cuales tienen medias distintas y cuales tienen medias iguales.
+
+Veremos varios m\'etodos para encontrar estos niveles con diferencias.
+
+\subsectioncol{M\'etodo de la diferencia m\'inima significativa de Fisher.}
+
+En este m\'etodo se utiliza el estad\'istico $F$. Sabemos que para cualesquiera dos medias el estad\'istico:
+
+\[t_0=\dfrac{\bar{Y}_{i.}-\bar{Y}_{j.}}{\sqrt{MCE\left(\dfrac{1}{n_i}+\dfrac{1}{n_j}\right)}}\]
+
+Que sigue una distibuci\'on $t$ de Student con $N-a$ grados de libertad. Por tanto, siempre que se cumpla que:
+
+\[|\bar{Y}_{i.}-\bar{Y}_{j.}|>t_{N-k;\alpha/2}\sqrt{MCE\left(\dfrac{1}{n_i}+\dfrac{1}{n_j}\right)}\]
+
+Podremos decir que la diferencia entre las medias es significativamente diferente de cero, y podremos rechazar la hip\'otesis nula de que las medias son iguales. Repitiendo este proceso para las $a(a-1)/2$ parejas de niveles del factor, vemos cuales son significativamente diferentes entre s\'i.
+
+A la cantidad
+\[LSD=t_{N-k;\alpha/2}\sqrt{MCE\left(\dfrac{1}{n_i}+\dfrac{1}{n_j}\right)}\]
+se le llama \textbf{diferencia significativa m\'inima}.
+
+Este m\'etodo tiene una potencia elevada, por lo que declara significativas incluso diferencias peque\~nas.
+
+\subsectioncol{M\'etodo de Tuckey.}
+
+
+Tuckey propuso un m\'etodo para comparar medias muestrales en las que el nivel de significaci\'on global es exactamente $\alpha$ cuando los tama\~nos muestrales son iguales y es como m\'aximo $\alpha$ cuando son distintos, con lo cual no aseguramos un nivel de significaci\'on id\'entico para todas las diferencias. Se basa en la utilizaci\'on del estad\'istico del \textbf{rango studentizado}:
+
+\[q=\dfrac{\bar{Y}_{max.}-\bar{Y}_{min.}}{\sqrt{MCE/n}}\]
+
+En el que $\bar{Y}_{max.}$ y $\bar{Y}_{min.}$ son las medias muestrales m\'axima y m\'inima. La distribuci\'on de este estad\'istico est\'a tabulada, en funci\'on del nivel de significaci\'on $\alpha$, del n\'umero de grupos, $a$, y del n\'umero de grados de libertad, $N-a$. Para tama\~nos muestrales iguales, el contraste de Tuckey establece que las medias son significativamente diferentes si el valor absoluto de sus diferencias muestrales es mayor que:
+\[T_{\alpha}=q_{\alpha}(a,N-a)\sqrt{MCE/n}\]
+
+De la misma forma, se podr\'ia construir una serie de intervalos de confianza al $100(1-\alpha)\%$ para todos los pares de medias de la forma:
+\[\bar{Y}_{i.}-\bar{Y}_{j.}-q_{\alpha}(a,N-a)\sqrt{MCE/n}\leq\mu_i-\mu_j\leq\bar{Y}_{i.}-\bar{Y}_{j.}+q_{\alpha}(a,N-a)\sqrt{MCE/n}\]
+
+Si los tama\~nos muestrales no son iguales $T_{\alpha}$ es distinto para cada par de medias y queda:
+\[T_{\alpha}=\dfrac{q_{\alpha}(a,N-a)}{\sqrt{2}}\sqrt{MCE\left(\dfrac{1}{n_i}+\dfrac{1}{n_j}\right)}\]
+
+\subsectioncol{M\'etodo de Scheff\'e.}
+
+Este m\'etodo se basa en proponer un contraste sobre una combinaci\'on lineal de cualquier n\'umero de medias poblacionales, de la forma:
+\begin{align}
+H_0:&L=\sum_{i=1}^ac_i\mu_i=0\\
+H_1:&L=\sum_{i=1}^ac_i\mu_i\neq0
+\end{align}
+
+donde se cumple que $\sum_{i=1}^ac_i=0$.
+
+Un estimador insesgado de $L$ ser\'a $\hat{L}=\sum_{i=1}^ac_i\bar{Y}_{i.}$. Su varianza ser\'a:
+\[Var(\hat{L})=\sigma^2\sum_{i=1}^a\dfrac{c_i^2}{n_i}\]
+
+Y un estimador insesgado de la varianza ser\'a:
+\[S^2(\hat{L})=\dfrac{SCE}{N-a}\sum_{i=1}^a\dfrac{c_i^2}{n_i}\]
+
+Y como $\hat{L}$ tiene una distribuci\'on normal, por ser combinaci\'on lineal de variables normales, se puede demostrar que:
+\[\dfrac{(\hat{L}-L)^2}{(a-1)S^2(\hat{L})}\sim F_{a-1;N-a}\]
+
+Y por tanto, se puede calcular un intervalo de confianza al $100(1-\alpha)\%$ del valor de $L$ a partir de la expresi\'on:
+\[\dfrac{(\hat{L}-L)^2}{(a-1)S^2(\hat{L})}> F_{a-1,N-a:\alpha}\]
+
+Y la regi\'on cr\'itica del contraste ser\'a: 
+\[C=\left\{|\hat{L}|>\sqrt{(a-1)S^2(\hat{L})F_{a-1,N-a:\alpha}}\right\}\]
+\[C=\left\{|\hat{L}|>\sqrt{(a-1)F_{a-1,N-a:\alpha}\left(\dfrac{SCE}{N-a}\sum_{i=1}^a\dfrac{c_i^2}{n_i}\right)}\right\}\]
+
+Muchas veces nos encontramos con la dificultad de no saber a priori que contrastes pueden ser interesantes para nuestro caso particular. Scheff\'e ha propuesto un m\'etodo para comparar todos los posibles contrastes, asegurando que el error de tipo I es a lo sumo $\alpha$ en todos los casos.
+
+Supongamos que determinamos un conjunto de $m$ contrastes:
+\[L_u=\sum_{i=1}^ac_{iu}\mu_i\;\;\;u=1,2,\ldots,m\]
+Con sus correspondientes estimadores:
+\[\hat{L}_u=\sum_{i=1}^ac_{iu}\bar{Y}_{i.}\;\;\;u=1,2,\ldots,m\]
+
+El estimador de la varianza de estos estimadores ser\'a:
+\[S^2(\hat{L}_u)=\dfrac{SCE}{N-a}\sum_{i=1}^a\dfrac{c_{iu}^2}{n_i}\]
+
+Y las regiones cr\'iticas:
+\[C_u=\left\{|\hat{L}_u|>\sqrt{(a-1)F_{a-1,N-a:\alpha}\left(\dfrac{SCE}{N-a}\sum_{i=1}^a\dfrac{c_{iu}^2}{n_i}\right)}\right\}\]
+
+Tambi\'en podemos definir los intervalos de confianza simult\'aneos:
+\[\hat{L}_u-\sqrt{(a-1)F_{a-1,N-a:\alpha}\left(\dfrac{SCE}{N-a}\sum_{i=1}^a\dfrac{c_{iu}^2}{n_i}\right)}\leq L_u\leq\hat{L}_u+\sqrt{(a-1)F_{a-1,N-a:\alpha}\left(\dfrac{SCE}{N-a}\sum_{i=1}^a\dfrac{c_{iu}^2}{n_i}\right)}\]
+Que tendr\'an una probabilidad de ser verdaderos simult\'aneamente de al menos $1-\alpha$.
+
+\sectioncol{An\'alisis de la varianza para una clasificaci\'on doble.}
+
+Hasta ahora hemos visto el an\'alisis de la varianza intentando discriminar los efectos de un solo factor. Ahora vamos a ver c\'omo analizar la influencia de dos factores distintos. Analizaremos un modelo equilibrado (todas las submuestras tienen el mismo tama\~no) de efectos fijos (todos los posibles valores de los factores se observan en el experimento).
+
+El modelo matem\'atico en el que nos basamos es el siguiente:
+
+\[Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}+e_{ijk}\]
+
+Donde:
+\begin{itemize}
+\item $Y_{ijk}$ es el valor de la variable en estudio en el individuo $k$-\'esimo con el valor $i$ para el primer factor y el valor $j$ para el segundo factor.
+\item $\mu$ Es la media total de la variable en estudio.
+\item $\alpha_i$ es el efecto del nivel $i$-\'esimo del primer factor.
+\item $\beta_j$ es el efecto del nivel $j$-\'esimo del segundo factor.
+\item $(\alpha\beta)_{ij}$es el efecto de la interacci\'on entre el nivel $i$-\'esimo del primer factor y el nivel $j$-\'esimo del segundo factor.
+\item $e_{ijk}$ es el valor del error aleatorio en el individuo $k$-\'esimo con el valor $i$ para el primer factor y el valor $j$ para el segundo factor.
+\end{itemize} 
+
+En general tenemos $a$ niveles del factor uno, $b$ niveles del factor 2, y $ab$ muestras aleatorias, una por cada combinaci\'on de niveles, todas del mismo tama\~no, $n$.
+
+Adem\'as,
+\[\sum_{i=1}^a\alpha_i=\sum_{j=1}^b\beta_j=\sum_{i=1}^a(\alpha\beta)_i=\sum_{j=1}^b(\alpha\beta)_j=0\]
+
+Y las $e_{ijk}$ son variables aleatorias independientes id\'enticamente distribuidas seg\'un una distribuci\'on $N(0,\sigma^2)$.
+
+El modelo tambi\'en se puede representar como $Y_{ijk}=\mu_{ij}+e_{ijk}$, con $\mu_{ij}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}$, y por tanto, $Y_{ijk}\sim N(\mu_{ij},\sigma^2)$.
+
+Queremos contrastar la hip\'otesis nula:
+\[H_0:\mu_{11}=\mu_{12}=\cdots=\mu_{ab}\]
+frente a la hip\'otesis alternativa, $H_0$ de que no todas las $\mu_{ij}$ son iguales.
+
+No rechazar la hip\'otesis nula equivale a no rechazar las siguientes hip\'otesis de forma simult\'anea:
+\begin{itemize}
+\item $H_0^{\prime}$: No hay diferencias entre los distintos niveles del factor $A$.
+\item $H_0^{\prime\prime}$: No hay diferencias entre los distintos niveles del factor $B$.
+\item $H_0^{\prime\prime\prime}$: No hay diferencias debidas a la interacci\'on entre los factores $A$ y $B$.
+\end{itemize}
+
+Introducimos la siguiente notaci\'on:
+
+\begin{itemize}
+\item \textbf{Suma de cuadrados residuales (o de errores):} $SCE=\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(Y_{ijk}-\bar{Y}_{ij.})^2$.
+\item \textbf{Suma de cuadrados entre niveles del factor A:} $SCTR_A=\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(\bar{Y}_{i..}-\bar{Y}_{...})^2$.
+\item \textbf{Suma de cuadrados entre niveles del factor B:} $SCTR_B=\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(\bar{Y}_{.j.}-\bar{Y}_{...})^2$.
+\item \textbf{Suma de cuadrados entre las interacciones:} $SCTR_{AB}=\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(\bar{Y}_{ij.}-\bar{Y}_{i..}-\bar{Y}_{.j.}+\bar{Y}_{...})^2$.
+\item \textbf{Suma de cuadrados Total:} $SCTR=\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(Y_{ijk}-\bar{Y}_{...})^2$.
+\item \textbf{Media de cuadrados del error:} $MCE=\dfrac{SCE}{ab(n-1)}$
+\item \textbf{Media de cuadrados entre niveles del factor A:} $MCTR_A=\dfrac{SCTR_A}{a-1}$.
+\item \textbf{Media de cuadrados entre niveles del factor B:} $MCTR_B=\dfrac{SCTR_B}{b-1}$.
+\item \textbf{Media de cuadrados entre las interacciones:} $MCTR_{AB}=\dfrac{SCTR_{AB}}{(a-1)(b-1)}$.
+\item \textbf{Suma de cuadrados Total:} $SCTR=\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(Y_{ijk}-\bar{Y}_{...})^2$.
+\end{itemize}
+
+Se verifica que $SCTR=SCTR_A+SCTRB+SCTR_{AB}+SCE$. La tabla ANOVA correspondiente a un modelo de dos factores ser\'ia:
+\\[10pt]
+
+%%\begin{table}[]
+%%\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\begin{tabular}[c]{@{}l@{}}Fuente de \\ variaci\'on\end{tabular} & G. de L.     & Suma de Cuadrados                                                                                 & Media                           & F                                                  \\ \hline
+Factor A                                                         & a-1        & $\displaystyle\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(\bar{Y}_{i..}-\bar{Y}_{...})^2$                             & $\displaystyle\dfrac{SCTR_A}{a-1}$           & $\displaystyle F_A=\dfrac{SCTR_A/(a-1)}{SCE/ab(n-1)}$            \\
+Factor B                                                         & b-1        & $\displaystyle\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(\bar{Y}_{.j.}-\bar{Y}_{...})^2$                             & $\displaystyle\dfrac{SCTR_B}{b-1}$           & $\displaystyle F_B=\dfrac{SCTR_B/(b-1)}{SCE/ab(n-1)}$            \\
+Factor AB                                                        & (a-1)(b-1) & $\displaystyle\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(\bar{Y}_{ij.}-\bar{Y}_{i..}-\bar{Y}_{.j.}+\bar{Y}_{...})^2$ & $\displaystyle\dfrac{SCTR_{AB}}{(a-1)(b-1)}$ & $\displaystyle F_{AB}=\dfrac{SCTR_{AB}/(a-1)(b-1)}{SCE/ab(n-1)}$ \\
+Error                                                            & ab(n-1)    & $\displaystyle\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(Y_{ijk}-\bar{Y}_{ij.})^2$                                   & $\displaystyle\dfrac{SCE}{ab(n-1)}$          &                                                    \\ \hline
+Total                                                            & abn-1      & $\displaystyle\sum_{i=1}^a\sum_{j=1}^b\sum_{k=1}^n(Y_{ijk}-\bar{Y}_{...})^2$                                   &                                 &                                                    \\ \hline
+\end{tabular}
+%%\end{table}
+
+La regla de decisi\'on para el contraste de la $F$ se basa en el nivel de significaci\'on ($p$-valor):\\
+Rechazaremos $H_0^{\prime}$ si $F_A>F_{a-1,ab(n-1);\alpha}$.\\
+Rechazaremos $H_0^{\prime\prime}$ si $F_B>F_{b-1,ab(n-1);\alpha}$.\\
+Rechazaremos $H_0^{\prime\prime\prime}$ si $F_{AB}>F_{(a-1)(b-1),ab(n-1);\alpha}$.\\
+
+Si rechazamos alguna hip\'otesis nula, hay diferencias entre las medias, y se deben a los factores para los que se rechaza la hip\'otesis.
+
+Si no podemos rechazar ninguna hip\'otesis nula, no podemos afirmar que haya diferencias entre las medias, y por tanto no podemos afirmar que los factores influyan en las mismas.

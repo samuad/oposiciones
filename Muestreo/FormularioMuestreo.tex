@@ -1,0 +1,319 @@
+%% LyX 2.1.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[oneside,spanish,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2cm,rmargin=2cm}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\usepackage{units}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+\usepackage[intlimits]{amsmath}
+\usepackage[spanish]{babel} % division de silabas en español.
+\usepackage{ucs}
+\usepackage{amsfonts}
+
+\newcommand{\colsection}[1]{\section{{\color{blue} #1}}}
+\newcommand{\colsubsection}[1]{\subsection{{\color{red} #1}}}
+\newcommand{\colsubsubsection}[1]{\subsubsection{{\color{green} #1}}}
+
+\newcommand{\sectioncol}[1]{\section{{\color{blue} #1}}}
+\newcommand{\subsectioncol}[1]{\subsection{{\color{red} #1}}}
+\newcommand{\subsubsectioncol}[1]{\subsubsection{{\color{green} #1}}}
+
+\newtheorem{teorema}{Teorema}
+\newtheorem{definicion}{Definici\'on}
+\newtheorem{lema}{Lema}
+\newtheorem{corolario}{Corolario}
+\newtheorem{hipotesis}{Hip\'otesis}
+
+%opening
+\title{Oposiciones - Econometr\'ia.}
+\author{Samuel B. Alonso Diez}
+\oddsidemargin -0,04cm
+\textwidth 17cm
+\topmargin -1,04cm
+\headheight 0cm
+\textheight 25cm
+\raggedright
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+
+
+\makeatother
+
+\addto\shorthandsspanish{\spanishdeactivate{~<>}}
+
+% -----------------------------------------------------------------------
+
+
+\begin{document}
+\tableofcontents
+
+\sectioncol{Tema 1. Concepto de poblaci\'on, marco y muestra. Muestreo probabil\'istico. Distribuci\'on de un estimador en el muestreo. Error cuadr\'atico medio y sus componentes. Intervalos de confianza: Estimadores insesgados y sesgados. M\'etodos de selecci\'on. Probabilidad de la unidad de pertenecer a la muestra y propiedades. Comparaci\'on con el muestreo no probabil\'istico: Muestreo por cuotas.}
+
+\begin{itemize}
+\item \textbf{Sesgo:} $B(\hat{\theta})=E(\hat{\theta})-\theta$.
+\item \textbf{Error Cuadr\'atico Medio:} $ECM(\hat{\theta})=E\left[(\theta-\hat{\theta})^2\right]=V(\hat{\theta})+B(\hat{\theta})$.
+\end{itemize}
+
+\subsectioncol{Selecci\'on sin reemplazamiento.}
+
+Variable aleatoria a sociada:
+\[e_i=\left\{\begin{array}{ll}
+1 & \text{con probabilidad } \pi_i \\
+0 & \text{con probabilidad } 1-\pi_i 
+\end{array}\right.\]
+
+\[e_i\sim B(1,\pi_i)\]
+\[e_ie_j=\left\{\begin{array}{ll}
+1 & \text{con probabilidad } \pi_{ij} \\
+0 & \text{con probabilidad } 1-\pi_{ij} 
+\end{array}\right.\]
+
+\begin{itemize}
+\item $E(e_i)=\pi_i$.
+\item $V(e_i)=\pi_i(1-\pi_i)$.
+\item $Cov(e_i,e_j)=\pi_{ij}-\pi_i\pi_j$.
+\item $\sum_{i=1}^N\pi_i=n$.
+\item $\sum_{j\neq i}^N\pi_{ij}=(n-1)\pi_i$.
+\item $\sum_{j\neq i}^N(\pi_i\pi_j-\pi_{ij})=\pi_i(1-\pi_i)$.
+\item \textbf{Con probabilidades iguales:} $\pi_i=\dfrac{n}{N}$.
+\item \textbf{Con probabilidades iguales:} $\pi_{ij}=\dfrac{n(n-1)}{N(N-1)}$.
+\item \textbf{Con probabilidades iguales:} $E(e_i)=\dfrac{n}{N}$.
+\item \textbf{Con probabilidades iguales:} $V(e_i)=\dfrac{n}{N}(1-\dfrac{n}{N})$.
+\item \textbf{Con probabilidades iguales:} $Cov(e_i,e_j)=\dfrac{n(n-1)}{N(N-1)}-\dfrac{n^2}{N^2}$.
+
+\end{itemize}
+\subsectioncol{Selecci\'on con reemplazamiento.}
+
+Variable aleatoria a sociada: $e_i$ es el n\'umero de veces que $u_i$ aparece en a muestra.
+\[(e_1,e_2,\ldots,e_N)\sim MN(n;P_1,P_2,\ldots,P_N)\]
+
+$P_i$: probabilidad de la unidad $u_i$ de ser escogida en cada extracci\'on.
+
+\begin{itemize}
+\item $E(e_i)=nP_i$.
+\item $V(e_i)=nP_i(1-P_i)$.
+\item $Cov(e_i,e_j)=-nP_iP_j$.
+\item \textbf{Con probabilidades iguales:} $P_i=\dfrac{1}{N}$.
+\item \textbf{Con probabilidades iguales:} $E(e_i)=\dfrac{n}{N}$.
+\item \textbf{Con probabilidades iguales:} $V(e_i)=n\dfrac{1}{N}(1-\dfrac{1}{N})$.
+\item \textbf{Con probabilidades iguales:} $Cov(e_i,e_j)=-\dfrac{n}{N^2}$.
+\item \textbf{Con probabilidades desiguales:} $P_i\geq0$, $\sum_{i=1}^NP_i=1$.
+
+\end{itemize}
+
+\sectioncol{Tema 2. Muestreo con probabilidades iguales. Estimadores lineales. Varianzas de los estimadores y sus estimaciones. Comparaci\'on entre el muestreo con y sin reposici\'on. Consideraciones sobre el tama\~no de la muestra.}
+
+\subsectioncol{Estimadores lineales.}
+\paragraph{Sin reemplazamiento:}
+\begin{itemize}
+\item \textbf{Total:} $\hat{X}=\dfrac{N}{n}\sum{i=1}^nX_i$
+\item \textbf{Media:} $\hat{X}=\dfrac{1}{n}\sum{i=1}^nX_i$
+\item \textbf{Total de clase:} $\hat{A}=\dfrac{N}{n}\sum{i=1}^nX_i=Np$
+\item \textbf{Proporci\'on de clase:} $\hat{P}=\dfrac{1}{n}\sum{i=1}^nX_i=p$
+\end{itemize}
+
+\paragraph{Con reemplazamiento:}
+\begin{itemize}
+\item \textbf{Total:} $\hat{X}=\dfrac{N}{n}\sum{i=1}^nX_i$
+\item \textbf{Media:} $\hat{\bar{X}}=\dfrac{1}{n}\sum{i=1}^nX_i$
+\item \textbf{Total de clase:} $\hat{A}=\dfrac{N}{n}\sum{i=1}^nX_i=Np$
+\item \textbf{Proporci\'on de clase:} $\hat{P}=\dfrac{1}{n}\sum{i=1}^nX_i=p$
+\end{itemize}
+
+\subsectioncol{Varianza de los estimadores lineales.}
+\paragraph{Sin reemplazamiento:}
+\begin{itemize}
+\item \textbf{Total:} $V(\hat{X})=N^2(1-f)\dfrac{S^2}{n}$
+\item \textbf{Media:} $V(\hat{\bar{X}})=(1-f)\dfrac{S^2}{n}$
+\item \textbf{Total de clase:} $V(\hat{A})=N^2\dfrac{N-n}{N-1}\dfrac{PQ}{n}$
+\item \textbf{Proporci\'on de clase:} $V(\hat{P})=\dfrac{N-n}{N-1}\dfrac{PQ}{n}$
+\end{itemize}
+
+\paragraph{Con reemplazamiento:}
+\begin{itemize}
+\item \textbf{Total:} $V(\hat{X})=N^2\dfrac{\sigma^2}{n}$
+\item \textbf{Media:} $V(\hat{\bar{X}})=\dfrac{\sigma^2}{n}$
+\item \textbf{Total de clase:} $V(\hat{A})=N^2\dfrac{PQ}{n}$
+\item \textbf{Proporci\'on de clase:} $V(\hat{P})=\dfrac{PQ}{n}$
+\end{itemize}
+
+\paragraph{Errores de muestreo:}
+\begin{itemize}
+\item \textbf{Error absoluto:} $\sigma(\hat{\theta})=\sqrt{V(\hat{\theta})}$
+\item \textbf{Error relativo:} $CV(\hat{\theta})=\dfrac{\sigma(\hat{\theta})}{\theta}$
+\end{itemize}
+\subsectioncol{Estimadores de la varianza de los estimadores lineales.}
+\paragraph{Sin reemplazamiento:}
+\begin{itemize}
+\item \textbf{Total:} $\hat{V}(\hat{X})=N^2(1-f)\dfrac{s^2}{n}$
+\item \textbf{Media:} $\hat{V}(\hat{\bar{X}})=(1-f)\dfrac{s^2}{n}$
+\item \textbf{Total de clase:} $\hat{V}(\hat{A})=N^2(1-f)\dfrac{pq}{n-1}$
+\item \textbf{Proporci\'on de clase:} $\hat{V}(\hat{P})=(1-f)\dfrac{pq}{n-1}$
+\end{itemize}
+
+\paragraph{Con reemplazamiento:}
+\begin{itemize}
+\item \textbf{Total:} $\hat{V}(\hat{X})=N^2\dfrac{s^2}{n}$
+\item \textbf{Total:} $\hat{V}(\hat{X})=N^2\dfrac{s^2}{n}$
+\item \textbf{Media:} $\hat{V}(\hat{\bar{X}})=\dfrac{s^2}{n}$
+\item \textbf{Total de clase:} $\hat{V}(\hat{A})=N^2\dfrac{pq}{n-1}$
+\item \textbf{Proporci\'on de clase:} $\hat{V}(\hat{P})=\dfrac{pq}{n-1}$
+\end{itemize}
+
+\subsectioncol{Covarianza de los estimadores y su estimaci\'on.}
+\paragraph{Sin reemplazamiento:}
+\begin{itemize}
+\item \textbf{Total:} $Cov(\hat{X}, \hat{Y})=N^2(1-f)\dfrac{S_{XY}}{n}$
+\item \textbf{Total:} $\hat{Cov}(\hat{X}, \hat{Y})=N^2(1-f)\dfrac{s_{XY}}{n}$
+\item \textbf{Media:} $Cov(\hat{\bar{X}}, \hat{\bar{Y}})=(1-f)\dfrac{S_{XY}}{n}$
+\item \textbf{Media:} $\hat{Cov}(\hat{\bar{X}}, \hat{\bar{Y}})=(1-f)\dfrac{s_{XY}}{n}$
+\end{itemize}
+
+\paragraph{Con reemplazamiento:}
+\begin{itemize}
+\item \textbf{Total:} $Cov(\hat{X}, \hat{Y})=N^2\dfrac{\sigma_{XY}}{n}$
+\item \textbf{Total:} $\hat{Cov}(\hat{X}, \hat{Y})=N^2\dfrac{s_{XY}}{n}$
+\item \textbf{Media:} $Cov(\hat{\bar{X}}, \hat{\bar{Y}})=\dfrac{\sigma_{XY}}{n}$
+\item \textbf{Media:} $\hat{Cov}(\hat{\bar{X}}, \hat{\bar{Y}})=\dfrac{s_{XY}}{n}$
+\end{itemize}
+
+\sectioncol{Tema 3. Muestreo con probabilidades desiguales. Estimadores lineales. Varianza de los estimadores y sus estimaciones. Probabilidades \'optimas de selecci\'on. M\'etodos de selecci\'on con reposici\'on y sin reposici\'on y probabilidades proporcionales al tama\~no.}
+\subsectioncol{Estimadores lineales.}
+\begin{itemize}
+\item \textbf{Estimadores lineales insesgados:} $\hat{X}=\sum_{i=1}^n\dfrac{X_i}{E(e_i)}$.
+\item \textbf{Sin reemplazamiento:} $\hat{X}=\sum_{i=1}^n\dfrac{X_i}{\pi_i}$ estimador de \textbf{Horvitz-Thompson}.
+\item \textbf{Con reemplazamiento:} $\hat{X}=\sum_{i=1}^n\dfrac{X_i}{nP_i}$ estimador de \textbf{Hansen-Hurwitz}.
+\end{itemize}
+
+\subsectioncol{Varianza de los estimadores.}
+\paragraph{Sin reemplazamiento:}
+\begin{itemize}
+\item \textbf{Varianza:} $V(\hat{X})=\sum_{i=1}^N\left(\dfrac{X_i}{\pi_i}\right)^2\pi_i(1-\pi_i)+\sum_{i\neq j}^N\dfrac{X_i}{\pi_i}\dfrac{X_j}{\pi_j}(\pi_{ij}-\pi_i\pi_j)$.
+\item \textbf{Estimaci\'on:} $\hat{V}(\hat{X})=\sum_{i=1}^n\left(\dfrac{X_i}{\pi_i}\right)^2(1-\pi_i)+\sum_{i\neq j}^n\dfrac{X_i}{\pi_i}\dfrac{X_j}{\pi_j}\dfrac{(\pi_{ij}-\pi_i\pi_j)}{\pi_ij}$.
+\end{itemize}
+
+\paragraph{Con reemplazamiento:}
+\begin{itemize}
+\item \textbf{Varianza:} $V(\hat{X})=\dfrac{1}{n}\sum_{i=1}^N\left(\dfrac{X_i}{P_i}-X\right)^2P_i$.
+\item \textbf{Estimaci\'on:} $\hat{V}(\hat{X})=\dfrac{1}{n(n-1)}\sum_{i=1}^N\left(\dfrac{X_i}{P_i}-\hat{X}_{HH}\right)^2$.
+\end{itemize}
+
+
+\sectioncol{Tema 4. Estimadores no lineales. M\'etodo general de linealizaci\'on para estimaci\'on de varianzas. Aplicaci\'on al cociente de estimadores. El estimador de raz\'on: sesgo, varianza y sus estimaciones.}
+
+\subsectioncol{Linearizaci\'on para la estiamci\'on de varianzas.}
+\begin{itemize}
+\item \textbf{Desarrollo en serie de Taylor:} En el entorno de $(\theta_1,\theta_2,\ldots,\theta_k)$:
+\[\varphi(z_1,z_2,\ldots,z_k)=\varphi(\theta_1,\theta_2,\ldots,\theta_k)+\dfrac{1}{1!}\sum_{r=1}^k\left(\dfrac{\partial\varphi}{\partial\theta_r}\right)(z_r-\theta_r)+s\]
+\item Si $\theta=\varphi(\theta_1,\theta_2,\ldots,\theta_k)$ y $(\hat{\theta}_1,\hat{\theta}_2,\ldots,\hat{\theta}_k)$ son estimadores insesgados y definimos$\hat{\theta}=\varphi(\hat{\theta}_1,\hat{\theta}_2,\ldots,\hat{\theta}_k)$, aplicando Taylor:
+\[\hat{\theta}=\theta+\sum_{r=1}^k\left(\dfrac{\partial\varphi}{\partial\theta_r}\right)(\hat{\theta}_r-\theta_r)+s\]
+\item Despreciando $s$ nos queda:
+\[\hat{\theta}\approx\theta+\sum_{r=1}^k\left(\dfrac{\partial\varphi}{\partial\theta_r}\right)(\hat{\theta}_r-\theta_r)\]
+\item $E(\hat{\theta})\approx\theta$.
+\item $V(\hat{\theta})\approx\sum_{r=1}^k\left(\dfrac{\partial\varphi}{\partial\theta_r}\right)^2V(\hat{\theta}_r)+\sum_{r\neq s}^k\left(\dfrac{\partial\varphi}{\partial\theta_r}\right)\left(\dfrac{\partial\varphi}{\partial\theta_s}\right)Cov(\hat{\theta}_r,\hat{\theta}_s)$
+\end{itemize}
+
+\subsectioncol{Estimador de raz\'on.}
+\begin{itemize}
+\item \textbf{Estimador de raz\'on:} $\hat{R}=\dfrac{\hat{X}}{\hat{Y}}$, $\hat{X}_R=\hat{R}Y$, $\hat{\bar{X}}_R=\hat{R}\bar{Y}$.
+\item Aplicando linearizaci\'on, $E(\hat{R})\approx R$, $V(\hat{R})\approx R^2\left[CV^2(\hat{X})+CV^2(\hat{Y})-2C(\hat{X},\hat{Y})\right]$.
+\item \textbf{Sesgo del estimador:} $B(\hat{R})=E(\hat{R})-R=-\dfrac{1}{Y}Cov(\hat{R},\hat{Y})$.
+\item \textbf{Acotaci\'on del sesgo:} $\left|\dfrac{B(\hat{R})}{\sigma(\hat{R})}\right|\leq CV(\hat{Y})$.
+\item \textbf{Aproximaci\'on del sesgo:} $B(\hat{R})\approx R\left[CV^2(\bar{y})-C(\bar{x},\bar{y})\right]$
+\item \textbf{Estimaci\'on del sesgo:} $\hat{B}(\hat{R})\approx R\left[\hat{CV}^2(\bar{y})-\hat{C}(\bar{x},\bar{y})\right]$, $\hat{CV}^2(\bar{y})=\dfrac{1-f}{n}\dfrac{s^2_y}{\bar{y}^2}$, $\hat{C}^2(\bar{x},\bar{y})=\dfrac{1-f}{n}\dfrac{s_{xy}}{\bar{x}\bar{y}}$.
+\item Si el sesgo es despreciable, $V(\hat{R})\approx \dfrac{1-f}{n}\dfrac{1}{\bar{Y}^2}\left[S_X^2+R^2S_Y^2-2RS_{XY}\right]$, $\hat{V}(\hat{R})\approx \dfrac{1-f}{n}\dfrac{1}{\bar{y}^2}\left[s_X^2+\hat{R}^2s_Y^2-2\hat{R}s_{XY}\right]$.
+\end{itemize}
+
+\sectioncol{Tema 5. Estimador de regresi\'on en el muestreo aleatorio simple. Sesgo, varianza y sus estimaciones. Comparaciones con el estimador de raz\'on y con el de expansi\'on. El estimador diferencia.}
+
+\subsectioncol{Estimador de regresi\'on.}
+\begin{itemize}
+\item \textbf{Estimador de regresi\'on:} $\hat{X}_{rg}=\hat{X}+b(Y-\hat{Y})$, $\hat{\bar{X}}_{rg}=\hat{\bar{X}}+b(\bar{Y}-\hat{\bar{Y}})$.
+\item \textbf{Sesgo del estimador:} $B(\hat{X}_{rg})=E(\hat{X}_{rg})-X=-Cov(b,\hat{Y})$. SI haceos $b=b_0$ constante, es insesgado.
+\item \textbf{Varianza:} $V(\hat{X}_{rg})=N^2\dfrac{1-f}{n}\left[S_X^2+b_0^2S_Y^2-2b_0S_{XY}\right]$, $\hat{V}(\hat{X}_{rg})=N^2\dfrac{1-f}{n}\left[s_X^2+b_0^2s_Y^2-2b_0s_{XY}\right]$.
+\item si $b_0=\dfrac{S_{XY}}{S_Y^2}$ (coeficiente de regresi\'on lineal de $X$ sobre $Y$), $V_{min}(\hat{X}_{rg})=N^2\dfrac{1-f}{n}S_X^2\left[1-\rho^2\right]$
+\end{itemize}
+\subsectioncol{Estimador Diferencias.}
+\begin{itemize}
+\item Caso particular si $b_0=1$.
+\item $\hat{D}=\bar{x}-\bar{y}$, insesgado.
+\item $V(\hat{D})=V(\bar{x})-V(\bar{y})-2Cov(\bar{x},\bar{y})=$
+\item \textbf{Varianza:} $V(\hat{D})=\dfrac{1-f}{n}\left[S_X^2+S_Y^2-2S_{XY}\right]$, $\hat{V}(\hat{D})=\dfrac{1-f}{n}\left[s_X^2+s_Y^2-2s_{XY}\right]$.
+\end{itemize}
+
+
+\sectioncol{Tema 6. Muestreo estratificado: Estimadores lineales, varianzas y sus estimaciones. Principios b\'asicos de la estratificaci\'on. Construcci\'on de los estratos. Afijaci\'on de la muestra con una caracter\'istica. Referencia al caso de afijaci\'on con m\'as de una caracter\'istica. Unidades que entran con certeza en la muestra. Tama\~nos muestrales para medias y proporciones.}
+
+\subsectioncol{Estimadores lineales, varianzas y sus estimaciones.}
+
+\paragraph{Total poblacional.}
+\begin{itemize}
+\item $\hat{X}_{st}=\sum_{h=1}^L\hat{X}_h=\sum_{h=1}^L\dfrac{N_h}{n_h}\sum_{i=1}^{n_h}X_{hi}$.
+\item $V(\hat{X}_{st})=\sum_{h=1}^LN_h^2(1-f_h)\dfrac{S_h^2}{n_h}$.
+\item $\hat{V}(\hat{X}_{st})=\sum_{h=1}^LN_h^2(1-f_h)\dfrac{s_h^2}{n_h}$.
+\end{itemize}
+
+\paragraph{Media poblacional.}
+\begin{itemize}
+\item $\hat{\bar{X}}_{st}=\sum_{h=1}^L\dfrac{N_h}{N}\hat{\bar{X}}_h=$.
+\item $V(hat{\bar{X}}_{st})=\dfrac{1}{N^2}\sum_{h=1}^LN_h^2(1-f_h)\dfrac{S_h^2}{n_h}$.
+\item $\hat{V}(\hat{\bar{X}}_{st})=\dfrac{1}{N^2}\sum_{h=1}^LN_h^2(1-f_h)\dfrac{s_h^2}{n_h}$.
+\end{itemize}
+
+\subsectioncol{Afijaci\'on de la muestra.}
+\begin{itemize}
+\item \textbf{Uniforme:} $n_h=\dfrac{n}{L}$.
+\item \textbf{Proporcional:} $n_h=nW_h=n\dfrac{N_h}{N}$.
+\item \textbf{\'Optima (de Neyman):} $n_h=n\dfrac{W_hS_h}{\sum_{i=1}^LW_iS_i}$.
+\item \textbf{\'Optima seg\'un costes:} $n_h=n\dfrac{W_hS_h/\sqrt{C_h}}{\sum_{i=1}^LW_iS_i/\sqrt{C_h}}$.
+\end{itemize}
+
+
+
+\sectioncol{Tema 7. Muestreo estratificado: Estimador de raz\'on separado y combinado. Sesgo, varianza y sus estimaciones. Comparaci\'on de precisiones. Postestraficaci\'on. Estimador y comparaci\'on con el muestreo estratificado.}
+
+\subsectioncol{Estimador de raz\'on estratificado.}
+
+\paragraph{Estimador de raz\'on separado.}
+\begin{itemize}
+\item $\hat{X}_{RS}=\sum_{h=1}^L\hat{R}_hY_h=\sum_{h=1}^L\dfrac{\hat{X}_h}{\hat{Y}_h}Y_h$.
+\item $B(\hat{X}_{RS})=-\sum_{h=1}^LCov(\hat{R}_h,\hat{Y}_h)$. Sesgos acumulados.
+\item \textbf{Cota superior del sesgo:} $\left|\dfrac{B(\hat{R}_{h})}{\sigma(\hat{R}_{h})}\right|\leq CV(\hat{Y}_{h})$.
+\item \textbf{Varianza:} $V(\hat{X}_{RS})=\sum_{h=1}^LN_h^2\dfrac{1-fh}{n_h}\left[S_{Xh}^2+R_h^2S_{Yh}^2-2R_hS_{XYh}\right]$, si $\hat{R}_h$ es insesgado para $R_h$.
+\end{itemize}
+\paragraph{Estimador de raz\'on combinado.}
+\begin{itemize}
+\item $\hat{X}_{RC}=\hat{R}_{st}Y=\dfrac{\hat{X}_{st}}{\hat{Y}_{st}}Y$.
+\item $B(\hat{X}_{RC})=-Cov(\hat{R}_{st},\hat{Y}_{st})$.
+\item \textbf{Cota superior del sesgo:} $\left|\dfrac{B(\hat{X}_{RC})}{\sigma(\hat{X}_{RC})}\right|=\dfrac{\left|Cov(\hat{R}_{st},\hat{Y}_{st})\right|}{\sigma(\hat{R}_{st})Y}\leq CV(\hat{Y}_{st})$.
+\item \textbf{Varianza:} $V(\hat{X}_{RC})=\sum_{h=1}^LN_h^2\dfrac{1-fh}{n_h}\left[S_{Xh}^2+R^2S_{Yh}^2-2RS_{XYh}\right]$, si el tama\~no de muestra es grande.
+\end{itemize}
+\subsectioncol{Postestratificaci\'on.}
+
+\begin{itemize}
+\item $V(\hat{\bar{X}}_{post})=\dfrac{1-f}{n}\sum_{h=1}^LW_hS_h^2+\dfrac{1}{n^2}\sum_{h=1}^L(1-W_h)S_h^2$.
+\item \textbf{Estimaci\'on en subpoblaciones:} Si los $N_{hj}$ son conocidos, se aplica postestratificaci\'on.
+\item \textbf{$N_{hj}$ desconocidos:} $\hat{X}_j=\sum_{h=1}^L\dfrac{N_h}{n_h}\sum_{i=1}^{n_hj}X_{hi}$.
+\item $\hat{N}_j=\sum_{h=1}^L\dfrac{N_h}{n_h}n_{hj}$, $\hat{\bar{X}}_j=\dfrac{\hat{X}_j}{\hat{N}_j}$, que es un estimador de raz\'on, y por tanto ser\'a sesgado.
+\end{itemize}
+
+\sectioncol{Tema 8. Muestreo de conglomerados de igual tama\~no sin submuestreo. Estimadores, varianzas y sus estimaciones. Coeficiente de correlaci\'on intraconglomerado y su interpretaci\'on. Efecto de dise\~no. Utilizaci\'on de estimadores de raz\'on en el caso de conglomerados de distinto tama\~no.}
+\sectioncol{Tema 9. Muestreo sistem\'atico de unidades elementales con probabilidades iguales: estimadores y varianzas. Relaci\'on con el muestreo de conglomerados. Relaci\'on con el muestreo aleatorio simple. Problem\'atica de la estimaci\'on de varianzas. Muestreo sistem\'atico de conglomerados con probabilidades proporcionales al tama\~no.}
+\sectioncol{Tema 10. Muestreo de conglomerados con submuestreo. Estimadores lineales insesgados. Muestras autoponderadas. Varianzas de los estimadores.}
+\sectioncol{Tema 11. Estimaci\'on de varianzas de estimadores lineales en el muestreo de conglomerados con submuestreo. Teoremas I y II de Durbin. Aplicaci\'on al muestreo sin reposici\'on y probabilidades desiguales en primera etapa. Estimaci\'on de la varianza en el muestreo con reposici\'on y probabilidades desiguales.}
+\sectioncol{Tema 12. M\'etodos indirectos de estimaci\'on de varianzas. M\'etodo de los grupos aleatorios. M\'etodo de los conglomerados \'ultimos. M\'etodo de las semimuestras reiteradas. M\'etodo jackknife. M\'etodo bootstrap.}
+\sectioncol{Tema 13. Estimador lineal de regresi\'on generalizado (GREG). Definici\'on. Expresiones alternativas del estimador de regresi\'on. Varianza y sus estimaciones. GREG como caso particular de estimador calibrado.}
+\sectioncol{Tema 14. Muestreo en ocasiones sucesivas. Estimadores del cambio y del nivel. Estimadores de m\'inima varianza. Rotaci\'on de la muestra con solapamiento parcial: Aplicaci\'on en la Encuesta de Poblaci\'on Activa.} 
+\sectioncol{Tema 15. T\'ecnicas especiales de muestreo y estimaci\'on: Muestreo doble o bif\'asico. Muestreo de captura y recaptura. Estimaci\'on en dominios: Estimador directo, sint\'etico y compuesto.}
+\sectioncol{Tema 16. Errores ajenos al muestreo I: Marcos imperfectos. El problema de las unidades vac\'ias. Estimaci\'on del total y de la media. C\'alculo de la varianza y comparaci\'on con la varianza en el caso de marco depurado. El problema de las unidades repetidas.}
+\sectioncol{Tema 17. Errores ajenos al muestreo II: Falta de respuesta y sus efectos. Tratamiento de la falta de respuesta: Imputaci\'on y t\'ecnicas de reponderaci\'on: Ajuste por clases, postestratificaci\'on y otros estimadores calibrados.}
+\sectioncol{Tema 18. El modelo de error total en censos y encuestas. Formulaci\'on del modelo. Estimaci\'on del sesgo y de la varianza de respuesta. Medida del efecto del entrevistador. Submuestras interpenetrantes.}
+
+\end{document}

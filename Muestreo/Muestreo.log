@@ -1,0 +1,699 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.6.26)  19 JUL 2016 11:36
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**Muestreo.tex
+(./Muestreo.tex
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/bk10.clo
+File: bk10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2015/03/17 v1.2c Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/latin9.def
+File: latin9.def 2015/03/17 v1.2c Input encoding file
+))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count88
+\Gm@cntv=\count89
+\c@Gm@tempcnt=\count90
+\Gm@bindingoffset=\dimen103
+\Gm@wd@mp=\dimen104
+\Gm@odd@mp=\dimen105
+\Gm@even@mp=\dimen106
+\Gm@layoutwidth=\dimen107
+\Gm@layoutheight=\dimen108
+\Gm@layouthoffset=\dimen109
+\Gm@layoutvoffset=\dimen110
+\Gm@dimlist=\toks17
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2016/03/03 v2.15a AMS math features
+\@mathmargin=\skip43
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks18
+\ex@=\dimen111
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen112
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count91
+LaTeX Info: Redefining \frac on input line 199.
+\uproot@=\count92
+\leftroot@=\count93
+LaTeX Info: Redefining \overline on input line 297.
+\classnum@=\count94
+\DOTSCASE@=\count95
+LaTeX Info: Redefining \ldots on input line 394.
+LaTeX Info: Redefining \dots on input line 397.
+LaTeX Info: Redefining \cdots on input line 518.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen113
+LaTeX Font Info:    Redeclaring font encoding OML on input line 630.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
+\macc@depth=\count96
+\c@MaxMatrixCols=\count97
+\dotsspace@=\muskip10
+\c@parentequation=\count98
+\dspbrk@lvl=\count99
+\tag@help=\toks19
+\row@=\count100
+\column@=\count101
+\maxfields@=\count102
+\andhelp@=\toks20
+\eqnshift@=\dimen114
+\alignsep@=\dimen115
+\tagshift@=\dimen116
+\tagwidth@=\dimen117
+\totwidth@=\dimen118
+\lineht@=\dimen119
+\@envbody=\toks21
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2735.
+LaTeX Info: Redefining \] on input line 2736.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2016/02/24 3.9q The Babel package
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2012/08/20 v3.3p English support from the babel system
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2016/02/24 3.9q Babel common definitions
+\babel@savecnt=\count103
+\U@D=\dimen120
+)
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+)
+(/usr/share/texlive/texmf-dist/tex/generic/babel-spanish/spanish.ldf
+Language: spanish.ldf 2016/01/15 v5.0o Spanish support from the babel system
+\es@quottoks=\toks23
+\es@quotdepth=\count104
+Package babel Info: Making " an active character on input line 533.
+Package babel Info: Making . an active character on input line 634.
+Package babel Info: Making < an active character on input line 679.
+Package babel Info: Making > an active character on input line 679.
+))
+(./Muestreo.aux (./Tema01.aux
+LaTeX Info: Redefining \. on input line 24.
+LaTeX Info: Redefining \% on input line 24.
+)
+LaTeX Info: Redefining \. on input line 7.
+LaTeX Info: Redefining \% on input line 7.
+ (./Tema02.aux
+LaTeX Info: Redefining \. on input line 30.
+LaTeX Info: Redefining \% on input line 30.
+) (./Tema03.aux) (./Tema04.aux)
+(./Tema05.aux) (./Tema06.aux) (./Tema07.aux) (./Tema08.aux) (./Tema09.aux)
+(./Tema10.aux) (./Tema11.aux) (./Tema12.aux) (./Tema13.aux) (./Tema14.aux)
+(./Tema15.aux) (./Tema16.aux) (./Tema17.aux) (./Tema18.aux))
+\openout1 = `Muestreo.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+
+Package geometry Warning: The marginal notes overrun the paper.
+     Add 19.0945pt and more to the right margin.
+
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(56.9055pt, 500.484pt, 56.9055pt)
+* v-part:(T,H,B)=(71.13188pt, 652.70622pt, 71.13188pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=500.484pt
+* \textheight=652.70622pt
+* \oddsidemargin=-15.36449pt
+* \evensidemargin=-15.36449pt
+* \topmargin=-31.2056pt
+* \headheight=12.0pt
+* \headsep=18.06749pt
+* \topskip=10.0pt
+* \footskip=25.29494pt
+* \marginparwidth=69.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Info: Redefining \. on input line 15.
+LaTeX Info: Redefining \% on input line 15.
+\openout2 = `Tema01.aux'.
+
+(./Tema01.tex
+Chapter 1.
+[1
+
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Try loading font information for U+msa on input line 95.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 95.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Overfull \hbox (1842.69615pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CHAPTER 1.  CONCEPTO DE POBLACIÓN, MARCO Y MUESTRA. MUESTREO PR
+OBABILÍSTICO. DISTRIBUCIÓN DE UN ESTIMADOR EN EL MUESTREO. ERROR CUADRÁTICO MED
+IO Y SUS COMPONENTES. INTERVALOS DE CONFIANZA: ESTIMADORES INSESGADOS Y SESGADO
+S. MÉTODOS DE SELECCIÓN. PROBABILIDAD DE LA UNIDAD DE PERTENECER A LA MUESTRA Y
+ PROPIEDADES. COMPARACIÓN CON EL MUESTREO NO PROBABILÍSTICO: MUESTREO POR CUOTA
+S. \T1/cmr/m/n/10 2
+ []
+
+[2]
+Overfull \hbox (1842.69615pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CHAPTER 1.  CONCEPTO DE POBLACIÓN, MARCO Y MUESTRA. MUESTREO PR
+OBABILÍSTICO. DISTRIBUCIÓN DE UN ESTIMADOR EN EL MUESTREO. ERROR CUADRÁTICO MED
+IO Y SUS COMPONENTES. INTERVALOS DE CONFIANZA: ESTIMADORES INSESGADOS Y SESGADO
+S. MÉTODOS DE SELECCIÓN. PROBABILIDAD DE LA UNIDAD DE PERTENECER A LA MUESTRA Y
+ PROPIEDADES. COMPARACIÓN CON EL MUESTREO NO PROBABILÍSTICO: MUESTREO POR CUOTA
+S. \T1/cmr/m/n/10 3
+ []
+
+[3]
+Overfull \hbox (1842.69615pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CHAPTER 1.  CONCEPTO DE POBLACIÓN, MARCO Y MUESTRA. MUESTREO PR
+OBABILÍSTICO. DISTRIBUCIÓN DE UN ESTIMADOR EN EL MUESTREO. ERROR CUADRÁTICO MED
+IO Y SUS COMPONENTES. INTERVALOS DE CONFIANZA: ESTIMADORES INSESGADOS Y SESGADO
+S. MÉTODOS DE SELECCIÓN. PROBABILIDAD DE LA UNIDAD DE PERTENECER A LA MUESTRA Y
+ PROPIEDADES. COMPARACIÓN CON EL MUESTREO NO PROBABILÍSTICO: MUESTREO POR CUOTA
+S. \T1/cmr/m/n/10 4
+ []
+
+[4]
+Overfull \hbox (1842.69615pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CHAPTER 1.  CONCEPTO DE POBLACIÓN, MARCO Y MUESTRA. MUESTREO PR
+OBABILÍSTICO. DISTRIBUCIÓN DE UN ESTIMADOR EN EL MUESTREO. ERROR CUADRÁTICO MED
+IO Y SUS COMPONENTES. INTERVALOS DE CONFIANZA: ESTIMADORES INSESGADOS Y SESGADO
+S. MÉTODOS DE SELECCIÓN. PROBABILIDAD DE LA UNIDAD DE PERTENECER A LA MUESTRA Y
+ PROPIEDADES. COMPARACIÓN CON EL MUESTREO NO PROBABILÍSTICO: MUESTREO POR CUOTA
+S. \T1/cmr/m/n/10 5
+ []
+
+[5]
+Overfull \hbox (1842.69615pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CHAPTER 1.  CONCEPTO DE POBLACIÓN, MARCO Y MUESTRA. MUESTREO PR
+OBABILÍSTICO. DISTRIBUCIÓN DE UN ESTIMADOR EN EL MUESTREO. ERROR CUADRÁTICO MED
+IO Y SUS COMPONENTES. INTERVALOS DE CONFIANZA: ESTIMADORES INSESGADOS Y SESGADO
+S. MÉTODOS DE SELECCIÓN. PROBABILIDAD DE LA UNIDAD DE PERTENECER A LA MUESTRA Y
+ PROPIEDADES. COMPARACIÓN CON EL MUESTREO NO PROBABILÍSTICO: MUESTREO POR CUOTA
+S. \T1/cmr/m/n/10 6
+ []
+
+[6]
+Overfull \hbox (33.60764pt too wide) in paragraph at lines 426--428
+[]$[][] \OML/cmm/m/it/10 ^^Y[] \OT1/cmr/m/n/10 = [] \OML/cmm/m/it/10 ^^Y[]$\T1/
+cmr/m/n/10 , ya que $[][] \OML/cmm/m/it/10 ^^Y[] \OT1/cmr/m/n/10 = [][] \OML/cm
+m/m/it/10 E [] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 E [] \OT1/cmr/m/n/10 = \OML/c
+mm/m/it/10 E [] \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (9.85466pt too wide) in paragraph at lines 428--431
+[]$[][] [] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@\OML/cmm/m/it/10 ^^Y[] []$\T1/
+cmr/m/n/10 , ya que $[][] [] \OT1/cmr/m/n/10 = [][] \OML/cmm/m/it/10 ^^Y[] \OMS
+/cmsy/m/n/10 ^^@ [][] \OML/cmm/m/it/10 ^^Y[]^^Y[] \OT1/cmr/m/n/10 = [] \OML/cmm
+/m/it/10 ^^Y[] \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Overfull \hbox (18.50201pt too wide) detected at line 467
+[]
+ []
+
+
+Overfull \hbox (1842.69615pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CHAPTER 1.  CONCEPTO DE POBLACIÓN, MARCO Y MUESTRA. MUESTREO PR
+OBABILÍSTICO. DISTRIBUCIÓN DE UN ESTIMADOR EN EL MUESTREO. ERROR CUADRÁTICO MED
+IO Y SUS COMPONENTES. INTERVALOS DE CONFIANZA: ESTIMADORES INSESGADOS Y SESGADO
+S. MÉTODOS DE SELECCIÓN. PROBABILIDAD DE LA UNIDAD DE PERTENECER A LA MUESTRA Y
+ PROPIEDADES. COMPARACIÓN CON EL MUESTREO NO PROBABILÍSTICO: MUESTREO POR CUOTA
+S. \T1/cmr/m/n/10 7
+ []
+
+[7]
+LaTeX Info: Redefining \. on input line 500.
+LaTeX Info: Redefining \% on input line 500.
+)
+Overfull \hbox (1842.69615pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CHAPTER 1.  CONCEPTO DE POBLACIÓN, MARCO Y MUESTRA. MUESTREO PR
+OBABILÍSTICO. DISTRIBUCIÓN DE UN ESTIMADOR EN EL MUESTREO. ERROR CUADRÁTICO MED
+IO Y SUS COMPONENTES. INTERVALOS DE CONFIANZA: ESTIMADORES INSESGADOS Y SESGADO
+S. MÉTODOS DE SELECCIÓN. PROBABILIDAD DE LA UNIDAD DE PERTENECER A LA MUESTRA Y
+ PROPIEDADES. COMPARACIÓN CON EL MUESTREO NO PROBABILÍSTICO: MUESTREO POR CUOTA
+S. \T1/cmr/m/n/10 8
+ []
+
+[8]
+\openout2 = `Tema02.aux'.
+
+ (./Tema02.tex
+Chapter 2.
+[9
+
+
+
+]
+Overfull \hbox (43.01305pt too wide) detected at line 64
+\OML/cmm/m/it/10 P [] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 P [] P [] P [] \OT1/cm
+r/m/n/10 = [][][] = []
+ []
+
+
+Overfull \hbox (15.65468pt too wide) detected at line 74
+\OML/cmm/m/it/10 P [] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 P [] [] P [] P [] \OT1
+/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (832.61427pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CHAPTER 2.  MUESTREO CON PROBABILIDADES IGUALES. ESTIMADORES LI
+NEALES. VARIANZAS DE LOS ESTIMADORES Y SUS ESTIMACIONES. COMPARACIÓN ENTRE EL M
+UESTREO CON Y SIN REPOSICIÓN. CONSIDERACIONES SOBRE EL TAMAÑO DE LA MUESTRA. \T
+1/cmr/m/n/10 10
+ []
+
+[10]
+Overfull \hbox (832.61427pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CHAPTER 2.  MUESTREO CON PROBABILIDADES IGUALES. ESTIMADORES LI
+NEALES. VARIANZAS DE LOS ESTIMADORES Y SUS ESTIMACIONES. COMPARACIÓN ENTRE EL M
+UESTREO CON Y SIN REPOSICIÓN. CONSIDERACIONES SOBRE EL TAMAÑO DE LA MUESTRA. \T
+1/cmr/m/n/10 11
+ []
+
+[11]
+Overfull \hbox (24.66455pt too wide) detected at line 250
+[]
+ []
+
+
+Overfull \hbox (832.61427pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CHAPTER 2.  MUESTREO CON PROBABILIDADES IGUALES. ESTIMADORES LI
+NEALES. VARIANZAS DE LOS ESTIMADORES Y SUS ESTIMACIONES. COMPARACIÓN ENTRE EL M
+UESTREO CON Y SIN REPOSICIÓN. CONSIDERACIONES SOBRE EL TAMAÑO DE LA MUESTRA. \T
+1/cmr/m/n/10 12
+ []
+
+[12]
+Overfull \hbox (832.61427pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CHAPTER 2.  MUESTREO CON PROBABILIDADES IGUALES. ESTIMADORES LI
+NEALES. VARIANZAS DE LOS ESTIMADORES Y SUS ESTIMACIONES. COMPARACIÓN ENTRE EL M
+UESTREO CON Y SIN REPOSICIÓN. CONSIDERACIONES SOBRE EL TAMAÑO DE LA MUESTRA. \T
+1/cmr/m/n/10 13
+ []
+
+[13]
+Overfull \hbox (106.25638pt too wide) detected at line 341
+[] \OMS/cmsy/m/n/10 ) [] \OT1/cmr/m/n/10 = [] \OML/cmm/m/it/10 < \OT1/cmr/m/n/1
+0 1 \OMS/cmsy/m/n/10 ) \OML/cmm/m/it/10 Var [] < Var []
+ []
+
+
+Overfull \hbox (832.61427pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CHAPTER 2.  MUESTREO CON PROBABILIDADES IGUALES. ESTIMADORES LI
+NEALES. VARIANZAS DE LOS ESTIMADORES Y SUS ESTIMACIONES. COMPARACIÓN ENTRE EL M
+UESTREO CON Y SIN REPOSICIÓN. CONSIDERACIONES SOBRE EL TAMAÑO DE LA MUESTRA. \T
+1/cmr/m/n/10 14
+ []
+
+[14]
+Overfull \hbox (62.08983pt too wide) detected at line 347
+[] \OMS/cmsy/m/n/10 ) [] \OT1/cmr/m/n/10 = [] \OML/cmm/m/it/10 < \OT1/cmr/m/n/1
+0 1 \OMS/cmsy/m/n/10 ) \OML/cmm/m/it/10 Var [] < Var []
+ []
+
+
+Overfull \hbox (80.40697pt too wide) detected at line 353
+[] \OMS/cmsy/m/n/10 ) [] \OT1/cmr/m/n/10 = [] \OML/cmm/m/it/10 < \OT1/cmr/m/n/1
+0 1 \OMS/cmsy/m/n/10 ) \OML/cmm/m/it/10 Var [] < Var []
+ []
+
+
+Overfull \hbox (76.08745pt too wide) detected at line 359
+[] \OMS/cmsy/m/n/10 ) [] \OT1/cmr/m/n/10 = [] \OML/cmm/m/it/10 < \OT1/cmr/m/n/1
+0 1 \OMS/cmsy/m/n/10 ) \OML/cmm/m/it/10 Var [] < Var []
+ []
+
+
+Overfull \hbox (42.11525pt too wide) in paragraph at lines 405--407
+[]$\OML/cmm/m/it/10 e[] \OT1/cmr/m/n/10 = [] [] [] = [][] \OMS/cmsy/m/n/10 ^^@ 
+[][]$\T1/cmr/m/n/10 , $\OML/cmm/m/it/10 n \OT1/cmr/m/n/10 = []$\T1/cmr/m/n/10 .
+ 
+ []
+
+
+Overfull \hbox (832.61427pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CHAPTER 2.  MUESTREO CON PROBABILIDADES IGUALES. ESTIMADORES LI
+NEALES. VARIANZAS DE LOS ESTIMADORES Y SUS ESTIMACIONES. COMPARACIÓN ENTRE EL M
+UESTREO CON Y SIN REPOSICIÓN. CONSIDERACIONES SOBRE EL TAMAÑO DE LA MUESTRA. \T
+1/cmr/m/n/10 15
+ []
+
+[15]
+LaTeX Info: Redefining \. on input line 442.
+LaTeX Info: Redefining \% on input line 442.
+)
+Overfull \hbox (832.61427pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CHAPTER 2.  MUESTREO CON PROBABILIDADES IGUALES. ESTIMADORES LI
+NEALES. VARIANZAS DE LOS ESTIMADORES Y SUS ESTIMACIONES. COMPARACIÓN ENTRE EL M
+UESTREO CON Y SIN REPOSICIÓN. CONSIDERACIONES SOBRE EL TAMAÑO DE LA MUESTRA. \T
+1/cmr/m/n/10 16
+ []
+
+[16]
+\openout2 = `Tema03.aux'.
+
+ (./Tema03.tex
+Cap\'{\i }tulo 3.
+[17
+
+
+
+]
+Overfull \hbox (7.62912pt too wide) in paragraph at lines 66--68
+[]$[][] \OML/cmm/m/it/10 ^^Y[] \OT1/cmr/m/n/10 = [] \OML/cmm/m/it/10 ^^Y[]$\T1/
+cmr/m/n/10 , ya que $[][] \OML/cmm/m/it/10 ^^Y[] \OT1/cmr/m/n/10 = [][] \OML/cm
+m/m/it/10 E [] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 E [] \OT1/cmr/m/n/10 = \OML/c
+mm/m/it/10 E [] \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (9.6336pt too wide) in paragraph at lines 68--71
+[]$[][] [] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@\OML/cmm/m/it/10 ^^Y[] []$\T1/
+cmr/m/n/10 , ya que $[][] [] \OT1/cmr/m/n/10 = [][] \OML/cmm/m/it/10 ^^Y[] \OMS
+/cmsy/m/n/10 ^^@ [][] \OML/cmm/m/it/10 ^^Y[]^^Y[] \OT1/cmr/m/n/10 = [] \OML/cmm
+/m/it/10 ^^Y[] \OMS/cmsy/m/n/10 ^^@
+ []
+
+LaTeX Info: Redefining \. on input line 132.
+LaTeX Info: Redefining \% on input line 132.
+
+Overfull \hbox (1051.82443pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CAPÍTULO 3.  MUESTREO CON PROBABILIDADES DESIGUALES. ESTIMADORE
+S LINEALES. VARIANZA DE LOS ESTIMADORES Y SUS ESTIMACIONES. PROBABILIDADES ÓPTI
+MAS DE SELECCIÓN. MÉTODOS DE SELECCIÓN CON REPOSICIÓN Y SIN REPOSICIÓN Y PROBAB
+ILIDADES PROPORCIONALES AL TAMAÑO. \T1/cmr/m/n/10 18
+ []
+
+[18]
+LaTeX Info: Redefining \. on input line 207.
+LaTeX Info: Redefining \% on input line 207.
+
+Overfull \hbox (1051.82443pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CAPÍTULO 3.  MUESTREO CON PROBABILIDADES DESIGUALES. ESTIMADORE
+S LINEALES. VARIANZA DE LOS ESTIMADORES Y SUS ESTIMACIONES. PROBABILIDADES ÓPTI
+MAS DE SELECCIÓN. MÉTODOS DE SELECCIÓN CON REPOSICIÓN Y SIN REPOSICIÓN Y PROBAB
+ILIDADES PROPORCIONALES AL TAMAÑO. \T1/cmr/m/n/10 19
+ []
+
+[19]
+Overfull \hbox (107.4012pt too wide) detected at line 258
+[]
+ []
+
+LaTeX Info: Redefining \. on input line 266.
+LaTeX Info: Redefining \% on input line 266.
+
+Overfull \hbox (1051.82443pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CAPÍTULO 3.  MUESTREO CON PROBABILIDADES DESIGUALES. ESTIMADORE
+S LINEALES. VARIANZA DE LOS ESTIMADORES Y SUS ESTIMACIONES. PROBABILIDADES ÓPTI
+MAS DE SELECCIÓN. MÉTODOS DE SELECCIÓN CON REPOSICIÓN Y SIN REPOSICIÓN Y PROBAB
+ILIDADES PROPORCIONALES AL TAMAÑO. \T1/cmr/m/n/10 20
+ []
+
+[20]
+Overfull \hbox (25.1968pt too wide) detected at line 276
+\OML/cmm/m/it/10 Var [] \OT1/cmr/m/n/10 = [] []\OML/cmm/m/it/10 ^^Y[] [] \OT1/c
+mr/m/n/10 + 2 [] [] [][] [] = [] [] [] [] + 2 [] [] [][] [] =
+ []
+
+
+Overfull \hbox (146.07074pt too wide) detected at line 286
+\OML/cmm/m/it/10 E [] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 E [] \OT1/cmr/m/n/10 =
+ \OML/cmm/m/it/10 E [] \OT1/cmr/m/n/10 = [] [] [][] []\OML/cmm/m/it/10 E [] \OT
+1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (1.35474pt too wide) detected at line 306
+[]
+ []
+
+LaTeX Info: Redefining \. on input line 329.
+LaTeX Info: Redefining \% on input line 329.
+
+Overfull \hbox (1051.82443pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CAPÍTULO 3.  MUESTREO CON PROBABILIDADES DESIGUALES. ESTIMADORE
+S LINEALES. VARIANZA DE LOS ESTIMADORES Y SUS ESTIMACIONES. PROBABILIDADES ÓPTI
+MAS DE SELECCIÓN. MÉTODOS DE SELECCIÓN CON REPOSICIÓN Y SIN REPOSICIÓN Y PROBAB
+ILIDADES PROPORCIONALES AL TAMAÑO. \T1/cmr/m/n/10 21
+ []
+
+[21]
+Overfull \hbox (108.86751pt too wide) detected at line 343
+\OT1/cmr/m/n/10 = [] [] = [] [] = [] [] = \OML/cmm/m/it/10 V []
+ []
+
+
+Overfull \hbox (103.23792pt too wide) detected at line 400
+\OML/cmm/m/it/10 P [] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 P [] P [] \OT1/cmr/m/n
+/10 = [] [][] = [] [] [] = [] [] [] = \OML/cmm/m/it/10 P[] [] []
+ []
+
+LaTeX Info: Redefining \. on input line 400.
+LaTeX Info: Redefining \% on input line 400.
+
+Overfull \hbox (1051.82443pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CAPÍTULO 3.  MUESTREO CON PROBABILIDADES DESIGUALES. ESTIMADORE
+S LINEALES. VARIANZA DE LOS ESTIMADORES Y SUS ESTIMACIONES. PROBABILIDADES ÓPTI
+MAS DE SELECCIÓN. MÉTODOS DE SELECCIÓN CON REPOSICIÓN Y SIN REPOSICIÓN Y PROBAB
+ILIDADES PROPORCIONALES AL TAMAÑO. \T1/cmr/m/n/10 22
+ []
+
+[22]
+Overfull \hbox (31.14975pt too wide) detected at line 410
+\OT1/cmr/m/n/10 = [] [] \OML/cmm/m/it/10 P [] P [] P [] \OT1/cmr/m/n/10 = [] []
+ [][][] =
+ []
+
+
+Overfull \hbox (15.65468pt too wide) detected at line 425
+\OML/cmm/m/it/10 P [] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 P [] [] P [] P [] \OT1
+/cmr/m/n/10 =
+ []
+
+LaTeX Info: Redefining \. on input line 498.
+LaTeX Info: Redefining \% on input line 498.
+
+Overfull \hbox (1051.82443pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CAPÍTULO 3.  MUESTREO CON PROBABILIDADES DESIGUALES. ESTIMADORE
+S LINEALES. VARIANZA DE LOS ESTIMADORES Y SUS ESTIMACIONES. PROBABILIDADES ÓPTI
+MAS DE SELECCIÓN. MÉTODOS DE SELECCIÓN CON REPOSICIÓN Y SIN REPOSICIÓN Y PROBAB
+ILIDADES PROPORCIONALES AL TAMAÑO. \T1/cmr/m/n/10 23
+ []
+
+[23])
+LaTeX Info: Redefining \. on input line 20.
+LaTeX Info: Redefining \% on input line 20.
+
+Overfull \hbox (1051.82443pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10 CAPÍTULO 3.  MUESTREO CON PROBABILIDADES DESIGUALES. ESTIMADORE
+S LINEALES. VARIANZA DE LOS ESTIMADORES Y SUS ESTIMACIONES. PROBABILIDADES ÓPTI
+MAS DE SELECCIÓN. MÉTODOS DE SELECCIÓN CON REPOSICIÓN Y SIN REPOSICIÓN Y PROBAB
+ILIDADES PROPORCIONALES AL TAMAÑO. \T1/cmr/m/n/10 24
+ []
+
+[24]
+\openout2 = `Tema04.aux'.
+
+
+No file Tema04.tex.
+\openout2 = `Tema05.aux'.
+
+No file Tema05.tex.
+\openout2 = `Tema06.aux'.
+
+No file Tema06.tex.
+\openout2 = `Tema07.aux'.
+
+No file Tema07.tex.
+\openout2 = `Tema08.aux'.
+
+No file Tema08.tex.
+\openout2 = `Tema09.aux'.
+
+No file Tema09.tex.
+\openout2 = `Tema10.aux'.
+
+No file Tema10.tex.
+\openout2 = `Tema11.aux'.
+
+No file Tema11.tex.
+\openout2 = `Tema12.aux'.
+
+No file Tema12.tex.
+\openout2 = `Tema13.aux'.
+
+No file Tema13.tex.
+\openout2 = `Tema14.aux'.
+
+No file Tema14.tex.
+\openout2 = `Tema15.aux'.
+
+No file Tema15.tex.
+\openout2 = `Tema16.aux'.
+
+No file Tema16.tex.
+\openout2 = `Tema17.aux'.
+
+No file Tema17.tex.
+\openout2 = `Tema18.aux'.
+
+No file Tema18.tex.
+(./Muestreo.aux (./Tema01.aux
+LaTeX Info: Redefining \. on input line 24.
+LaTeX Info: Redefining \% on input line 24.
+)
+LaTeX Info: Redefining \. on input line 7.
+LaTeX Info: Redefining \% on input line 7.
+ (./Tema02.aux
+LaTeX Info: Redefining \. on input line 30.
+LaTeX Info: Redefining \% on input line 30.
+) (./Tema03.aux) (./Tema04.aux)
+(./Tema05.aux) (./Tema06.aux) (./Tema07.aux) (./Tema08.aux) (./Tema09.aux)
+(./Tema10.aux) (./Tema11.aux) (./Tema12.aux) (./Tema13.aux) (./Tema14.aux)
+(./Tema15.aux) (./Tema16.aux) (./Tema17.aux) (./Tema18.aux)) ) 
+Here is how much of TeX's memory you used:
+ 2852 strings out of 493029
+ 34445 string characters out of 6136234
+ 122305 words of memory out of 5000000
+ 6277 multiletter control sequences out of 15000+600000
+ 15861 words of font info for 41 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 29i,13n,34p,602b,389s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf
+/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cmextra/cmex7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+ib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmm
+ib7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texmf/fonts/type1/public/c
+m-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb
+></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/f
+onts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf/fonts/type1/public/cm
+-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
+</usr/share/texmf/fonts/type1/public/cm-super/sfsl1000.pfb>
+Output written on Muestreo.pdf (24 pages, 354375 bytes).
+PDF statistics:
+ 171 PDF objects out of 1000 (max. 8388607)
+ 121 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

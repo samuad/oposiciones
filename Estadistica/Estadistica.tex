@@ -6,14 +6,17 @@
 \usepackage{geometry}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{amsmath}
+\usepackage[intlimits]{amsmath}
 \usepackage{mathrsfs}
 \geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2cm,rmargin=2cm}
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
-\usepackage{babel}
+\usepackage[spanish]{babel}
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \addto\shorthandsspanish{\spanishdeactivate{~<>}}
+
+\usepackage{ucs}
+\usepackage{amsfonts}
 
 \newcommand{\sectioncol}[1]{\section{{\color{blue} #1}}}
 \newcommand{\subsectioncol}[1]{\subsection{{\color{red} #1}}}
@@ -25,9 +28,25 @@
 \newtheorem{lema}{Lema}
 \newtheorem{corolario}{Corolario}
 
+%opening
+\title{Oposiciones - Estad\'istica.}
+\author{Samuel B. Alonso Diez}
+\oddsidemargin -0,04cm
+\textwidth 17cm
+\topmargin -1,04cm
+\headheight 0cm
+\textheight 25cm
+\raggedright
+
+\makeatletter
 
 
 \begin{document}
+
+\tableofcontents
+
+
+
 \include{Tema01}
 
 \include{Tema02}
@@ -79,6 +98,11 @@
 \include{Tema25}
 
 \include{Tema26}
+
+\include{Tema27}
+
+\include{Tema28}
+
 
 
 \include{Tema34}

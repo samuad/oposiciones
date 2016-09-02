@@ -2,5 +2,168 @@
 
 \sectioncol{Introducci\'on.}
 
+El estudio de la desigualdad o de la concentraci\'on, referido casi siempre dentro del \'ambito de la distribuci\'on de rentas dentro de una poblaci\'on, se ve lastrado por la dificultad de definir una medici\'on para la mismas. Al hablar de desigualdad nos encontramos con un concepto intuitivo muy f\'acil de comprender, pero con una dif\'icil medici\'on objetiva.
+
+Esto plantea un problema, ya que si no somos capaces de asignar una medida de desigualdad a nuestros objetos de estudio no seremos capaces de estudiar c\'omo afecta dicha desigualdad a otros factores.
+
+\sectioncol{Medidas de desigualdad.}
+
+Para abordar las medidas de desigualdad establecemos un marco en el que tenemos una poblaci\'on formada por $N$ individuos. Para cada uno de estos individuos se mide un factor (que normalmente suele ser las rentas, los salarios o la riqueza) y se le asigna el valor del mismo. Con estos $N$ individuos se forma un vector, orden\'andolos seg\'un el valor de la magnitud medida. Las medidas de desigualdad se basan en comparar varias realizaciones posibles del vector, que se conocen como distribuciones del factor en estudio.
+
+\subsectioncol{Propiedades deseables.}
+
+Hay una serie de propiedades que nos sugiere la l\'ogica que debe presentar una medida de desigualdad (o indicador de desigualdad) para ser realmente \'util para un estudio de la misma. Las principales son:
+\begin{itemize}
+\item \textbf{Indepencia de escala:} El indicador no debe varian ante transformaciones proporcionales de la distribuci\'on (por ejemplo, ante cambios en las unidades de medida).
+\item \textbf{Independencia del tama\~no de la poblaci\'on:} El indicador debe mantenerse si se agrega un n\'umero proporcional de individuos a todos los niveles de la magnitud.
+\item \textbf{Independencia ante cambios de posici\'on:} El indicador no debe variar si dos elementos cualesquiera intercambian su posici\'on en la distribuci\'on, sin que var\'ien los respectivos valores.
+\item \textbf{Principio ``d\'ebil'' de transferencias:} La desigualdad debe disminuir si se transfiere parte del valor de un elemento o otro con un valor de la magnitud menor.
+\item \textbf{Principio ``fuerte'' de transferencias:} Ante una transmisi\'on de valor de un individuo a otro con un valor menor, la desigualdad debe disminuir m\'as cuanta mayor sea la diferencia entre los valores de los elementos.
+\item \textbf{Descomposici\'on aditiva:} Si dividimos una poblaci\'on en grupos, la medida de la desigualdad de la poblaci\'on debe ser igual a la suma de las medidas de desigualdad intragrupales e intergrupales.
+\item \textbf{Rango del \'indice:} Es deseable que el \'indice tome valores entre cero y uno, donde cero refleja la igualdad total y uno refleja la mayor desigualdad posible.
+\end{itemize}
+
+Aunque se han propuesto varia medidas de desigualdad, ninguna de ellas cumple con las 7 propiedades deseables. Vamos a ver algunas de ellas.
+
+\subsubsectioncol{Medidas estad\'isticas.}
+
+Se basan en propiedades estad\'isticas de la distribuci\'on de rentas.
+
+\paragraph{Campo de variaci\'on.}
+
+Su f\'ormula es:
+\[CV=\dfrac{y_{max}-y_{min}}{\mu}\]
+
+Siendo $\mu$ la media de la distribuci\'on. No es muy \'util, ya que solo depende del mayor y el menor valor de la distribuci\'on.
+
+\paragraph{Desviaci\'on media relativa.}
+
+\[DMR=\dfrac{\sum_{i=1}^n|y_i-\mu|}{n}\]
+
+Tiene en cuenta todos los valores de la distribuci\'on, pero no es sensuble a transferencias que se produzcan entre individuos con un valor mayor (menor) que la media.
+
+\paragraph{Varianza.}
+
+\[V=\dfrac{\sum_{i=1}^n(y_i-\mu)^2}{n}\]
+
+\begin{itemize}
+\item Satisface el axioma de transferencias.
+\item Su valor depende del ingreso medio: cuanto mayor sea este, mayor ser\'a el valor de la varianza.
+\end{itemize}
+
+\paragraph{Coeficiente de variaci\'on.}
+
+\[CV=\dfrac{\sqrt{V}}{\mu}\]
+
+\begin{itemize}
+\item Corrige el problema de dependencia de la media.
+\item Tiene una limitaci\'on: el peso de las transferencias no var\'ia con la posici\'on media en la distribuci\'on. Es decir, el efecto de una transferencia depende de su valor, no de los valores asociados a los elementos implicados.
+\end{itemize}
+
+\paragraph{Varianza de los logaritmos.}
+\[V=\dfrac{\sum_{i=1}^n(\log{y_i}-\log{\mu})^2}{n}\]
+
+\begin{itemize}
+\item Frente a la varianza, concede m\'as peso a las transferencias que se producen en la parte baja de la distribuci\'on.
+\item No depende del ingreso medio.
+\end{itemize}
+
+\subsubsectioncol{Medidas basadas en la curva de Lorenz.}
+
+La curva de Lorenz muestra el porcentaje relativo de valor acumulado de los individuos ordenados de forma ascendente de acuerdo a la magnitud estudiada.
+
+As\'i, los puntos $(p_i,q_i)$ de la Curva de Lorenz se definen as\'i:
+
+\[p_i=\dfrac{i}{n} \;\; q_i=\dfrac{\sum_{j=1}^iy_j}{\sum_{j=1}^ny_j}\]
+
+Con $p_0=q_0=0$. Para distribuciones totalmente igualitarias (todos los $y_i$ son iguales), la curva de Lorenz coincide con la curva $p=q$. Para distribuciones con la m\'axima desigualdad, todos los $q_i$ son cero excepto $q_n$, que vale 1.
+
+Si en lugar de un vector con la distribuci\'on, tenemos la magnitud agrupada por categor\'ias, es decir, $n_i$ individuos presentan el valor $y_i$ de nuestra magnitud, la curva de Lorenz se calcula:
+
+\[p_i=\dfrac{\sum_{j=1}^in_j}{n} \;\; q_i=\dfrac{\sum_{j=1}^in_jy_j}{\sum_{j=1}^nn_jy_j}\]
+
+Si generalizamos la renta mediante una variable aleatoria no negativa, $X$ cuya funci\'on de distribuci\'on es $F(x)$ y de media $\mu$, podemos definir la curva de Lorenz como:
+\[p=F(x)=\int_0^xdF(t)\;\;\; q=L(F(x))=\dfrac{1}{\mu}\int_0^xtdF(t)\]
+
+Y si definimos $F^{-1}(p)=\inf{x|F(x)\geq p}$ entonces
+\[L(p)=\dfrac{1}{\mu}\int_0^pF^{-1}(t)dt\]
+
+Para determinar la desigualdad de dos distribuciones $(x,y)$ se comparan sus curvas de Lorenz, y si $L_x>L_y$ para todo $p_i$, entonces se dice que $x$ domina a $y$, y $x$ ser\'a m\'as igualitaria que $y$.
+
+El problema que presenta la curva de Lorenz es que no nos permite comparar todas las distribuciones: si las curvas de Lorenz de dos distribuciones se cruzan, estas no son comparables.
+
+En los casos en que ambas distribuciones se cruza, es posible utilizar la curva de Lorenz generalizada. Esta curva se obtiene multiplicando las $q_i$ por la media de la distribuci\'on. Se considera que, dadas dos distribuciones $(x,y)$, si se comparan sus curvas de Lorenz generalizadas, y  $LG_x>LG_y$ para todo $p_i$, la distribuci\'on $x$ genera m\'as bienestar que la distribuci\'on $y$.
+
+\paragraph{Coeficiente de Gini.}
+
+Este coeficiente indica el \'area existente entre la curva de Lorenz y la l\'inea de equidistribuci\'on, expresada como una proporci\'on del \'area total. Cuando este valor se expresa en porcentaje, se habla de \'indice de Gini.
+
+Por tanto, su f\'ormula ser\'a:
+
+\[C_G=\dfrac{\int_0^1(p-L(p))dp}{\int_0^1p dp}=1-2\int_0^1L(p)dp\]
+
+Si nuestra distribuci\'on de renta es discreta, la curva de Lorenz se compone de tantas l\'ineas rectas como individuos, por lo que operando se llega a la f\'ormula de Brown:
+
+\[C_G=1-\sum_{i=1}^n(p_i-p_{i-1})(q_i+q_{i-1})\]
+
+Hay tambi\'en otras f\'ormulas que se aproximan al valor del coeficiente, la m\'as utilizada es:
+
+\[C_G\approx \dfrac{\sum_{i=1}^{k-1}(p_i-q_i)}{\sum_{i=1}^{k-1}p_i}\]
+
+El coeficiente de Gini var\'ia entre cero y uno, siendo cero el valor que tienen las distribuciones con igualdad absoluta, y uno el valor m\'aximo te\'orico, asociado a las distribuciones l\'imite de desigualdad: una distribuci\'on con infinitos individuos en la que un s\'olo individuo concentra todo el valor.
+
+El Coeficiente de Gini es el indicador de desigualdad m\'as utilizado, debido a su facilidad de interpretaci\'on, sin embargo presenta varios inconvenientes:
+
+\begin{itemize}
+\item Es insensible a cambios en la distribuci\'on del ingreso que mantengan constante el \'area entre las curvas.
+\item No cumple la propiedad fuerte de transferencia: las transferencias de renta tienen el mismo peso independientemente de su posici\'on en la escala de ingresos.
+\item Si las corvas de Lorenz se cruzan su interpretaci\'on puede dar resultados ambiguos.
+\item No satisface la propiedad de descomposici\'on aditiva: el coeficiente de Gini total no es igual a la suma de los coeficientes de los grupos.
+\end{itemize}
+
+\subsubsectioncol{Medidas basadas en funciones de utilidad.}
+
+
+\subsubsectioncol{Medidas basadas en la entrop\'ia.}
+
+Estos indicadores aprovechan la noci\'on de "contenido informativo": cuanto m\'as improbable sea un evento, mayor informaci\'on aporta su realizaci\'on.
+
+\paragraph{\'Indice de Theil.}
+
+El \'Indice de Theil es el mismos que la medida de redundancia en la teor\'ia de la informaci\'on, es decir, es igual a la m\'axima entrop\'ia posible en la distribuci\'on menos la entrop\'ia observada.
+
+El \'indice es:
+\[T_T=\dfrac{1}{N}\sum_{i=1}^N\left(\dfrac{x_i}{\bar{x}}\log{\dfrac{x_i}{\bar{x}}}\right)\]
+
+Para una distribuci\'on totalmente igualitaria el \'¡indice vale cero (es cuando tiene el m\'aximo de entrop\'ia). Si un solo elemento acumula todo el valor, el \'indice vale $\log{N}$, que es el m\'aximo de orden. Por tanto, dividiendo el \'indice por $\log{N}$ lo normalizamos, pasando a valer entre 0 y 1.
+
+El \'indice mide la distancia de nuestra distribuci\'on respecto a una distribuci\'on igualitaria. Se deriva de la \textbf{entrop\'ia de Shannon} de la teor\'ia de la informaci\'on, que es igual a 
+\[S=k\sum_{i=1}^N\left(p_i\log{\dfrac{1}{p_i}}\right)=-k\sum_{i=1}^N\left(p_i\log{p_i}\right)\]
+
+Donde $k$ es un coeficiente que depende del \'area de aplicaci\'on, y que en nuestro caso vale 1, y $p_i$ es la probabilidad de que se de suceso $i$. Para el c\'alculo de Theil, se define $p_i=\dfrac{x_i}{N\bar{x}}$. Por tanto, 
+
+\[T_T=S_{max}-S_t=\sum_{i=1}^N\left(\dfrac{\bar{x}}{N\bar{x}}\log{\dfrac{N\bar{x}}{\bar{x}}}\right)-\sum_{i=1}^N\left(\dfrac{x_i}{N\bar{x}}\log{\dfrac{N\bar{x}}{x_i}}\right)=\dfrac{1}{N}\sum_{i=1}^N\left(\dfrac{x_i}{\bar{x}}\log{\dfrac{x_i}{\bar{x}}}\right)\]
+
+Las principales ventajas de este \'indice  son:
+
+\begin{itemize}
+\item cumple con el principio de descomponibilidad aditiva. Es decir, para una poblaci\'on dividida en subgrupos,
+\[T_T=\sum_{i=1}^mn_iT_{Ti}+\dfrac{1}{m}\sum_{i=1}^m\left(\dfrac{\bar{x}_i}{\bar{x}}\log{\dfrac{\bar{x}_i}{\bar{x}}}\right)\]
+
+\item Cumple con el axioma fuerte de transferencias.
+
+\end{itemize}
+
+Su principal inconveniente es que es poco intuitivo y dif\'icil de entender, y que introduce la arbitrariedad de la base logar\'itmica que se use, ya que con otras tambi\'en se podr\'ia calcular.
+
+\paragraph{\'Indice generalizado de entrop\'ia.}
+
+
+
+
+
+
+
+
 
 
