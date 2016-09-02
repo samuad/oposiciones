@@ -41,7 +41,7 @@ Esta condici\'on se verifica para muchas distribuciones, como la de Poisson, Gam
 \begin{enumerate}
 \item Para cada $\alpha\in(0,1)$ existe un contraste $\varphi$ de tama\~no $\alpha$ u uniformemente m\'as potente para contrastar $H_0:\theta\leq\theta_0$ frente a $H_1:\theta>\theta_0$ que es de la forma:
 \begin{equation*}
-\varphi(x_1,\ldots,x_n)=\left\{\begin{matrix}{ccc}
+\varphi(x_1,\ldots,x_n)=\left\{\begin{matrix}
 1 & si & T(x_1,\ldots,x_n)>c \\
 \gamma & si & T(x_1,\ldots,x_n)=c \\
 0 & si & T(x_1,\ldots,x_n)<c \\
@@ -51,3 +51,163 @@ Esta condici\'on se verifica para muchas distribuciones, como la de Poisson, Gam
 \item Para cualquier contraste $\varphi^{\prime}$ con $E_{\theta}[\varphi^{\prime}]=\alpha$ se cumple que $E_{\theta}[\varphi]\leq E_{\theta}[\varphi^{\prime}]$ para cualquier $\theta\leq\theta_0$.
 \end{enumerate}
 \end{teorema}
+
+El punto tres indica que, una vez fijado $\alpha$, el contraste no solo consigue la menos probabilidad de error de tipo II posible, 
+
+Este resultado tiene su contrapartida sim\'etrica para el contraste $H_0:\theta\geq\theta_0$ frente a $H_1:\theta<\theta_0$.
+
+Por tanto, considerando todas las combinaciones entre ambos tipos de hip\'otesis unilaterales y cociente de verosimilitudes mon\'otona creciente o decreciente:
+
+\textbf{Faltan Hip\'otesis bilaterales}
+
+\sectioncol{Contrastes de significaci\'on, p-valor.}
+
+Hasta ahora hemos visto c\'omo obtener contrastes uniformemente de m\'axima potencia  apartir de una serie de situaciones muy concretas, pero la realidad es que en general no hay un contraste uniformemente de m\'axima potencia. Es por esto que se introducen los contrastes de significaci\'on, que se obtienen a partir del criterio propuesto por Fischer.
+
+Este m\'etodo se puede aplicar siempre que tengamos una poblaci\'on cuya distribuci\'on de probabilidad dependa de un par\'ametro $\theta$ cuyo valor est\'a dentro de un espacio param\'etrico $\Theta$, y se desea contrastar una hip\'otesis nula, $H_0:\theta\in\Theta_0$ frente a la hip\'otesis alternativa $H_1:\theta\in\Theta_1=\Theta-\Theta_0$.
+
+El procedimiento a seguir es el siguiente:
+
+\begin{enumerate}
+\item Se formulan las hip\'otesis del contraste.
+\item Obtenci\'on del estad\'istico de contraste. Se trata de obtener un estad\'aitico apropiado para el contraste, que mida la discrepancia entre el valor que se le asigna al par\'ametro como consecuencia de la muestra seleccionada y el valor que deber\'ia tener el par\'ametro si se cumple la hip\'otesis nula. Es decir, la discrepancia ser\'a funci\'on de $\hat{\theta}$ y $\theta_0$, siendo $\hat{\theta}$ una estimaciº'on del par\'ametro para la muestra seleccionada. El estad\'istico de contraste, al que llamamos $D$, debe cumplir las siguientes condiciones:
+\begin{itemize}
+\item Debe contener los valores de $\theta_0$ que se fijan en la hip\'otesis nula.
+\item Bajo $H_0$ la distribuci\'on del estad\'istico debe ser conocida e independiente del par\'ametro $\theta$.
+\item Los restantes t\'erminos que intervengan en el estad\'istico deben ser conocidos o oder obtenerse de las observaciones muestrales.
+\end{itemize}
+\item Selecci\'on del nivel de significaci\'on, $\alpha$.
+\item Determinar la regi\'on cr\'itica. Si el estad\'istico $D$ mide la discrepancia, la regi\'on cr\'itica ser\'an todas las muestras que hagan que $P(D>d_{\alpha}|H_0)=\alpha$.
+\item Selecci\'on aleatoria de la muestra y c\'alculo del estad\'istico.
+\item Regla de decisi\'on e interpretaci\'on: Si $D_{exp}>d_\alpha$ ha ocurrido un suceso cuya probabilidad es menor que el nivel de significaci\'on, con lo cual lo clasificar\'iamos como un suceso raro. Por lo tanto, la discrepancia entre el valor del pa\'ametro seg\'un la hip\'otesis nula y el valor estimado por nuestro estimador es significativa, y tendremos evidencia para rechazar la hip\'otesis nula. Si $D_{exp}\leq d_\alpha$, la diferencia no es significativa y no tenemos evidencia para rechazar la hip\'otesis nula.
+\end{enumerate}
+
+Estos contrastes de significaci\'on no son en  general uniformemente m\'as potentes, auque en algunos casos pueden coincidir con los que determina el teorema de Neyman-Pearson.
+
+En muchas ocasiones, para estos contrastes se utiliza el $p$-valor, que se define como el menor nivel de significaci\'on para el que se rechazar\'ia la hip\'otesis nula con el valor del estad\'istico obtenido a partir de nuestra muestra. Es decir, expresado en t\'erminos de $p$-valor, se rechaza la hip\'otesis nula si $p$-valor<$\alpha$. Visto de otro modo, ser\'a la probabilidad de obtener el mismo valor del estad\'istico si se cumpliese la hip\'otesis nula.
+
+\sectioncol{Contraste de raz\'on de verosimilitudes.}
+
+Fue propuesto por Neyman y Pearson en 1928 y puede ser aplicado en una gran variedad de situaciones. Es un contraste de significaci\'on, en el que la medida de discrepancia que se utiliza es relativa a las verosimilitudes. Se basa en que para una muestra fija su verosimilitud es la medida de lo bien que explica el valor del par\'ametro los resultados obtenidos. Por consiguiente, $\sup_{\theta\in\Theta_0}f_{\theta}(x_1,\ldots,x_n)$ resulta un \'indice de la mejor explicaci\'on de la muestra que puede obtenerse bajo la hip\'otesis nula, mientras que $\sup_{\theta\in\Theta}f_{\theta}(x_1,\ldots,x_n)$ proporciona tal \'indice para todos los posibles valores del par\'ametro. Ambas cantidades son f\'aciles de obtener, pues son las verosimilitudes para los estimadores m\'aximo veros\'imiles del par\a'metro en $\Theta_0$ y $\Theta$, respectivamente.La comparaci\'on de estas cantidades se realiza mediante un cociente entre ellas, obteniendo un n\'umero entre 0 y 1. Se denomina raz\'on de verosimilitudes al cociente:
+\[\Lambda(x_1,\ldots,x_n)=\dfrac{\sup_{\theta\in\Theta_0}f_{\theta}(x_1,\ldots,x_n)}{\sup_{\theta\in\Theta}f_{\theta}(x_1,\ldots,x_n)}=\dfrac{f_{\hat{\theta}_0}(x_1,\ldots,x_n)}{f_{\hat{\theta}}(x_1,\ldots,x_n)}\]
+
+Un contraste de raz\'on de verosimilitudes tendr\'a una regi\'on cr\'itica de la forma:
+\[C=\{\Lambda(x_1,\ldots,x_n)<c\}\]
+
+Es decir, se rechaza la hip\'otesis nula cuando el cociente es peque\~n. Con frecuencia la desigualdad se puede expresar en funci\'on de un estad\'istico simple de distribuci\'on conocida.
+
+\begin{teorema}
+Sobre una poblaci\'on cuya distribuci\'on depende de un par\'ametro $\theta$ que var\'ia en $\Theta\subset\mathbb{R}^k$ se quiere consultar la hip\'otesis nula definida por:
+\[\Theta_0=\{\theta\in\Theta|\theta_i=g_i(\omega_1,\omega_2,\ldots,\omega_q);(\omega_1,\omega_2,\ldots,\omega_q)\in\Omega\}\]
+Siendo $\Omega\subset\mathbb{R}^q$ un conjunto abierto, y las $g_i$ funciones con derivadas parciales de orden 1 continuas. Si se verifican las condiciones de regularidad necesarias para asegurar las propiedades asint\'oticas de los estimadores de m\'axima verosimilitud, entonces para cada $\theta\in\Theta_0$ se cumple:
+\[-2\ln{\Lambda(x_1,\ldots,x_n)}\overset{d}{\to}\chi^2_{k-q}\]
+\end{teorema}
+
+
+\sectioncol{Contrastes sobre la media y varianza en poblaciones normales.}
+
+\subsectioncol{Contraste sobre la media de una poblaci\'on normal con varianza conocida.}
+Supongamos una poblaci\'on con una distribuci\'on $N(\mu;\sigma)$, en la que la varianza es conocida, y con una muestra de tama\~no $n$ y un nivel de significaci\'on $\alpha$ queremos realizar los siguientes contrastes:
+\begin{enumerate}
+\item $H_0:\mu=\mu_0$, $H_0:\mu\neq\mu_0$.
+\item $H_0:\mu\leq\mu_0$, $H_0:\mu>\mu_0$.
+\item $H_0:\mu\geq\mu_0$, $H_0:\mu<\mu_0$.
+\end{enumerate}
+
+En este caso, sabemos que 
+\[\dfrac{\bar{x}-\mu}{\sigma/\sqrt{n}}\sim N(0;1)\]
+
+En todos casos, ustilizamos el estad\'istico $\bar{X}$, y las regiones cr\'iticas son:
+
+Resolvemos el primer caso mediante un contraste de raz\'on de verosimilitudes, obteniendo un contraste uniformemente m\'as potente e insesgado con regi\'on cr\'itica:
+\[C=\{\bar{X}<\mu_0-z_{\alpha/2}\dfrac{\sigma}{sqrt{n}}\} \cup \{\bar{X}>\mu_0+z_{\alpha/2}\dfrac{\sigma}{sqrt{n}}\}\]
+
+El segundo caso se resuelve teniendo en cuanta que la familia normal tiene cociente de verosimilitudes mon\'otono creciente en $\bar{x}$, resultando un contraste uniformemente m\'as potente con regi\'on cr\'itica:
+\[C= \{\bar{X}>\mu_0+z_{\alpha/2}\dfrac{\sigma}{sqrt{n}}\}\]
+
+El tercer caso se resuelve teniendo en cuanta que la familia normal tiene cociente de verosimilitudes mon\'otono creciente en $\bar{x}$, resultando un contraste uniformemente m\'as potente con regi\'on cr\'itica:
+\[C= \{\bar{X}<\mu_0-z_{\alpha/2}\dfrac{\sigma}{sqrt{n}}\}\]
+
+\subsectioncol{Contraste sobre la media de una poblaci\'on normal con varianza desconocida.}Supongamos una poblaci\'on con una distribuci\'on $N(\mu;\sigma)$, en la que la varianza es desconocida, y con una muestra de tama\~no $n$ y un nivel de significaci\'on $\alpha$ queremos realizar los siguientes contrastes:
+\begin{enumerate}
+\item $H_0:\mu=\mu_0$, $H_0:\mu\neq\mu_0$.
+\item $H_0:\mu\leq\mu_0$, $H_0:\mu>\mu_0$.
+\item $H_0:\mu\geq\mu_0$, $H_0:\mu<\mu_0$.
+\end{enumerate}
+
+En este caso, sabemos que si $S$ es la cuasivarianza muestral:
+\[\dfrac{\bar{x}-\mu}{S/\sqrt{n}}\sim t_{n-1}\]
+
+En todos casos, utilizamos el estad\'istico $\bar{X}$, y las regiones cr\'iticas son:
+
+Resolvemos el primer caso mediante un contraste de raz\'on de verosimilitudes, obteniendo un contraste uniformemente m\'as potente e insesgado con regi\'on cr\'itica:
+\[C=\{\bar{X}<\mu_0-t_{n-1;\alpha/2}\dfrac{S}{sqrt{n}}\} \cup \{\bar{X}>\mu_0+t_{n-1;\alpha/2}\dfrac{S}{sqrt{n}}\}\]
+
+El segundo caso se resuelve teniendo en cuenta que la $t$ de student tiene cociente de verosimilitudes mon\'otono creciente en $\bar{x}$, resultando un contraste uniformemente m\'as potente con regi\'on cr\'itica:
+\[C= \{\bar{X}>\mu_0+t_{n-1;\alpha/2}\dfrac{S}{sqrt{n}}\}\]
+
+El tercer caso se resuelve teniendo en cuanta que la $t$ de student tiene cociente de verosimilitudes mon\'otono creciente en $\bar{x}$, resultando un contraste uniformemente m\'as potente con regi\'on cr\'itica:
+\[C= \{\bar{X}<\mu_0-t_{n-1;\alpha/2}\dfrac{S}{sqrt{n}}\}\]
+
+
+\subsectioncol{Contraste sobre la varianza de una poblaci\'on normal con media conocida.}Supongamos una poblaci\'on con una distribuci\'on $N(\mu;\sigma)$, en la que la media es conocida, y con una muestra de tama\~no $n$ y un nivel de significaci\'on $\alpha$ queremos realizar los siguientes contrastes:
+\begin{enumerate}
+\item $H_0:\sigma^2=\sigma^2_0$, $H_0:\sigma^2\neq\sigma^2_0$.
+\item $H_0:\sigma^2\leq\sigma^2_0$, $H_0:\sigma^2>\sigma^2_0$.
+\item $H_0:\sigma^2\geq\sigma^2_0$, $H_0:\sigma^2<\sigma^2_0$.
+\end{enumerate}
+
+En todos casos, utilizamos el estad\'istico $\hat{\sigma}^2=\dfrac{\sum_{i=1}^n(x_i-\mu)^2}{n}$, y las regiones cr\'iticas son:
+
+Y sabemos que:
+\[\dfrac{n\hat{\sigma}^2}{\sigma^2}\sim \chi^2_{n}\]
+
+Resolvemos el primer caso mediante un contraste de raz\'on de verosimilitudes, obteniendo un contraste uniformemente m\'as potente e insesgado con regi\'on cr\'itica:
+\[C=\{\hat{\sigma}^2<\dfrac{\sigma_0^2}{n}\chi^2_{n;\alpha/2}\} \cup \{\hat{\sigma}^2>\dfrac{\sigma_0^2}{n}\chi^2_{n;1-\alpha/2}\}\]
+
+En el segundo caso se obtiene un contraste uniformemente m\'as potente e insesgado con regi\'on cr\'itica:
+\[C=\{\hat{\sigma}^2>\dfrac{\sigma_0^2}{n}\chi^2_{n;1-\alpha/2}\}\]
+
+En el tercer caso se obtiene un contraste uniformemente m\'as potente e insesgado con regi\'on cr\'itica:
+\[C=\{\hat{\sigma}^2<\dfrac{\sigma_0^2}{n}\chi^2_{n;\alpha/2}\}\]
+
+\subsectioncol{Contraste sobre la varianza de una poblaci\'on normal con media desconocida.}
+Supongamos una poblaci\'on con una distribuci\'on $N(\mu;\sigma)$, en la que la media es conocida, y con una muestra de tama\~no $n$ y un nivel de significaci\'on $\alpha$ queremos realizar los siguientes contrastes:
+\begin{enumerate}
+\item $H_0:\sigma^2=\sigma^2_0$, $H_0:\sigma^2\neq\sigma^2_0$.
+\item $H_0:\sigma^2\leq\sigma^2_0$, $H_0:\sigma^2>\sigma^2_0$.
+\item $H_0:\sigma^2\geq\sigma^2_0$, $H_0:\sigma^2<\sigma^2_0$.
+\end{enumerate}
+
+En todos casos, utilizamos el estad\'istico cuasivarianza muestra, $S^2=\dfrac{\sum_{i=1}^n(x_i-\hat{x})^2}{n-1}$, y las regiones cr\'iticas son:
+
+Y sabemos que:
+\[\dfrac{(n-1)S^2}{\sigma^2}\sim \chi^2_{n-1}\]
+
+Resolvemos el primer caso mediante un contraste de raz\'on de verosimilitudes, obteniendo un contraste uniformemente m\'as potente e insesgado con regi\'on cr\'itica:
+\[C=\{S^2<\dfrac{\sigma_0^2}{n-1}\chi^2_{n-1;\alpha/2}\} \cup \{S^2>\dfrac{\sigma_0^2}{n-1}\chi^2_{n-1;1-\alpha/2}\}\]
+
+En el segundo caso se obtiene un contraste uniformemente m\'as potente e insesgado con regi\'on cr\'itica:
+\[C=\{S^2>\dfrac{\sigma_0^2}{n-1}\chi^2_{n-1;1-\alpha/2}\}\]
+
+En el tercer caso se obtiene un contraste uniformemente m\'as potente e insesgado con regi\'on cr\'itica:
+\[C=\{S^2<\dfrac{\sigma_0^2}{n-1}\chi^2_{n-1;\alpha/2}\}\]
+
+
+\sectioncol{Contrastes en poblaciones no necesariamente normales. Muestras grandes.}
+
+Hasta ahora hemos contrastado hip\'otesis en poblaciones normales. El hecho de conocer la distribuci\'on de probabilidad de la poblaci\'on facilita en gran manera el contraste, pero esto no es siempre as\'i.
+
+Si la muestra en la que basamos el contraste es suficientemente grande, podemos aprovechas las propiedades asint\'oticas de los estimadores.
+
+As\'i, si tenemos un par\'ametro $\theta$, de una poblaci\'on no normal, para el que calculamos un estimador m\'aximo veros\'imil, $\hat{\theta}$, basado en una muestra aleatoria simple de tama\~no $n$ y con varianza $\sigma_{\hat{\theta}}^2$, se puede demostrar que la variable
+\[\dfrac{\hat{\theta}-\theta}{\sigma_{\hat{\theta}}}\]
+converge en distribuci\'on a $N(0;1)$, por las propiedades asint\'oticas de estos estimadores.
+
+Otros casos en los que se puede aprovechar las propiedades asint\'oticas es cuando en el cociente de verosimilitudes llegamos a la media muestral, que por el teorema central del l\'imite converge en distribuci\'on a una normal.
+
+\subsectioncol{Contraste de proporciones.}
+
+Como caso particular, veremos el contraste de hip\'otesis sobre una poblaci\'on con distribuci\'on de Bernouilli, $B(1;p)$.
+
+
