@@ -1,0 +1,51 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}{\color {blue} Tema 1. Fen\'omenos aleatorios. Espacios de probabilidad. Axiomas. Propiedades. Caso discreto. Caso continuo.}}{3}
+\contentsline {paragraph}{Axiomas de Kolmogorov.}{3}
+\contentsline {section}{\numberline {2}{\color {blue} Tema 2. Probabilidad condicionada. Teoremas de la probabilidad condicionada. Independencia de sucesos. Teorema de la Probabilidad Total. Teorema de Bayes.}}{3}
+\contentsline {section}{\numberline {3}{\color {blue} Tema 3. Variable aleatoria unidimensional. Probabilidad inducida por una variable aleatoria. Funci\'on de distribuci\'on. Distribuciones discretas y absolutamente continuas. Cambio de variable en las distribuciones unidimensionales.}}{3}
+\contentsline {paragraph}{Funci\'on de distribuci\'on.}{3}
+\contentsline {paragraph}{Funci\'on de densidad.}{4}
+\contentsline {section}{\numberline {4}{\color {blue} Tema 4. Distribuciones unidimensionales. Esperanza matem\'atica. Propiedades. Momentos de una variable aleatoria unidimensional. Otras medidas de posici\'on, dispersi\'on y de forma. Teorema de Markov y Desigualdad de Tchebychev.}}{4}
+\contentsline {section}{\numberline {5}{\color {blue} Tema 5. Funciones generatrices. Funci\'on caracter\'istica: Propiedades. Teoremas.}}{5}
+\contentsline {paragraph}{Funci\'on generatriz de probabilidad:}{5}
+\contentsline {paragraph}{Funci\'on generatriz de momentos:}{5}
+\contentsline {paragraph}{Funci\'on Caracter\'istica:}{5}
+\contentsline {section}{\numberline {6}{\color {blue} Tema 6. Variables aleatorias bidimensionales. Funciones de distribuci\'on bidimensionales. Distribuciones discretas y absolutamente continuas. Distribuciones marginales y condicionadas. Independencia de variables aleatorias. Cambio de variable. Extensi\'on a dimensiones mayores.}}{6}
+\contentsline {section}{\numberline {7}{\color {blue} Tema 7. Esperanza de una variable aleatoria bidimensional. Propiedades. Momentos de una variable aleatoria bidimensional. Propiedades de la varianza y la covarianza. Desigualdad de Schwarz. Coeficiente de correlaci\'on. Funci\'on caracter\'istica bidimensional.}}{6}
+\contentsline {section}{\numberline {8}{\color {blue} Tema 8. Esperanza condicionada. Propiedades. L\'inea General de Regresi\'on. Regresi\'on m\'inimo cuadr\'atica. Propiedades.}}{6}
+\contentsline {section}{\numberline {9}{\color {blue} Tema 9. Distribuci\'on degenerada. Distribuci\'on uniforme discreta. Distribuci\'on de Bernouilli. Distribuci\'on binomial. Distribuci\'on de Poisson. Caracter\'isticas. Distribuci\'on de Poisson como l\'imite de la binomial.}}{6}
+\contentsline {section}{\numberline {10}{\color {blue} Tema 10. Distribuci\'on geom\'etrica. Distribuci\'on binomial negativa. Distribuci\'on hipergeom\'etrica. Propiedades de todas ellas.}}{6}
+\contentsline {section}{\numberline {11}{\color {blue} Tema 11. Distribuci\'on normal. Caracter\'isticas e importancia de la distribuci\'on normal en la teor\'ia y pr\'actica estad\'istica. Distribuci\'on lognormal. Distribuci\'on normal multivariante. Propiedades.}}{6}
+\contentsline {section}{\numberline {12}{\color {blue} Tema 12. Distribuci\'on uniforme. Distribuci\'on exponencial. Distribuciones gamma y beta. Distribuci\'on de Pareto. Distribuci\'on de Cauchy. Caracter\'isticas.}}{6}
+\contentsline {section}{\numberline {13}{\color {blue} Tema 13. Distribuciones X2, t de Student y F de Snedecor. Caracter\'isticas. Importancia de estas distribuciones en la teor\'ia y pr\'actica estad\'istica. Relaciones con la distribuci\'on normal.}}{6}
+\contentsline {section}{\numberline {14}{\color {blue} Tema 14. Convergencias de sucesiones de variables aleatorias: convergencia casi segura, convergencia en probabilidad, convergencia en media cuadr\'atica, convergencia en ley. Relaciones entre ellas. Convergencia de sumas de variables aleatorias. Leyes d\'ebiles y fuertes de los grandes n\'umeros. Aplicaciones a la inferencia estad\'istica y al muestreo. Teorema Central del L\'imite.}}{6}
+\contentsline {subsection}{\numberline {14.1}{\color {red} Convergencias.}}{6}
+\contentsline {paragraph}{Convergencia en probabilidad.}{6}
+\contentsline {paragraph}{Convergencia casi segura.}{7}
+\contentsline {paragraph}{Convergencia en ley (o en distribuci\'on).}{7}
+\contentsline {paragraph}{Convergencia en media cuadr\'atica.}{8}
+\contentsline {paragraph}{Relaciones entre convergencias.}{8}
+\contentsline {subsection}{\numberline {14.2}{\color {red} Leyes d\'ebiles y fuertes de los grandes n\'umeros.}}{8}
+\contentsline {paragraph}{Ley d\'ebil de los grandes n\'umeros.}{8}
+\contentsline {paragraph}{Ley fuerte de los grandes n\'umeros.}{8}
+\contentsline {subsection}{\numberline {14.3}{\color {red} Teorema central del l\'imite.}}{9}
+\contentsline {section}{\numberline {15}{\color {blue} Tema 15. Cadenas de Markov. Distribuci\'on de la cadena. Cadenas homog\'eneas. Clasificaci\'on de los estados. Tipos de cadenas. Distribuciones estacionarias.}}{10}
+\contentsline {section}{\numberline {16}{\color {blue} Tema 16. Procesos de Poisson. Proceso general de Nacimiento y Muerte. Proceso puro de Nacimiento. Proceso puro de Muerte. }}{10}
+\contentsline {section}{\numberline {17}{\color {blue} Tema 17. Fundamentos de la Inferencia Estad\'istica. Concepto de muestra aleatoria. Distribuci\'on de la muestra. Estad\'isticos y su distribuci\'on en el muestreo. Funci\'on de distribuci\'on emp\'irica y sus caracter\'isticas. Teorema de Glivenco-Cantelli.}}{10}
+\contentsline {section}{\numberline {18}{\color {blue} Tema 18. Distribuciones en el muestreo asociadas con poblaciones normales. Distribuciones de la media, varianza y diferencia de medias. Estad\'isticos ordenados. Distribuci\'on del mayor y menor valor. Distribuci\'on del recorrido.}}{10}
+\contentsline {section}{\numberline {19}{\color {blue} Tema 19. Estimaci\'on puntual I. Propiedades de los estimadores puntuales. Error cuadr\'atico medio. Estimadores insesgados, consistentes y suficientes.}}{10}
+\contentsline {section}{\numberline {20}{\color {blue} Tema 20. Estimaci\'on puntual II. Estimadores de m\'inima varianza. Estimadores eficientes. Estimadores robustos. Estimadores Bayesianos.}}{10}
+\contentsline {section}{\numberline {21}{\color {blue} Tema 21. M\'etodos de estimaci\'on. M\'etodo de los momentos. M\'etodo de la m\'inima X2. M\'etodo de la m\'inima varianza. M\'etodo de los m\'inimos cuadrados. M\'etodos Bayesianos.}}{10}
+\contentsline {section}{\numberline {22}{\color {blue} Tema 22. M\'etodo de estimaci\'on de m\'axima verosimilitud. Propiedades. Distribuci\'on asint\'otica de los estimadores de m\'axima verosimilitud.}}{10}
+\contentsline {section}{\numberline {23}{\color {blue} Tema 23. Estimaci\'on por intervalos. M\'etodos de construcci\'on de intervalos de confianza: m\'etodo pivotal y m\'etodo general de Neyman. Intervalos de confianza en poblaciones normales: media, varianza, diferencia de medias y cociente de varianzas. Regiones de confianza.}}{10}
+\contentsline {section}{\numberline {24}{\color {blue} Tema 24. Contrastes de hip\'otesis. Errores y potencia de un contraste. Hip\'otesis simples. Lema de Neyman-Pearson.}}{10}
+\contentsline {section}{\numberline {25}{\color {blue} Tema 25. Hip\'otesis compuestas y contrastes uniformemente m\'as potentes. Contrastes de significaci\'on, p-valor. Contraste de raz\'on de verosimilitudes. Contrastes sobre la media y varianza en poblaciones normales. Contrastes en poblaciones no necesariamente normales. Muestras grandes.}}{10}
+\contentsline {section}{\numberline {26}{\color {blue} Tema 26. Contrastes de bondad de ajuste. Contraste X2 de Pearson. Contraste de Kolmogorov-Smirnov. Contrastes de normalidad. Contrastes de independencia. Contraste de homogeneidad.}}{10}
+\contentsline {section}{\numberline {27}{\color {blue} Tema 27. An\'alisis de la varianza para una clasificaci\'on simple. Comprobaci\'on de las hip\'otesis iniciales del modelo. Contrastes de comparaciones m\'ultiples: m\'etodo de Tuckey y m\'etodo de Scheff\'e. An\'alisis de la varianza para una clasificaci\'on doble.}}{10}
+\contentsline {section}{\numberline {28}{\color {blue} Tema 28. An\'alisis de conglomerados. Medidas de disimilaridad. M\'etodos jer\'arquicos aglomerativos: el dendrograma. M\'etodos jer\'arquicos divisivos. M\'etodos no jer\'arquicos de clasificaci\'on.}}{10}
+\contentsline {section}{\numberline {29}{\color {blue} Tema 29. An\'alisis Discriminante. Clasificaci\'on con 2 grupos. Funci\'on discriminante de Fisher. Clasificaci\'on con m\'as de 2 grupos. Funciones Clasificadoras.}}{10}
+\contentsline {section}{\numberline {30}{\color {blue} Tema 30. An\'alisis de Componentes Principales. Formulaci\'on del Problema, resoluci\'on y propiedades. Determinaci\'on del n\'umero de componentes a considerar.}}{10}
+\contentsline {section}{\numberline {31}{\color {blue} Tema 31. An\'alisis Factorial. Formulaci\'on del Problema. T\'ecnicas de resoluci\'on. Relaci\'on con el An\'alisis de Componentes Principales. Rotaciones. Adecuaci\'on y Validaci\'on de hip\'otesis.}}{10}
+\contentsline {section}{\numberline {32}{\color {blue} Tema 32. An\'alisis de Correlaci\'on Can\'onica. Introducci\'on. Correlaci\'on can\'onica y variables can\'onicas: c\'alculo e interpretaci\'on geom\'etrica. Propiedades. Contrastaci\'on del modelo y an\'alisis de la dimensionalidad. Relaci\'on con otras t\'ecnicas de an\'alisis multivariante.}}{10}
+\contentsline {section}{\numberline {33}{\color {blue} Tema 33. \'Indices estad\'isticos: conceptos, criterios y propiedades. F\'ormulas agregativas. \'Indices en cadena. Paaschizaci\'on de \'indices. \'Indices de Roy. \'Indices de Divisia.}}{10}
+\contentsline {section}{\numberline {34}{\color {blue} Tema 34. \'Indices de desigualdad y medidas de concentraci\'on.}}{10}
